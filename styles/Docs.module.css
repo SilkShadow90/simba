@@ -1,0 +1,22 @@
+.container {
+    /*padding: 0 2rem;*/
+    position: relative;
+}
+.cardsDocs {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 100px 0 450px 0;
+}
+
+.cardsDocsInfo:hover {
+    background: bisque;
+}
+
+.cardsDocsInfo {
+    margin: 30px;
+    min-height: 102px;
+    width: 100%;
+    border-radius: 12px;
+    padding: 50px;
+    background: #77aba3;
+}

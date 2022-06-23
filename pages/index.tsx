@@ -2,6 +2,12 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import React from "react";
+import simba from '../public/simba.jpeg';
+import cat from '../public/cat.jpg';
+import {Sfooter} from "../components/footer";
+import {Sheader} from "../components/header";
+
 
 const Home: NextPage = () => {
   return (
@@ -13,58 +19,103 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+       <Sheader/>
+          <div className={styles.titleList}>
+              Слайдер
+          </div>
+          <div className={styles.infoUpper}>Клуб любителей кошек Симба г. Ульяновск</div>
+          <div className={styles.info}>
+              <div className={styles.infoOver}>
+                  <div className={styles.leftColumn}>
+                          <div className={styles.leftColumnText}>
+                              Приветствуем Вас на официальном сайте Региональной фелинологической общественной  организации Клуб любителей кошек Коргоруши!
+                          </div>
+                          <div className={styles.leftColumnText}>
+                              Наш клуб существует с 1995 года. Клуб Kоргоруши работает по правилам международной фелинологической системы WCF.
+                              Подробно можно ознакомится на официальном сайте системы.
+                          </div>
+                          <div className={styles.leftColumnText}>
+                              Среди членов клуба Коргоруши - владельцы известных питомников, животные которых неоднократно являлись участниками "Best in Show",
+                              побеждали на международных выставках не только у нас в стране и СНГ, но и в дальнем зарубежье, являются чемпионами мира  своих пород.
+                          </div>
+                          <div className={styles.leftColumnText}>
+                              В клубе представлены различные породы кошек (Абиссинская, Бенгальская, Балинезийская, Британская короткошерстная,
+                              Британская длинношерстная, Норвежская лесная,Персидская, Сомалийская, Скотиш-фолд (Шотландская вислоухая), Тайская,
+                              Экзотическая короткошерстная,
+                              Курильский бобтейл, Сибирская, Мейнкун, Чаузи, Девон-рекс, Той-Боб), но особое внимание мы уделяем разведению Меконгских
+                              (или, как они назывались до утверждения породы, тайских) бобтейлов, количество которых в РФОО "Коргоруши" самое большое в России.
+                              Родоначальники племенных линий этой породы в нашем клубе были привезены из Юго-Восточной Азии.
+                          </div>
+                          <div className={styles.leftColumnText}>
+                              В ноябре 2003 года на Международной выставке "Содружество - Гран При Royal Canin 2003" была проведена презентация меконг-бобтейлов,
+                              а 14-15 августа 2004 года порода была утверждена на Генеральной Ассамблее WCF.
+                          </div>
+                          <div className={styles.leftColumnText}>
+                              Клуб "Коргоруши" длительное время был одним из организаторов выставок "Содружество"
+                          </div>
+                          <div className={styles.leftColumnText}>
+                              Если Вас заинтересовала работа клуба "Коргоруши", обращайтесь к нам.
+                          </div>
+                          <div className={styles.leftColumnText}>
+                              Президент клуба Кошачий Король
+                          </div>
+                       </div>
+                  <div className={styles.rightColumn}>
+                          <div className={styles.rightColumnText}>
+                              Актуальное
+                          </div>
+                          <div className={styles.rightColumnText}>
+                              15 марта 2021 | Ближайшие выставки
+                          </div>
+                          <div className={styles.rightColumnText}>
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.tsx</code>
-        </p>
+                              Приглашаем принять участие в Международной выставке кошек 06-07 марта 2022 г
+                              License L# 221052 Место проведения: ВВЦ, ТЦ РМ, 1-я Останкинская ул. 55 Схема прохода и
+                              проезда Эксперты: Mrs. Tatyana Terе...
+                          </div>
+                          <div className={styles.rightColumnText}>
+                              10 октября 2020 | Прошедшие выставки
+                          </div>
+                          <div className={styles.rightColumnText}>
+                              10-11 октября 2020 г, прошла Международная выставка кошек РФОО Коргоруши, Москва
+                          </div>
+                          <div className={styles.rightColumnText}>
+                              25 января 2020 | Прошедшие выставки
+                          </div>
+                          <div className={styles.rightColumnText}>
+                              25-26 января 2020г, прошла Международная выставка кошек памяти Людмилы Есиной, РФОО Коргоруши, Москва, парк Сокольники
+                          </div>
+                          <div className={styles.rightColumnText}>
+                              Все новости
+                          </div>
+                  </div>
+              </div>
+              <div className={styles.razdel}>
+                  <div className={styles.razdelRow}>
+                      <div className={styles.razdelCardleft}></div>
+                      <div className={styles.razdelCardleft}></div>
+                  </div>
+                  <div className={styles.razdelColumn}>
+                      <div className={styles.razdelCardRight}>
+                          <Image className={styles.art} sizes={"1"} src={cat}/>
+                      </div>
+                      <div className={styles.razdelCardRight}>
+                          <Image src={simba}/>
+                          {/*<img src={simba} alt="s"/>*/}
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
+                      </div>
+                  </div>
+              </div>
+              <div className={styles.razdelDown}>
+                  123
+              </div>
+              <div className={styles.razdelCenter}>
+                  <div className={styles.razdelCenterBlock}>ledt block</div>
+                  <div className={styles.razdelCenterBlock}>right block</div>
+              </div>
+          </div>
       </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
+      <Sfooter/>
     </div>
   )
 }

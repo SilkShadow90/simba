@@ -1,5 +1,6 @@
 .container {
-  padding: 0 2rem;
+  /*padding: 0 2rem;*/
+  position: relative;
 }
 
 .main {
@@ -27,6 +28,28 @@
   align-items: center;
   flex-grow: 1;
 }
+
+
+
+.cardsCats {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 100px 0 450px 0;
+}
+
+.cardsCatsPicture:hover {
+  background: bisque;
+}
+
+.cardsCatsPicture {
+  margin: 30px;
+  min-height: 502px;
+  width: 500px;
+  border-radius: 12px;
+  padding: 50px;
+  background: #77aba3;
+}
+
 
 .title a {
   color: #0070f3;
