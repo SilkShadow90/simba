@@ -1,11 +1,9 @@
 import type { NextPage } from 'next'
-import Head from 'next/head'
 import styles from '../styles/Cats.module.css'
 import React, { useEffect } from 'react';
-import {Footer} from "../components/footer";
-import {Header} from "../components/header";
 import Image from 'next/image'
 import cat from '../public/cat.jpg';
+import { Page } from '../components/Page';
 
 const Cats: NextPage = () => {
   // useEffect(() => {
@@ -20,26 +18,16 @@ const Cats: NextPage = () => {
   // }, [])
 
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Cats</title>
-        <meta name="description" content="bla bla" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-        <main>
-            <Header/>
-            <div className={styles.cardsCats}>
-                <div className={styles.cardsCatsPicture}>
-                    <Image  layout={"responsive"}  src={cat} />
-                </div>
-                <div className={styles.cardsCatsPicture}>2</div>
-                <div className={styles.cardsCatsPicture}>3</div>
-                <div className={styles.cardsCatsPicture}>4</div>
-            </div>
-            <Footer/>
-        </main>
-    </div>
+      <Page title="Cats" meta="bla bla" styles={styles.container} >
+          <div className={styles.cardsCats}>
+              <div className={styles.cardsCatsPicture}>
+                  <Image layout="fill" objectFit="cover" src={cat} />
+              </div>
+              <div className={styles.cardsCatsPicture}>2</div>
+              <div className={styles.cardsCatsPicture}>3</div>
+              <div className={styles.cardsCatsPicture}>4</div>
+          </div>
+      </Page>
   )
 }
 

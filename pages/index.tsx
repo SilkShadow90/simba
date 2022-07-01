@@ -5,9 +5,9 @@ import styles from '../styles/Home.module.css'
 import React from "react";
 import simba from '../public/simba.jpeg';
 import cat from '../public/cat.jpg';
-import {Footer} from "../components/footer";
-import {Header} from "../components/header";
-
+import {Footer} from "../components/Footer";
+import {Header} from "../components/Header";
+import { Strings } from '../resources';
 
 const Home: NextPage = () => {
   return (
@@ -23,44 +23,17 @@ const Home: NextPage = () => {
           <div className={styles.titleList}>
               Слайдер
           </div>
-          <div className={styles.infoUpper}>Клуб любителей кошек Симба г. Ульяновск</div>
+          <div className={styles.infoUpper}>{Strings.main.title}</div>
           <div className={styles.info}>
               <div className={styles.infoOver}>
-                  <div className={styles.leftColumn}>
-                          <div className={styles.leftColumnText}>
-                              Приветствуем Вас на официальном сайте Региональной фелинологической общественной  организации Клуб любителей кошек Коргоруши!
+                  <div className={styles.column}>
+                      {Strings.main.text.map(text => (
+                          <div key={text} className={styles.leftColumnText}>
+                              {text}
                           </div>
-                          <div className={styles.leftColumnText}>
-                              Наш клуб существует с 1995 года. Клуб Kоргоруши работает по правилам международной фелинологической системы WCF.
-                              Подробно можно ознакомится на официальном сайте системы.
-                          </div>
-                          <div className={styles.leftColumnText}>
-                              Среди членов клуба Коргоруши - владельцы известных питомников, животные которых неоднократно являлись участниками "Best in Show",
-                              побеждали на международных выставках не только у нас в стране и СНГ, но и в дальнем зарубежье, являются чемпионами мира  своих пород.
-                          </div>
-                          <div className={styles.leftColumnText}>
-                              В клубе представлены различные породы кошек (Абиссинская, Бенгальская, Балинезийская, Британская короткошерстная,
-                              Британская длинношерстная, Норвежская лесная,Персидская, Сомалийская, Скотиш-фолд (Шотландская вислоухая), Тайская,
-                              Экзотическая короткошерстная,
-                              Курильский бобтейл, Сибирская, Мейнкун, Чаузи, Девон-рекс, Той-Боб), но особое внимание мы уделяем разведению Меконгских
-                              (или, как они назывались до утверждения породы, тайских) бобтейлов, количество которых в РФОО "Коргоруши" самое большое в России.
-                              Родоначальники племенных линий этой породы в нашем клубе были привезены из Юго-Восточной Азии.
-                          </div>
-                          <div className={styles.leftColumnText}>
-                              В ноябре 2003 года на Международной выставке "Содружество - Гран При Royal Canin 2003" была проведена презентация меконг-бобтейлов,
-                              а 14-15 августа 2004 года порода была утверждена на Генеральной Ассамблее WCF.
-                          </div>
-                          <div className={styles.leftColumnText}>
-                              Клуб "Коргоруши" длительное время был одним из организаторов выставок "Содружество"
-                          </div>
-                          <div className={styles.leftColumnText}>
-                              Если Вас заинтересовала работа клуба "Коргоруши", обращайтесь к нам.
-                          </div>
-                          <div className={styles.leftColumnText}>
-                              Президент клуба Кошачий Король
-                          </div>
-                       </div>
-                  <div className={styles.rightColumn}>
+                      ))}
+                  </div>
+                  <div className={styles.column}>
                           <div className={styles.rightColumnText}>
                               Актуальное
                           </div>

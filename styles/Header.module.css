@@ -1,20 +1,20 @@
 .header {
-    flex: 1;
-    top: 50px;
     display: flex;
+    flex: 1 1 auto;
     flex-direction: row;
     justify-content: space-between;
-    min-height: 60px;
-    background: #77aba3;
+    align-items: center;
+    height: 76px;
+    padding: 8px;
+    background-color: var(--main-bg-color);
     margin-bottom: 55px;
-    border-radius: 12px;
     box-shadow: 0px -3px 48px -15px #534f4f;
 }
 
 .headerLeft {
     display: flex;
     flex-direction: row;
-    margin-left: 100px;
+    margin-left: 8px;
     flex-wrap: wrap;
 
 }
@@ -26,19 +26,18 @@
 }
 
 .headerText {
-    min-height: 60px;
+    height: 40px;
     display: flex;
     align-items: center;
-    padding-left: 20px;
-    padding-right: 20px;
-    color: #0b0b0b;
+    padding: 0 12px;
+    color: #f3f3f3;
     font-size: 20px;
     font-weight: 300;
-    border: solid  silver;
-    border-radius: 12px;
-    margin: 5px;
+    margin: 0 8px;
+    border-bottom: 1px solid transparent;
+    transition: border-bottom 500ms ease-in-out;
 }
 
 .headerText:hover {
-    background: bisque;
+    border-bottom: 1px solid #f3f3f3;
 }
