@@ -32,9 +32,9 @@
 
 
 .cardsCats {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 100px 0 450px 0;
+  display: grid;
+  /*flex-wrap: wrap;*/
+  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
 }
 
 .cardsCatsPicture:hover {
@@ -42,11 +42,10 @@
 }
 
 .cardsCatsPicture {
+  box-shadow: 0px -3px 48px -15px #534f4f;
   margin: 30px;
-  min-height: 502px;
-  width: 500px;
+  min-height: 452px;
   border-radius: 12px;
-  padding: 50px;
   background: #77aba3;
 }
 

@@ -5,8 +5,8 @@ import styles from '../styles/Home.module.css'
 import React from "react";
 import simba from '../public/simba.jpeg';
 import cat from '../public/cat.jpg';
-import {Sfooter} from "../components/footer";
-import {Sheader} from "../components/header";
+import {Footer} from "../components/footer";
+import {Header} from "../components/header";
 
 
 const Home: NextPage = () => {
@@ -18,8 +18,8 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-       <Sheader/>
+      <main>
+       <Header/>
           <div className={styles.titleList}>
               Слайдер
           </div>
@@ -97,12 +97,11 @@ const Home: NextPage = () => {
                   </div>
                   <div className={styles.razdelColumn}>
                       <div className={styles.razdelCardRight}>
-                          <Image className={styles.art} sizes={"1"} src={cat}/>
+                          {/*<Image className={styles.art}  sizes={"1"} src={cat}/>*/}
                       </div>
                       <div className={styles.razdelCardRight}>
-                          <Image src={simba}/>
+                          {/*<Image  src={simba}/>*/}
                           {/*<img src={simba} alt="s"/>*/}
-
                       </div>
                   </div>
               </div>
@@ -115,7 +114,7 @@ const Home: NextPage = () => {
               </div>
           </div>
       </main>
-      <Sfooter/>
+      <Footer/>
     </div>
   )
 }

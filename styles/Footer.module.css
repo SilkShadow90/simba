@@ -2,11 +2,13 @@
     display: flex;
     flex-direction: row;
     height: 400px;
-    background: linear-gradient(0deg, rgba(215,235,232,1) 36%, rgba(255,255,255,1) 100%);
+    background: #77aba3;
     min-width: 100%;
     padding: 0 90px;
-    position: absolute;
     bottom: 1px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+
 }
 /*.footerDown {*/
 /*    height: 100px;*/
@@ -17,17 +19,17 @@
 
 .footerLeft {
     margin: 30px 0 0 30px;
-    width: 33%;
+    flex: 1;
 }
 
 .footerCenter {
     margin: 30px 0 0 30px;
-    width: 33%;
+    flex: 1;
 }
 
 .footerRight {
     margin: 30px 30px 0 0;
-    width: 33%;
+    flex: 1;
     justify-content: right;
     display: flex;
     align-items: end;
@@ -45,7 +47,6 @@
     background: #77aba3;
     min-height: 100px;
     right: 1px;
-    position: absolute;
     bottom: 1px;
     left: 1px;
     display: flex;
