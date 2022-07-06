@@ -1,5 +1,4 @@
 .container {
-  /*padding: 0 2rem;*/
   position: relative;
 }
 
@@ -33,7 +32,6 @@
 
 .cardsCats {
   display: grid;
-  /*flex-wrap: wrap;*/
   grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
 }
 
@@ -42,98 +40,55 @@
   box-shadow: 0 -3px 48px -15px #534f4f;
   margin: 30px;
   min-height: 452px;
-  border-radius: 12px;
-  background: #77aba3;
+  border-radius: var(--border-standart);
+  background:var(--main-bg-color);
   overflow: hidden;
+  transition: height 500ms ease-in-out;
 }
 
-.cardsCatsPicture:hover {
-  background: bisque;
+.cardsCatsPictureMain {
+  background: #dffff4;
+  position: absolute;
+  bottom: -1px;
+  left: -1px;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  height: 45px;
+  right: -1px;
+  z-index: 1;
+  transition: height 500ms ease-in-out;
+  opacity: 0.7;
 }
 
-.title a {
-  color: #0070f3;
-  text-decoration: none;
+.cardsCatsPicture:hover .cardsCatsPictureMain {
+  height:35%;
 }
 
-.title a:hover,
-.title a:focus,
-.title a:active {
-  text-decoration: underline;
+
+.cardsCatsPictureMainName {
+  color: black;
+  size: 25px;
+  font-size: 25px;
+  font-weight: 700;
+  font-family: cursive;
+  margin: 3px 30px 20px 30px;
 }
 
-.title {
-  margin: 0;
-  line-height: 1.15;
-  font-size: 4rem;
+.cardsCatsPictureMainFamily {
+  color: black;
+  size: 23px;
+  font-size: 25px;
+  font-weight: 500;
+  font-family: cursive;
+  margin: 3px 30px 20px 30px;
 }
 
-.title,
-.description {
-  text-align: center;
+.cardsCatsPictureMainYears {
+  color: black;
+  size: 23px;
+  font-size: 25px;
+  font-weight: 500;
+  font-family: cursive;
+  margin: 3px 30px 20px 30px;
 }
 
-.description {
-  margin: 4rem 0;
-  line-height: 1.5;
-  font-size: 1.5rem;
-}
-
-.code {
-  background: #fafafa;
-  border-radius: 5px;
-  padding: 0.75rem;
-  font-size: 1.1rem;
-  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-    Bitstream Vera Sans Mono, Courier New, monospace;
-}
-
-.grid {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  max-width: 800px;
-}
-
-.card {
-  margin: 1rem;
-  padding: 1.5rem;
-  text-align: left;
-  color: inherit;
-  text-decoration: none;
-  border: 1px solid #eaeaea;
-  border-radius: 10px;
-  transition: color 0.15s ease, border-color 0.15s ease;
-  max-width: 300px;
-}
-
-.card:hover,
-.card:focus,
-.card:active {
-  color: #0070f3;
-  border-color: #0070f3;
-}
-
-.card h2 {
-  margin: 0 0 1rem 0;
-  font-size: 1.5rem;
-}
-
-.card p {
-  margin: 0;
-  font-size: 1.25rem;
-  line-height: 1.5;
-}
-
-.logo {
-  height: 1em;
-  margin-left: 0.5rem;
-}
-
-@media (max-width: 600px) {
-  .grid {
-    width: 100%;
-    flex-direction: column;
-  }
-}

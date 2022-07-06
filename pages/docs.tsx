@@ -4,6 +4,7 @@ import styles from '../styles/Docs.module.css'
 import React, { useEffect } from 'react';
 import {Footer} from "../components/Footer";
 import {Header} from "../components/Header";
+import {Page} from "../components/Page";
 
 const docs: NextPage = () => {
     // useEffect(() => {
@@ -18,24 +19,19 @@ const docs: NextPage = () => {
     // }, [])
 
     return (
-        <div className={styles.container}>
-            <Head>
-                <title>Cats</title>
-                <meta name="description" content="bla bla" />
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
-            <main>
-                <Header/>
-                <div className={styles.cardsDocs}>
-                    <a  className={styles.cardsDocsInfo} target='_blank' download href="/vstuplenie.doc">Скачать документ для вступления в клуб</a>
-                    <a  className={styles.cardsDocsInfo} target='_blank' download href="http://korgorushi.com/images/docs/title-certificate.doc">Скачать заявление на титул</a>
-                    <a  className={styles.cardsDocsInfo} target='_blank' download href="http://korgorushi.com/images/docs/cattery.docx">Скачать заявление на регистрацию питомника</a>
-                    <a  className={styles.cardsDocsInfo} target='_blank' download href="http://korgorushi.com/images/docs/vyazka.doc">Скачать заявление направления на вязку</a>
-                </div>
-                <Footer/>
-            </main>
-        </div>
+        <Page title="Docs" meta="bla bla" styles={styles.container}>
+            <div className={styles.cardsDocs}>
+                <a className={styles.cardsDocsInfo} target='_blank' download href="/vstuplenie.doc">Скачать документ для
+                    вступления в клуб</a>
+                <a className={styles.cardsDocsInfo} target='_blank' download
+                   href="http://korgorushi.com/images/docs/title-certificate.doc">Скачать заявление на титул</a>
+                <a className={styles.cardsDocsInfo} target='_blank' download
+                   href="http://korgorushi.com/images/docs/cattery.docx">Скачать заявление на регистрацию питомника</a>
+                <a className={styles.cardsDocsInfo} target='_blank' download
+                   href="http://korgorushi.com/images/docs/vyazka.doc">Скачать заявление направления на вязку</a>
+            </div>
+        </Page>
     )
 }
-
 export default docs
+

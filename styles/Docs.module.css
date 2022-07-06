@@ -15,7 +15,7 @@
     margin: 30px;
     min-height: 102px;
     width: 100%;
-    border-radius: 12px;
+    border-radius: var(--border-standart);
     padding: 50px;
-    background: #77aba3;
+    background:var(--main-bg-color);
 }
