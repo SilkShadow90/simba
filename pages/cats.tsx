@@ -9,6 +9,7 @@ import catthree from '../public/catthree.jpg';
 import { Page } from '../components/Page';
 import {Card} from "../components/Card";
 
+const aas = 5 ;
 const Cats: NextPage = () => {
   // useEffect(() => {
   //   (async () => {
