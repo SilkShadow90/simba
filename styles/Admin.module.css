@@ -1,0 +1,26 @@
+.adminCards {
+    display: grid;
+    margin-bottom: 20px;
+    grid-template-columns: 1fr 2fr;
+    background-color:#e5daef;
+    border-radius: 1px ;
+    border: solid black;
+}
+
+.adminCardsLeft {
+    /* border: solid black; */
+}
+
+
+.adminCardsLeftColumn {
+    border: solid black;
+    min-height: 50px;
+}
+
+.adminCardsLeftColumn:hover {
+background-color: blue;
+}
+
+.adminCardsRight {
+    border: solid black;
+}
