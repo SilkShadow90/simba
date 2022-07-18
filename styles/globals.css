@@ -19,10 +19,15 @@ a {
 * {
   box-sizing: border-box;
 }
+
 main {
   min-height: 100vh;
   /*padding: 47px 0 0 0;*/
   flex: 1;
   display: flex;
   flex-direction: column;
+}
+
+.flex {
+  flex: 1 1 auto;
 }

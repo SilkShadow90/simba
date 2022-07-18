@@ -10,4 +10,12 @@ export const initialState = {
     user: null,
     id: undefined,
   },
+  adminState: {
+    openedMain: false,
+    openedCats: false,
+    openedDocs: false,
+    openedShows: false,
+    openedClubs: false,
+    openedContacts: false,
+  }
 };

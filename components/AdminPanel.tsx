@@ -1,14 +1,27 @@
 import styles from "../styles/Admin.module.css";
-import React, {PropsWithChildren, useState} from "react";
+import React, { PropsWithChildren, useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 interface Props {
     text: string;
+    type: string
 }
 
-export const AdminPanel = ({text}: PropsWithChildren<Props>) => {
-    const  [height, setHeight] = useState(true);
+export const AdminPanel = ({text, type}: PropsWithChildren<Props>) => {
+    const dispatch = useDispatch()
+    const isOpened = useSelector((state: any) => state.adminState[type])
+
+    const onClick = useCallback(() => dispatch({
+        type: `admin/${type}`,
+    }), [dispatch, type])
+
     return (
-        <button className={height ? styles.adminCardsLeftColumn : styles.adminCardsLeftColumnRed } onClick={()=> setHeight((prevState)=> !prevState) } >{text}</button>
+        <button
+          className={isOpened ? styles.adminCardsLeftColumnRed : styles.adminCardsLeftColumn }
+          onClick={onClick}
+        >
+            {text}
+        </button>
     )
 }

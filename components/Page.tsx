@@ -7,9 +7,10 @@ interface Props {
     title: string;
     meta: string;
     styles: string;
+    withoutHeaderAndFooter?: boolean;
 }
 
-export const Page = ({ children, title, meta, styles }: PropsWithChildren<Props>) => {
+export const Page = ({ children, title, meta, styles, withoutHeaderAndFooter = false }: PropsWithChildren<Props>) => {
     return (
         <div className={styles}>
             <Head>
@@ -19,9 +20,11 @@ export const Page = ({ children, title, meta, styles }: PropsWithChildren<Props>
             </Head>
 
             <main>
-                <Header/>
-                {children}
-                <Footer/>
+              {!withoutHeaderAndFooter && <Header/>}
+                <div className='flex'>
+                  {children}
+                </div>
+              {!withoutHeaderAndFooter && <Footer/>}
             </main>
         </div>
     )
