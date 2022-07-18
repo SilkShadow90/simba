@@ -13,8 +13,18 @@
 
 
 .adminCardsLeftColumn {
+    display: flex;
+    flex-direction: column;
     border: solid black;
     min-height: 50px;
+    background-color: aqua;
+}
+.adminCardsLeftColumnRed{
+    display: flex;
+    flex-direction: column;
+    border: solid black;
+    min-height: 50px;
+    background-color: red;
 }
 
 .adminCardsLeftColumn:hover {

@@ -1,19 +1,21 @@
 import type { NextPage } from 'next'
 import styles from '../styles/Admin.module.css'
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Page } from '../components/Page';
+import { AdminPanel } from '../components/AdminPanel';
 
 const Admin: NextPage = () => {
+
   return (
       <Page title="Cats" meta="bla bla" styles={styles.container} >
           <div className={styles.adminCards}>
               <div className={styles.adminCardsLeft}>
-                <div className={styles.adminCardsLeftColumn}>Главная</div>
-                <div className={styles.adminCardsLeftColumn}>Кошки</div>
-                <div className={styles.adminCardsLeftColumn}>Документы</div>
-                <div className={styles.adminCardsLeftColumn}>Выставки</div>
-                <div className={styles.adminCardsLeftColumn}>Питомники</div>
-                <div className={styles.adminCardsLeftColumn}>Контакты</div>
+                <AdminPanel text={"Главная"}/>
+                <AdminPanel text={"Кошки"}/>
+                <AdminPanel text={"Документы"}/>
+                <AdminPanel text={"Выставки"}/>
+                <AdminPanel text={"Питомники"}/>
+                <AdminPanel text={"Контакты"}/>
               </div>
               <div className={styles.adminCardsRight}>2</div>
           </div>

@@ -19,3 +19,12 @@
     padding: 50px;
     background:var(--main-bg-color);
 }
+
+.cardsDocsInfoHeight {
+    margin: 30px;
+    min-height: 300px;
+    width: 100%;
+    border-radius: var(--border-standart);
+    padding: 50px;
+    background:var(--main-bg-color);
+}

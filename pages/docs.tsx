@@ -1,10 +1,8 @@
 import type { NextPage } from 'next'
-import Head from 'next/head'
 import styles from '../styles/Docs.module.css'
 import React, { useEffect, useState } from 'react';
-import {Footer} from "../components/Footer";
-import {Header} from "../components/Header";
 import {Page} from "../components/Page";
+import {Document} from "../components/Document";
 
 const docs: NextPage = () => {
     // useEffect(() => {
@@ -18,23 +16,16 @@ const docs: NextPage = () => {
     //   })()
     // }, [])
 
-    const  [text, setText] = useState(false);
-
     return (
         <Page title="Docs" meta="bla bla" styles={styles.container}>
             <div className={styles.cardsDocs}>
-                <button onClick={() => setText}>
-                <a className={styles.cardsDocsInfo} target='_blank' download href="/vstuplenie.doc">Скачать документ для
-                    вступления в клуб</a>
-                </button>
-                <a className={styles.cardsDocsInfo} target='_blank' download
-                   href="http://korgorushi.com/images/docs/title-certificate.doc">Скачать заявление на титул</a>
-                <a className={styles.cardsDocsInfo} target='_blank' download
-                   href="http://korgorushi.com/images/docs/cattery.docx">Скачать заявление на регистрацию питомника</a>
-                <a className={styles.cardsDocsInfo} target='_blank' download
-                   href="http://korgorushi.com/images/docs/vyazka.doc">Скачать заявление направления на вязку</a>
+                <Document docs={"/vstuplenie.doc"} text='Скачать документ для вступления в клуб'/>
+                <Document docs={"/title-certificate.doc"} text='Скачать заявление на титул'/>
+                <Document docs={"/cattery.docx"} text='Скачать заявление на регистрацию питомника'/>
+                <Document docs={"/vyazka.doc"} text='Скачать заявление направления на вязку'/>
             </div>
         </Page>
+        
     )
 }
 export default docs
