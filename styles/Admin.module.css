@@ -1,36 +1,41 @@
 .adminCards {
+    margin-top: 20vh;
     display: grid;
     margin-bottom: 20px;
     grid-template-columns: 1fr 2fr;
     background-color:#e5daef;
     border-radius: 1px ;
-    border: solid black;
+    border: solid black 1px;
 }
 
 .adminCardsLeft {
-    /* border: solid black; */
+    width: 100%;
 }
-
 
 .adminCardsLeftColumn {
     display: flex;
+    width: 100%;
     flex-direction: column;
-    border: solid black;
+    border:solid black 1px;
     min-height: 50px;
-    background-color: aqua;
+    background-color: cadetblue;
+    transition:  500ms ease-in-out;
 }
 .adminCardsLeftColumnRed{
     display: flex;
     flex-direction: column;
-    border: solid black;
+    border: solid black 1px;
     min-height: 50px;
-    background-color: red;
+    width: 100%;
+    background-color: rgba(0, 255, 213, 0.425);
+    transition:  500ms ease-in-out;
 }
 
 .adminCardsLeftColumn:hover {
-background-color: blue;
+background-color: rgb(6, 88, 94);
 }
 
 .adminCardsRight {
-    border: solid black;
+    border: solid black 1px;
+    height: 60vh;
 }
