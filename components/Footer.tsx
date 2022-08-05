@@ -1,5 +1,6 @@
 import styles from '../styles/Footer.module.css';
 import React from "react";
+import { Strings } from '../resources';
 import Image from 'next/image'
 import simba from '../public/simba.jpeg';
 
@@ -10,32 +11,32 @@ export const Footer= () => {
         <>
             <div className={styles.footer}>
                 <div className={styles.footerLeft}>
-                    Клуб любителей кошек Симба
+                    {Strings.footer.leftColumn.title}
                     <div className={styles.footerText}>
-                        <li className={styles.footerTextHover}><a href="/">Главная</a></li>
-                        <li className={styles.footerTextHover}><a href="/docs">Документы</a></li>
-                        <li className={styles.footerTextHover}><a href="/cats">Кошки</a></li>
-                        <li className={styles.footerTextHover}>Выставки</li>
-                        <li className={styles.footerTextHover}>Питомники</li>
-                        <li className={styles.footerTextHover}>Контакты</li>
+                        <li className={styles.footerTextHover}><a href="/">{Strings.footer.leftColumn.main}</a></li>
+                        <li className={styles.footerTextHover}><a href="/docs">{Strings.footer.leftColumn.docs}</a></li>
+                        <li className={styles.footerTextHover}><a href="/cats">{Strings.footer.leftColumn.cats}</a></li>
+                        <li className={styles.footerTextHover}>{Strings.footer.leftColumn.Exhibitions}</li>
+                        <li className={styles.footerTextHover}>{Strings.footer.leftColumn.Nurseries}</li>
+                        <li className={styles.footerTextHover}>{Strings.footer.leftColumn.Contacts}</li>
                     </div>
                 </div>
                 <div className={styles.footerCenter}>
-                    Документация
+                    {Strings.footer.centerColumn.title}
                     <div className={styles.footerText}>
-                        <li className={styles.footerTextHover}>Племенное положение</li>
-                        <li className={styles.footerTextHover}>Заявление на вступление в клуб</li>
-                        <li className={styles.footerTextHover}>Заявление на титул</li>
-                        <li className={styles.footerTextHover}>Регистрация питомника</li>
-                        <li className={styles.footerTextHover}>Направление на вязку</li>
+                        <li className={styles.footerTextHover}>{Strings.footer.centerColumn.docsOne}</li>
+                        <li className={styles.footerTextHover}>{Strings.footer.centerColumn.docsTwo}</li>
+                        <li className={styles.footerTextHover}>{Strings.footer.centerColumn.docsTree}</li>
+                        <li className={styles.footerTextHover}>{Strings.footer.centerColumn.docsFour}</li>
+                        <li className={styles.footerTextHover}>{Strings.footer.centerColumn.docsFive}</li>
                     </div>
                 </div>
                 <div className={styles.footerRight}>
-                    Информация
+                    {Strings.footer.rightColumn.title}
                     <div className={styles.footerText}>
-                        <li className={styles.footerTextHover}>тел. 8 999 987 65 53</li>
-                        <li className={styles.footerTextHover}>тел. 8 999 987 65 53</li>
-                        <li className={styles.footerTextHover}>email: catsmobile@mail.ru</li>
+                        <li className={styles.footerTextHover}>{Strings.footer.rightColumn.phoneOne}</li>
+                        <li className={styles.footerTextHover}>{Strings.footer.rightColumn.phoneTwo}</li>
+                        <li className={styles.footerTextHover}>{Strings.footer.rightColumn.email}</li>
                     </div>
                 </div>
             </div>

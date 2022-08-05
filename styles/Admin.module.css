@@ -39,3 +39,9 @@ background-color: rgb(6, 88, 94);
     border: solid black 1px;
     height: 60vh;
 }
+
+.openMain {
+    display: flex;
+    height: 100%;
+    background: #77aba3;
+}

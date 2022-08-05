@@ -1,14 +1,12 @@
 import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import React from "react";
-import simba from '../public/simba.jpeg';
-import cat from '../public/cat.jpg';
-import {Footer} from "../components/Footer";
-import {Header} from "../components/Header";
 import { Strings } from '../resources';
+import Image from "next/image";
 import {Page} from "../components/Page";
+import kits from "../public/kits.png";
+import show from "../public/show.png";
+import {Join} from "../components/Joined";
 
 const Home: NextPage = () => {
   return (
@@ -28,31 +26,29 @@ const Home: NextPage = () => {
                   </div>
                   <div className={styles.column}>
                           <div className={styles.rightColumnText}>
-                              Актуальное
+                              {Strings.main.textRight}
                           </div>
                           <div className={styles.rightColumnText}>
-                              15 марта 2021 | Ближайшие выставки
+                              {Strings.main.textRightOne}
                           </div>
                           <div className={styles.rightColumnText}>
 
-                              Приглашаем принять участие в Международной выставке кошек 06-07 марта 2022 г
-                              License L# 221052 Место проведения: ВВЦ, ТЦ РМ, 1-я Останкинская ул. 55 Схема прохода и
-                              проезда Эксперты: Mrs. Tatyana Terе...
+                              {Strings.main.textRightTwo}
                           </div>
                           <div className={styles.rightColumnText}>
-                              10 октября 2020 | Прошедшие выставки
+                              {Strings.main.textRightTree}
                           </div>
                           <div className={styles.rightColumnText}>
-                              10-11 октября 2020 г, прошла Международная выставка кошек РФОО Коргоруши, Москва
+                              {Strings.main.textRightThour}
                           </div>
                           <div className={styles.rightColumnText}>
-                              25 января 2020 | Прошедшие выставки
+                              {Strings.main.textRightFive}
                           </div>
                           <div className={styles.rightColumnText}>
-                              25-26 января 2020г, прошла Международная выставка кошек памяти Людмилы Есиной, РФОО Коргоруши, Москва, парк Сокольники
+                              {Strings.main.textRightSix}
                           </div>
                           <div className={styles.rightColumnText}>
-                              Все новости
+                              {Strings.main.textRightSeven}
                           </div>
                   </div>
               </div>
@@ -72,12 +68,54 @@ const Home: NextPage = () => {
                   </div>
               </div>
               <div className={styles.razdelDown}>
-                  123
+
+                  {/*Сделать отдельный компонент(вынести стринги(доделать верстку(разобраться почему не делится в гридах(сделать в гридах))))*/}
+                  <div className={styles.razdelDownMain}>Чем занимается клуб Симба</div>
+                  <div className={styles.razdelDownBlock}>
+                      <div>
+                          <Image src={show}/>
+                      </div>
+                      <div className={styles.razdelDownBlockText}>
+                          <div>Выставки кошек</div>
+                          <span>Клуб проводит яркие и запоминающиеся выставки кошек по системе WCF.</span>
+                      </div>
+                  </div>
+                  <div className={styles.razdelDownBlock}>
+                      <div>
+                          <Image src={kits}/>
+                      </div>
+                      <div className={styles.razdelDownBlockText}>
+                          <div>Регистрация пометов</div>
+                          <span>Регистрация пометов Клуб регистрирует факт рождения котят и выдает документы о происхождении на каждого из них.</span>
+                      </div>
+                  </div>
               </div>
               <div className={styles.razdelCenter}>
-                  <div className={styles.razdelCenterBlock}>ledt block</div>
-                  <div className={styles.razdelCenterBlock}>right block</div>
+                  {/*Вынести в стринги (возможно в отдельный компонент (доделать оформление))*/}
+                  <div className={styles.razdelCenterBlockLeft}>
+                      <div className={styles.razdelCenterBlockTextMain}>У меня появился породистый кот</div>
+                      <div>Если у вас появился породистая кошка или кот, наверняка у вас уже накопилось много вопросов:</div>
+                      <li>Как вступить в клуб?</li>
+                      <li>Нужно ли посещать выставку кошек?</li>
+                      <li>Как оформить титульный сертификат на кота или кошку?</li>
+                      <li>Как найти партнера коту или кошке?</li>
+                      <li>Как зарегистрировать котят в клубе?</li>
+                      <li>И многие другие...</li>
+                      <div>Часть ответов вы найдете на нашем сайте, по остальным вопросам пишите-звоните нам!</div>
+                  </div>
+                  <div className={styles.razdelCenterBlockRight}>
+                      <div className={styles.razdelCenterBlockTextMain}>Я решил купить породистого котенка</div>
+                      <div>Покупка породистого котенка - дело ответственное!</div>
+                      <li>Где можно купить породистого котенка?</li>
+                      <li>Какие документы должны быть у котенка?</li>
+                      <li>Бывают ли породистые котята без документов?</li>
+                      <li>В каком возрасте можно покупать котят?</li>
+                      <li>Как проверить надежность питомника?</li>
+                      <li>И многие другие...</li>
+                      <div>Часть ответов вы найдете на нашем сайте, по остальным вопросам пишите-звоните нам!</div>
+                  </div>
               </div>
+              <Join/>
           </div>
     </Page>
   )

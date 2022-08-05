@@ -12,7 +12,12 @@ const Admin: NextPage = () => {
     switch (Object.entries(adminState).find(([_, value]) => value)?.[0]) {
       case 'openedMain':
         return (
-          <div>openedMain</div>
+          <div className={styles.openMain}>
+              <div>
+                <button>Добавить</button>
+                <button>Удалить</button>
+              </div>
+          </div>
         )
       case 'openedCats':
         return (
