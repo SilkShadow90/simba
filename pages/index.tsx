@@ -71,24 +71,26 @@ const Home: NextPage = () => {
 
                   {/*Сделать отдельный компонент(вынести стринги(доделать верстку(разобраться почему не делится в гридах(сделать в гридах))))*/}
                   <div className={styles.razdelDownMain}>Чем занимается клуб Симба</div>
+                <div style={{ display: 'grid', gridTemplateColumns: '400px 400px', justifyContent: 'center', alignItems: 'center' }}>
                   <div className={styles.razdelDownBlock}>
-                      <div>
-                          <Image src={show}/>
-                      </div>
-                      <div className={styles.razdelDownBlockText}>
-                          <div>Выставки кошек</div>
-                          <span>Клуб проводит яркие и запоминающиеся выставки кошек по системе WCF.</span>
-                      </div>
+                    <div className={styles.imageBlock}>
+                      <Image src={show}/>
+                    </div>
+                    <div className={styles.razdelDownBlockText}>
+                      <div>Выставки кошек</div>
+                      <span>Клуб проводит яркие и запоминающиеся выставки кошек по системе WCF.</span>
+                    </div>
                   </div>
                   <div className={styles.razdelDownBlock}>
-                      <div>
-                          <Image src={kits}/>
-                      </div>
-                      <div className={styles.razdelDownBlockText}>
-                          <div>Регистрация пометов</div>
-                          <span>Регистрация пометов Клуб регистрирует факт рождения котят и выдает документы о происхождении на каждого из них.</span>
-                      </div>
+                    <div className={styles.imageBlock}>
+                      <Image src={kits}/>
+                    </div>
+                    <div className={styles.razdelDownBlockText}>
+                      <div>Регистрация пометов</div>
+                      <span>Регистрация пометов Клуб регистрирует факт рождения котят и выдает документы о происхождении на каждого из них.</span>
+                    </div>
                   </div>
+                </div>
               </div>
               <div className={styles.razdelCenter}>
                   {/*Вынести в стринги (возможно в отдельный компонент (доделать оформление))*/}
@@ -106,12 +108,14 @@ const Home: NextPage = () => {
                   <div className={styles.razdelCenterBlockRight}>
                       <div className={styles.razdelCenterBlockTextMain}>Я решил купить породистого котенка</div>
                       <div>Покупка породистого котенка - дело ответственное!</div>
+                    <ul>
                       <li>Где можно купить породистого котенка?</li>
                       <li>Какие документы должны быть у котенка?</li>
                       <li>Бывают ли породистые котята без документов?</li>
                       <li>В каком возрасте можно покупать котят?</li>
                       <li>Как проверить надежность питомника?</li>
                       <li>И многие другие...</li>
+                    </ul>
                       <div>Часть ответов вы найдете на нашем сайте, по остальным вопросам пишите-звоните нам!</div>
                   </div>
               </div>
