@@ -2,18 +2,17 @@ import type { NextPage } from 'next'
 import styles from '../styles/Home.module.css'
 import React from "react";
 import { Strings } from '../resources';
-import Image from "next/image";
 import {Page} from "../components/Page";
-import kits from "../public/kits.png";
-import show from "../public/show.png";
 import {Join} from "../components/Joined";
+import {IntroWest} from "../components/Intro";
+import SimpleSlider from "../components/Slider";
 
 const Home: NextPage = () => {
   return (
       <Page title="Home" meta="bla bla" styles={styles.container}>
-          <div className={styles.titleList}>
-              Слайдер
-          </div>
+    {/*<div className={styles.titleList}>*/}
+    {/*</div>*/}
+          <SimpleSlider/>
           <div className={styles.infoUpper}>{Strings.main.title}</div>
           <div className={styles.info}>
               <div className={styles.infoOver}>
@@ -29,26 +28,11 @@ const Home: NextPage = () => {
                               {Strings.main.textRight}
                           </div>
                           <div className={styles.rightColumnText}>
-                              {Strings.main.textRightOne}
-                          </div>
-                          <div className={styles.rightColumnText}>
-
-                              {Strings.main.textRightTwo}
-                          </div>
-                          <div className={styles.rightColumnText}>
-                              {Strings.main.textRightTree}
-                          </div>
-                          <div className={styles.rightColumnText}>
-                              {Strings.main.textRightThour}
-                          </div>
-                          <div className={styles.rightColumnText}>
-                              {Strings.main.textRightFive}
-                          </div>
-                          <div className={styles.rightColumnText}>
-                              {Strings.main.textRightSix}
-                          </div>
-                          <div className={styles.rightColumnText}>
-                              {Strings.main.textRightSeven}
+                              {Strings.main.textRightOne.map(text => (
+                                  <div key={text} className={styles.rightColumnText}>
+                                      {text}
+                                  </div>
+                              ))}
                           </div>
                   </div>
               </div>
@@ -59,64 +43,33 @@ const Home: NextPage = () => {
                   </div>
                   <div className={styles.razdelColumn}>
                       <div className={styles.razdelCardRight}>
-                          {/*<Image className={styles.art}  sizes={"1"} src={cat}/>*/}
                       </div>
                       <div className={styles.razdelCardRight}>
-                          {/*<Image  src={simba}/>*/}
-                          {/*<img src={simba} alt="s"/>*/}
                       </div>
                   </div>
               </div>
-              <div className={styles.razdelDown}>
-
-                  {/*Сделать отдельный компонент(вынести стринги(доделать верстку(разобраться почему не делится в гридах(сделать в гридах))))*/}
-                  <div className={styles.razdelDownMain}>Чем занимается клуб Симба</div>
-                <div style={{ display: 'grid', gridTemplateColumns: '400px 400px', justifyContent: 'center', alignItems: 'center' }}>
-                  <div className={styles.razdelDownBlock}>
-                    <div className={styles.imageBlock}>
-                      <Image src={show}/>
-                    </div>
-                    <div className={styles.razdelDownBlockText}>
-                      <div>Выставки кошек</div>
-                      <span>Клуб проводит яркие и запоминающиеся выставки кошек по системе WCF.</span>
-                    </div>
-                  </div>
-                  <div className={styles.razdelDownBlock}>
-                    <div className={styles.imageBlock}>
-                      <Image src={kits}/>
-                    </div>
-                    <div className={styles.razdelDownBlockText}>
-                      <div>Регистрация пометов</div>
-                      <span>Регистрация пометов Клуб регистрирует факт рождения котят и выдает документы о происхождении на каждого из них.</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <IntroWest/>
               <div className={styles.razdelCenter}>
-                  {/*Вынести в стринги (возможно в отдельный компонент (доделать оформление))*/}
+                  {/*Вынести в стринги (возможно в отдельный компонент)*/}
                   <div className={styles.razdelCenterBlockLeft}>
-                      <div className={styles.razdelCenterBlockTextMain}>У меня появился породистый кот</div>
-                      <div>Если у вас появился породистая кошка или кот, наверняка у вас уже накопилось много вопросов:</div>
-                      <li>Как вступить в клуб?</li>
-                      <li>Нужно ли посещать выставку кошек?</li>
-                      <li>Как оформить титульный сертификат на кота или кошку?</li>
-                      <li>Как найти партнера коту или кошке?</li>
-                      <li>Как зарегистрировать котят в клубе?</li>
-                      <li>И многие другие...</li>
-                      <div>Часть ответов вы найдете на нашем сайте, по остальным вопросам пишите-звоните нам!</div>
+                      <div className={styles.razdelCenterBlockTextMain}>{Strings.infoCats.leftColumn.title}</div>
+                      <div>{Strings.infoCats.leftColumn.info}</div>
+                      <ul>
+                          {Strings.infoCats.leftColumn.li.map((text)=>(
+                              <li key={text}>{text}</li>
+                          ))}
+                      </ul>
+                      <div>{Strings.infoCats.leftColumn.lost}</div>
                   </div>
                   <div className={styles.razdelCenterBlockRight}>
-                      <div className={styles.razdelCenterBlockTextMain}>Я решил купить породистого котенка</div>
-                      <div>Покупка породистого котенка - дело ответственное!</div>
+                      <div className={styles.razdelCenterBlockTextMain}>{Strings.infoCats.rightColumn.title}</div>
+                      <div>{Strings.infoCats.rightColumn.info}</div>
                     <ul>
-                      <li>Где можно купить породистого котенка?</li>
-                      <li>Какие документы должны быть у котенка?</li>
-                      <li>Бывают ли породистые котята без документов?</li>
-                      <li>В каком возрасте можно покупать котят?</li>
-                      <li>Как проверить надежность питомника?</li>
-                      <li>И многие другие...</li>
+                        {Strings.infoCats.rightColumn.li.map((text)=>(
+                            <li key={text}>{text}</li>
+                        ))}
                     </ul>
-                      <div>Часть ответов вы найдете на нашем сайте, по остальным вопросам пишите-звоните нам!</div>
+                      <div>{Strings.infoCats.rightColumn.lost}</div>
                   </div>
               </div>
               <Join/>

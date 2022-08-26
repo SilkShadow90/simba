@@ -1,0 +1,74 @@
+.razdelDown {
+    /*background-color: var(--fon-text);*/
+    background: #77aba3;
+    width: 100%;
+    min-height: 500px;
+    margin-bottom: 50px;
+}
+
+.razdelDownMain {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 25px;
+    font-family: sans-serif;
+    margin-bottom: 20px;
+    color: #dbfef9
+}
+
+
+.razdelDownMainIntro {
+    display: grid;
+    grid-template-columns: 400px 400px;
+    justify-content: center;
+    align-items: center;
+}
+
+.razdelDownBlock {
+    position: relative;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    display: flex;
+    flex: 1 1 auto;
+    margin-bottom: 20px;
+    padding: 16px;
+    /*max-width: 400px;*/
+}
+
+.imageBlock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 120px;
+    min-height: 120px;
+    max-width: 120px;
+    max-height: 120px;
+}
+
+.razdelDownBlockText {
+    padding-left: 10px;
+    color: white;
+    font-size: larger;
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    /*width: 200px;*/
+}
+
+.razdelDownBlockTextTitle {
+    font-weight: 700;
+    margin-bottom: 5px;
+    font-size: 20px;
+}
+
+@media (min-width: 320px) and (max-width: 840px) {
+
+    .razdelDownMainIntro {
+        display: grid;
+        grid-template-columns: 400px;
+        justify-content: center;
+        align-items: center;
+    }
+}
