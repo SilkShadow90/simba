@@ -26,34 +26,22 @@ export default function SimpleSlider() {
         <div className={styles.type}>
             <Slider {...settings}>
                 <div>
-                    <h3>
-                        <Image src={catstar} objectFit={"cover"} height={'500'}/>
-                    </h3>
+                    <Image src={catstar} objectFit={"cover"} height={'400px'} />
                 </div>
                 <div>
-                    <h3>
-                        <Image src={catzz} objectFit={"cover"} height={'500'}/>
-                    </h3>
+                    <Image src={catzz} objectFit={"cover"} height={'400px'} />
                 </div>
                 <div>
-                    <h3>
-                        <Image src={fish} objectFit={"cover"} height={'500'}/>
-                    </h3>
+                    <Image src={fish} objectFit={"cover"} height={'400px'} />
                 </div>
                 <div>
-                    <h3>
-                        <Image src={cosmo} objectFit={"cover"} height={'500'}/>
-                    </h3>
+                    <Image src={cosmo} objectFit={"cover"} height={'400px'} />
                 </div>
                 <div>
-                    <h3>
-                        <Image src={forest} objectFit={"cover"} height={'500'}/>
-                    </h3>
+                    <Image src={forest} objectFit={"cover"} height={'400px'} />
                 </div>
                 <div>
-                    <h3>
-                        <Image src={grass} objectFit={"cover"} height={'500'}/>
-                    </h3>
+                    <Image src={grass} objectFit={"cover"} height={'400px'} />
                 </div>
             </Slider>
         </div>

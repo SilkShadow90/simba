@@ -1,18 +1,35 @@
-import styles from "../styles/Docs.module.css";
-import React, {PropsWithChildren, useState} from "react";
+import styles from '../styles/Docs.module.css';
+import React, { PropsWithChildren, useState } from 'react';
+import classNames from 'classnames';
 
 
 interface Props {
-    docs: string;
-    text: string;
+  docs: string;
+  text: string;
 }
 
-export const Document = ({docs,text}: PropsWithChildren<Props>) => {
-    const  [style, setStyle] = useState(true);
-    return (
-            <button className={style ? styles.cardsDocsInfo : styles.cardsDocsInfoHeight } onClick={() => setStyle(prevstate => !prevstate)}>
-                <a  target='_blank' download href={docs}>{text}</a>
-                <div>123123</div>
-            </button>
-    )
-}
+export const Document = ({ docs, text }: PropsWithChildren<Props>) => {
+  const [style, setStyle] = useState(false);
+  return (
+    <button className={classNames(styles.cardsDocsInfo, style && styles.cardsDocsInfoActive)}
+            onClick={() => setStyle(prevstate => !prevstate)}>
+      <a target="_blank" download href={docs} rel="noreferrer">{text}</a>
+      <div className={classNames(styles.cardsDocsInfoBody, style && styles.cardsDocsInfoBodyActive)}>
+        <div>123123123123123123123123123123123123123123123123123123123123123123123123123123</div>
+        <div>123123123123123123123123123123123123123123123123123123123123123123123123123123</div>
+        <div>123123123123123123123123123123123123123123123123123123123123123123123123123123</div>
+        <div>123123123123123123123123123123123123123123123123123123123123123123123123123123</div>
+        <div>123123123123123123123123123123123123123123123123123123123123123123123123123123</div>
+        <div>123123123123123123123123123123123123123123123123123123123123123123123123123123</div>
+        <div>123123123123123123123123123123123123123123123123123123123123123123123123123123</div>
+        <div>123123123123123123123123123123123123123123123123123123123123123123123123123123</div>
+        <div>123123123123123123123123123123123123123123123123123123123123123123123123123123</div>
+        <div>123123123123123123123123123123123123123123123123123123123123123123123123123123</div>
+        <div>123123123123123123123123123123123123123123123123123123123123123123123123123123</div>
+        <div>123123123123123123123123123123123123123123123123123123123123123123123123123123</div>
+        <div>123123123123123123123123123123123123123123123123123123123123123123123123123123</div>
+        <div>123123123123123123123123123123123123123123123123123123123123123123123123123123</div>
+      </div>
+    </button>
+  );
+};

@@ -4,7 +4,7 @@ import React from "react";
 import { Strings } from '../resources';
 import {Page} from "../components/Page";
 import {Join} from "../components/Joined";
-import {IntroWest} from "../components/Intro";
+import { Intro } from '../components/Intro';
 import SimpleSlider from "../components/Slider";
 
 const Home: NextPage = () => {
@@ -48,7 +48,7 @@ const Home: NextPage = () => {
                       </div>
                   </div>
               </div>
-              <IntroWest/>
+              <Intro/>
               <div className={styles.razdelCenter}>
                   {/*Вынести в стринги (возможно в отдельный компонент)*/}
                   <div className={styles.razdelCenterBlockLeft}>

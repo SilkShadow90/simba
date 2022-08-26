@@ -8,24 +8,29 @@
 }
 
 .cardsDocsInfo:hover {
-    background: bisque;
+    background: var(--main-bg-color-alpha)
 }
 
 .cardsDocsInfo {
-    
     margin: 30px;
     min-height: 102px;
     width: 100%;
     border-radius: var(--border-standart);
     padding: 50px;
     background:var(--main-bg-color);
+    transition: all 300ms ease-in-out;
 }
 
-.cardsDocsInfoHeight {
-    margin: 30px;
-    min-height: 300px;
-    width: 100%;
-    border-radius: var(--border-standart);
-    padding: 50px;
-    background:var(--main-bg-color);
+.cardsDocsInfoActive {
+    min-height: 500px;
+}
+
+.cardsDocsInfoBody {
+    display: none;
+    flex-direction: column;
+    transition: display 3000ms ease-in-out;
+}
+
+.cardsDocsInfoBodyActive {
+    display: flex;
 }
