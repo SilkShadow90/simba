@@ -6,6 +6,17 @@ import {Page} from "../components/Page";
 import {Join} from "../components/Joined";
 import { Intro } from '../components/Intro';
 import SimpleSlider from "../components/Slider";
+import Image from 'next/image';
+
+function jpeg(size: number = 150) {
+  return `https://via.placeholder.com/${size}`
+}
+
+function getImages(length: number, size: number = 150) {
+  return new Array(length).fill(null).map((_, index) => (
+    <Image loader={() => jpeg(size)} src={jpeg(size)} key={index} width={`${size}px`} height={`${size}px`} objectFit={'contain'}/>
+  ))
+}
 
 const Home: NextPage = () => {
   return (
@@ -13,6 +24,10 @@ const Home: NextPage = () => {
     {/*<div className={styles.titleList}>*/}
     {/*</div>*/}
           <SimpleSlider/>
+
+        <div>
+          {getImages(10, 150)}
+        </div>
           <div className={styles.infoUpper}>{Strings.main.title}</div>
           <div className={styles.info}>
               <div className={styles.infoOver}>

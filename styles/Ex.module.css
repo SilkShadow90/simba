@@ -4,9 +4,16 @@
 
 .exhibition_Main {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+    margin: 0 auto;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 500px));
     padding: 50px;
     gap: 15px;
+    /*justify-items: center;*/
+    /*align-items: center;*/
+    /*place-self: center;*/
+    /*place-items: center;*/
+    /*width: fit-content;*/
+    /*block-size: fit-content;*/
 }
 
 .exhibition_Main__card {
