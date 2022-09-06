@@ -1,0 +1,48 @@
+.lasthibition {
+    display: flex;
+    font-size: 30px;
+    line-height: 1.2;
+    font-family: inherit;
+    word-wrap: break-word;
+    color: black;
+    margin-bottom: 15px;
+    margin-left:50px;
+}
+
+.exhibition_Main {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+    padding: 50px;
+    gap: 15px;
+}
+
+.exhibition_Main__card {
+    box-shadow: 0 2px 9px 0 rgba(3, 7, 10, 0.5);
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 12px;
+    width: 100%;
+    min-height: 600px;
+}
+.exhibition_Main__card:hover {
+    box-shadow: 0 2px 9px 0 rgba(3, 7, 10, 0.8);
+}
+
+.lasthibition_srcone {
+    margin: 10px 10px 20px 10px;
+    min-height: 400px;
+    background: url("../public/eft.jpg");
+    background-size: cover;
+}
+.lasthibition_srctwo {
+    margin: 10px 10px 20px 10px;
+    min-height: 400px;
+    background: url("../public/efttwo.jpg");
+    background-size: cover;
+}
+
+.lasthibition_srcthree {
+    margin: 10px 10px 20px 10px;
+    min-height: 400px;
+    background: url("../public/eftthree.jpg");
+    background-size: cover;
+}

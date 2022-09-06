@@ -37,7 +37,7 @@
 
 .cardsCatsPicture {
   position: relative;
-  box-shadow: 0 -3px 48px -15px #534f4f;
+  box-shadow: 0 2px 9px 0 rgba(3, 7, 10, 0.5);
   margin: 30px;
   min-height: 452px;
   border-radius: var(--border-standart);

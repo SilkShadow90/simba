@@ -18,7 +18,7 @@ export const Footer= () => {
                         <li className={styles.footerTextHover}><a href="/cats">{Strings.footer.leftColumn.cats}</a></li>
                         <li className={styles.footerTextHover}>{Strings.footer.leftColumn.Exhibitions}</li>
                         <li className={styles.footerTextHover}>{Strings.footer.leftColumn.Nurseries}</li>
-                        <li className={styles.footerTextHover}>{Strings.footer.leftColumn.Contacts}</li>
+                        <li className={styles.footerTextHover}><a href="/contacts">{Strings.footer.leftColumn.Contacts}</a></li>
                     </div>
                 </div>
                 <div className={styles.footerCenter}>

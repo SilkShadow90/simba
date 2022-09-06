@@ -1,0 +1,48 @@
+.nearhibition_blocktextone {
+    display: flex;
+    flex-direction: column;
+}
+
+.nearhibitiontextone {
+    display: flex;
+    font-size: 30px;
+    line-height: 1.2;
+    font-family: inherit;
+    word-wrap: break-word;
+    color: black;
+    margin-bottom: 15px;
+    margin-left:50px;
+}
+.nearhibitiontexttwo {
+    display: flex;
+    font-size: 25px;
+    line-height: 1.2;
+    font-family: inherit;
+    word-wrap: break-word;
+    color: black;
+    margin-bottom: 15px;
+    margin-left:50px;
+    font-weight: 200;
+}
+.nearhibitiontextthree {
+    display: flex;
+    font-size: 28px;
+    line-height: 1.2;
+    font-family: inherit;
+    word-wrap: break-word;
+    color: black;
+    margin-bottom: 15px;
+    margin-left:50px;
+}
+
+.nearhibitiontextfour {
+    display: flex;
+    font-size: 28px;
+    line-height: 1.2;
+    font-family: inherit;
+    word-wrap: break-word;
+    color: black;
+    margin-bottom: 15px;
+    margin-left:50px;
+    font-weight: 200;
+}

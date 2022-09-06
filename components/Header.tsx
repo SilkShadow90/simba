@@ -18,13 +18,13 @@ export const Header= () => {
                     <a href="/cats">{Strings.footer.leftColumn.cats}</a>
                 </div>
                 <div className={styles.headerText}>
-                    {Strings.footer.leftColumn.Exhibitions}
+                    <a href="/exhibition">{Strings.footer.leftColumn.Exhibitions}</a>
                 </div>
                 <div className={styles.headerText}>
                     {Strings.footer.leftColumn.Nurseries}
                 </div>
                 <div className={styles.headerText}>
-                    {Strings.footer.leftColumn.Contacts}
+                    <a href="/contacts">{Strings.footer.leftColumn.Contacts}</a>
                 </div>
             </div>
             {/*<Image className={styles.headerLogo} src={simba}/>*/}
