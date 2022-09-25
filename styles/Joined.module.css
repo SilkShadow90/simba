@@ -29,7 +29,7 @@
 
 .joinDownBoxImgNumber {
     font-weight: 700;
-    color: #77aba3;
+    color: var(--main-bg-color);
     font-size: 40px;
 }
 

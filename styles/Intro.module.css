@@ -1,6 +1,6 @@
 .razdelDown {
     /*background-color: var(--fon-text);*/
-    background: #77aba3;
+    background: var(--main-bg-color);
     width: 100%;
     min-height: 500px;
     margin-bottom: 50px;

@@ -1,0 +1,11 @@
+.back {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    margin-left: 50px;
+    min-width: 200px;
+    border: solid 1px black;
+    border-radius: var(--border);
+    background: var(--main-bg-color);
+}

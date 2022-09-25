@@ -12,15 +12,13 @@ const exhibition: NextPage = () => {
                     link={"/nearexhibition"}
                     title={"Ближайшие выставки"}
                     text={'Информация о ближайшей выставке кошек КЛК Коргоруши г. Москва.'}
-                    css={styles.exhibition_Main__card}
-                    csstwo={styles.exhibition_Main__leftColumn}
+                    csssrc={styles.exhibition_Main__leftColumn}
                 />
                 <ExhibitionCard
                     link={"/lastexhibition"}
                     title={"Прошедшие выставки"}
                     text={'Результаты и и фоторепортаж с прошедших выставок КЛК Коргоруши'}
-                    css={styles.exhibition_Main__card}
-                    csstwo={styles.exhibition_Main__rightColumn}
+                    csssrc={styles.exhibition_Main__rightColumn}
                 />
             </div>
         </Page>

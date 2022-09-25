@@ -5,7 +5,7 @@
 .titleList {
   /*position: relative;*/
   width: 100%;
-  box-shadow: 0 2px 9px 0 rgba(3, 7, 10, 0.5);
+  box-shadow: var(--shadow);
   background:var(--main-bg-color);
   min-height: 410px;
   max-height: 500px;
@@ -37,9 +37,9 @@
 .column {
   margin: 8px;
   padding: 16px 24px;
-  background: #77aba3;
-  border-radius: var(--border-standart);
-  box-shadow: 0 2px 9px 0 rgba(3, 7, 10, 0.5);
+  background: var(--main-bg-color);
+  border-radius: var(--border);
+  box-shadow: var(--shadow);
 }
 
 .leftColumnText {
@@ -71,8 +71,8 @@
 
 .razdelCardleft {
   /*box-shadow: 0px -3px 48px -15px #534f4f;*/
-  box-shadow: 0 2px 9px 0 rgba(3, 7, 10, 0.5);
-  border-radius: var(--border-standart);
+  box-shadow: var(--shadow);
+  border-radius: var(--border);
   background: #0070f3;
   min-height: 500px;
   margin: 10px;
@@ -81,8 +81,8 @@
 .razdelCardRight {
   display: grid;
   grid-template-rows: repeat(auto-fill, minmax(300px, 1fr));
-  box-shadow: 0 2px 9px 0 rgba(3, 7, 10, 0.5);
-  border-radius: 12px;
+  box-shadow: var(--shadow);
+  border-radius: var(--border);
   background: salmon;
   min-height: 240px;
   margin: 10px;
@@ -115,8 +115,8 @@
 }
 
 .razdelCenterBlockLeft {
-  border-radius: 12px;
-  box-shadow: 0 2px 9px 0 rgba(3, 7, 10, 0.5);
+  border-radius: var(--border);
+  box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -129,8 +129,8 @@
 }
 
 .razdelCenterBlockRight {
-  border-radius: 12px;
-  box-shadow: 0 2px 9px 0 rgba(3, 7, 10, 0.5);
+  border-radius: var(--border);
+  box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
   justify-content: space-around;

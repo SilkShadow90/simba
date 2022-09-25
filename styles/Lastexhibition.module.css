@@ -1,4 +1,4 @@
-.lasthibition {
+.lasthibition_title {
     display: flex;
     font-size: 30px;
     line-height: 1.2;
@@ -6,7 +6,12 @@
     word-wrap: break-word;
     color: black;
     margin-bottom: 15px;
-    margin-left:50px;
+    margin-left:100px;
+}
+
+.lasthibition_header {
+    display: flex;
+    flex-direction: row;
 }
 
 .exhibition_Main {
@@ -17,9 +22,9 @@
 }
 
 .exhibition_Main__card {
-    box-shadow: 0 2px 9px 0 rgba(3, 7, 10, 0.5);
+    box-shadow: var(--shadow);
     border: 1px solid rgba(0, 0, 0, 0.125);
-    border-radius: 12px;
+    border-radius: var(--border);
     width: 100%;
     min-height: 600px;
 }

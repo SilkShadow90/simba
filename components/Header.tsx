@@ -1,6 +1,7 @@
 import styles from '../styles/Header.module.css';
 import React from "react";
 import { Strings } from '../resources';
+import Link from 'next/link';
 import Image from 'next/image'
 
 
@@ -9,22 +10,22 @@ export const Header= () => {
         <div className={styles.header}>
             <div className={styles.headerLeft}>
                 <div className={styles.headerText}>
-                    <a href="/">{Strings.footer.leftColumn.main}</a>
+                    <Link href="/">{Strings.footer.leftColumn.main}</Link>
                 </div>
                 <div className={styles.headerText}>
-                    <a href="/docs">{Strings.footer.leftColumn.docs}</a>
+                    <Link href="/docs">{Strings.footer.leftColumn.docs}</Link>
                 </div>
                 <div className={styles.headerText}>
-                    <a href="/cats">{Strings.footer.leftColumn.cats}</a>
+                    <Link href="/cats">{Strings.footer.leftColumn.cats}</Link>
                 </div>
                 <div className={styles.headerText}>
-                    <a href="/exhibition">{Strings.footer.leftColumn.Exhibitions}</a>
+                    <Link href="/exhibition">{Strings.footer.leftColumn.Exhibitions}</Link>
                 </div>
                 <div className={styles.headerText}>
                     {Strings.footer.leftColumn.Nurseries}
                 </div>
                 <div className={styles.headerText}>
-                    <a href="/contacts">{Strings.footer.leftColumn.Contacts}</a>
+                    <Link href="/contacts">{Strings.footer.leftColumn.Contacts}</Link>
                 </div>
             </div>
             {/*<Image className={styles.headerLogo} src={simba}/>*/}

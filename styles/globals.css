@@ -1,7 +1,8 @@
 :root {
   --main-bg-color: #77aba3;
   --main-bg-color-alpha: #77aba399;
-  --border-standart: 12px;
+  --border: 12px;
+  --shadow: 0 2px 9px 0 rgba(3, 7, 10, 0.5);;
 }
 
 html,

@@ -43,5 +43,5 @@ background-color: rgb(6, 88, 94);
 .openMain {
     display: flex;
     height: 100%;
-    background: #77aba3;
+    background: var(--main-bg-color);
 }
