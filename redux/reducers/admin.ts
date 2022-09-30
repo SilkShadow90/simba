@@ -15,7 +15,7 @@ export type AdminAction = {
 };
 
 export function adminReducer(
-  state = initialState.userState,
+  state = initialState.adminState,
   action: AdminAction,
 ) {
   switch (action.type) {

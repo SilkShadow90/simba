@@ -15,7 +15,7 @@ export type docsAction = {
 };
 
 export function docsReducer(
-    state = initialState.userState,
+    state = initialState.docsState,
     action: docsAction,
 ) {
     switch (action.type) {

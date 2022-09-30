@@ -70,3 +70,8 @@
     width: 100%;
     background: var(--main-bg-color);
 }
+
+.modal_window__button:disabled {
+    background: var(--main-bg-color-alpha);
+    color: white
+}

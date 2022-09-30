@@ -14,13 +14,6 @@
     flex-direction: row;
 }
 
-.exhibition_Main {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
-    padding: 50px;
-    gap: 15px;
-}
-
 .exhibition_Main__card {
     box-shadow: var(--shadow);
     border: 1px solid rgba(0, 0, 0, 0.125);

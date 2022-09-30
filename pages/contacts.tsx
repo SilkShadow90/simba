@@ -1,14 +1,38 @@
 import type { NextPage } from 'next'
 import styles from '../styles/Contacts.module.css'
-import React from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import { Page } from '../components/Page';
 
 
 const сontacts: NextPage = () => {
 
-    let value = (e:any) => {
-        console.log(e)
+    let value = (e: ChangeEvent<HTMLInputElement>) => {
+        console.log(e.target.value)
     };
+
+    const [name, setName] = useState<string>('')
+
+    const submitIsActive: boolean = !!name
+
+    const onChangeName = (e: ChangeEvent<HTMLInputElement>) => {
+        setName(e.target.value?.replace(/[^a-zA-Zа-яА-Я\s]/g, ''))
+    };
+
+    const onSubmit = async () => {
+        console.log({ name });
+        const data = { name }
+        try {
+            const result = await fetch('google.com', { method: 'post', body: JSON.stringify(data) })
+
+            if (result.ok) {
+                console.log('Все ок');
+            } else {
+                throw new Error(String(result.status))
+            }
+        } catch (e) {
+            console.error('Что-то пошло не так: ', e);
+        }
+    }
 
     return (
         <Page title="сontacts" meta="bla bla" styles={styles.container} >
@@ -25,11 +49,11 @@ const сontacts: NextPage = () => {
                 <div className={styles.contact_Blockright}>
                     <div className={styles.contact_Blockleft__Bold}>Написать нам</div>
                     <div className={styles.modal}>
-                        <input className={styles.modal_window} placeholder="Ваше Имя*" type={"text"}/>
-                        <input className={styles.modal_window} placeholder="Номер телефона*" type={"number"}/>
-                        <input className={styles.modal_window} placeholder="Ваш Email*" type={"email"}/>
+                        <input className={styles.modal_window} onChange={onChangeName} value={name} placeholder="Ваше Имя*" type="text" />
+                        <input className={styles.modal_window} placeholder="Номер телефона*" type="tel" />
+                        <input className={styles.modal_window} placeholder="Ваш Email*" type="email" />
                         <input className={styles.modal_window__sms} onChange={value} placeholder="Сообщения для нас" type={"text"}/>
-                        <button className={styles.modal_window__button}>Отправить</button>
+                        <button className={styles.modal_window__button} disabled={!submitIsActive} onClick={onSubmit}>Отправить</button>
                     </div>
                 </div>
             </div>

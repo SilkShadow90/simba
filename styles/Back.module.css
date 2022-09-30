@@ -1,11 +1,18 @@
+.backButton {
+    border: none;
+    padding: 0;
+    background-color: transparent;
+}
 .back {
     display: flex;
     justify-content: center;
     align-items: center;
     align-content: center;
     margin-left: 50px;
-    min-width: 200px;
-    border: solid 1px black;
-    border-radius: var(--border);
+    width: 48px;
+    height: 48px;
+    /*border: solid 1px black;*/
+    border-radius: calc(var(--border) * 2);
     background: var(--main-bg-color);
+    font-size: 24px;
 }

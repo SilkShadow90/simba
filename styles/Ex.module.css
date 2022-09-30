@@ -5,6 +5,7 @@
     transition: all 200ms linear;
     border: none;
     box-shadow: var(--shadow);
+    border-radius: var(--border);
 }
 .ex:hover{
     box-shadow: 0 2px 9px 0 rgba(3, 7, 10, 0.8);
@@ -34,12 +35,16 @@
 .exhibition_Main__card {
     box-shadow: var(--shadow);
     border: 1px solid rgba(0, 0, 0, 0.125);
-    border-radius: var(--border);
     width: 100%;
     min-height: 600px;
 }
+
 .exhibition_Main__card:hover {
     box-shadow: 0 2px 9px 0 rgba(3, 7, 10, 0.8);
+}
+
+div .cardMargin {
+    margin: 0;
 }
 
 .exhibition_Main__leftColumn {
