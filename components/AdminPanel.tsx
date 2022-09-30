@@ -25,3 +25,21 @@ export const AdminPanel = ({text, type}: PropsWithChildren<Props>) => {
         </button>
     )
 }
+
+export const DocsPanel = ({text, type}: PropsWithChildren<Props>) => {
+    const dispatch = useDispatch()
+    const isOpened = useSelector((state: any) => state.docsState[type])
+
+    const onClick = useCallback(() => dispatch({
+        type: `docs/${type}`,
+    }), [dispatch, type])
+
+    return (
+        <button
+            className={isOpened ? styles.adminCardsLeftColumnRed : styles.adminCardsLeftColumn }
+            onClick={onClick}
+        >
+            {text}
+        </button>
+    )
+}

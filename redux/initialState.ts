@@ -17,5 +17,13 @@ export const initialState = {
     openedShows: false,
     openedClubs: false,
     openedContacts: false,
+  },
+  docsState: {
+    openedvstuplenie: false,
+    openedtitul: false,
+    openedregister: false,
+    openedvyazka: false,
+    // openedClubs: false,
+    // openedContacts: false,
   }
 };
