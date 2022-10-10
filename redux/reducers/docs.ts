@@ -5,6 +5,8 @@ export enum DocsReducerType {
     'docs/openedtitul' = 'docs/openedtitul',
     'docs/openedregister' = 'docs/openedregister',
     'docs/openedvyazka' = 'docs/openedvyazka',
+    'docs/openedposition' = 'docs/openedposition',
+
     // 'docs/openedClubs' = 'docs/openedClubs',
     // 'docs/openedContacts' = 'docs/openedContacts',
 }
@@ -25,6 +27,7 @@ export function docsReducer(
                 openedtitul: false,
                 openedregister: false,
                 openedvyazka: false,
+                openedposition:false,
             };
         case DocsReducerType['docs/openedtitul']:
             return {
@@ -32,6 +35,7 @@ export function docsReducer(
                 openedtitul: true,
                 openedregister: false,
                 openedvyazka: false,
+                openedposition:false,
             };
         case DocsReducerType['docs/openedregister']:
             return {
@@ -39,6 +43,7 @@ export function docsReducer(
                 openedtitul: false,
                 openedregister: true,
                 openedvyazka: false,
+                openedposition:false,
             };
         case DocsReducerType['docs/openedvyazka']:
             return {
@@ -46,6 +51,15 @@ export function docsReducer(
                 openedtitul: false,
                 openedregister: false,
                 openedvyazka: true,
+                openedposition:false,
+            };
+        case DocsReducerType['docs/openedposition']:
+            return {
+                openedvstuplenie: false,
+                openedtitul: false,
+                openedregister: false,
+                openedvyazka: false,
+                openedposition:true,
             };
         default:
             return state;

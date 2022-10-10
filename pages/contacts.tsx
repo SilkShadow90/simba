@@ -12,15 +12,43 @@ const сontacts: NextPage = () => {
 
     const [name, setName] = useState<string>('')
 
+    const [phone, setPhone] = useState<any>('')
+
+    const [email, setEmail] = useState<string>('')
+
+    const [sms, setSMS] = useState<string>('')
+
+    // const [name, setName] = useState<string>('')
+
     const submitIsActive: boolean = !!name
 
     const onChangeName = (e: ChangeEvent<HTMLInputElement>) => {
         setName(e.target.value?.replace(/[^a-zA-Zа-яА-Я\s]/g, ''))
     };
 
+    const onChangePhone = (e: ChangeEvent<HTMLInputElement>) => {
+        setPhone(e.target.value?.replace(/[^a-zA-Zа-яА-Я\s]/g, ''))
+    };
+
+    const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
+        setEmail(e.target.value?.replace(/[^a-zA-Zа-яА-Я\s]/g, ''))
+    };
+
+    const onChangeSms = (e: ChangeEvent<HTMLInputElement>) => {
+        setSMS(e.target.value?.replace(/[^a-zA-Zа-яА-Я\s]/g, ''))
+    };
+
     const onSubmit = async () => {
-        console.log({ name });
-        const data = { name }
+
+        const summ = name + phone + email + sms
+
+        console.log(summ)
+
+        // console.log({ name });
+        // console.log({ phone });
+        // console.log({ email });
+        // console.log({ sms });
+        const data = { name };
         try {
             const result = await fetch('google.com', { method: 'post', body: JSON.stringify(data) })
 
@@ -50,9 +78,9 @@ const сontacts: NextPage = () => {
                     <div className={styles.contact_Blockleft__Bold}>Написать нам</div>
                     <div className={styles.modal}>
                         <input className={styles.modal_window} onChange={onChangeName} value={name} placeholder="Ваше Имя*" type="text" />
-                        <input className={styles.modal_window} placeholder="Номер телефона*" type="tel" />
-                        <input className={styles.modal_window} placeholder="Ваш Email*" type="email" />
-                        <input className={styles.modal_window__sms} onChange={value} placeholder="Сообщения для нас" type={"text"}/>
+                        <input className={styles.modal_window} onChange={onChangePhone} value={phone} placeholder="Номер телефона*" type="tel" />
+                        <input className={styles.modal_window} onChange={onChangeEmail} value={email} placeholder="Ваш Email*" type="email" />
+                        <input className={styles.modal_window__sms} onChange={onChangeSms} value={sms} placeholder="Сообщения для нас" type={"text"}/>
                         <button className={styles.modal_window__button} disabled={!submitIsActive} onClick={onSubmit}>Отправить</button>
                     </div>
                 </div>

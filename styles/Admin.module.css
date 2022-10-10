@@ -5,7 +5,7 @@
     grid-template-columns: 1fr 2fr;
     background-color:#e5daef;
     border-radius: 1px ;
-    border: solid black 1px;
+    /*border: solid black 1px;*/
 }
 
 .adminCardsLeft {
@@ -16,7 +16,7 @@
     display: flex;
     width: 100%;
     flex-direction: column;
-    border:solid black 1px;
+    /*border:solid black 1px;*/
     min-height: 50px;
     background-color: cadetblue;
     transition:  500ms ease-in-out;
@@ -24,7 +24,7 @@
 .adminCardsLeftColumnRed{
     display: flex;
     flex-direction: column;
-    border: solid black 1px;
+    /*border: solid black 1px;*/
     min-height: 50px;
     width: 100%;
     background-color: rgba(0, 255, 213, 0.425);
@@ -36,7 +36,7 @@ background-color: rgb(6, 88, 94);
 }
 
 .adminCardsRight {
-    border: solid black 1px;
+    /*border: solid black 1px;*/
     height: 60vh;
 }
 
