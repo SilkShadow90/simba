@@ -39,18 +39,17 @@ const сontacts: NextPage = () => {
     };
 
     const onSubmit = async () => {
+        const form = {
+            name,
+            phone,
+            email,
+            sms
+        }
 
-        const summ = name + phone + email + sms
+        console.log(form)
 
-        console.log(summ)
-
-        // console.log({ name });
-        // console.log({ phone });
-        // console.log({ email });
-        // console.log({ sms });
-        const data = { name };
         try {
-            const result = await fetch('google.com', { method: 'post', body: JSON.stringify(data) })
+            const result = await fetch('google.com', { method: 'post', body: JSON.stringify(form) })
 
             if (result.ok) {
                 console.log('Все ок');

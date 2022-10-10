@@ -30,3 +30,6 @@ export function getAbbreviation(...strings: string[]): string {
 export function isObject(obj: unknown): obj is object {
   return obj !== null && typeof obj === 'object';
 }
+
+// @ts-ignore
+export const fetcher = (...args) => fetch(...args).then((res) => res.json())
