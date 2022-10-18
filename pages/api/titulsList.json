@@ -1,0 +1,98 @@
+[
+  {
+    "id": "1",
+    "value": "Котенок-Чемпион",
+    "description": "Котенок-Чемпион",
+    "key": "nocastration"
+  },
+  {
+    "id": "2",
+    "value": "Котенок Премиор",
+    "description": "Котенок Премиор",
+    "key": "castration"
+  },
+  {
+    "id": "3",
+    "value": "Юниор Чемпион",
+    "description": "Юниор Чемпион",
+    "key": "nocastration"
+  },
+  {
+    "id": "4",
+    "value": "Юниор Премиор",
+    "description": "Юниор Премиор",
+    "key": "castration"
+  },
+  {
+    "id": "5",
+    "value": "Чемпион",
+    "description": "Чемпион",
+    "key": "nocastration"
+  },
+  {
+    "id": "6",
+    "value": "Премиор",
+    "description": "Премиор",
+    "key": "castration"
+  },
+  {
+    "id": "7",
+    "value": "Международный Чемпион",
+    "description": "Международный Чемпион",
+    "key": "nocastration"
+  },
+  {
+    "id": "8",
+    "value": "Международный Премиор",
+    "description": "Международный Премиор",
+    "key": "castration"
+  },
+  {
+    "id": "9",
+    "value": "Большой Международный Чемпион",
+    "description": "Большой Международный Чемпион",
+    "key": "nocastration"
+  },
+  {
+    "id": "10",
+    "value": "Большой Международный Премиор",
+    "description": "Большой Международный Премиор",
+    "key": "castration"
+  },
+  {
+    "id": "11",
+    "value": "Евро Чемпион",
+    "description": "Евро Чемпион",
+    "key": "nocastration"
+  },
+  {
+    "id": "12",
+    "value": "Евро Премиор",
+    "description": "Евро Премиор",
+    "key": "castration"
+  },
+  {
+    "id": "13",
+    "value": "Большой Евро Чемпион",
+    "description": "Большой Евро Чемпион",
+    "key": "nocastration"
+  },
+  {
+    "id": "14",
+    "value": "Большой Евро Премиор",
+    "description": "Большой Евро Премиор",
+    "key": "castration"
+  },
+  {
+    "id": "15",
+    "value": "Чемпион Мира",
+    "description": "Чемпион Мира",
+    "key": "nocastration"
+  },
+  {
+    "id": "16",
+    "value": "Премиор Мира",
+    "description": "Премиор Мира",
+    "key": "castration"
+  }
+]

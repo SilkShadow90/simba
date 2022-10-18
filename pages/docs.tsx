@@ -1,39 +1,6 @@
-// import type { NextPage } from 'next'
-// import styles from '../styles/Docs.module.css'
-// import React, { useEffect, useState } from 'react';
-// import {Page} from "../components/Page";
-import { Strings } from '../resources';
-import { Document } from '../components/Document';
-//
-// const docs: NextPage = () => {
-// useEffect(() => {
-//   (async () => {
-//     try {
-//       const { data } = await AxiosService.get('/api/hello') || {}
-//       console.log(data);
-//     } catch (e) {
-//       console.log(e);
-//     }
-//   })()
-// }, [])
-//
-//     return (
-//         <Page title="Docs" meta="bla bla" styles={styles.container}>
-//             <div className={styles.cardsDocs}>
-//                 <Document docs={"/vstuplenie.doc"} text={Strings.docs.vstuplenie}/>
-//                 <Document docs={"/title-certificate.doc"} text={Strings.docs.titul}/>
-//                 <Document docs={"/cattery.docx"} text={Strings.docs.register}/>
-//                 <Document docs={"/vyazka.doc"} text={Strings.docs.vyazka}/>
-//             </div>
-//         </Page>
-//
-//     )
-// }
-// export default docs
-
 import type { NextPage } from 'next';
 import styles from '../styles/Docs.module.css';
-import React, { FC, useCallback, useEffect, useState } from 'react';
+import React, {ChangeEvent, ChangeEventHandler, FC, useCallback, useEffect, useState} from 'react';
 import { Page } from '../components/Page';
 import { DocsPanel } from '../components/DocsPanel';
 import { useSelector } from 'react-redux';
@@ -41,18 +8,34 @@ import { ApiResponse, fetcher } from '../utils';
 
 import useSWR from 'swr'
 
+
 type Breed = {
   id: string
   value: string
   description: string
 }
 
+type Titul = {
+    id: string
+    value: string
+    description: string
+    key: string
+}
+
+
+
 const Docs: NextPage = () => {
+
+
   const docsState = useSelector((state: any) => state.docsState);
 
-  const { data: response } = useSWR<ApiResponse<Breed[]>>('/api/breeds', fetcher)
+  const { data: responseBreed } = useSWR<ApiResponse<Breed[]>>('/api/breeds', fetcher)
 
-  const { data: breeds } = response || {}
+  const { data: breeds } = responseBreed || {}
+
+    const { data: responseTitul } = useSWR<ApiResponse<Titul[]>>('/api/tituls', fetcher)
+
+    const { data: tituls } = responseTitul || {}
 
   // const getData = useCallback(async () => {
   //
@@ -63,10 +46,67 @@ const Docs: NextPage = () => {
   // }, []);
 
   const renderSecondElement = () => {
+
+      const [breed, setBreed] = useState<string>('')
+
+      const [birthsday, setBirthsday] = useState<string>('')
+
+      const [gender, setGender] = useState<string>('')
+
+      const [titules, setTitules] = useState<any>(tituls)
+
+      console.log("1",tituls)
+
+      useEffect(() => {
+          switch (gender) {
+              case "Кот":
+                  console.log("Ты выбрал кота");
+                  setTitules(tituls?.filter((titul)=> {
+                   return titul.key == "nocastration"
+                  }))
+                  break;
+              case "Кошка":
+                  console.log("Ты выбрал Кошка");
+                  break;
+              case "Кастрированный кот":
+                  console.log("Ты выбрал Кастрированный кот");
+                  break;
+              case "Стерилизованная кошка":
+                  console.log("Ты выбрал Стерилизованная кошка");
+                  break;
+              default:
+                  console.log("Не правильно")
+          }
+      }, [gender])
+
+      const [newTitules, setNewTitules] = useState<string>('')
+
+      const onChangeBreed = (e: ChangeEvent<HTMLSelectElement>) => {
+          console.log(e.target.value)
+          setBreed(e.target.value)
+      }
+
+      const onChangeTitules = (e: ChangeEvent<HTMLSelectElement>) => {
+          console.log(e.target.value)
+          setTitules(e.target.value)
+      }
+      const onChangeBirthsday = (e: ChangeEvent<HTMLInputElement>) => {
+          console.log(e.target.value)
+          setBirthsday(e.target.value)
+      }
+      const onChangeGender = (e: ChangeEvent<HTMLSelectElement>) => {
+          console.log(e.target.value)
+          setGender(e.target.value)
+      }
+
+      const onChangeNewTitules = (e: ChangeEvent<HTMLSelectElement>) => {
+          console.log(e.target.value)
+          setNewTitules(e.target.value)
+      }
+
     switch (Object.entries(docsState).find(([_, value]) => value)?.[0]) {
       case 'openedvstuplenie':
         return (
-          // <Document  docs={"/vstuplenie.doc"} text={Strings.docs.vstuplenie}/>
           <div className={styles.docsRightVstuplenie}>
             <div className={styles.docsRightTitul}>Заявление на вступление в клуб</div>
             <div className={styles.docsRightMain}>Как вступить в наш клуб:</div>
@@ -81,6 +121,8 @@ const Docs: NextPage = () => {
           </div>
         );
       case 'openedtitul':
+
+
         return (
           <div className={styles.docsRightVstuplenie}>
             <div className={styles.docsRightTitul}>Заявление на титул</div>
@@ -107,71 +149,47 @@ const Docs: NextPage = () => {
             <div className={styles.docsPreSelect}>Кличка животного(*)</div>
             <input className={styles.docsSelect} type="text"/>
 
-            <div className={styles.docsPreSelect}>Порода кошки(*)</div>
-            <select className={styles.docsSelect} name="Выберите титул" id="">
-              <option className={styles.docsOption} value="Выберите титул">Выберите титул</option>
-              {breeds?.map((breed: Breed) => (
-                <option key={breed.id} className={styles.docsOption} value={breed.value}>{breed.description}</option>
-              ))}
-            </select>
+              <div className={styles.docsPreSelect}>Порода кошки(*)</div>
+              <select className={styles.docsSelect} onChange={onChangeBreed} value={breed} name="Выберите породу" id="">
+                  <option className={styles.docsOption} value="Выберите породу">Выберите породу</option>
+                  {breeds?.map((breed: Breed) => (
+                      <option key={breed.id} className={styles.docsOption} value={breed.value}>{breed.description}</option>
+                  ))}
+              </select>
+
+              <div className={styles.docsPreSelect}>Пол(*)</div>
+              <select className={styles.docsSelect} onChange={onChangeGender} value={gender} name="Выберите пол" id="">
+                  <option className={styles.docsOption}  value="Выберите пол">Выберите пол</option>
+                  <option className={styles.docsOption} value="Кот"> Кот</option>
+                  <option className={styles.docsOption} value="Кошка"> Кошка</option>
+                  <option className={styles.docsOption} value="Кастрированный кот"> Кастрированный кот</option>
+                  <option className={styles.docsOption} value="Стерилизованная кошка"> Стерилизованная кошка</option>
+              </select>
+
+              <div className={styles.docsPreSelect}>Последний полученный титул</div>
+              <select className={styles.docsSelect} onChange={onChangeTitules} value={titules} name="Выберите титул" id="">
+                  <option className={styles.docsOption}  value="Выберите титул">Выберите титул</option>
+                  {tituls?.map((titul: Titul) => (
+                      <option key={titul.id} className={styles.docsOption} value={titul.value}>{titul.description}</option>
+                  ))}
+              </select>
+              <div className={styles.docsPreSelect}>Запрашиваемый титул(*)</div>
+              <select className={styles.docsSelect} onChange={onChangeNewTitules} value={newTitules} name="Выберите титул" id="">
+                  <option className={styles.docsOption} value="Выберите титул">Выберите титул</option>
+                  {tituls?.map((titul: Titul) => (
+                      <option key={titul.id} className={styles.docsOption} value={titul.value}>{titul.description}</option>
+                  ))}
+              </select>
+
             <div className={styles.docsPreSelect}>Окрас</div>
-            <input className={styles.docsSelect} type="text"/>
+            <input className={styles.docsSelect} onChange={e => console.log(e.target.value)} type="text"/>
 
             <div className={styles.docsPreSelect}>Дата рождения(*)</div>
-            <input className={styles.docsSelect} type="date"/>
-
-            <div className={styles.docsPreSelect}>Пол(*)</div>
-            <select className={styles.docsSelect} name="Выберите титул" id="">
-              <option className={styles.docsOption} value="Выберите титул">Выберите титул</option>
-              <option className={styles.docsOption} value="Выберите титул"> Кот</option>
-              <option className={styles.docsOption} value="Выберите титул"> Кошка</option>
-              <option className={styles.docsOption} value="Выберите титул"> Кастрированный кот</option>
-              <option className={styles.docsOption} value="Выберите титул"> Стерилизованная кошка</option>
-            </select>
+            <input className={styles.docsSelect} onChange={onChangeBirthsday} value={birthsday} type="date"/>
 
             <div className={styles.docsPreSelect}>Номер родословной(*)</div>
             <input className={styles.docsSelect} type="text"/>
 
-            <div className={styles.docsPreSelect}>Последний полученный титул</div>
-            <select className={styles.docsSelect} name="Выберите титул" id="">
-              <option className={styles.docsOption} value="Выберите титул">Выберите титул</option>
-              <option className={styles.docsOption} value="Выберите титул"> Котенок-Чемпион</option>
-              <option className={styles.docsOption} value="Выберите титул"> Котенок Премиор</option>
-              <option className={styles.docsOption} value="Выберите титул"> Юниор Чемпион</option>
-              <option className={styles.docsOption} value="Выберите титул"> Юниор Премиор</option>
-              <option className={styles.docsOption} value="Выберите титул"> Чемпион</option>
-              <option className={styles.docsOption} value="Выберите титул"> Премиор</option>
-              <option className={styles.docsOption} value="Выберите титул"> Международный Чемпион</option>
-              <option className={styles.docsOption} value="Выберите титул"> Международный Премиор</option>
-              <option className={styles.docsOption} value="Выберите титул"> Большой Международный Чемпион</option>
-              <option className={styles.docsOption} value="Выберите титул"> Большой Международный Премиор</option>
-              <option className={styles.docsOption} value="Выберите титул"> Евро Чемпион</option>
-              <option className={styles.docsOption} value="Выберите титул"> Евро Премиор</option>
-              <option className={styles.docsOption} value="Выберите титул"> Большой Евро Чемпион</option>
-              <option className={styles.docsOption} value="Выберите титул"> Большой Евро Премиор</option>
-              <option className={styles.docsOption} value="Выберите титул"> Чемпион Мира</option>
-              <option className={styles.docsOption} value="Выберите титул"> Премиор Мира</option>
-            </select>
-            <div className={styles.docsPreSelect}>Запрашиваемый титул(*)</div>
-            <select className={styles.docsSelect} name="Выберите титул" id="">
-              <option className={styles.docsOption} value="Выберите титул">Выберите титул</option>
-              <option className={styles.docsOption} value="Выберите титул"> Котенок-Чемпион</option>
-              <option className={styles.docsOption} value="Выберите титул"> Котенок Премиор</option>
-              <option className={styles.docsOption} value="Выберите титул"> Юниор Чемпион</option>
-              <option className={styles.docsOption} value="Выберите титул"> Юниор Премиор</option>
-              <option className={styles.docsOption} value="Выберите титул"> Чемпион</option>
-              <option className={styles.docsOption} value="Выберите титул"> Премиор</option>
-              <option className={styles.docsOption} value="Выберите титул"> Международный Чемпион</option>
-              <option className={styles.docsOption} value="Выберите титул"> Международный Премиор</option>
-              <option className={styles.docsOption} value="Выберите титул"> Большой Международный Чемпион</option>
-              <option className={styles.docsOption} value="Выберите титул"> Большой Международный Премиор</option>
-              <option className={styles.docsOption} value="Выберите титул"> Евро Чемпион</option>
-              <option className={styles.docsOption} value="Выберите титул"> Евро Премиор</option>
-              <option className={styles.docsOption} value="Выберите титул"> Большой Евро Чемпион</option>
-              <option className={styles.docsOption} value="Выберите титул"> Большой Евро Премиор</option>
-              <option className={styles.docsOption} value="Выберите титул"> Чемпион Мира</option>
-              <option className={styles.docsOption} value="Выберите титул"> Премиор Мира</option>
-            </select>
             <div className={styles.docsRightTitul}>Информация о владельце</div>
             <div className={styles.docsRightInputs}>
               <div className={styles.docsRightInputsColumns}>
@@ -417,103 +435,9 @@ const Docs: NextPage = () => {
                 <div className={styles.docsPreSelect}>Порода кошки(*)</div>
                 <select className={styles.docsSelect} name="Выберите титул" id="">
                   <option className={styles.docsOption} value="Выберите титул">Выберите породу</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Персидская (PER)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Британская Длинношерстная (BLH)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Колорпойнт (PER)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Хайленд фолд (SFL)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Селкирк рекс длинношерстный (SRL)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Шотландская
-                    полудлинношерстная/хайленд-страйт (SFL71)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Американский кёрл длинношерстный (ACL)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Балинезийская (BAL)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Бурмилла длинношерстный (BML)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Кимрик (CYM)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Японский бобтейл длинношерстный (JBL)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Карельский бобтейл (KAL)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Курильский бобтейл длинношерстный
-                    (KBL)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Манчкин длинношерстный (MNL)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Мэйн кун (MCO)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Нибелунг (NEB)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Норвежская лесная (NFO)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Ориентальная полудлиношерстная (OSL)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Рэгдолл (RAG)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Рагамаффин (RGM)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Бирманская (SBI)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Сибирская / Невская Маскарадная (SIB)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Сомали (SOM)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Турецкая ангора (TUA)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Турецкий ван (TUV)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Уральский рекс длинношерстный (URL)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Абиссинская (ABY)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Американский кёрл короткошерстный
-                    (ACS)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Американская короткошерстная (ASH)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Азиатская (ASI)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Американская жесткошерстная (AWH)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Бенгальская (BEN)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Бурмилла короткошерстный (BMS)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Бомбейская (BOM)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Бразильская короткошерстная (BRA)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Британская короткошерстная (BRI)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Бурманская (BUR)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Манчкин (MNS)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Цейлонская (CEY)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Шартрез (CHA)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Корниш рекс (CRX)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Девон рекс (DRX)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Экзотическая короткошерстная (EXO)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Немецкий рекс (GRX)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Японский бобтейл короткошерстный (JBS)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Карельский бобтейл короткошерстный
-                    (KAS)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Курильский бобтейл короткошерстный
-                    (KBS)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Кельтская короткошерстная (KKH)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Корат (KOR)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Мэнкс (MAN)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Египетская мау (MAU)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Оцикет (OCI)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Русская голубая (RUS)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Скоттиш фолд (SFS)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Сингапурская (SIN)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Селкирк рекс короткошерстный (SRS)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Уральский рекс короткошерстный (URS)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Шотландская
-                    короткошерстная/скоттиш-страйт (SFS71)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Ориентальная короткошерстная (OSH)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Меконгский бобтейл (MBT)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Сиамская (SIA)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Сейшел (SYS)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Тайская (THA)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Тонкинская (TON)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Донской сфинкс (DSX)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Петерболд (PBD)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Канадский сфинкс (SPH)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Чаузи (CHA)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Той-Боб</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Домашняя кошка (HHP)</option>
+                    {breeds?.map((breed: Breed) => (
+                        <option key={breed.id} className={styles.docsOption} value={breed.value}>{breed.description}</option>
+                    ))}
                 </select>
                 <div className={styles.docsPreSelect}>Окрас(*)</div>
                 <input className={styles.docsSelect} type="text"/>
@@ -529,103 +453,9 @@ const Docs: NextPage = () => {
                 <div className={styles.docsPreSelect}>Порода кота(*)</div>
                 <select className={styles.docsSelect} name="Выберите титул" id="">
                   <option className={styles.docsOption} value="Выберите титул">Выберите породу</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Персидская (PER)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Британская Длинношерстная (BLH)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Колорпойнт (PER)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Хайленд фолд (SFL)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Селкирк рекс длинношерстный (SRL)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Шотландская
-                    полудлинношерстная/хайленд-страйт (SFL71)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Американский кёрл длинношерстный (ACL)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Балинезийская (BAL)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Бурмилла длинношерстный (BML)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Кимрик (CYM)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Японский бобтейл длинношерстный (JBL)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Карельский бобтейл (KAL)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Курильский бобтейл длинношерстный
-                    (KBL)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Манчкин длинношерстный (MNL)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Мэйн кун (MCO)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Нибелунг (NEB)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Норвежская лесная (NFO)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Ориентальная полудлиношерстная (OSL)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Рэгдолл (RAG)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Рагамаффин (RGM)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Бирманская (SBI)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Сибирская / Невская Маскарадная (SIB)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Сомали (SOM)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Турецкая ангора (TUA)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Турецкий ван (TUV)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Уральский рекс длинношерстный (URL)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Абиссинская (ABY)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Американский кёрл короткошерстный
-                    (ACS)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Американская короткошерстная (ASH)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Азиатская (ASI)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Американская жесткошерстная (AWH)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Бенгальская (BEN)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Бурмилла короткошерстный (BMS)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Бомбейская (BOM)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Бразильская короткошерстная (BRA)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Британская короткошерстная (BRI)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Бурманская (BUR)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Манчкин (MNS)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Цейлонская (CEY)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Шартрез (CHA)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Корниш рекс (CRX)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Девон рекс (DRX)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Экзотическая короткошерстная (EXO)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Немецкий рекс (GRX)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Японский бобтейл короткошерстный (JBS)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Карельский бобтейл короткошерстный
-                    (KAS)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Курильский бобтейл короткошерстный
-                    (KBS)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Кельтская короткошерстная (KKH)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Корат (KOR)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Мэнкс (MAN)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Египетская мау (MAU)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Оцикет (OCI)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Русская голубая (RUS)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Скоттиш фолд (SFS)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Сингапурская (SIN)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Селкирк рекс короткошерстный (SRS)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Уральский рекс короткошерстный (URS)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Шотландская
-                    короткошерстная/скоттиш-страйт (SFS71)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Ориентальная короткошерстная (OSH)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Меконгский бобтейл (MBT)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Сиамская (SIA)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Сейшел (SYS)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Тайская (THA)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Тонкинская (TON)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Донской сфинкс (DSX)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Петерболд (PBD)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Канадский сфинкс (SPH)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Чаузи (CHA)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Той-Боб</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Домашняя кошка (HHP)</option>
+                    {breeds?.map((breed: Breed) => (
+                        <option key={breed.id} className={styles.docsOption} value={breed.value}>{breed.description}</option>
+                    ))}
                 </select>
                 <div className={styles.docsPreSelect}>Окрас(*)</div>
                 <input className={styles.docsSelect} type="text"/>
@@ -673,103 +503,9 @@ const Docs: NextPage = () => {
                 <div className={styles.docsPreSelect}>Порода(*)</div>
                 <select className={styles.docsSelect} name="Выберите породу" id="">
                   <option className={styles.docsOption} value="Выберите титул">Выберите породу</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Персидская (PER)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Британская Длинношерстная (BLH)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Колорпойнт (PER)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Хайленд фолд (SFL)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Селкирк рекс длинношерстный (SRL)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Шотландская
-                    полудлинношерстная/хайленд-страйт (SFL71)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Американский кёрл длинношерстный (ACL)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Балинезийская (BAL)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Бурмилла длинношерстный (BML)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Кимрик (CYM)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Японский бобтейл длинношерстный (JBL)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Карельский бобтейл (KAL)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Курильский бобтейл длинношерстный
-                    (KBL)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Манчкин длинношерстный (MNL)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Мэйн кун (MCO)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Нибелунг (NEB)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Норвежская лесная (NFO)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Ориентальная полудлиношерстная (OSL)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Рэгдолл (RAG)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Рагамаффин (RGM)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Бирманская (SBI)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Сибирская / Невская Маскарадная (SIB)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Сомали (SOM)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Турецкая ангора (TUA)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Турецкий ван (TUV)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Уральский рекс длинношерстный (URL)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Абиссинская (ABY)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Американский кёрл короткошерстный
-                    (ACS)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Американская короткошерстная (ASH)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Азиатская (ASI)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Американская жесткошерстная (AWH)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Бенгальская (BEN)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Бурмилла короткошерстный (BMS)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Бомбейская (BOM)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Бразильская короткошерстная (BRA)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Британская короткошерстная (BRI)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Бурманская (BUR)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Манчкин (MNS)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Цейлонская (CEY)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Шартрез (CHA)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Корниш рекс (CRX)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Девон рекс (DRX)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Экзотическая короткошерстная (EXO)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Немецкий рекс (GRX)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Японский бобтейл короткошерстный (JBS)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Карельский бобтейл короткошерстный
-                    (KAS)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Курильский бобтейл короткошерстный
-                    (KBS)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Кельтская короткошерстная (KKH)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Корат (KOR)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Мэнкс (MAN)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Египетская мау (MAU)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Оцикет (OCI)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Русская голубая (RUS)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Скоттиш фолд (SFS)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Сингапурская (SIN)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Селкирк рекс короткошерстный (SRS)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Уральский рекс короткошерстный (URS)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Шотландская
-                    короткошерстная/скоттиш-страйт (SFS71)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Ориентальная короткошерстная (OSH)
-                  </option>
-                  <option className={styles.docsOption} value="Выберите титул"> Меконгский бобтейл (MBT)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Сиамская (SIA)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Сейшел (SYS)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Тайская (THA)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Тонкинская (TON)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Донской сфинкс (DSX)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Петерболд (PBD)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Канадский сфинкс (SPH)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Чаузи (CHA)</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Той-Боб</option>
-                  <option className={styles.docsOption} value="Выберите титул"> Домашняя кошка (HHP)</option>
+                    {breeds?.map((breed: Breed) => (
+                        <option key={breed.id} className={styles.docsOption} value={breed.value}>{breed.description}</option>
+                    ))}
                 </select>
               </div>
               <div>
