@@ -3,96 +3,99 @@
     "id": "1",
     "value": "Котенок-Чемпион",
     "description": "Котенок-Чемпион",
-    "key": "nocastration"
+    "kitten": true
   },
   {
     "id": "2",
     "value": "Котенок Премиор",
     "description": "Котенок Премиор",
-    "key": "castration"
+    "castration": true,
+    "kitten": true
   },
   {
     "id": "3",
     "value": "Юниор Чемпион",
     "description": "Юниор Чемпион",
-    "key": "nocastration"
+    "junior": true
   },
   {
     "id": "4",
     "value": "Юниор Премиор",
     "description": "Юниор Премиор",
-    "key": "castration"
+    "castration": true,
+    "junior": true
   },
   {
     "id": "5",
     "value": "Чемпион",
-    "description": "Чемпион",
-    "key": "nocastration"
+    "description": "Чемпион"
   },
   {
     "id": "6",
     "value": "Премиор",
     "description": "Премиор",
-    "key": "castration"
+    "castration": true
   },
   {
     "id": "7",
     "value": "Международный Чемпион",
-    "description": "Международный Чемпион",
-    "key": "nocastration"
+    "description": "Международный Чемпион"
   },
   {
     "id": "8",
     "value": "Международный Премиор",
     "description": "Международный Премиор",
-    "key": "castration"
+    "castration": true
   },
   {
     "id": "9",
     "value": "Большой Международный Чемпион",
-    "description": "Большой Международный Чемпион",
-    "key": "nocastration"
+    "description": "Большой Международный Чемпион"
   },
   {
     "id": "10",
     "value": "Большой Международный Премиор",
     "description": "Большой Международный Премиор",
-    "key": "castration"
+    "castration": true
   },
   {
     "id": "11",
     "value": "Евро Чемпион",
-    "description": "Евро Чемпион",
-    "key": "nocastration"
+    "description": "Евро Чемпион"
   },
   {
     "id": "12",
     "value": "Евро Премиор",
     "description": "Евро Премиор",
-    "key": "castration"
+    "castration": true
   },
   {
     "id": "13",
     "value": "Большой Евро Чемпион",
-    "description": "Большой Евро Чемпион",
-    "key": "nocastration"
+    "description": "Большой Евро Чемпион"
   },
   {
     "id": "14",
     "value": "Большой Евро Премиор",
     "description": "Большой Евро Премиор",
-    "key": "castration"
+    "castration": true
   },
   {
     "id": "15",
     "value": "Чемпион Мира",
-    "description": "Чемпион Мира",
-    "key": "nocastration"
+    "description": "Чемпион Мира"
   },
   {
     "id": "16",
     "value": "Премиор Мира",
     "description": "Премиор Мира",
-    "key": "castration"
+    "castration": true
+  },
+  {
+    "id": "17",
+    "value": "Домашняя",
+    "description": "Домашняя",
+    "castration": true,
+    "home": true
   }
 ]

@@ -1,13 +1,13 @@
 import type { NextPage } from 'next';
 import styles from '../styles/Docs.module.css';
-import React, {ChangeEvent, ChangeEventHandler, FC, useCallback, useEffect, useState} from 'react';
+import React, { ChangeEvent, ChangeEventHandler, FC, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Page } from '../components/Page';
 import { DocsPanel } from '../components/DocsPanel';
 import { useSelector } from 'react-redux';
 import { ApiResponse, fetcher } from '../utils';
 
 import useSWR from 'swr'
-
+import dayjs from 'dayjs';
 
 type Breed = {
   id: string
@@ -16,26 +16,28 @@ type Breed = {
 }
 
 type Titul = {
-    id: string
-    value: string
-    description: string
-    key: string
+  id: string
+  value: string
+  description: string
+  castration?: boolean
+  kitten?: boolean
+  junior?: boolean
+  home?: boolean
 }
 
 
 
 const Docs: NextPage = () => {
-
-
   const docsState = useSelector((state: any) => state.docsState);
 
   const { data: responseBreed } = useSWR<ApiResponse<Breed[]>>('/api/breeds', fetcher)
 
   const { data: breeds } = responseBreed || {}
 
-    const { data: responseTitul } = useSWR<ApiResponse<Titul[]>>('/api/tituls', fetcher)
+  const { data: responseTitul } = useSWR<ApiResponse<Titul[]>>('/api/tituls', fetcher)
 
-    const { data: tituls } = responseTitul || {}
+  // const titlesData = responseTitul?.data || {}
+  const { data: titlesData } = responseTitul || {}
 
   // const getData = useCallback(async () => {
   //
@@ -45,65 +47,144 @@ const Docs: NextPage = () => {
   //   getData();
   // }, []);
 
+  const [breed, setBreed] = useState<string>('')
+
+  const [birthday, setBirthday] = useState<string>('')
+  const [isAdult, setAdult] = useState<boolean>()
+  const [isJunior, setJunior] = useState<boolean>()
+  const [isKitten, setKitten] = useState<boolean>()
+
+  const [gender, setGender] = useState<string>('')
+  const [castration, setCastration] = useState<boolean>()
+
+  const [titles, setTitles] = useState<Titul[]>([])
+
+  // const titlesRef = useRef<Titul[]>([])
+
+  useEffect(() => {
+    if (titlesData) {
+      setTitles(titlesData)
+    }
+  }, [titlesData])
+
+  // const [filteredTitles, setFilteredTitles] = useState<any>([])
+  const [newTitles, setNewTitles] = useState<Titul[]>([])
+
+  const [currentTitle, setCurrentTitle] = useState<string>('')
+  const [newCurrentTitle, setNewCurrentTitle] = useState<string>('')
+
+  // console.log('titles', titles);
+  // console.log('filteredTitles', filteredTitles);
+
+  useEffect(() => {
+    switch (gender) {
+      case "Кот":
+      case "Кошка":
+        console.log("Ты выбрал кота или кошку");
+        setCastration(false)
+        break;
+      case "Кастрированный кот":
+      case "Стерилизованная кошка":
+        console.log("Ты выбрал Кастрированный кот");
+        setCastration(true)
+        break;
+      default:
+        console.log("Не правильно")
+        setCastration(undefined)
+    }
+  }, [gender])
+
+  useEffect(() => {
+    if (birthday) {
+      console.count('birthday')
+      const currentDate = dayjs(birthday)
+      const date = dayjs()
+
+      const diff = date.diff(currentDate, 'month')
+
+      const isAdult = diff >= 10
+      const isJunior = diff < 10 && diff >= 3
+      const isKitten = diff < 3 && diff >= 0
+
+      setAdult(isAdult)
+      setJunior(isJunior)
+      setKitten(isKitten)
+    }
+  }, [birthday])
+
+  const filteredTitles = useMemo(() => {
+    return titles.filter(title => {
+      const castrationCheck = (title: Titul): boolean => {
+        if (castration) {
+          return !!title.castration
+        }
+
+        return !title.castration
+      }
+
+      const juniorCheck = (title: Titul): boolean => {
+        if (isJunior) {
+          return !!title.junior
+        }
+
+        return true
+      }
+
+      const adultCheck = (title: Titul): boolean => {
+        if (isAdult) {
+          return !title.junior && !title.kitten
+        }
+
+        return true
+      }
+
+      const kittenCheck = (title: Titul): boolean => {
+        if (isKitten) {
+          return !!title.kitten
+        }
+
+        return true
+      }
+
+      return castrationCheck(title) && juniorCheck(title) && kittenCheck(title) && adultCheck(title)
+    })
+  }, [isJunior, isKitten, isAdult, castration, titles])
+
+  useEffect(() => {
+    if (filteredTitles) {
+      setCurrentTitle(filteredTitles?.[0]?.value || '')
+    }
+  }, [isAdult, isJunior, isKitten, castration, filteredTitles])
+
+  console.log('filteredTitles', filteredTitles);
+
+
+  const onChangeBreed = (e: ChangeEvent<HTMLSelectElement>) => {
+    console.log(e.target.value)
+    setBreed(e.target.value)
+  }
+
+  const onChangeTitles = (e: ChangeEvent<HTMLSelectElement>) => {
+    console.log(e.target.value)
+    setCurrentTitle(e.target.value)
+  }
+
+  const onChangeBirthday = (e: ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.value)
+    setBirthday(e.target.value)
+  }
+
+  const onChangeGender = (e: ChangeEvent<HTMLSelectElement>) => {
+    console.log(e.target.value)
+    setGender(e.target.value)
+  }
+
+  const onChangeNewTitules = (e: ChangeEvent<HTMLSelectElement>) => {
+    console.log(e.target.value)
+    setNewCurrentTitle(e.target.value)
+  }
+
   const renderSecondElement = () => {
-
-      const [breed, setBreed] = useState<string>('')
-
-      const [birthsday, setBirthsday] = useState<string>('')
-
-      const [gender, setGender] = useState<string>('')
-
-      const [titules, setTitules] = useState<any>(tituls)
-
-      console.log("1",tituls)
-
-      useEffect(() => {
-          switch (gender) {
-              case "Кот":
-                  console.log("Ты выбрал кота");
-                  setTitules(tituls?.filter((titul)=> {
-                   return titul.key == "nocastration"
-                  }))
-                  break;
-              case "Кошка":
-                  console.log("Ты выбрал Кошка");
-                  break;
-              case "Кастрированный кот":
-                  console.log("Ты выбрал Кастрированный кот");
-                  break;
-              case "Стерилизованная кошка":
-                  console.log("Ты выбрал Стерилизованная кошка");
-                  break;
-              default:
-                  console.log("Не правильно")
-          }
-      }, [gender])
-
-      const [newTitules, setNewTitules] = useState<string>('')
-
-      const onChangeBreed = (e: ChangeEvent<HTMLSelectElement>) => {
-          console.log(e.target.value)
-          setBreed(e.target.value)
-      }
-
-      const onChangeTitules = (e: ChangeEvent<HTMLSelectElement>) => {
-          console.log(e.target.value)
-          setTitules(e.target.value)
-      }
-      const onChangeBirthsday = (e: ChangeEvent<HTMLInputElement>) => {
-          console.log(e.target.value)
-          setBirthsday(e.target.value)
-      }
-      const onChangeGender = (e: ChangeEvent<HTMLSelectElement>) => {
-          console.log(e.target.value)
-          setGender(e.target.value)
-      }
-
-      const onChangeNewTitules = (e: ChangeEvent<HTMLSelectElement>) => {
-          console.log(e.target.value)
-          setNewTitules(e.target.value)
-      }
-
     switch (Object.entries(docsState).find(([_, value]) => value)?.[0]) {
       case 'openedvstuplenie':
         return (
@@ -166,26 +247,26 @@ const Docs: NextPage = () => {
                   <option className={styles.docsOption} value="Стерилизованная кошка"> Стерилизованная кошка</option>
               </select>
 
+              <div className={styles.docsPreSelect}>Дата рождения(*)</div>
+              <input className={styles.docsSelect} onChange={onChangeBirthday} value={birthday} type="date"/>
+
               <div className={styles.docsPreSelect}>Последний полученный титул</div>
-              <select className={styles.docsSelect} onChange={onChangeTitules} value={titules} name="Выберите титул" id="">
+              <select className={styles.docsSelect} onChange={onChangeTitles} value={currentTitle} name="Выберите титул" id="">
                   <option className={styles.docsOption}  value="Выберите титул">Выберите титул</option>
-                  {tituls?.map((titul: Titul) => (
+                  {filteredTitles?.map((titul: Titul) => (
                       <option key={titul.id} className={styles.docsOption} value={titul.value}>{titul.description}</option>
                   ))}
               </select>
               <div className={styles.docsPreSelect}>Запрашиваемый титул(*)</div>
-              <select className={styles.docsSelect} onChange={onChangeNewTitules} value={newTitules} name="Выберите титул" id="">
+              <select className={styles.docsSelect} onChange={onChangeNewTitules} value={newCurrentTitle} name="Выберите титул" id="">
                   <option className={styles.docsOption} value="Выберите титул">Выберите титул</option>
-                  {tituls?.map((titul: Titul) => (
+                  {newTitles?.map((titul: Titul) => (
                       <option key={titul.id} className={styles.docsOption} value={titul.value}>{titul.description}</option>
                   ))}
               </select>
 
             <div className={styles.docsPreSelect}>Окрас</div>
             <input className={styles.docsSelect} onChange={e => console.log(e.target.value)} type="text"/>
-
-            <div className={styles.docsPreSelect}>Дата рождения(*)</div>
-            <input className={styles.docsSelect} onChange={onChangeBirthsday} value={birthsday} type="date"/>
 
             <div className={styles.docsPreSelect}>Номер родословной(*)</div>
             <input className={styles.docsSelect} type="text"/>
