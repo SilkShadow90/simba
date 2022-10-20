@@ -96,6 +96,6 @@
     "value": "Домашняя",
     "description": "Домашняя",
     "castration": true,
-    "home": true
+    "isHomeCat": true
   }
 ]

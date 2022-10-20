@@ -22,7 +22,7 @@ type Titul = {
   castration?: boolean
   kitten?: boolean
   junior?: boolean
-  home?: boolean
+    isHomeCat?: boolean
 }
 
 
@@ -39,27 +39,18 @@ const Docs: NextPage = () => {
   // const titlesData = responseTitul?.data || {}
   const { data: titlesData } = responseTitul || {}
 
-  // const getData = useCallback(async () => {
-  //
-  // }, []);
-
-  // useEffect(() => {
-  //   getData();
-  // }, []);
-
-  const [breed, setBreed] = useState<string>('')
 
   const [birthday, setBirthday] = useState<string>('')
   const [isAdult, setAdult] = useState<boolean>()
   const [isJunior, setJunior] = useState<boolean>()
   const [isKitten, setKitten] = useState<boolean>()
-
+  const [isHomeCat, setHomeCat] = useState<boolean>()
+  const [breed, setBreed] = useState<string>('')
   const [gender, setGender] = useState<string>('')
   const [castration, setCastration] = useState<boolean>()
 
   const [titles, setTitles] = useState<Titul[]>([])
 
-  // const titlesRef = useRef<Titul[]>([])
 
   useEffect(() => {
     if (titlesData) {
@@ -67,14 +58,12 @@ const Docs: NextPage = () => {
     }
   }, [titlesData])
 
-  // const [filteredTitles, setFilteredTitles] = useState<any>([])
   const [newTitles, setNewTitles] = useState<Titul[]>([])
 
   const [currentTitle, setCurrentTitle] = useState<string>('')
+    const [currentBreed, setCurrentBreed] = useState<string>('')
   const [newCurrentTitle, setNewCurrentTitle] = useState<string>('')
 
-  // console.log('titles', titles);
-  // console.log('filteredTitles', filteredTitles);
 
   useEffect(() => {
     switch (gender) {
@@ -94,6 +83,16 @@ const Docs: NextPage = () => {
     }
   }, [gender])
 
+
+    useEffect(()=> {
+        switch (breed) {
+            case "HHP":
+                setHomeCat(true);
+                console.log("ты выбрал домашняя ")
+                break;
+        }
+    },[breed])
+
   useEffect(() => {
     if (birthday) {
       console.count('birthday')
@@ -112,8 +111,15 @@ const Docs: NextPage = () => {
     }
   }, [birthday])
 
+
+
   const filteredTitles = useMemo(() => {
     return titles.filter(title => {
+
+        if (isHomeCat) {
+            return title.isHomeCat
+        }
+
       const castrationCheck = (title: Titul): boolean => {
         if (castration) {
           return !!title.castration
@@ -148,7 +154,7 @@ const Docs: NextPage = () => {
 
       return castrationCheck(title) && juniorCheck(title) && kittenCheck(title) && adultCheck(title)
     })
-  }, [isJunior, isKitten, isAdult, castration, titles])
+  }, [isJunior, isKitten, isAdult, castration, isHomeCat, titles])
 
   useEffect(() => {
     if (filteredTitles) {
@@ -160,27 +166,22 @@ const Docs: NextPage = () => {
 
 
   const onChangeBreed = (e: ChangeEvent<HTMLSelectElement>) => {
-    console.log(e.target.value)
-    setBreed(e.target.value)
+      setBreed(e.target.value)
   }
 
   const onChangeTitles = (e: ChangeEvent<HTMLSelectElement>) => {
-    console.log(e.target.value)
     setCurrentTitle(e.target.value)
   }
 
   const onChangeBirthday = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value)
     setBirthday(e.target.value)
   }
 
   const onChangeGender = (e: ChangeEvent<HTMLSelectElement>) => {
-    console.log(e.target.value)
     setGender(e.target.value)
   }
 
   const onChangeNewTitules = (e: ChangeEvent<HTMLSelectElement>) => {
-    console.log(e.target.value)
     setNewCurrentTitle(e.target.value)
   }
 
@@ -202,7 +203,6 @@ const Docs: NextPage = () => {
           </div>
         );
       case 'openedtitul':
-
 
         return (
           <div className={styles.docsRightVstuplenie}>
@@ -241,7 +241,7 @@ const Docs: NextPage = () => {
               <div className={styles.docsPreSelect}>Пол(*)</div>
               <select className={styles.docsSelect} onChange={onChangeGender} value={gender} name="Выберите пол" id="">
                   <option className={styles.docsOption}  value="Выберите пол">Выберите пол</option>
-                  <option className={styles.docsOption} value="Кот"> Кот</option>
+                  <option className={styles.docsOption} value="Кот" > Кот</option>
                   <option className={styles.docsOption} value="Кошка"> Кошка</option>
                   <option className={styles.docsOption} value="Кастрированный кот"> Кастрированный кот</option>
                   <option className={styles.docsOption} value="Стерилизованная кошка"> Стерилизованная кошка</option>
