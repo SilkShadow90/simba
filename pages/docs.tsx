@@ -48,8 +48,8 @@ const Docs: NextPage = () => {
   const [breed, setBreed] = useState<string>('')
   const [gender, setGender] = useState<string>('')
   const [castration, setCastration] = useState<boolean>()
-
   const [titles, setTitles] = useState<Titul[]>([])
+
 
 
   useEffect(() => {
@@ -59,10 +59,10 @@ const Docs: NextPage = () => {
   }, [titlesData])
 
   const [newTitles, setNewTitles] = useState<Titul[]>([])
-
-  const [currentTitle, setCurrentTitle] = useState<string>('')
-    const [currentBreed, setCurrentBreed] = useState<string>('')
+  const [currentTitle, setCurrentTitle] = useState<any>('')
   const [newCurrentTitle, setNewCurrentTitle] = useState<string>('')
+
+
 
 
   useEffect(() => {
@@ -155,6 +155,15 @@ const Docs: NextPage = () => {
       return castrationCheck(title) && juniorCheck(title) && kittenCheck(title) && adultCheck(title)
     })
   }, [isJunior, isKitten, isAdult, castration, isHomeCat, titles])
+
+
+    const secondFilteredTitles = useMemo(() => {
+        filteredTitles?.findIndex((index)=>{
+            return currentTitle(index)
+        })
+    },[])
+
+    console.log("secondFilteredTitles",secondFilteredTitles)
 
   useEffect(() => {
     if (filteredTitles) {
