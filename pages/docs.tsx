@@ -59,7 +59,7 @@ const Docs: NextPage = () => {
   }, [titlesData])
 
   const [newTitles, setNewTitles] = useState<Titul[]>([])
-  const [currentTitle, setCurrentTitle] = useState<any>('')
+  const [currentTitle, setCurrentTitle] = useState<string>('')
   const [newCurrentTitle, setNewCurrentTitle] = useState<string>('')
 
 
@@ -158,10 +158,39 @@ const Docs: NextPage = () => {
 
 
     const secondFilteredTitles = useMemo(() => {
-        filteredTitles?.findIndex((index)=>{
-            return currentTitle(index)
+      if (currentTitle ==='none') {
+        return filteredTitles.slice(0, 1)
+      }
+
+      if (currentTitle) {
+        const currentIndex: number = filteredTitles?.findIndex((title, index, array)=>{
+            return currentTitle === title.value
         })
-    },[])
+
+        if (currentIndex !== -1) {
+          return filteredTitles.slice(currentIndex, currentIndex + 2)
+        }
+
+        // return filteredTitles?.reduce((acc: Titul[], title, index, array): Titul[] => {
+        //   if (currentTitle === title.value) {
+        //     if (array[index + 1].value) {
+        //       return [
+        //         title,
+        //         array[index + 1],
+        //       ]
+        //     }
+        //
+        //     return [
+        //       title,
+        //     ]
+        //   }
+        //
+        //   return acc
+        // }, [])
+      }
+
+      return []
+    },[currentTitle, filteredTitles])
 
     console.log("secondFilteredTitles",secondFilteredTitles)
 
@@ -262,6 +291,7 @@ const Docs: NextPage = () => {
               <div className={styles.docsPreSelect}>Последний полученный титул</div>
               <select className={styles.docsSelect} onChange={onChangeTitles} value={currentTitle} name="Выберите титул" id="">
                   <option className={styles.docsOption}  value="Выберите титул">Выберите титул</option>
+                  <option className={styles.docsOption}  value="none">Без титула</option>
                   {filteredTitles?.map((titul: Titul) => (
                       <option key={titul.id} className={styles.docsOption} value={titul.value}>{titul.description}</option>
                   ))}
@@ -269,7 +299,7 @@ const Docs: NextPage = () => {
               <div className={styles.docsPreSelect}>Запрашиваемый титул(*)</div>
               <select className={styles.docsSelect} onChange={onChangeNewTitules} value={newCurrentTitle} name="Выберите титул" id="">
                   <option className={styles.docsOption} value="Выберите титул">Выберите титул</option>
-                  {newTitles?.map((titul: Titul) => (
+                  {secondFilteredTitles?.map((titul: Titul) => (
                       <option key={titul.id} className={styles.docsOption} value={titul.value}>{titul.description}</option>
                   ))}
               </select>
