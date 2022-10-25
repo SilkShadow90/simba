@@ -1,50 +1,36 @@
 import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
 import styles from '../styles/Cats.module.css'
-import { useEffect } from 'react';
-import { AxiosService } from '../utils';
+import React, { useEffect } from 'react';
+import Image from 'next/image'
+import cat from '../public/cat.jpg';
+import catOne from '../public/catOne.jpeg';
+import cattwo from '../public/cattwo.jpg';
+import catthree from '../public/catthree.jpg';
+import { Page } from '../components/Page';
+import {Card} from "../components/Card";
 
+const aas = 5 ;
 const Cats: NextPage = () => {
-  useEffect(() => {
-    (async () => {
-      try {
-        const { data } = await AxiosService.get('/api/hello') || {}
-        console.log(data);
-      } catch (e) {
-        console.log(e);
-      }
-    })()
-  }, [])
+  // useEffect(() => {
+  //   (async () => {
+  //     try {
+  //       const { data } = await AxiosService.get('/api/hello') || {}
+  //       console.log(data);
+  //     } catch (e) {
+  //       console.log(e);
+  //     }
+  //   })()
+  // }, [])
 
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Cats</title>
-        <meta name="description" content="bla bla" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
-    </div>
+      <Page title="Cats" meta="bla bla" styles={styles.container} >
+          <div className={styles.cardsCats}>
+              <Card name={"Прометей"} image={cat} family={"Веслоухая британская"} years={"5 лет"}/>
+              <Card name={"Шпилька"} image={catOne} family={"дворовый бродяга"} years={"6 лет"}/>
+              <Card name={"Пушок"} image={cattwo} family={"кокер спаниель"} years={"7 лет"}/>
+              <Card name={"Платон"} image={catthree} family={"английская"} years={"8 лет"}/>
+          </div>
+      </Page>
   )
 }
 

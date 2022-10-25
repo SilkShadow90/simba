@@ -1,0 +1,45 @@
+.comeinfo {
+    display: flex;
+    justify-content: flex-start;
+    align-content: center;
+    font-size: 30px;
+    line-height: 1.2;
+    font-family: inherit;
+    word-wrap: break-word;
+    color: black;
+    margin-left: 50px;
+    margin-bottom: 50px;
+}
+.comeinfo_title {
+    display: flex;
+    justify-content: flex-start;
+    align-content: center;
+    font-size: 20px;
+    line-height: 1.2;
+    font-family: inherit;
+    word-wrap: break-word;
+    color: black;
+    margin-left: 50px;
+    margin-bottom: 50px;
+}
+
+
+.comearbiter {
+}
+
+.comearbiter_info {
+    display: grid;
+    margin: 0 auto;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 500px));
+    padding: 0 50px 0 50px;
+    grid-gap: 15px;
+    gap: 15px;
+    margin-bottom: 50px;
+}
+
+.come_src_winner_one {
+    margin: 10px 10px 20px 10px;
+    min-height: 400px;
+    background: url("../public/stars.jpg");
+    background-size: cover;
+}

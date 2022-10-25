@@ -1,4 +1,3 @@
-import { AppState } from '../../types';
 import { initialState } from '../initialState';
 
 export enum UserReducerType {
@@ -10,13 +9,13 @@ export enum UserReducerType {
 
 export type UserAction = {
   type: UserReducerType;
-  payload: AppState['userState'];
+  payload: any;
 };
 
 export function userReducer(
-  state: AppState['userState'] = initialState.userState,
+  state = initialState.userState,
   action: UserAction,
-): AppState['userState'] {
+) {
   switch (action.type) {
     case UserReducerType['user/startFetch']:
       return { user: null, isLoading: true, isError: false, id: action.payload.id };

@@ -1,0 +1,101 @@
+[
+  {
+    "id": "1",
+    "value": "Котенок-Чемпион",
+    "description": "Котенок-Чемпион",
+    "kitten": true
+  },
+  {
+    "id": "2",
+    "value": "Котенок Премиор",
+    "description": "Котенок Премиор",
+    "castration": true,
+    "kitten": true
+  },
+  {
+    "id": "3",
+    "value": "Юниор Чемпион",
+    "description": "Юниор Чемпион",
+    "junior": true
+  },
+  {
+    "id": "4",
+    "value": "Юниор Премиор",
+    "description": "Юниор Премиор",
+    "castration": true,
+    "junior": true
+  },
+  {
+    "id": "5",
+    "value": "Чемпион",
+    "description": "Чемпион"
+  },
+  {
+    "id": "6",
+    "value": "Премиор",
+    "description": "Премиор",
+    "castration": true
+  },
+  {
+    "id": "7",
+    "value": "Международный Чемпион",
+    "description": "Международный Чемпион"
+  },
+  {
+    "id": "8",
+    "value": "Международный Премиор",
+    "description": "Международный Премиор",
+    "castration": true
+  },
+  {
+    "id": "9",
+    "value": "Большой Международный Чемпион",
+    "description": "Большой Международный Чемпион"
+  },
+  {
+    "id": "10",
+    "value": "Большой Международный Премиор",
+    "description": "Большой Международный Премиор",
+    "castration": true
+  },
+  {
+    "id": "11",
+    "value": "Евро Чемпион",
+    "description": "Евро Чемпион"
+  },
+  {
+    "id": "12",
+    "value": "Евро Премиор",
+    "description": "Евро Премиор",
+    "castration": true
+  },
+  {
+    "id": "13",
+    "value": "Большой Евро Чемпион",
+    "description": "Большой Евро Чемпион"
+  },
+  {
+    "id": "14",
+    "value": "Большой Евро Премиор",
+    "description": "Большой Евро Премиор",
+    "castration": true
+  },
+  {
+    "id": "15",
+    "value": "Чемпион Мира",
+    "description": "Чемпион Мира"
+  },
+  {
+    "id": "16",
+    "value": "Премиор Мира",
+    "description": "Премиор Мира",
+    "castration": true
+  },
+  {
+    "id": "17",
+    "value": "Домашняя",
+    "description": "Домашняя",
+    "castration": true,
+    "isHomeCat": true
+  }
+]
