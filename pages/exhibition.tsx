@@ -3,6 +3,8 @@ import React from 'react';
 import { Page } from '../components/Page';
 import styles from '../styles/Ex.module.css';
 import ExhibitionCard from "../components/Intro/ExhibitionCard";
+import lastEx from "../public/lastEx.jpg";
+import nolastEX from "../public/nolastEX.jpg";
 
 const exhibition: NextPage = () => {
     return (
@@ -13,12 +15,14 @@ const exhibition: NextPage = () => {
                     title={"Ближайшие выставки"}
                     text={'Информация о ближайшей выставке кошек КЛК Коргоруши г. Москва.'}
                     csssrc={styles.exhibition_Main__leftColumn}
+                    image={lastEx}
                 />
                 <ExhibitionCard
                     link={"/lastexhibition"}
                     title={"Прошедшие выставки"}
                     text={'Результаты и и фоторепортаж с прошедших выставок КЛК Коргоруши'}
                     csssrc={styles.exhibition_Main__rightColumn}
+                    image={nolastEX}
                 />
             </div>
         </Page>

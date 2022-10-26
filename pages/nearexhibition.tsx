@@ -4,6 +4,7 @@ import React from 'react';
 import {Page} from "../components/Page";
 import ExhibitionCard from "../components/Intro/ExhibitionCard";
 import {FirstBack} from "../components/Back";
+import lastEx from "../public/lastEx.jpg";
 
 const nearexhibition: NextPage = () => {
     return (
@@ -18,12 +19,14 @@ const nearexhibition: NextPage = () => {
                     title={"Выставка кошек"}
                     text={'Выставка в г.Ульяновске 10.03.2022 в 15:30'}
                     csssrc={styles.nearexhibition_Main__src}
+                    image={lastEx}
                 />
                 <ExhibitionCard
                     link={"/come"}
                     title={"Выставка кошек"}
                     text={'Выставка в г.Ульяновске 14.05.2022 в 16:30'}
                     csssrc={styles.nearexhibition_Main__src}
+                    image={lastEx}
                 />
             </div>
             {/*<div className={styles.nearhibition_blocktextone}>*/}

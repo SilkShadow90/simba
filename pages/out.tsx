@@ -1,9 +1,11 @@
-import type { NextPage } from 'next'
 import React from 'react';
+import type { NextPage } from 'next'
+import Image from "next/image";
+
 import { Page } from '../components/Page';
 import styles from '../styles/out.module.css';
+import stars from '../public/stars.jpg';
 import ExhibitionCard from "../components/Intro/ExhibitionCard";
-import Image from "next/image";
 
 function jpeg(size: number = 150) {
     return `https://source.unsplash.com/random/${size}`
@@ -34,18 +36,21 @@ const out: NextPage = () => {
                             text={'Кот Лезвие'}
                             csssrc={styles.out_src_winner_one}
                             link={''}
+                            image={stars}
                         />
                         <ExhibitionCard
                             title={'Виктор Алексеев Лосев'}
                             text={'Кот Бритва'}
                             csssrc={styles.out_src_winner_one}
                             link={''}
+                            image={stars}
                         />
                         <ExhibitionCard
                             title={'Михеев Лука Илларионович'}
                             text={'Кот Борис'}
                             csssrc={styles.out_src_winner_one}
                             link={''}
+                            image={stars}
                         />
                     </div>
                 </div>
@@ -57,18 +62,21 @@ const out: NextPage = () => {
                             text={'Кот Лезвие'}
                             csssrc={styles.out_src_winner_one}
                             link={''}
+                            image={stars}
                         />
                         <ExhibitionCard
                             title={'Виктор Алексеев Лосев'}
                             text={'Кот Бритва'}
                             csssrc={styles.out_src_winner_one}
                             link={''}
+                            image={stars}
                         />
                         <ExhibitionCard
                             title={'Михеев Лука Илларионович'}
                             text={'Кот Борис'}
                             csssrc={styles.out_src_winner_one}
                             link={''}
+                            image={stars}
                         />
                     </div>
                 </div>

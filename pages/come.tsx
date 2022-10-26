@@ -3,6 +3,7 @@ import React from 'react';
 import { Page } from '../components/Page';
 import styles from '../styles/come.module.css';
 import ExhibitionCard from "../components/Intro/ExhibitionCard";
+import stars from "../public/stars.jpg";
 
 const come: NextPage = () => {
     return (
@@ -21,18 +22,21 @@ const come: NextPage = () => {
                             title={'Иван Петрович Затравкин'}
                             text={'Кот Лезвие'}
                             csssrc={styles.come_src_winner_one}
+                            image={stars}
                             link={''}
                         />
                         <ExhibitionCard
                             title={'Виктор Алексеев Лосев'}
                             text={'Кот Бритва'}
                             csssrc={styles.come_src_winner_one}
+                            image={stars}
                             link={''}
                         />
                         <ExhibitionCard
                             title={'Михеев Лука Илларионович'}
                             text={'Кот Борис'}
                             csssrc={styles.come_src_winner_one}
+                            image={stars}
                             link={''}
                         />
                     </div>

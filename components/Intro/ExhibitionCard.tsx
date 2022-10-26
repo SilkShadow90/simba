@@ -8,7 +8,7 @@ interface Props {
     text: string;
     csssrc: string;
     link: string;
-    image?: string
+    image?: any
 }
 
 const ExhibitionCard = ({ title, text,  csssrc, link, image }: PropsWithChildren<Props>) => {
@@ -16,7 +16,7 @@ const ExhibitionCard = ({ title, text,  csssrc, link, image }: PropsWithChildren
     return (
         <Link href={link}>
             <div className={styles.ex}>
-                <div className={classNames(csssrc, styles.cardMargin)} style={image ? { background: image }: undefined}/>
+                <div className={classNames(csssrc, styles.cardMargin)} style={image ? { background: `url(${image})` }: undefined}/>
                 <div className={styles.ex_opacity}>
                     <div className={styles.exhibition_Main__cardTitle}>{title}</div>
                     <div className={styles.exhibition_Main__cardText}>{text}</div>

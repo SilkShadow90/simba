@@ -3,6 +3,7 @@ import React from 'react';
 import { Page } from '../components/Page';
 import styles from '../styles/user.module.css';
 import ExhibitionCard from "../components/Intro/ExhibitionCard";
+import stars from '../public/stars.jpg';
 
 const user: NextPage = () => {
     return (
@@ -14,6 +15,7 @@ const user: NextPage = () => {
                         text={'Кот Лезвие'}
                         csssrc={styles.user_src}
                         link={''}
+                        image={stars}
                     />
                     <div className={styles.usermain_block}>
                         <div className={styles.usermain_block_header}>
