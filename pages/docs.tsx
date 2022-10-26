@@ -8,6 +8,7 @@ import { ApiResponse, fetcher, getBackEndUrl } from '../utils';
 
 import useSWR from 'swr'
 import dayjs from 'dayjs';
+import { useFetchService } from '../utils/useFetchService';
 
 type Breed = {
   id: string
@@ -30,15 +31,8 @@ type Titul = {
 const Docs: NextPage = () => {
   const docsState = useSelector((state: any) => state.docsState);
 
-  const { data: responseBreed } = useSWR<ApiResponse<Breed[]>>(`${getBackEndUrl()}/api/breeds`, fetcher)
-
-  const { data: breeds } = responseBreed || {}
-
-  const { data: responseTitul } = useSWR<ApiResponse<Titul[]>>(`${getBackEndUrl()}/api/tituls`, fetcher)
-
-  // const titlesData = responseTitul?.data || {}
-  const { data: titlesData } = responseTitul || {}
-
+  const { data: breeds } = useFetchService<Breed[]>('breeds') || {}
+  const { data: titlesData } = useFetchService<Titul[]>('tituls') || {}
 
   const [birthday, setBirthday] = useState<string>('')
   const [isAdult, setAdult] = useState<boolean>()

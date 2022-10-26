@@ -11,7 +11,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  const isAvailableFile: boolean | string = await checkAvailableFile('tituls.json')
+  const isAvailableFile: boolean | string = await checkAvailableFile('titulsList.json')
 
   if (isAvailableFile) {
     const ww = {

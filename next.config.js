@@ -8,5 +8,6 @@ module.exports = {
   images: {
     loader: 'akamai',
     path: '/'
-  }
+  },
+  output: 'standalone'
 }
