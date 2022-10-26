@@ -50,14 +50,14 @@ div .cardMargin {
 .exhibition_Main__leftColumn {
     margin: 10px 10px 20px 10px;
     min-height: 400px;
-    background: url("../public/lastEX.jpg");
+    background: url("/lastEX.jpg");
     background-size: cover;
 }
 
 .exhibition_Main__rightColumn {
     margin: 10px 10px 20px 10px;
     min-height: 400px;
-    background: url("../public/nolastEX.jpg");
+    background: url("/nolastEX.jpg");
     background-size: cover;
 }
 

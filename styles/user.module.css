@@ -11,7 +11,7 @@
 .user_src {
     margin: 10px 10px 20px 10px;
     min-height: 400px;
-    background: url("../public/stars.jpg");
+    background: url("/stars.jpg");
     background-size: cover;
 }
 

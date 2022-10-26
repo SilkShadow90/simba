@@ -3,7 +3,7 @@
 
 module.exports = {
   reactStrictMode: true,
-  // assetPrefix: isProd ? '/simba/' : '',
+  assetPrefix: '',
   images: {
     loader: 'akamai',
     path: ''

@@ -28,19 +28,19 @@
 .lasthibition_srcone {
     margin: 10px 10px 20px 10px;
     min-height: 400px;
-    background: url("../public/eft.jpg");
+    background: url("/eft.jpg");
     background-size: cover;
 }
 .lasthibition_srctwo {
     margin: 10px 10px 20px 10px;
     min-height: 400px;
-    background: url("../public/efttwo.jpg");
+    background: url("/efttwo.jpg");
     background-size: cover;
 }
 
 .lasthibition_srcthree {
     margin: 10px 10px 20px 10px;
     min-height: 400px;
-    background: url("../public/eftthree.jpg");
+    background: url("/eftthree.jpg");
     background-size: cover;
 }
