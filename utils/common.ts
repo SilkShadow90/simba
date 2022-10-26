@@ -33,3 +33,5 @@ export function isObject(obj: unknown): obj is object {
 
 // @ts-ignore
 export const fetcher = (...args) => fetch(...args).then((res) => res.json())
+
+export const getBackEndUrl = (): string => process.env.NODE_ENV === 'production' ? '/simba' : ''

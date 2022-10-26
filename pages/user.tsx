@@ -15,7 +15,7 @@ const user: NextPage = () => {
                         text={'Кот Лезвие'}
                         csssrc={styles.user_src}
                         link={''}
-                        image={stars}
+                        image={stars.src}
                     />
                     <div className={styles.usermain_block}>
                         <div className={styles.usermain_block_header}>

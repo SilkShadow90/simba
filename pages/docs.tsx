@@ -4,7 +4,7 @@ import React, { ChangeEvent, ChangeEventHandler, FC, useCallback, useEffect, use
 import { Page } from '../components/Page';
 import { DocsPanel } from '../components/DocsPanel';
 import { useSelector } from 'react-redux';
-import { ApiResponse, fetcher } from '../utils';
+import { ApiResponse, fetcher, getBackEndUrl } from '../utils';
 
 import useSWR from 'swr'
 import dayjs from 'dayjs';
@@ -30,11 +30,11 @@ type Titul = {
 const Docs: NextPage = () => {
   const docsState = useSelector((state: any) => state.docsState);
 
-  const { data: responseBreed } = useSWR<ApiResponse<Breed[]>>('/api/breeds', fetcher)
+  const { data: responseBreed } = useSWR<ApiResponse<Breed[]>>(`${getBackEndUrl()}/api/breeds`, fetcher)
 
   const { data: breeds } = responseBreed || {}
 
-  const { data: responseTitul } = useSWR<ApiResponse<Titul[]>>('/api/tituls', fetcher)
+  const { data: responseTitul } = useSWR<ApiResponse<Titul[]>>(`${getBackEndUrl()}/api/tituls`, fetcher)
 
   // const titlesData = responseTitul?.data || {}
   const { data: titlesData } = responseTitul || {}

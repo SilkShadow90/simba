@@ -8,7 +8,7 @@ interface Props {
     text: string;
     csssrc: string;
     link: string;
-    image?: any
+    image?: string
 }
 
 const ExhibitionCard = ({ title, text,  csssrc, link, image }: PropsWithChildren<Props>) => {

@@ -36,21 +36,21 @@ const out: NextPage = () => {
                             text={'Кот Лезвие'}
                             csssrc={styles.out_src_winner_one}
                             link={''}
-                            image={stars}
+                            image={stars.src}
                         />
                         <ExhibitionCard
                             title={'Виктор Алексеев Лосев'}
                             text={'Кот Бритва'}
                             csssrc={styles.out_src_winner_one}
                             link={''}
-                            image={stars}
+                            image={stars.src}
                         />
                         <ExhibitionCard
                             title={'Михеев Лука Илларионович'}
                             text={'Кот Борис'}
                             csssrc={styles.out_src_winner_one}
                             link={''}
-                            image={stars}
+                            image={stars.src}
                         />
                     </div>
                 </div>
@@ -62,21 +62,21 @@ const out: NextPage = () => {
                             text={'Кот Лезвие'}
                             csssrc={styles.out_src_winner_one}
                             link={''}
-                            image={stars}
+                            image={stars.src}
                         />
                         <ExhibitionCard
                             title={'Виктор Алексеев Лосев'}
                             text={'Кот Бритва'}
                             csssrc={styles.out_src_winner_one}
                             link={''}
-                            image={stars}
+                            image={stars.src}
                         />
                         <ExhibitionCard
                             title={'Михеев Лука Илларионович'}
                             text={'Кот Борис'}
                             csssrc={styles.out_src_winner_one}
                             link={''}
-                            image={stars}
+                            image={stars.src}
                         />
                     </div>
                 </div>

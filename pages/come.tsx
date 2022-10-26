@@ -22,21 +22,21 @@ const come: NextPage = () => {
                             title={'Иван Петрович Затравкин'}
                             text={'Кот Лезвие'}
                             csssrc={styles.come_src_winner_one}
-                            image={stars}
+                            image={stars.src}
                             link={''}
                         />
                         <ExhibitionCard
                             title={'Виктор Алексеев Лосев'}
                             text={'Кот Бритва'}
                             csssrc={styles.come_src_winner_one}
-                            image={stars}
+                            image={stars.src}
                             link={''}
                         />
                         <ExhibitionCard
                             title={'Михеев Лука Илларионович'}
                             text={'Кот Борис'}
                             csssrc={styles.come_src_winner_one}
-                            image={stars}
+                            image={stars.src}
                             link={''}
                         />
                     </div>

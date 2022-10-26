@@ -23,20 +23,20 @@ const lastexhibition: NextPage = () => {
                         text={'10-11 октября 2020 г, прошла Международная выставка кошек РФОО Коргоруши, Москва'}
                         csssrc={styles.lasthibition_srcone}
                         link={'/out/1'}
-                        image={eft}
+                        image={eft.src}
                     />
                     <ExhibitionCard
                         title={'Выставка кошек 25-26 января 2020 г.'}
                         text={'25-26 января 2020г, прошла Международная выставка кошек памяти Людмилы Есиной, РФОО Коргоруши, Москва, парк Сокольники'}
                         csssrc={styles.lasthibition_srctwo}
                         link={'/out/2'}
-                        image={efttwo}
+                        image={efttwo.src}
                     />
                     <ExhibitionCard
                         title={'Выставка кошек 05-06 октября 2019'}
                         text={'05-06 октября 2019 г, прошла Международная выставка кошек РФОО Коргоруши, Москва'}
                         csssrc={styles.lasthibition_srcthree}
-                        image={eftthree}
+                        image={eftthree.src}
                         link={'/out/3'}
                     />
                 </List>
