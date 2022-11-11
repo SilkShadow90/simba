@@ -40,6 +40,7 @@
     cursor: pointer;
 }
 
+
 .footerText span {
     border-bottom: 1px solid transparent;
     transition: all 500ms ease-in-out;

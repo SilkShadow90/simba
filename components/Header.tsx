@@ -27,6 +27,9 @@ export const Header= () => {
                 <div className={styles.headerText}>
                     <Link href="/contacts">{Strings.footer.leftColumn.Contacts}</Link>
                 </div>
+                <div className={styles.headerText}>
+                    <Link href="/partners">{Strings.footer.leftColumn.partners}</Link>
+                </div>
             </div>
             {/*<Image className={styles.headerLogo} src={simba}/>*/}
         </div>

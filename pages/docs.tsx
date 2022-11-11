@@ -4,6 +4,7 @@ import React, { ChangeEvent, ChangeEventHandler, FC, useCallback, useEffect, use
 import { Page } from '../components/Page';
 import { DocsPanel } from '../components/DocsPanel';
 import { useSelector } from 'react-redux';
+import { Strings } from '../resources';
 import { ApiResponse, fetcher, getBackEndUrl } from '../utils';
 
 import useSWR from 'swr'
@@ -222,14 +223,15 @@ const Docs: NextPage = () => {
       case 'openedvstuplenie':
         return (
           <div className={styles.docsRightVstuplenie}>
-            <div className={styles.docsRightTitul}>Заявление на вступление в клуб</div>
-            <div className={styles.docsRightMain}>Как вступить в наш клуб:</div>
-            <div className={styles.docsRightEnd}>В клуб принимаются лица, старше 18 лет</div>
-            <ul>
-              <li className={styles.docsLi}>скачайте и заполните заявление на вступление в клуб</li>
-              <li className={styles.docsLi}>заполненное заявление принесите нам в приемные дни клуба</li>
-              <li className={styles.docsLi}>не забудьте родословную на вашу кошку</li>
-              <li className={styles.docsLi}>оплатите вступительный взнос</li>
+            <div className={styles.docsRightTitul}>{Strings.docsStart.title}</div>
+            <div className={styles.docsRightMain}>{Strings.docsStart.postTitle}</div>
+            <div className={styles.docsRightEnd}>{Strings.docsStart.info}</div>
+            <ul className={styles.docsRightUL}>
+                {Strings.docsStart.li.map(text => (
+                    <li key={text} className={styles.docsLi}>
+                        {text}
+                    </li>
+                ))}
             </ul>
             <button className={styles.docsButton}>Скачать заявление на вступление в клуб</button>
           </div>
@@ -238,26 +240,19 @@ const Docs: NextPage = () => {
 
         return (
           <div className={styles.docsRightVstuplenie}>
-            <div className={styles.docsRightTitul}>Заявление на титул</div>
-            <div className={styles.docsRightMain}>Оформление титульного сертификата</div>
-            <div className={styles.docsRightEnd}>Для оформления титульного сертификата необходимо заполнить заявление на
-              оформление титульного сертификата
-              и предоставить копии оценочных листов с лицензированных WCF выставок.
+            <div className={styles.docsRightTitul}>{Strings.titulStart.titulHeader.title}</div>
+            <div className={styles.docsRightMain}>{Strings.titulStart.titulHeader.postTitle}</div>
+            <div className={styles.docsRightEnd}>{Strings.titulStart.titulHeader.info}
             </div>
-            <div className={styles.docsRightEnd}>Как же вы можете заполнить он-лайн форму заявления на оформление
-              титульного сертификата и
-              приложить сканы оценочных листов с лицензированных WCF выставок.
+            <div className={styles.docsRightEnd}>{Strings.titulStart.titulHeader.postInfo}
             </div>
             <button className={styles.docsButton}>Скачать заявление на титул</button>
 
-            <div className={styles.docsRightTitul}>Титульный сертификат</div>
-            <div className={styles.docsRightEnd}>Заполните все обязательные поля формы.</div>
-            <div className={styles.docsRightEnd}>Заявка будет успешно отправлена, если вашей заявке присвоится номер
-              TITLE-ХХХ
+            <div className={styles.docsRightTitul}>{Strings.titulStart.titulMain.title}</div>
+            <div className={styles.docsRightEnd}>{Strings.titulStart.titulMain.postTitle}</div>
+            <div className={styles.docsRightEnd}>{Strings.titulStart.titulMain.info}
             </div>
-            <div className={styles.docsRightEnd}>Если вы не получили письмо с заявкой на указанный Вами емейл -
-              проверьте папку Спам,
-              возможно она там. Или свяжитесь с нами любым способом
+            <div className={styles.docsRightEnd}>{Strings.titulStart.titulMain.postInfo}
             </div>
             <div className={styles.docsPreSelect}>Кличка животного(*)</div>
             <input className={styles.docsSelect} type="text"/>
@@ -386,109 +381,50 @@ const Docs: NextPage = () => {
       case 'openedregister':
         return (
           <div className={styles.docsRightVstuplenie}>
-            <div className={styles.docsRightMain}>Регистрация питомника</div>
-            <div className={styles.docsRightEnd}>Регистрация питомника (заводской приставки) в WCF</div>
-            <div className={styles.docsRightEnd}>Для регистрации питомника необходимо выполнение нижеследующих
-              условий:
+            <div className={styles.docsRightTitul}>{Strings.register.registerHeader.title}</div>
+            <div className={styles.docsRightEnd}>{Strings.register.registerHeader.postTitle}</div>
+            <div className={styles.docsRightEnd}>{Strings.register.registerHeader.info}
             </div>
-            <ul>
-              <li className={styles.docsLi}>наличие хотя бы одного племенного животного женского пола не старше 6 лет,
-              </li>
-              <li className={styles.docsLi}>законченные очные или заочные фелинологические курсы;</li>
-              <li className={styles.docsLi}>членство в КЛК Симба</li>
+            <ul className={styles.docsRightUL}>
+                {Strings.register.registerHeader.infoLi.map(text => (
+                    <li key={text} className={styles.rightColumnText}>
+                        {text}
+                    </li>
+                ))}
             </ul>
-            <div className={styles.docsRightEnd}>Название питомника регистрируется на любом из трех международных языков
-              WCF
-              (английский, французский, немецкий). Название питомника может состоять из одного или двух слов и не должно
-              превышать 15 символов, включая пробелы. Не разрешается использовать уже зафиксированные названия
-              питомников
-              , слова cats, cat, kitten, Paw, Pouw, Claws, Sweet, Gold/Golden, Silver, Pets, Purr, Furr, Fluffy, Furry,
-              Angel/Engel,
-              Bear, Baby Chubby, Kingdom, Queen, King, Lion, Kitten/Kity, Garden, Sun, Moon, Paradise, Meow, Saphir,
-              Crystal, Patiler,
-              Luxury, Diamond, Pearl, Saphir,
-              Coco названия известных мировых брендов (например - Chanel, Porshe и пр.), названия пород кошек.
+            <div className={styles.docsRightEnd}>{Strings.register.registerHeader.postInfo}
             </div>
-            <div className={styles.docsRightEnd}>Проверить имя на занятость можно на официальном сайте WCF</div>
-            <div className={styles.docsRightEnd}>Название питомника фиксируется в соответствующем сертификате.</div>
-            <div className={styles.docsRightEnd}>Название питомника ставится в кличке животного как префикс (перед
-              кличкой)
-              или как суффикс (после клички)
-              по усмотрению заводчика.
+            <div className={styles.docsRightEnd}>{Strings.register.registerHeader.main}</div>
+            <div className={styles.docsRightEnd}>{Strings.register.registerHeader.postMain}</div>
+            <div className={styles.docsRightEnd}>{Strings.register.registerHeader.text}
             </div>
-            <div className={styles.docsRightEnd}>Использование названия питомника для пометов, полученных от
-              производителей,
-              не принадлежащих
-              данному питомнику категорически запрещается.
+            <div className={styles.docsRightEnd}>{Strings.register.registerHeader.postText}
             </div>
             <button className={styles.docsButton}>Скачать заявление на регистрацию питомника</button>
 
-            <div className={styles.docsRightMain}>Определения и правила регистрация названия питомника</div>
-            <div className={styles.docsRightEndTitle}>1. Заводчик:</div>
-            <div className={styles.docsRightEnd}>Заводчик - это человек, который подает заявку на получение родословных
-              в своем клубе для котят,
-              рожденных в его питомнике (в коллективном питомнике).
+            <div className={styles.docsRightTitul}>{Strings.register.registerMain.title}</div>
+            <div className={styles.docsRightMain}>{Strings.register.registerMain.one.title}</div>
+            <div className={styles.docsRightEnd}>{Strings.register.registerMain.one.text}
             </div>
-            <div className={styles.docsRightEndTitle}>2. Котята-Помет.</div>
-            <div className={styles.docsRightEnd}>Каждый котенок, рожденный в питомнике (в коллективном питомнике),
-              должен иметь название питомника и родословную, выданную его клубом.
+            <div className={styles.docsRightMain}>{Strings.register.registerMain.two.title}</div>
+            <div className={styles.docsRightEnd}>{Strings.register.registerMain.two.text}
             </div>
-            <div className={styles.docsRightEndTitle}>3. Название питомника.</div>
-            <div className={styles.docsRightEnd}> Название питомника - это имя, которое применяется и регистрируется в
-              WCF и которое,
-              следовательно, защищено. Каждое название питомника запрашивается в офисе в WCF. 3 предлагаемые названия
-              питомника
-              (в последовательности их приоритета) должны быть запрошены через клуб заводчика.
+            <div className={styles.docsRightMain}>{Strings.register.registerMain.three.title}</div>
+            <div className={styles.docsRightEnd}>{Strings.register.registerMain.three.text}</div>
+            <div className={styles.docsRightMain}>{Strings.register.registerMain.four.title}</div>
+            <div className={styles.docsRightEnd}>{Strings.register.registerMain.four.text}
             </div>
-            <div className={styles.docsRightEnd}>Предлагаемые названия питомников будут проверены,
-              если аналогичные названия питомников уже зарегистрированы. Не разрешается предлагать какие-либо имена
-              людей
-              (из-за закона о правах имен) - кроме собственного имени, никаких названий государственных должностей,
-              никаких названий
-              защищенных авторским правом документов
-              (романов, повестей,литературное произведение и т. д.) и никаких названий пород.
+            <div className={styles.docsRightMain}>{Strings.register.registerMain.five.title}</div>
+            <div className={styles.docsRightEnd}>{Strings.register.registerMain.five.text}
             </div>
-            <div className={styles.docsRightEnd}>Заводчики с зарегистрированным доказуемым названием питомника в другой
-              организации,
-              желающие присоединиться к WCF, могут сохранить свои имя питомника.
-              Если название уже используется в другом месте, код страны должен быть добавлен за именем.
+            <div className={styles.docsRightMain}>{Strings.register.registerMain.six.title}</div>
+            <div className={styles.docsRightEnd}>{Strings.register.registerMain.six.text}
             </div>
-            <div className={styles.docsRightEnd}>Офис WCF проверяет уникальность названий питомников только в рамках
-              WCF.
-              Все названия питомника WCF по состоянию на текущий год опубликованы на сайте.
+            <div className={styles.docsRightMain}>{Strings.register.registerMain.seven.title}</div>
+            <div className={styles.docsRightEnd}>{Strings.register.registerMain.seven.text}
             </div>
-            <div className={styles.docsRightEnd}>Имена, не опубликованные на данный момент
-              , доступны заводчикам клуба WCF автоматически.
-            </div>
-            <div className={styles.docsRightEnd}>Офис ответит на поступающие заявки в течение 10 рабочих дней
-              и подтвердит регистрацию названия питомника.
-            </div>
-            <div className={styles.docsRightEndTitle}>4. Защита имени питомника.</div>
-            <div className={styles.docsRightEnd}>Зарегистрированное название питомника будет защищено 20 лет и не может
-              быть выдано повторно в течение этого времени.
-              Защита названия питомника может быть продлена за отдельную плату.
-            </div>
-            <div className={styles.docsRightEndTitle}>5. Передача имени питомника.</div>
-            <div className={styles.docsRightEnd}>Название питомника может быть передано заводчиком другому
-              заводчику по письменному договору, подписанному обоими заводчиками, который должен быть направлен в офис
-              WCF.
-              Когда заводчик умирает, наследник должен засвидетельствовать,
-              что он является законным наследником, чтобы взять или передать название питомника.
-            </div>
-            <div className={styles.docsRightEndTitle}>6. Коллективный питомник</div>
-            <div className={styles.docsRightEnd}>Название питомника может быть запрошено также 2 или более заводчиками
-              вместе,
-              если эти заводчики образуют сообщество. Тем не менее, должна быть один главный заводчик,
-              который получит название питомника, когда сообщество будет распущено.
-              Заводчики, покинувшие сообщество, должны подать заявку на новое название питомника.
-            </div>
-            <div className={styles.docsRightEndTitle}>7. Имя кошки</div>
-            <div className={styles.docsRightEnd}>В общем случае имя кошки состоит из имени и названия питомника.
-              Полное имя кошки – имя и название питомника не может быть длиннее 25 символов.
-            </div>
-            <div className={styles.docsRightEndTitle}>8. Расположение названия питомника</div>
-            <div className={styles.docsRightEnd}>Название питомника может быть до или после первого имени кошки.
-              Вы должны указать это, когда подаете заявку на название питомника.
+            <div className={styles.docsRightMain}>{Strings.register.registerMain.eight.title}</div>
+            <div className={styles.docsRightEnd}>{Strings.register.registerMain.eight.text}
             </div>
             <div className={styles.docsRightEnd}>Префикс и суффикс считаются длиной всего имени кошки.</div>
           </div>
@@ -496,25 +432,18 @@ const Docs: NextPage = () => {
       case 'openedvyazka':
         return (
           <div className={styles.docsRightVstuplenie}>
-            <div className={styles.docsRightTitul}>Направление на вязку</div>
-            <div className={styles.docsRightMain}>Направление на вязку и акт рождения котят</div>
-            <div className={styles.docsRightEnd}> Согласно племенного положения клуба к племенной деятельности
-              допускаются племенные коты и кошки:
+            <div className={styles.docsRightTitul}>{Strings.vyazka.vyazkaHeader.title}</div>
+            <div className={styles.docsRightMain}>{Strings.vyazka.vyazkaHeader.postTitle}</div>
+            <div className={styles.docsRightEnd}> {Strings.vyazka.vyazkaHeader.info}
             </div>
-            <div className={styles.docsRightEnd}> Владельцы которых состоят в клубе КЛК Симба</div>
-            <div className={styles.docsRightEnd}> Имеют разводные оценки с лицензированных выставок кошек WCF.
-              Для кошек не ниже Отлично (Ex.), для кота - наличие титула Чемпион породы (Champion WCF) и выше.
+            <div className={styles.docsRightEnd}> {Strings.vyazka.vyazkaHeader.postInfo}</div>
+            <div className={styles.docsRightEnd}> {Strings.vyazka.vyazkaHeader.text}
             </div>
             <button className={styles.docsButton}>Скачать направление на вязку</button>
-            <div className={styles.docsRightTitul}>Акт вязки</div>
-            <div className={styles.docsRightMain}>Заполните все обязательные поля формы.</div>
-            <div className={styles.docsRightEnd}>
-              Заявка будет успешно отправлена, если вашей заявке присвоится номер KIT-ХХХ
-            </div>
-            <div className={styles.docsRightEnd}>
-              Если вы не получили письмо с заявкой на указанный Вами емейл -
-              проверьте папку Спам, возможно она там. Или свяжитесь с нами любым способом
-            </div>
+            <div className={styles.docsRightTitul}>{Strings.vyazka.vyazkaMain.title}</div>
+            <div className={styles.docsRightMain}>{Strings.vyazka.vyazkaMain.postTitle}</div>
+            <div className={styles.docsRightEnd}>{Strings.vyazka.vyazkaMain.info}</div>
+            <div className={styles.docsRightEnd}>{Strings.vyazka.vyazkaMain.postInfo}</div>
             <div className={styles.docsVstuplenieColumn}>
               <div>
                 <div className={styles.docsRightTitul}>Информация о владельце кошки</div>

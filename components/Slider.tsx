@@ -25,9 +25,9 @@ export default function SimpleSlider() {
     return (
         <div className={styles.type}>
             <Slider {...settings}>
-                <div>
-                    <Image src={catstar} objectFit={"cover"} height={'400px'} />
-                </div>
+                {/*<div>*/}
+                {/*    <Image src={catstar} objectFit={"cover"} height={'400px'} />*/}
+                {/*</div>*/}
                 <div>
                     <Image src={catzz} objectFit={"cover"} height={'400px'} />
                 </div>

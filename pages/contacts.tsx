@@ -75,7 +75,7 @@ const сontacts: NextPage = () => {
                 </div>
                 <div className={styles.contact_Blockright}>
                     <div className={styles.contact_Blockleft__Bold}>Написать нам</div>
-                    <div className={styles.modal}>
+                    <div className={styles.modals}>
                         <input className={styles.modal_window} onChange={onChangeName} value={name} placeholder="Ваше Имя*" type="text" />
                         <input className={styles.modal_window} onChange={onChangePhone} value={phone} placeholder="Номер телефона*" type="tel" />
                         <input className={styles.modal_window} onChange={onChangeEmail} value={email} placeholder="Ваш Email*" type="email" />

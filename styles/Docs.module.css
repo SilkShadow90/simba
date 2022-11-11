@@ -95,6 +95,7 @@
 }
 
 .docsCardsRight {
+    margin-left: 40px;
     flex: 5;
 
 }
@@ -106,7 +107,7 @@
 }
 
 .docsRightTitul {
-    font-size: 1.5rem;
+    font-size: 30px;
     text-decoration: none;
     color: #232323;
     font-weight: 500;
@@ -116,8 +117,9 @@
 .docsRightMain {
     font-weight: 500;
     line-height: 1.2;
-    font-size: 1.2rem;
+    font-size: 22px;
     margin-bottom: 10px;
+    padding-left: 10px;
 }
 
 .docsRightEndTitle {
@@ -127,6 +129,13 @@
 
 .docsRightEnd {
     margin-bottom: 10px;
+    padding-left: 10px;
+    font-size: 18px;
+}
+.docsRightUL {
+    margin-bottom: 20px;
+    padding-left: 30px;
+    font-size: 18px;
 }
 
 .docsVstuplenieColumn {

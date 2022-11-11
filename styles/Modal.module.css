@@ -1,0 +1,89 @@
+.modal {
+display: none;
+    transition: all 500ms ease-in-out;
+}
+.modal_active {
+    transform: scale(1); min-width: 100vw;
+    min-height: 100vh;
+    backdrop-filter: blur(10px);
+    background: rgba(0,0,0,0.4);
+    position: fixed;
+    opacity: inherit;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    /*transform: scale(0);*/
+    justify-content: center;
+    z-index: 2;
+}
+
+
+.modal_content {
+    padding: 20px;
+    border-radius: 12px;
+    background: white;
+    z-index: 3;
+}
+
+.modals {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal_window {
+    border: 1px solid #dedede;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    min-width:300px;
+}
+
+.modal_window__sms {
+    text-align: left;
+    border: 1px solid #dedede;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    min-width:300px;
+    min-height:300px;
+    background: #e6eae9;
+}
+
+.modal_window__button {
+    border: 1px solid #dedede;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    min-width:300px;
+    width: 100%;
+    background: var(--main-bg-color);
+}
+
+.modal_window__button:disabled {
+    background: var(--main-bg-color-alpha);
+    color: white
+}
+
+.contact_Blockleft__Bold {
+    font-size: 30px;
+    line-height: 1.2;
+    font-family: inherit;
+    word-wrap: break-word;
+    color: black;
+    margin-bottom: 15px;
+}
+
+.contact_Blockleft__Registered {
+    font-size: 20px;
+    line-height: 1.2;
+    font-family: inherit;
+    word-wrap: break-word;
+    color: black;
+    margin-bottom: 15px;
+}
+
+.contact_Blockleft__Email {
+    color: var(--main-bg-color);
+    margin-bottom: 15px;
+}

@@ -1,0 +1,30 @@
+.partners_Main {
+    margin: 5% 15%;
+}
+
+.partners_logo {
+    display: flex;
+    flex-direction: row;
+}
+
+.partners_logos {
+    width: 40%;
+}
+
+.partners_logotype {
+    height: 200px;
+    width: 200px;
+}
+
+.partners_padding {
+    padding: 10px;
+}
+
+.partners_info {
+    margin-bottom: 15px;
+}
+
+.partners_info_Main {
+    margin-left: 30px;
+    width: 50%;
+}

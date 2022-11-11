@@ -1,15 +1,26 @@
 import type { NextPage } from 'next'
 import styles from '../styles/Home.module.css'
-import React from "react";
+import React, {useState} from "react";
 import { Strings } from '../resources';
 import {Page} from "../components/Page";
 import {Join} from "../components/Joined";
 import { Intro } from '../components/Intro';
 import SimpleSlider from "../components/Slider";
+import showcat  from '../public/showcat.jpg';
+import kittens  from '../public/kittens.jpg';
+import catteries  from '../public/catteries.jpg';
+import massage from "../public/massage.png";
+import wch  from '../public/wch.jpg';
+import Image from "next/image";
+import Modal from "../components/Modal";
+
 
 
 
 const Home: NextPage = () => {
+
+    const[modalActive,setModalActive] = useState(false);
+
   return (
       <Page title="Home" meta="bla bla" styles={styles.container}>
     {/*<div className={styles.titleList}>*/}
@@ -18,6 +29,12 @@ const Home: NextPage = () => {
 
         <div>
         </div>
+
+          <Modal active={modalActive} setActive={setModalActive}/>
+          <div className={styles.open_Modal}>
+              <Image src={massage} objectFit={"cover"}  onClick={()=>{setModalActive(true)}}/>
+          </div>
+
           <div className={styles.infoUpper}>{Strings.main.title}</div>
           <div className={styles.info}>
               <div className={styles.infoOver}>
@@ -43,13 +60,19 @@ const Home: NextPage = () => {
               </div>
               <div className={styles.razdel}>
                   <div className={styles.razdelRow}>
-                      <div className={styles.razdelCardleft}></div>
-                      <div className={styles.razdelCardleft}></div>
+                      <div className={styles.razdelCardleft}>
+                          <Image src={showcat} />
+                      </div>
+                      <div className={styles.razdelCardleft}>
+                          <Image src={kittens}/>
+                      </div>
                   </div>
                   <div className={styles.razdelColumn}>
                       <div className={styles.razdelCardRight}>
+                          <Image src={catteries}/>
                       </div>
                       <div className={styles.razdelCardRight}>
+                          <Image src={wch}/>
                       </div>
                   </div>
               </div>
