@@ -9,13 +9,8 @@ import SimpleSlider from "../components/Slider";
 import showcat  from '../public/showcat.jpg';
 import kittens  from '../public/kittens.jpg';
 import catteries  from '../public/catteries.jpg';
-import massage from "../public/massage.png";
 import wch  from '../public/wch.jpg';
 import Image from "next/image";
-import Modal from "../components/Modal";
-
-
-
 
 const Home: NextPage = () => {
 
@@ -29,11 +24,6 @@ const Home: NextPage = () => {
 
         <div>
         </div>
-
-          <Modal active={modalActive} setActive={setModalActive}/>
-          <div className={styles.open_Modal}>
-              <Image src={massage} objectFit={"cover"}  onClick={()=>{setModalActive(true)}}/>
-          </div>
 
           <div className={styles.infoUpper}>{Strings.main.title}</div>
           <div className={styles.info}>
@@ -61,18 +51,18 @@ const Home: NextPage = () => {
               <div className={styles.razdel}>
                   <div className={styles.razdelRow}>
                       <div className={styles.razdelCardleft}>
-                          <Image src={showcat} />
+                          <Image src={showcat} layout="fill" objectFit="cover" />
                       </div>
                       <div className={styles.razdelCardleft}>
-                          <Image src={kittens}/>
+                          <Image src={kittens} layout="fill" objectFit="cover"/>
                       </div>
                   </div>
                   <div className={styles.razdelColumn}>
                       <div className={styles.razdelCardRight}>
-                          <Image src={catteries}/>
+                          <Image src={catteries} layout="fill" objectFit="cover" />
                       </div>
                       <div className={styles.razdelCardRight}>
-                          <Image src={wch}/>
+                          <Image src={wch} layout="fill" objectFit="cover" />
                       </div>
                   </div>
               </div>

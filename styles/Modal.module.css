@@ -1,20 +1,20 @@
 .modal {
-display: none;
-    transition: all 500ms ease-in-out;
-}
-.modal_active {
-    transform: scale(1); min-width: 100vw;
+    display: flex;
+    transition: opacity 500ms ease-in-out;
+    opacity: 0;
+    min-width: 100vw;
     min-height: 100vh;
     backdrop-filter: blur(10px);
     background: rgba(0,0,0,0.4);
     position: fixed;
-    opacity: inherit;
     top: 0;
     left: 0;
-    display: flex;
     align-items: center;
-    /*transform: scale(0);*/
     justify-content: center;
+    z-index: -2;
+}
+.modal_active {
+    opacity: 1;
     z-index: 2;
 }
 

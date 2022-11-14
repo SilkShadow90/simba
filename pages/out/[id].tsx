@@ -2,10 +2,11 @@ import React from 'react';
 import type { NextPage } from 'next'
 import Image from "next/image";
 
-import { Page } from '../components/Page';
-import styles from '../styles/out.module.css';
-import stars from '../public/stars.jpg';
-import ExhibitionCard from "../components/Intro/ExhibitionCard";
+import { Page } from '../../components/Page';
+import styles from '../../styles/out.module.css';
+import stars from '../../public/stars.jpg';
+import ExhibitionCard from "../../components/Intro/ExhibitionCard";
+import { useRouter } from 'next/router';
 
 function jpeg(size: number = 150) {
     return `https://source.unsplash.com/random/${size}`
@@ -19,6 +20,12 @@ function getImages(length: number, size: number = 150) {
 
 
 const out: NextPage = () => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const router = useRouter()
+    const { id } = router.query
+
+    console.log('id', id);
+
     return (
         <Page title="Прошедшие выставки" meta="bla bla" styles={styles.container} >
             <div className={styles.exhibition_Main}>

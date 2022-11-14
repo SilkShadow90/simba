@@ -1,7 +1,11 @@
 import Head from 'next/head';
 import { Header } from './Header';
 import { Footer } from './Footer';
-import React, { PropsWithChildren } from 'react';
+import React, { PropsWithChildren, useCallback, useState } from 'react';
+import Modal from './Modal';
+import pageStyles from '../styles/Page.module.css';
+import Image from 'next/image';
+import massage from '../public/massage.png';
 
 interface Props {
     title: string;
@@ -11,6 +15,12 @@ interface Props {
 }
 
 export const Page = ({ children, title, meta, styles, withoutHeaderAndFooter = false }: PropsWithChildren<Props>) => {
+    const [modalActive, setModalActive] = useState(false);
+
+    const onClose = useCallback(() => {
+      setModalActive(false)
+    }, [])
+
     return (
         <div className={styles}>
             <Head>
@@ -22,6 +32,10 @@ export const Page = ({ children, title, meta, styles, withoutHeaderAndFooter = f
             <main>
               {!withoutHeaderAndFooter && <Header/>}
                 <div className='flex'>
+                  <Modal active={modalActive} onClose={onClose}/>
+                  <div className={pageStyles.open_Modal}>
+                    <Image src={massage} objectFit={"cover"}  onClick={()=>{setModalActive(true)}}/>
+                  </div>
                   {children}
                 </div>
               {!withoutHeaderAndFooter && <Footer/>}

@@ -1,0 +1,8 @@
+.open_Modal {
+    width: 100px;
+    height: 100px;
+    position: fixed;
+    z-index: 1;
+    right: 50px;
+    bottom: 50px;
+}

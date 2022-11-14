@@ -28,20 +28,20 @@ export default function SimpleSlider() {
                 {/*<div>*/}
                 {/*    <Image src={catstar} objectFit={"cover"} height={'400px'} />*/}
                 {/*</div>*/}
-                <div>
-                    <Image src={catzz} objectFit={"cover"} height={'400px'} />
+                <div className={styles.slide}>
+                    <Image src={catzz} objectFit="cover" layout="fill" />
                 </div>
-                <div>
-                    <Image src={fish} objectFit={"cover"} height={'400px'} />
+                <div className={styles.slide}>
+                    <Image src={fish} objectFit="cover" layout="fill" />
                 </div>
-                <div>
-                    <Image src={cosmo} objectFit={"cover"} height={'400px'} />
+                <div className={styles.slide}>
+                    <Image src={cosmo} objectFit="cover" layout="fill" />
                 </div>
-                <div>
-                    <Image src={forest} objectFit={"cover"} height={'400px'} />
+                <div className={styles.slide}>
+                    <Image src={forest} objectFit="cover" layout="fill" />
                 </div>
-                <div>
-                    <Image src={grass} objectFit={"cover"} height={'400px'} />
+                <div className={styles.slide}>
+                    <Image src={grass} objectFit="cover" layout="fill" />
                 </div>
             </Slider>
         </div>

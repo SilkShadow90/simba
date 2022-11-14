@@ -1,3 +1,11 @@
 .type {
-    margin-bottom: 20px;
+    /*margin-bottom: 40px;*/
+    position: relative;
+    bottom: 55px;
+}
+
+.slide {
+    height: 400px;
+    width: 100%;
+    position: relative;
 }
