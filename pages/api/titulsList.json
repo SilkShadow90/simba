@@ -20,15 +20,15 @@
   },
   {
     "id": "4",
-    "value": "Юниор Премиор",
+    "value": "JCAC",
     "description": "Юниор Премиор",
     "castration": true,
     "junior": true
   },
   {
     "id": "5",
-    "value": "Чемпион",
-    "description": "Чемпион"
+    "value": "CAC",
+    "description": "Чемпион (CAC)"
   },
   {
     "id": "6",

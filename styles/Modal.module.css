@@ -52,7 +52,8 @@
 
 .modal_window__button {
     border: 1px solid #dedede;
-    padding: 15px;
+    padding: 0 15px;
+    height: 40px;
     border-radius: 8px;
     margin-bottom: 10px;
     min-width:300px;
@@ -60,6 +61,13 @@
     background: #69796a;
     transition: all 500ms;
     color: white;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal_window__button__error {
+    background-color: red !important;
+    opacity: 0.5;
 }
 
 .modal_window__button:hover {

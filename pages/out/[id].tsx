@@ -42,21 +42,21 @@ const out: NextPage = () => {
                             title={'Иван Петрович Затравкин'}
                             text={'Кот Лезвие'}
                             csssrc={styles.out_src_winner_one}
-                            link={''}
+                            link={'#'}
                             image={stars.src}
                         />
                         <ExhibitionCard
                             title={'Виктор Алексеев Лосев'}
                             text={'Кот Бритва'}
                             csssrc={styles.out_src_winner_one}
-                            link={''}
+                            link={'#'}
                             image={stars.src}
                         />
                         <ExhibitionCard
                             title={'Михеев Лука Илларионович'}
                             text={'Кот Борис'}
                             csssrc={styles.out_src_winner_one}
-                            link={''}
+                            link={'#'}
                             image={stars.src}
                         />
                     </div>
@@ -68,21 +68,21 @@ const out: NextPage = () => {
                             title={'Иван Петрович Затравкин'}
                             text={'Кот Лезвие'}
                             csssrc={styles.out_src_winner_one}
-                            link={''}
+                            link={'#'}
                             image={stars.src}
                         />
                         <ExhibitionCard
                             title={'Виктор Алексеев Лосев'}
                             text={'Кот Бритва'}
                             csssrc={styles.out_src_winner_one}
-                            link={''}
+                            link={'#'}
                             image={stars.src}
                         />
                         <ExhibitionCard
                             title={'Михеев Лука Илларионович'}
                             text={'Кот Борис'}
                             csssrc={styles.out_src_winner_one}
-                            link={''}
+                            link={'#'}
                             image={stars.src}
                         />
                     </div>

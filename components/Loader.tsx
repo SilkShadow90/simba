@@ -3,15 +3,21 @@ import React, {PropsWithChildren, useState} from "react";
 import classNames from 'classnames';
 
 interface Props {
-    // active: boolean;
-    // onClose(): void;
+    isVisible: boolean
 }
 
-const Loader = ({ }: PropsWithChildren<Props>) => {
-    const [disabled, setDisabled] = useState(true)
-    return (
-        <div className={styles.loader}/>
-    )
+const Loader = ({ isVisible = false }: Props) => {
+    if (isVisible) {
+        return (
+          <div className={styles.loaderMain} style={{ position: 'relative', display: 'inline-flex' }}>
+            <div className={styles.loader} />
+            <div className={styles.loader1}/>
+            <div className={styles.loader2}/>
+          </div>
+        )
+    }
+
+    return null
 }
 
 export default Loader;
