@@ -5,7 +5,7 @@ import React, { PropsWithChildren, useCallback, useState } from 'react';
 import Modal from './Modal';
 import pageStyles from '../styles/Page.module.css';
 import Image from 'next/image';
-import massage from '../public/massage.png';
+import email from '../public/email.png';
 
 interface Props {
     title: string;
@@ -34,7 +34,7 @@ export const Page = ({ children, title, meta, styles, withoutHeaderAndFooter = f
                 <div className='flex'>
                   <Modal active={modalActive} onClose={onClose}/>
                   <div className={pageStyles.open_Modal}>
-                    <Image src={massage} objectFit={"cover"}  onClick={()=>{setModalActive(true)}}/>
+                    <Image src={email} objectFit={"cover"}  onClick={()=>{setModalActive(true)}}/>
                   </div>
                   {children}
                 </div>

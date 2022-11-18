@@ -79,6 +79,23 @@
   position: relative;
 }
 
+.razdelCardLine {
+  position: absolute;
+  height: 77px;
+  left: 0;
+  right: 0;
+  bottom: 40px;
+  background: white;
+  opacity: 0.75;
+  line-height: 2rem;
+  font-size: 35px;
+  padding: 10px 20px;
+}
+
+.razdelCardLine:hover {
+  opacity: 1;
+}
+
 .razdelCardRight {
   display: grid;
   grid-template-rows: repeat(auto-fill, minmax(300px, 1fr));

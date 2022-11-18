@@ -57,7 +57,13 @@
     margin-bottom: 10px;
     min-width:300px;
     width: 100%;
-    background: var(--main-bg-color);
+    background: #69796a;
+    transition: all 500ms;
+    color: white;
+}
+
+.modal_window__button:hover {
+    background:var(--main-bg-color);
 }
 
 .modal_window__button:disabled {

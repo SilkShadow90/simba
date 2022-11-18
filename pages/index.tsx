@@ -11,20 +11,13 @@ import kittens  from '../public/kittens.jpg';
 import catteries  from '../public/catteries.jpg';
 import wch  from '../public/wch.jpg';
 import Image from "next/image";
+import Loader from "../components/Loader";
 
 const Home: NextPage = () => {
 
-    const[modalActive,setModalActive] = useState(false);
-
   return (
       <Page title="Home" meta="bla bla" styles={styles.container}>
-    {/*<div className={styles.titleList}>*/}
-    {/*</div>*/}
-          <SimpleSlider/>
-
-        <div>
-        </div>
-
+        <SimpleSlider/>
           <div className={styles.infoUpper}>{Strings.main.title}</div>
           <div className={styles.info}>
               <div className={styles.infoOver}>
@@ -52,17 +45,29 @@ const Home: NextPage = () => {
                   <div className={styles.razdelRow}>
                       <div className={styles.razdelCardleft}>
                           <Image src={showcat} layout="fill" objectFit="cover" />
+                              <div className={styles.razdelCardLine}>
+                                  Выставки
+                              </div>
                       </div>
                       <div className={styles.razdelCardleft}>
                           <Image src={kittens} layout="fill" objectFit="cover"/>
+                          <div className={styles.razdelCardLine}>
+                              Котята
+                          </div>
                       </div>
                   </div>
                   <div className={styles.razdelColumn}>
                       <div className={styles.razdelCardRight}>
                           <Image src={catteries} layout="fill" objectFit="cover" />
+                          <div className={styles.razdelCardLine}>
+                              Питомника
+                          </div>
                       </div>
                       <div className={styles.razdelCardRight}>
                           <Image src={wch} layout="fill" objectFit="cover" />
+                          <div className={styles.razdelCardLine}>
+                              Чемпионы
+                          </div>
                       </div>
                   </div>
               </div>
