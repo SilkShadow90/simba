@@ -6,9 +6,9 @@ import { Page } from '../components/Page';
 
 const сontacts: NextPage = () => {
 
-    let value = (e: ChangeEvent<HTMLInputElement>) => {
-        console.log(e.target.value)
-    };
+    // let value = (e: ChangeEvent<HTMLInputElement>) => {
+    //     console.log(e.target.value)
+    // };
 
     const [name, setName] = useState<string>('')
 

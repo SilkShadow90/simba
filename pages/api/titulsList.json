@@ -21,7 +21,7 @@
   {
     "id": "4",
     "value": "JCAC",
-    "description": "Юниор Премиор",
+    "description": "Юниор Премиор (JCAC)",
     "castration": true,
     "junior": true
   },
@@ -38,24 +38,24 @@
   },
   {
     "id": "7",
-    "value": "Международный Чемпион",
-    "description": "Международный Чемпион"
+    "value": "(CAGCI)",
+    "description": "Международный Чемпион (CAGCI)"
   },
   {
     "id": "8",
-    "value": "Международный Премиор",
-    "description": "Международный Премиор",
+    "value": "(CAGPI)",
+    "description": "Международный Премиор (CAGPI)",
     "castration": true
   },
   {
     "id": "9",
-    "value": "Большой Международный Чемпион",
-    "description": "Большой Международный Чемпион"
+    "value": "(CACE)",
+    "description": "Большой Международный Чемпион (CACE)"
   },
   {
     "id": "10",
-    "value": "Большой Международный Премиор",
-    "description": "Большой Международный Премиор",
+    "value": "(CAPE)",
+    "description": "Большой Международный Премиор (CAPE)",
     "castration": true
   },
   {
@@ -71,24 +71,24 @@
   },
   {
     "id": "13",
-    "value": "Большой Евро Чемпион",
-    "description": "Большой Евро Чемпион"
+    "value": "(CACM)",
+    "description": "Большой Евро Чемпион (CACM)"
   },
   {
     "id": "14",
-    "value": "Большой Евро Премиор",
-    "description": "Большой Евро Премиор",
+    "value": "(CAPM)",
+    "description": "Большой Евро Премиор (CAPM)",
     "castration": true
   },
   {
     "id": "15",
-    "value": "Чемпион Мира",
-    "description": "Чемпион Мира"
+    "value": "(WCH)",
+    "description": "Чемпион Мира (WCH)"
   },
   {
     "id": "16",
-    "value": "Премиор Мира",
-    "description": "Премиор Мира",
+    "value": "(WPR)",
+    "description": "Премиор Мира (WPR)",
     "castration": true
   },
   {
