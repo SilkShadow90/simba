@@ -1,0 +1,12 @@
+.formContainer {
+    padding: 10px 20px;
+}
+
+.form {
+    line-height: 32px;
+    font-size: 30px;
+    text-decoration: none;
+    color: #232323;
+    font-weight: 500;
+    margin-bottom: 15px;
+}

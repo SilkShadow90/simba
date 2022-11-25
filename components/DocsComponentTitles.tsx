@@ -1,10 +1,11 @@
 
-import React, {ChangeEvent, useEffect, useMemo, useState} from "react";
+import React, { ChangeEvent, useEffect, useMemo, useRef, useState } from 'react';
 import styles from '../styles/Docs.module.css';
 import { Strings } from '../resources';
 import {useFetchService} from "../utils/useFetchService";
 import dayjs from "dayjs";
 import {DocsComponentInput} from "./DocsComponentInput";
+import { ExhibitionForm, ExhibitionFormRef } from './docs/ExhibitionForm';
 
 type Breed = {
     id: string
@@ -41,14 +42,14 @@ export const DocsComponentTitles:any = () => {
     const [owner, setOwner] = useState<string>('')
     const [phone, setPhone] = useState<any>('')
     const [email, setEmail] = useState<string>('')
-    const [ExhibitionDate, setExhibitionDate] = useState<string>('')
-    const [address, setAddress] = useState<string>('')
-    const [licenseNumber, setLicenseNumber] = useState<string>('')
-    const [club, setClub] = useState<string>('')
-    const [expert, setExpert] = useState<string>('')
-    const [evaluation, setEvaluation] = useState<string>('')
-    const [evaluationSheet, setEvaluationSheet] = useState<string>('')
 
+    const [exhibitionCount, setExhibitionCount] = useState(0)
+
+    const exhibitionFormRef = useRef<ExhibitionFormRef[]>([])
+
+    useEffect(() => {
+        exhibitionFormRef.current.length = exhibitionCount
+    }, [exhibitionCount])
 
     const onSubmit = async () => {
         const form = {
@@ -56,11 +57,13 @@ export const DocsComponentTitles:any = () => {
             gender,
             birthday,
             newCurrentTitle,
+            exhibitionForm: exhibitionFormRef.current?.map(value => value.getForm())
         }
         console.log(form)
     };
 
-
+    const addExhibition = () => setExhibitionCount(prevState => prevState + 1)
+    const deleteExhibition = () => setExhibitionCount(prevState => prevState - 1)
 
     useEffect(() => {
         if (titlesData) {
@@ -71,9 +74,6 @@ export const DocsComponentTitles:any = () => {
     const [newTitles, setNewTitles] = useState<Titul[]>([])
     const [currentTitle, setCurrentTitle] = useState<string>('')
     const [newCurrentTitle, setNewCurrentTitle] = useState<string>('')
-
-
-
 
     useEffect(() => {
         switch (gender) {
@@ -195,7 +195,6 @@ export const DocsComponentTitles:any = () => {
 
     console.log('filteredTitles', filteredTitles);
 
-
     const onChangeBreed = (e: ChangeEvent<HTMLSelectElement>) => {
         setBreed(e.target.value)
     }
@@ -204,7 +203,7 @@ export const DocsComponentTitles:any = () => {
         setCurrentTitle(e.target.value)
     }
 
-    const onChangeBirthday = (e: ChangeEvent<HTMLInputElement>) => {
+    const onChangeBirthday = (e: ChangeEvent<HTMLInputElement >) => {
         setBirthday(e.target.value)
     }
 
@@ -216,13 +215,13 @@ export const DocsComponentTitles:any = () => {
         setNewCurrentTitle(e.target.value)
     }
 
-    const onChangeLogin = (e: ChangeEvent<HTMLSelectElement>) => {
+    const onChangeLogin = (e: ChangeEvent<HTMLInputElement>) => {
         setLogin(e.target.value)
     }
-    const onChangeColor = (e: ChangeEvent<HTMLSelectElement>) => {
+    const onChangeColor = (e: ChangeEvent<HTMLInputElement>) => {
         setColor(e.target.value)
     }
-    const onChangeNumberDocs = (e: ChangeEvent<HTMLSelectElement>) => {
+    const onChangeNumberDocs = (e: ChangeEvent<HTMLInputElement>) => {
         setNumberDocs(e.target.value)
     }
     const onChangeName = (e: ChangeEvent<HTMLInputElement>) => {
@@ -234,36 +233,6 @@ export const DocsComponentTitles:any = () => {
     const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value)
     };
-
-    const onChangeExhibitionDate = (e: ChangeEvent<HTMLInputElement>) => {
-        setExhibitionDate(e.target.value)
-    };
-
-    const onChangeAddress = (e: ChangeEvent<HTMLInputElement>) => {
-        setAddress(e.target.value)
-    };
-
-    const onChangeLicenseNumber = (e: ChangeEvent<HTMLInputElement>) => {
-        setLicenseNumber(e.target.value)
-    };
-
-    const onChangeClub = (e: ChangeEvent<HTMLInputElement>) => {
-        setClub(e.target.value)
-    };
-
-    const onChangeExpert = (e: ChangeEvent<HTMLInputElement>) => {
-        setExpert(e.target.value)
-    };
-
-    const onChangeEvaluation = (e: ChangeEvent<HTMLInputElement>) => {
-        setEvaluation(e.target.value)
-    };
-
-    const onChangeEvaluationSheet = (e: ChangeEvent<HTMLInputElement>) => {
-        setEvaluationSheet(e.target.value)
-    };
-
-
 
     return (
         <div className={styles.docsRightVstuplenie}>
@@ -337,38 +306,27 @@ export const DocsComponentTitles:any = () => {
                 </div>
             </div>
 
-            <div className={styles.docsRightTitul}>Оценки получены на следующих выставках</div>
+            <div className={styles.docsRightTitul}>
+                <span style={{ paddingRight: '16px' }}>Оценки получены на следующих выставках</span>
+                {!!exhibitionCount && (
+                    <button className={styles.docsButton} onClick={deleteExhibition}>Удалить последний</button>
+                )}
+            </div>
             <div className={styles.docsRightInputs}>
-                <div className={styles.docsRightInputsColumns}>
-                    <div className={styles.docsRightTitul}>Выставка 1</div>
-                    <DocsComponentInput text={"Дата выставки(*)"} onChange={onChangeExhibitionDate} value={ExhibitionDate} type={"date"}/>
-                    <DocsComponentInput text={"Место проведения(*)"} onChange={onChangeAddress} value={address} type={"text"}/>
-                    <DocsComponentInput text={"Номер лицензии(*)"} onChange={onChangeLicenseNumber} value={licenseNumber} type={"text"}/>
-                    <DocsComponentInput text={"Клуб(*)"} onChange={onChangeClub} value={club} type={"text"}/>
-                    <DocsComponentInput text={"Эксперт(*)"} onChange={onChangeExpert} value={expert} type={"text"}/>
-                    <DocsComponentInput text={"Оценка, титул(*)"} onChange={onChangeEvaluation} value={evaluation} type={"text"}/>
-                    <DocsComponentInput text={"Оценочный лист, диплом(*)"} onChange={onChangeEvaluationSheet} value={evaluationSheet} type={"file"}/>
-                </div>
-                <div className={styles.docsRightInputsColumns}>
-                    <div className={styles.docsRightTitul}>Выставка 2</div>
-                    <DocsComponentInput text={"Дата выставки(*)"} type={"date"}/>
-                    <DocsComponentInput text={"Место проведения(*)"} type={"text"}/>
-                    <DocsComponentInput text={"Номер лицензии(*)"} type={"text"}/>
-                    <DocsComponentInput text={"Клуб(*)"} type={"text"}/>
-                    <DocsComponentInput text={"Эксперт(*)"} type={"text"}/>
-                    <DocsComponentInput text={"Оценка, титул(*)"} type={"text"}/>
-                    <DocsComponentInput text={"Оценочный лист, диплом(*)"} type={"file"}/>
-                </div>
-                <div className={styles.docsRightInputsColumns}>
-                    <div className={styles.docsRightTitul}>Выставка 3</div>
-                    <DocsComponentInput text={"Дата выставки(*)"} type={"date"}/>
-                    <DocsComponentInput text={"Место проведения(*)"} type={"text"}/>
-                    <DocsComponentInput text={"Номер лицензии(*)"} type={"text"}/>
-                    <DocsComponentInput text={"Клуб(*)"} type={"text"}/>
-                    <DocsComponentInput text={"Эксперт(*)"} type={"text"}/>
-                    <DocsComponentInput text={"Оценка, титул(*)"} type={"text"}/>
-                    <DocsComponentInput text={"Оценочный лист, диплом(*)"} type={"file"}/>
-                </div>
+                {!!exhibitionCount && new Array(exhibitionCount).fill('Выставка').map((title, index) => (
+                  <ExhibitionForm
+                    key={`${title} ${index + 1}`}
+                    title={`${title} ${index + 1}`}
+                    ref={ref => {
+                          if (exhibitionFormRef.current && ref) {
+                              exhibitionFormRef.current[index] = ref
+                          }
+                      }}
+                  />
+                ))}
+                {exhibitionCount <= 2 && (
+                    <button className={styles.docsButton} onClick={addExhibition}>Добавить</button>
+                )}
             </div>
             <div style={{ display: 'flex', marginBottom: '20px' }}>
                 <input type="checkbox"/>
@@ -376,7 +334,7 @@ export const DocsComponentTitles:any = () => {
                     (публикация ФИО и контактной информации в родословных, сертификатах, в каталогах выставок и т.д.)
                 </div>
             </div>
-            <button className={styles.docsButton} onSubmit={onSubmit}>Отправить</button>
+            <button className={styles.docsButton} onClick={onSubmit}>Отправить</button>
         </div>
     )
 };

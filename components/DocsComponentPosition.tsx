@@ -41,7 +41,7 @@ export const DocsComponentPosition:any = () => {
                     <li key={text} className={styles.docsLi}>{text}</li>))}
             </ul>
                 <div className={styles.docsRightEnd}>{Strings.position.header.textFive}
-                </div>`
+                </div>
                 <div className={styles.docsRightEnd}>{Strings.position.header.textSix}
                 </div>
             <div className={styles.docsRightTitul}>{Strings.position.main.title}</div>
@@ -57,7 +57,7 @@ export const DocsComponentPosition:any = () => {
             {Strings.position.main.textDiv.map(text =>(<div key={text} className={styles.docsRightEnd}>{text}</div>))}
 
             {Strings.position.footer.textDiv.map(text =>(<div key={text} className={styles.docsRightEnd}>{text}</div>))}
-            
+
         </div>
     )
 };

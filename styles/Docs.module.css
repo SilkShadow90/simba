@@ -206,6 +206,20 @@
     margin-bottom: 20px;
 }
 
+.addDocsButton {
+    min-height: 40px;
+    background-color: #69796a;
+    border-radius: 8px;
+    font-size: 1rem;
+    line-height: 1.5;
+    font-weight: 700;
+    padding: 5px 15px;
+    color: white;
+    border: 1px solid transparent;
+    transition:  300ms ease-in-out;
+    margin-bottom: 20px;
+}
+
 .docsButton:hover {
     background-color: var(--main-bg-color);
 }
