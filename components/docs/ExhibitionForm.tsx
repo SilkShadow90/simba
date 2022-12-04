@@ -1,6 +1,9 @@
 import React, { ChangeEvent, Ref, useImperativeHandle, useState } from 'react';
 import styles from '../../styles/docs/ExhibitionForm.module.css';
 import { DocsComponentInput } from '../DocsComponentInput';
+import { Strings } from '../../resources';
+import {onChangeInput} from "../../utils/Func";
+
 
 type Props = {
   title: string
@@ -41,76 +44,49 @@ const RenderExhibitionForm = ({ title }: Props, ref: Ref<ExhibitionFormRef>): Re
     }
   }));
 
-  const onChangeExhibitionDate = (e: ChangeEvent<HTMLInputElement>) => {
-    setExhibitionDate(e.target.value)
-  };
-
-  const onChangeAddress = (e: ChangeEvent<HTMLInputElement>) => {
-    setAddress(e.target.value)
-  };
-
-  const onChangeLicenseNumber = (e: ChangeEvent<HTMLInputElement>) => {
-    setLicenseNumber(e.target.value)
-  };
-
-  const onChangeClub = (e: ChangeEvent<HTMLInputElement>) => {
-    setClub(e.target.value)
-  };
-
-  const onChangeExpert = (e: ChangeEvent<HTMLInputElement>) => {
-    setExpert(e.target.value)
-  };
-
-  const onChangeEvaluation = (e: ChangeEvent<HTMLInputElement>) => {
-    setEvaluation(e.target.value)
-  };
-
-  const onChangeEvaluationSheet = (e: ChangeEvent<HTMLInputElement>) => {
-    setEvaluationSheet(e.target.value)
-  };
 
   return (
     <div className={styles.formContainer}>
       <div className={styles.form}>{title}</div>
       <DocsComponentInput
-        text={"Дата выставки(*)"}
-        onChange={onChangeExhibitionDate}
+        text={Strings.RenderExhibitionForm.ExhibitionDate}
+        onChange={onChangeInput(setExhibitionDate)}
         value={ExhibitionDate}
         type={"date"}
       />
       <DocsComponentInput
-        text={"Место проведения(*)"}
-        onChange={onChangeAddress}
+        text={Strings.RenderExhibitionForm.Venue}
+        onChange={onChangeInput(setAddress)}
         value={address}
         type={"text"}
       />
       <DocsComponentInput
-        text={"Номер лицензии(*)"}
-        onChange={onChangeLicenseNumber}
+        text={Strings.RenderExhibitionForm.LicenseNumber}
+        onChange={onChangeInput(setLicenseNumber)}
         value={licenseNumber}
         type={"text"}
       />
       <DocsComponentInput
-        text={"Клуб(*)"}
-        onChange={onChangeClub}
+        text={Strings.RenderExhibitionForm.Club}
+        onChange={onChangeInput(setClub)}
         value={club}
         type={"text"}
       />
       <DocsComponentInput
-        text={"Эксперт(*)"}
-        onChange={onChangeExpert}
+        text={Strings.RenderExhibitionForm.Expert}
+        onChange={onChangeInput(setExpert)}
         value={expert}
         type={"text"}
       />
       <DocsComponentInput
-        text={"Оценка, титул(*)"}
-        onChange={onChangeEvaluation}
+        text={Strings.RenderExhibitionForm.Evaluation}
+        onChange={onChangeInput(setEvaluation)}
         value={evaluation}
         type={"text"}
       />
       <DocsComponentInput
-        text={"Оценочный лист, диплом(*)"}
-        onChange={onChangeEvaluationSheet}
+        text={Strings.RenderExhibitionForm.EvaluationSheet}
+        onChange={onChangeInput(setEvaluationSheet)}
         value={evaluationSheet}
         type={"file"}
       />

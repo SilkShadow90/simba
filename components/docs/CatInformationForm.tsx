@@ -1,6 +1,8 @@
 import React, { ChangeEvent, Ref, useImperativeHandle, useState } from 'react';
-import styles from '../../styles/Docs.module.css';
+import styles from '../../styles/docs/CatInformation.module.css';
 import { DocsComponentInput } from '../DocsComponentInput';
+import { Strings } from '../../resources';
+import {onChangeInput} from "../../utils/Func";
 
 type Breed = {
   id: string
@@ -54,30 +56,27 @@ const RenderCatInformationForm = ({ gender, breeds }: Props, ref: Ref<CatInforma
     }
   }));
 
-  const onChangeInput = (func: (text: string) => void) => (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    func(e.target.value)
-  }
 
   return (
     <div>
-      <div className={styles.docsRightTitul}>{gender ? 'Информация о владельце кота' : 'Информация о владельце кошки'}</div>
-      <DocsComponentInput text={gender ? 'Владелец кота(*)' : 'Владелец кошки(*)'} onChange={onChangeInput(setOwner)} value={owner} type={"text"}/>
-      <DocsComponentInput text={"Питомник(*)"} onChange={onChangeInput(setNursery)} value={nursery} type={"text"}/>
-      <DocsComponentInput text={"Телефон(*)"} onChange={onChangeInput(setPhone)} value={phone} type={"text"}/>
-      <DocsComponentInput text={"E-mail(*)"} onChange={onChangeInput(setEmail)} value={email} type={"text"}/>
+      <div className={styles.Titul}>{gender ? Strings.CatInformationForm.manCat.infoParents : Strings.CatInformationForm.girlCat.infoParents}</div>
+      <DocsComponentInput text={gender ? Strings.CatInformationForm.manCat.owner : Strings.CatInformationForm.girlCat.owner} onChange={onChangeInput(setOwner)} value={owner} type={"text"}/>
+      <DocsComponentInput text={Strings.CatInformationForm.other.exhibition} onChange={onChangeInput(setNursery)} value={nursery} type={"text"}/>
+      <DocsComponentInput text={Strings.CatInformationForm.other.phone} onChange={onChangeInput(setPhone)} value={phone} type={"text"}/>
+      <DocsComponentInput text={Strings.CatInformationForm.other.email} onChange={onChangeInput(setEmail)} value={email} type={"text"}/>
 
       <div>
-        <div className={styles.docsRightTitul}>{gender ? 'Информация о коте' : 'Информация о кошке'}</div>
-        <DocsComponentInput text={gender ? "Титул кота(*)" : 'Титул кошки(*)'} onChange={onChangeInput(setTitulesMan)} value={titulesMan} type={"text"}/>
-        <DocsComponentInput text={gender ? "Кличка кота(*)" : 'Кличка кошки(*)'} onChange={onChangeInput(setLogin)} value={login} type={"text"}/>
-        <div className={styles.docsPreSelect}>Порода кошки(*)</div>
-        <select className={styles.docsSelect} onChange={onChangeInput(setBreed)} value={breed} name="Выберите титул" id="">
+        <div className={styles.Titul}>{gender ? Strings.CatInformationForm.manCat.indoCat : Strings.CatInformationForm.girlCat.indoCat}</div>
+        <DocsComponentInput text={gender ? Strings.CatInformationForm.manCat.titules : Strings.CatInformationForm.girlCat.titules} onChange={onChangeInput(setTitulesMan)} value={titulesMan} type={"text"}/>
+        <DocsComponentInput text={gender ? Strings.CatInformationForm.manCat.login : Strings.CatInformationForm.girlCat.login} onChange={onChangeInput(setLogin)} value={login} type={"text"}/>
+        <div className={styles.docsPreSelect}>{Strings.CatInformationForm.other.breed}</div>
+        <select className={styles.Select} onChange={onChangeInput(setBreed)} value={breed} name="Выберите титул" id="">
           {breeds?.map((breed: Breed) => (
             <option key={breed.id} className={styles.docsOption} value={breed.value}>{breed.description}</option>
           ))}
         </select>
-        <DocsComponentInput text={"Окрас(*)"} onChange={onChangeInput(setColor)} value={color} type={"text"}/>
-        <DocsComponentInput text={gender ? "Родословная кота(*)" : 'Родословная кошки(*)'} onChange={onChangeInput(setParentsMan)} value={parentsMan} type={"file"}/>
+        <DocsComponentInput text={Strings.CatInformationForm.other.color} onChange={onChangeInput(setColor)} value={color} type={"text"}/>
+        <DocsComponentInput text={gender ? Strings.CatInformationForm.manCat.pedigree : Strings.CatInformationForm.girlCat.pedigree} onChange={onChangeInput(setParentsMan)} value={parentsMan} type={"file"}/>
       </div>
     </div>
   )
