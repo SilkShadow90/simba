@@ -18,5 +18,5 @@ export const DocsComponentOpened:any = () => {
             </ul>
             <button className={styles.docsButton}>Скачать заявление на вступление в клуб</button>
         </div>
-    )
+    );
 };

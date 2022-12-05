@@ -1,9 +1,9 @@
-import styles from '../styles/Footer.module.css';
 import React from "react";
-import { Strings } from '../resources';
-import Image from 'next/image'
-import simba from '../public/simba.jpeg';
+import Image from 'next/image';
 import Link from 'next/link';
+import styles from '../styles/Footer.module.css';
+import { Strings } from '../resources';
+import simba from '../public/simba.jpeg';
 
 
 export const Footer= () => {
@@ -45,5 +45,5 @@ export const Footer= () => {
               </div>
           </div>
       </div>
-    )
+    );
 };

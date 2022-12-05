@@ -38,23 +38,23 @@
   },
   {
     "id": "7",
-    "value": "(CAGCI)",
+    "value": "CAGCI",
     "description": "Международный Чемпион (CAGCI)"
   },
   {
     "id": "8",
-    "value": "(CAGPI)",
+    "value": "CAGPI",
     "description": "Международный Премиор (CAGPI)",
     "castration": true
   },
   {
     "id": "9",
-    "value": "(CACE)",
+    "value": "CACE",
     "description": "Большой Международный Чемпион (CACE)"
   },
   {
     "id": "10",
-    "value": "(CAPE)",
+    "value": "CAPE",
     "description": "Большой Международный Премиор (CAPE)",
     "castration": true
   },
@@ -71,23 +71,23 @@
   },
   {
     "id": "13",
-    "value": "(CACM)",
+    "value": "CACM",
     "description": "Большой Евро Чемпион (CACM)"
   },
   {
     "id": "14",
-    "value": "(CAPM)",
+    "value": "CAPM",
     "description": "Большой Евро Премиор (CAPM)",
     "castration": true
   },
   {
     "id": "15",
-    "value": "(WCH)",
+    "value": "WCH",
     "description": "Чемпион Мира (WCH)"
   },
   {
     "id": "16",
-    "value": "(WPR)",
+    "value": "WPR",
     "description": "Премиор Мира (WPR)",
     "castration": true
   },

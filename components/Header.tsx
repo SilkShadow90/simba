@@ -1,8 +1,8 @@
-import styles from '../styles/Header.module.css';
 import React from "react";
-import { Strings } from '../resources';
 import Link from 'next/link';
-import Image from 'next/image'
+import Image from 'next/image';
+import { Strings } from '../resources';
+import styles from '../styles/Header.module.css';
 
 
 export const Header= () => {
@@ -31,7 +31,7 @@ export const Header= () => {
                     <Link href="/partners">{Strings.footer.leftColumn.partners}</Link>
                 </div>
             </div>
-            {/*<Image className={styles.headerLogo} src={simba}/>*/}
+            {/* <Image className={styles.headerLogo} src={simba}/> */}
         </div>
-    )
+    );
 };

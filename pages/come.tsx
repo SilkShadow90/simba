@@ -1,4 +1,4 @@
-import type { NextPage } from 'next'
+import type { NextPage } from 'next';
 import React from 'react';
 import { Page } from '../components/Page';
 import styles from '../styles/come.module.css';
@@ -43,7 +43,7 @@ const come: NextPage = () => {
                 </div>
             </div>
         </Page>
-    )
-}
+    );
+};
 
 export default come;

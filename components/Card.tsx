@@ -1,6 +1,6 @@
-import styles from "../styles/Cats.module.css";
 import Image from "next/image";
 import React, {PropsWithChildren} from "react";
+import styles from "../styles/Cats.module.css";
 
 interface Props {
     name: string;
@@ -19,5 +19,5 @@ export const Card = ({image,name,family,years }: PropsWithChildren<Props>) => {
             </div>
             <Image layout="fill" objectFit="cover" src={image}/>
         </div>
-    )
-}
+    );
+};

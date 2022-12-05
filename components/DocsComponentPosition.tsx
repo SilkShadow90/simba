@@ -59,5 +59,5 @@ export const DocsComponentPosition:any = () => {
             {Strings.position.footer.textDiv.map(text =>(<div key={text} className={styles.docsRightEnd}>{text}</div>))}
 
         </div>
-    )
+    );
 };

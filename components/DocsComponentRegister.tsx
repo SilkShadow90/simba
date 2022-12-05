@@ -53,5 +53,5 @@ export const DocsComponentRegister:any = () => {
             </div>
             <div className={styles.docsRightEnd}>Префикс и суффикс считаются длиной всего имени кошки.</div>
         </div>
-    )
+    );
 };

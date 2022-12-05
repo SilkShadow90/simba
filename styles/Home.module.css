@@ -70,13 +70,22 @@
 }
 
 .razdelCardleft {
-  /*box-shadow: 0px -3px 48px -15px #534f4f;*/
   box-shadow: var(--shadow);
   border-radius: var(--border);
   min-height: 500px;
   margin: 10px;
   overflow: hidden;
   position: relative;
+}
+
+.razdelCardleft img,
+.razdelCardRight img {
+  transition: all ease-in-out 0.7s;
+}
+
+.razdelCardleft:hover img,
+.razdelCardRight:hover img {
+  transform: scale(1.1) translateX(-4%) translateY(4%);
 }
 
 .razdelCardLine {
@@ -90,9 +99,26 @@
   line-height: 2rem;
   font-size: 35px;
   padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  transition: all ease-in-out 0.5s;
 }
 
-.razdelCardLine:hover {
+.razdelCardLine span {
+  width: 100%;
+  text-align: left;
+  color: #424242;
+  transition: all ease-in-out 0.5s;
+}
+
+div:hover > .razdelCardLine span {
+  bottom: 0px;
+  color: #424242;
+  transform: scale(1.3) translateX(20%);
+}
+
+div:hover > .razdelCardLine {
   opacity: 1;
 }
 

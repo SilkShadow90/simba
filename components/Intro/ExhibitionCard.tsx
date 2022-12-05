@@ -1,7 +1,7 @@
 import React, {PropsWithChildren} from 'react';
-import styles from '../../styles/Ex.module.css';
 import Link from 'next/link';
 import classNames from 'classnames';
+import styles from '../../styles/Ex.module.css';
 
 interface Props {
     title: string;
@@ -23,7 +23,7 @@ const ExhibitionCard = ({ title, text,  csssrc, link, image }: PropsWithChildren
                 </div>
             </div>
         </Link>
-    )
-}
+    );
+};
 
 export default ExhibitionCard;

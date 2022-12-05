@@ -4,7 +4,9 @@ import { BasicFabric, FabricMixins, staticImplements } from './BasicFabric';
 @staticImplements<FabricMixins<User>>()
 export class UserFabric extends BasicFabric<User, IUser> {
   static _instance?: UserFabric;
+
   Model: Object = User;
+
   interfaceValidateModelProperties: Array<keyof IUser> = ['first_name', 'last_name'];
 
   private static get instance(): UserFabric {

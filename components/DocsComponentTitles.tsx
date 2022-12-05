@@ -1,9 +1,9 @@
 
 import React, { ChangeEvent, useEffect, useMemo, useRef, useState } from 'react';
+import dayjs from "dayjs";
 import styles from '../styles/Docs.module.css';
 import { Strings } from '../resources';
 import {useFetchService} from "../utils/useFetchService";
-import dayjs from "dayjs";
 import {DocsComponentInput} from "./DocsComponentInput";
 import { ExhibitionForm, ExhibitionFormRef } from './docs/ExhibitionForm';
 
@@ -24,102 +24,104 @@ type Titul = {
 }
 
 export const DocsComponentTitles:any = () => {
-    const { data: breeds } = useFetchService<Breed[]>('breeds') || {}
-    const { data: titlesData } = useFetchService<Titul[]>('tituls') || {}
+    const { data: breeds } = useFetchService<Breed[]>('breeds') || {};
+    const { data: titlesData } = useFetchService<Titul[]>('tituls') || {};
 
-    const [birthday, setBirthday] = useState<string>('')
-    const [isAdult, setAdult] = useState<boolean>()
-    const [isJunior, setJunior] = useState<boolean>()
-    const [isKitten, setKitten] = useState<boolean>()
-    const [isHomeCat, setHomeCat] = useState<boolean>()
-    const [breed, setBreed] = useState<string>('')
-    const [gender, setGender] = useState<string>('')
-    const [castration, setCastration] = useState<boolean>()
-    const [titles, setTitles] = useState<Titul[]>([])
-    const [login, setLogin] = useState<string>('')
-    const [color, setColor] = useState<string>('')
-    const [numberDocs, setNumberDocs] = useState<string>('')
-    const [owner, setOwner] = useState<string>('')
-    const [phone, setPhone] = useState<any>('')
-    const [email, setEmail] = useState<string>('')
+    const [birthday, setBirthday] = useState<string>('');
+    const [isAdult, setAdult] = useState<boolean>();
+    const [isJunior, setJunior] = useState<boolean>();
+    const [isKitten, setKitten] = useState<boolean>();
+    const [isHomeCat, setHomeCat] = useState<boolean>();
+    const [breed, setBreed] = useState<string>('');
+    const [gender, setGender] = useState<string>('');
+    const [castration, setCastration] = useState<boolean>();
+    const [titles, setTitles] = useState<Titul[]>([]);
+    const [name, setName] = useState<string>('');
+    const [color, setColor] = useState<string>('');
+    const [numberDocs, setNumberDocs] = useState<string>('');
+    const [owner, setOwner] = useState<string>('');
+    const [phone, setPhone] = useState<any>('');
+    const [email, setEmail] = useState<string>('');
 
-    const [exhibitionCount, setExhibitionCount] = useState(0)
+    const [exhibitionCount, setExhibitionCount] = useState(0);
 
-    const exhibitionFormRef = useRef<ExhibitionFormRef[]>([])
+    const exhibitionFormRef = useRef<ExhibitionFormRef[]>([]);
 
     useEffect(() => {
-        exhibitionFormRef.current.length = exhibitionCount
-    }, [exhibitionCount])
+        exhibitionFormRef.current.length = exhibitionCount;
+    }, [exhibitionCount]);
 
     const onSubmit = async () => {
         const form = {
+            name,
             breed,
             gender,
             birthday,
+            currentTitle,
             newCurrentTitle,
+            color,
+            userInfo: {
+                owner,
+                phone,
+                email
+            },
             exhibitionForm: exhibitionFormRef.current?.map(value => value.getForm())
-        }
-        console.log(form)
+        };
+        // todo remove console log
+        // eslint-disable-next-line no-console
+        console.log(form);
     };
 
-    const addExhibition = () => setExhibitionCount(prevState => prevState + 1)
-    const deleteExhibition = () => setExhibitionCount(prevState => prevState - 1)
+    const addExhibition = () => setExhibitionCount(prevState => prevState + 1);
+    const deleteExhibition = () => setExhibitionCount(prevState => prevState - 1);
 
     useEffect(() => {
         if (titlesData) {
-            setTitles(titlesData)
+            setTitles(titlesData);
         }
-    }, [titlesData])
+    }, [titlesData]);
 
-    const [newTitles, setNewTitles] = useState<Titul[]>([])
-    const [currentTitle, setCurrentTitle] = useState<string>('')
-    const [newCurrentTitle, setNewCurrentTitle] = useState<string>('')
+    const [currentTitle, setCurrentTitle] = useState<string>('');
+    const [newCurrentTitle, setNewCurrentTitle] = useState<string>('');
 
     useEffect(() => {
         switch (gender) {
             case "Кот":
             case "Кошка":
-                console.log("Ты выбрал кота или кошку");
-                setCastration(false)
+                setCastration(false);
                 break;
             case "Кастрированный кот":
             case "Стерилизованная кошка":
-                console.log("Ты выбрал Кастрированный кот");
-                setCastration(true)
+                setCastration(true);
                 break;
             default:
-                console.log("Не правильно")
-                setCastration(undefined)
+                setCastration(undefined);
         }
-    }, [gender])
+    }, [gender]);
 
 
     useEffect(()=> {
         switch (breed) {
             case "HHP":
                 setHomeCat(true);
-                console.log("ты выбрал домашняя ")
                 break;
+            default:
+                setHomeCat(false);
         }
-    },[breed])
+    },[breed]);
 
     useEffect(() => {
         if (birthday) {
-            console.count('birthday')
-            const currentDate = dayjs(birthday)
-            const date = dayjs()
+            const currentDate = dayjs(birthday);
+            const date = dayjs();
 
-            const diff = date.diff(currentDate, 'month')
+            const diff = date.diff(currentDate, 'month');
 
-            const isAdult = diff >= 10
-            const isJunior = diff < 10 && diff >= 3
-            const isKitten = diff < 3 && diff >= 0
-
-            setAdult(isAdult)
-            setJunior(isJunior)
-            setKitten(isKitten)
+            setAdult(diff >= 10);
+            setJunior(diff < 10 && diff >= 3);
+            setKitten(diff < 3 && diff >= 0);
         }
-    }, [birthday])
+    }, [birthday]);
 
 
 
@@ -127,111 +129,111 @@ export const DocsComponentTitles:any = () => {
         return titles.filter(title => {
 
             if (isHomeCat) {
-                return title.isHomeCat
+                return title.isHomeCat;
             }
 
             const castrationCheck = (title: Titul): boolean => {
                 if (castration) {
-                    return !!title.castration
+                    return !!title.castration;
                 }
 
-                return !title.castration
-            }
+                return !title.castration;
+            };
 
             const juniorCheck = (title: Titul): boolean => {
                 if (isJunior) {
-                    return !!title.junior
+                    return !!title.junior;
                 }
 
-                return true
-            }
+                return true;
+            };
 
             const adultCheck = (title: Titul): boolean => {
                 if (isAdult) {
-                    return !title.junior && !title.kitten
+                    return !title.junior && !title.kitten;
                 }
 
-                return true
-            }
+                return true;
+            };
 
             const kittenCheck = (title: Titul): boolean => {
                 if (isKitten) {
-                    return !!title.kitten
+                    return !!title.kitten;
                 }
 
-                return true
-            }
+                return true;
+            };
 
-            return castrationCheck(title) && juniorCheck(title) && kittenCheck(title) && adultCheck(title)
-        })
-    }, [isJunior, isKitten, isAdult, castration, isHomeCat, titles])
+            return castrationCheck(title) && juniorCheck(title) && kittenCheck(title) && adultCheck(title);
+        });
+    }, [isJunior, isKitten, isAdult, castration, isHomeCat, titles]);
 
 
     const secondFilteredTitles = useMemo(() => {
         if (currentTitle ==='none') {
-            return filteredTitles.slice(0, 1)
+            return filteredTitles.slice(0, 1);
         }
 
         if (currentTitle) {
             const currentIndex: number = filteredTitles?.findIndex((title, index, array)=>{
-                return currentTitle === title.value
-            })
+                return currentTitle === title.value;
+            });
 
             if (currentIndex !== -1) {
-                return filteredTitles.slice(currentIndex, currentIndex + 2)
+                return filteredTitles.slice(currentIndex, currentIndex + 2);
             }
         }
 
-        return []
-    },[currentTitle, filteredTitles])
+        return [];
+    },[currentTitle, filteredTitles]);
 
-    console.log("secondFilteredTitles",secondFilteredTitles)
+    console.log("secondFilteredTitles",secondFilteredTitles);
 
     useEffect(() => {
         if (filteredTitles) {
-            setCurrentTitle(filteredTitles?.[0]?.value || '')
+            setCurrentTitle(filteredTitles?.[0]?.value || '');
         }
-    }, [isAdult, isJunior, isKitten, castration, filteredTitles])
+    }, [isAdult, isJunior, isKitten, castration, filteredTitles]);
 
     console.log('filteredTitles', filteredTitles);
 
     const onChangeBreed = (e: ChangeEvent<HTMLSelectElement>) => {
-        setBreed(e.target.value)
-    }
+        setBreed(e.target.value);
+    };
 
     const onChangeTitles = (e: ChangeEvent<HTMLSelectElement>) => {
-        setCurrentTitle(e.target.value)
-    }
+        setCurrentTitle(e.target.value);
+    };
 
     const onChangeBirthday = (e: ChangeEvent<HTMLInputElement >) => {
-        setBirthday(e.target.value)
-    }
+        setBirthday(e.target.value);
+    };
 
     const onChangeGender = (e: ChangeEvent<HTMLSelectElement>) => {
-        setGender(e.target.value)
-    }
+        setGender(e.target.value);
+    };
 
     const onChangeNewTitules = (e: ChangeEvent<HTMLSelectElement>) => {
-        setNewCurrentTitle(e.target.value)
-    }
+        setNewCurrentTitle(e.target.value);
+    };
 
     const onChangeLogin = (e: ChangeEvent<HTMLInputElement>) => {
-        setLogin(e.target.value)
-    }
+        setName(e.target.value);
+    };
     const onChangeColor = (e: ChangeEvent<HTMLInputElement>) => {
-        setColor(e.target.value)
-    }
+        setColor(e.target.value);
+    };
     const onChangeNumberDocs = (e: ChangeEvent<HTMLInputElement>) => {
-        setNumberDocs(e.target.value)
-    }
+        setNumberDocs(e.target.value);
+    };
     const onChangeName = (e: ChangeEvent<HTMLInputElement>) => {
-        setOwner(e.target.value)
+        setOwner(e.target.value);
     };
     const onChangePhone = (e: ChangeEvent<HTMLInputElement>) => {
-        setPhone(e.target.value)
+        setPhone(e.target.value);
     };
     const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
-        setEmail(e.target.value)
+        setEmail(e.target.value);
     };
 
     return (
@@ -251,8 +253,8 @@ export const DocsComponentTitles:any = () => {
             <div className={styles.docsRightEnd}>{Strings.titulStart.titulMain.postInfo}
             </div>
 
-            <DocsComponentInput text={"Кличка животного(*)"} onChange={onChangeLogin} value={login} type={"text"}/>
-            {/*<DocsComponentInput text={} type={} onChange={} value={}/>*/}
+            <DocsComponentInput text={"Кличка животного(*)"} onChange={onChangeLogin} value={name} type={"text"}/>
+            {/* <DocsComponentInput text={} type={} onChange={} value={}/> */}
             <div className={styles.docsPreSelect}>Порода кошки(*)</div>
             <select className={styles.docsSelect} onChange={onChangeBreed} value={breed} name="Выберите породу" id="">
                 <option className={styles.docsOption} value="Выберите породу">Выберите породу</option>
@@ -319,7 +321,7 @@ export const DocsComponentTitles:any = () => {
                     title={`${title} ${index + 1}`}
                     ref={ref => {
                           if (exhibitionFormRef.current && ref) {
-                              exhibitionFormRef.current[index] = ref
+                              exhibitionFormRef.current[index] = ref;
                           }
                       }}
                   />
@@ -336,5 +338,5 @@ export const DocsComponentTitles:any = () => {
             </div>
             <button className={styles.docsButton} onClick={onSubmit}>Отправить</button>
         </div>
-    )
+    );
 };

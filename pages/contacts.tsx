@@ -1,6 +1,6 @@
-import type { NextPage } from 'next'
-import styles from '../styles/Contacts.module.css'
+import type { NextPage } from 'next';
 import React, { ChangeEvent, useState } from 'react';
+import styles from '../styles/Contacts.module.css';
 import { Page } from '../components/Page';
 
 
@@ -10,32 +10,32 @@ const сontacts: NextPage = () => {
     //     console.log(e.target.value)
     // };
 
-    const [name, setName] = useState<string>('')
+    const [name, setName] = useState<string>('');
 
-    const [phone, setPhone] = useState<any>('')
+    const [phone, setPhone] = useState<any>('');
 
-    const [email, setEmail] = useState<string>('')
+    const [email, setEmail] = useState<string>('');
 
-    const [sms, setSMS] = useState<string>('')
+    const [sms, setSMS] = useState<string>('');
 
     // const [name, setName] = useState<string>('')
 
-    const submitIsActive: boolean = !!name
+    const submitIsActive: boolean = !!name;
 
     const onChangeName = (e: ChangeEvent<HTMLInputElement>) => {
-        setName(e.target.value?.replace(/[^a-zA-Zа-яА-Я\s]/g, ''))
+        setName(e.target.value?.replace(/[^a-zA-Zа-яА-Я\s]/g, ''));
     };
 
     const onChangePhone = (e: ChangeEvent<HTMLInputElement>) => {
-        setPhone(e.target.value?.replace(/[^a-zA-Zа-яА-Я\s]/g, ''))
+        setPhone(e.target.value?.replace(/[^a-zA-Zа-яА-Я\s]/g, ''));
     };
 
     const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
-        setEmail(e.target.value?.replace(/[^a-zA-Zа-яА-Я\s]/g, ''))
+        setEmail(e.target.value?.replace(/[^a-zA-Zа-яА-Я\s]/g, ''));
     };
 
     const onChangeSms = (e: ChangeEvent<HTMLInputElement>) => {
-        setSMS(e.target.value?.replace(/[^a-zA-Zа-яА-Я\s]/g, ''))
+        setSMS(e.target.value?.replace(/[^a-zA-Zа-яА-Я\s]/g, ''));
     };
 
     const onSubmit = async () => {
@@ -44,22 +44,22 @@ const сontacts: NextPage = () => {
             phone,
             email,
             sms
-        }
+        };
 
-        console.log(form)
+        console.log(form);
 
         try {
-            const result = await fetch('google.com', { method: 'post', body: JSON.stringify(form) })
+            const result = await fetch('google.com', { method: 'post', body: JSON.stringify(form) });
 
             if (result.ok) {
                 console.log('Все ок');
             } else {
-                throw new Error(String(result.status))
+                throw new Error(String(result.status));
             }
         } catch (e) {
             console.error('Что-то пошло не так: ', e);
         }
-    }
+    };
 
     return (
         <Page title="сontacts" meta="bla bla" styles={styles.container} >
@@ -85,7 +85,7 @@ const сontacts: NextPage = () => {
                 </div>
             </div>
         </Page>
-    )
-}
+    );
+};
 
-export default сontacts
+export default сontacts;

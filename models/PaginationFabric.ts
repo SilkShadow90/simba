@@ -4,7 +4,9 @@ import { BasicFabric, FabricMixins, staticImplements } from './BasicFabric';
 @staticImplements<FabricMixins<Pagination>>()
 export class PaginationFabric extends BasicFabric<Pagination, IPagination> {
   static _instance?: PaginationFabric;
+
   Model = Pagination;
+
   interfaceValidateModelProperties: Array<keyof IPagination> = ['per_page', 'total_pages', 'total', 'page'];
 
   private static get instance(): PaginationFabric {

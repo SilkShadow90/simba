@@ -1,6 +1,6 @@
-import styles from "../styles/Modal.module.css";
 import React, { ChangeEvent, PropsWithChildren, useEffect, useState } from 'react';
 import classNames from 'classnames';
+import styles from "../styles/Modal.module.css";
 import Loader from "./Loader";
 import { delay } from '../utils';
 
@@ -10,38 +10,38 @@ interface Props {
 }
 
  const Modal = ({ active, onClose }: PropsWithChildren<Props>) => {
-     const [isLoading, setLoading] = useState<boolean>(false)
-     const [isError, setError] = useState<boolean>(false)
+     const [isLoading, setLoading] = useState<boolean>(false);
+     const [isError, setError] = useState<boolean>(false);
 
-     const [name, setName] = useState<string>('')
+     const [name, setName] = useState<string>('');
 
-     const [phone, setPhone] = useState<any>('')
+     const [phone, setPhone] = useState<any>('');
 
-     const [email, setEmail] = useState<string>('')
+     const [email, setEmail] = useState<string>('');
 
-     const [sms, setSMS] = useState<string>('')
+     const [sms, setSMS] = useState<string>('');
 
-     const submitIsActive: boolean = !!name
+     const submitIsActive: boolean = !!name;
 
      const onChangeName = (e: ChangeEvent<HTMLInputElement>) => {
-         setName(e.target.value?.replace(/[^a-zA-Zа-яА-Я\s]/g, ''))
+         setName(e.target.value?.replace(/[^a-zA-Zа-яА-Я\s]/g, ''));
      };
 
      const onChangePhone = (e: ChangeEvent<HTMLInputElement>) => {
-         setPhone(e.target.value?.replace(/[^0-9\s]/g, ''))
+         setPhone(e.target.value?.replace(/[^0-9\s]/g, ''));
      };
 
      const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
-         setEmail(e.target.value?.replace(/[^a-zA-Zа-яА-Я\s]/g, ''))
+         setEmail(e.target.value?.replace(/[^a-zA-Zа-яА-Я\s]/g, ''));
      };
 
      const onChangeSms = (e: ChangeEvent<HTMLInputElement>) => {
-         setSMS(e.target.value?.replace(/[^a-zA-Zа-яА-Я\s]/g, ''))
+         setSMS(e.target.value?.replace(/[^a-zA-Zа-яА-Я\s]/g, ''));
      };
 
      useEffect(() => {
-         setError(false)
-     }, [name, phone, email, sms])
+         setError(false);
+     }, [name, phone, email, sms]);
 
      const onSubmit = async () => {
          const form = {
@@ -49,34 +49,34 @@ interface Props {
              phone,
              email,
              sms
-         }
+         };
 
-         console.log(form)
+         console.log(form);
 
          try {
-             setLoading(true)
+             setLoading(true);
 
-             await delay(4000)
-             const result = await fetch('google.com', { method: 'post', body: JSON.stringify(form) })
+             await delay(4000);
+             const result = await fetch('google.com', { method: 'post', body: JSON.stringify(form) });
 
              if (result.ok) {
                  console.log('Все ок');
              } else {
-                 throw new Error(String(result.status))
+                 throw new Error(String(result.status));
              }
              onClose();
          } catch (e) {
-             setError(true)
+             setError(true);
              console.error('Что-то пошло не так: ', e);
          } finally {
-             setLoading(false)
+             setLoading(false);
          }
-     }
+     };
     return (
         <div className={classNames(styles.modal, active && styles.modal_active)} onClick={onClose}>
             <div
               className={styles.modal_content}
-              onClick={(e)=>{e.stopPropagation()}}
+              onClick={(e)=>{e.stopPropagation();}}
             >
                 <div className={styles.contact_Blockright}>
                     <div className={styles.contact_Blockleft__Bold}>Написать нам</div>
@@ -103,7 +103,7 @@ interface Props {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default Modal;

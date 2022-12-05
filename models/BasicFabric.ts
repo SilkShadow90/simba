@@ -14,6 +14,7 @@ export interface FabricMixins<P> {
 
 export abstract class BasicFabric<T, P> {
   protected abstract Model: any; // todo add class type
+
   protected abstract interfaceValidateModelProperties: Array<keyof P>;
 
   private generateModel(data: P): T {

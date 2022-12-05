@@ -1,8 +1,8 @@
-import type { NextPage } from 'next'
+import type { NextPage } from 'next';
 import React from 'react';
+import Image from "next/image";
 import { Page } from '../components/Page';
 import styles from '../styles/Partners.module.css';
-import Image from "next/image";
 import logos from "../public/logos.jpg";
 import sponsor1 from "../public/sponsor1.jpg";
 import sponsor2 from "../public/sponsor2.png";
@@ -19,7 +19,7 @@ const partners: NextPage = () => {
                 <div className={styles.partners_logo}>
                     <div className={styles.partners_logos}>
                         <Image className={styles.partners_logotype} src={logos} objectFit={"cover"}/>
-                        {/*требует доработки*/}
+                        {/* требует доработки */}
                     </div>
                     <div className={styles.partners_info_Main}>
                         <div className={styles.partners_info}>Журавлева Кристина Игоревна / Kristina Zhuravleva </div>
@@ -57,7 +57,7 @@ const partners: NextPage = () => {
                 </div>
             </div>
         </Page>
-    )
-}
+    );
+};
 
 export default partners;

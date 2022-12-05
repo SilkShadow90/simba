@@ -13,7 +13,7 @@ import grass from "../public/list.jpg";
 
 
 export default function SimpleSlider() {
-    var settings = {
+    const settings = {
         dots: true,
         infinite: true,
         speed: 500,
@@ -25,9 +25,9 @@ export default function SimpleSlider() {
     return (
         <div className={styles.type}>
             <Slider {...settings}>
-                {/*<div>*/}
-                {/*    <Image src={catstar} objectFit={"cover"} height={'400px'} />*/}
-                {/*</div>*/}
+                {/* <div> */}
+                {/*    <Image src={catstar} objectFit={"cover"} height={'400px'} /> */}
+                {/* </div> */}
                 <div className={styles.slide}>
                     <Image src={catzz} objectFit="cover" layout="fill" />
                 </div>

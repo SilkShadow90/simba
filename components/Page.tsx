@@ -1,10 +1,10 @@
 import Head from 'next/head';
+import React, { PropsWithChildren, useCallback, useState } from 'react';
+import Image from 'next/image';
 import { Header } from './Header';
 import { Footer } from './Footer';
-import React, { PropsWithChildren, useCallback, useState } from 'react';
 import Modal from './Modal';
 import pageStyles from '../styles/Page.module.css';
-import Image from 'next/image';
 import email from '../public/email.png';
 
 interface Props {
@@ -18,8 +18,8 @@ export const Page = ({ children, title, meta, styles, withoutHeaderAndFooter = f
     const [modalActive, setModalActive] = useState(false);
 
     const onClose = useCallback(() => {
-      setModalActive(false)
-    }, [])
+      setModalActive(false);
+    }, []);
 
     return (
         <div className={styles}>
@@ -34,12 +34,12 @@ export const Page = ({ children, title, meta, styles, withoutHeaderAndFooter = f
                 <div className='flex'>
                   <Modal active={modalActive} onClose={onClose}/>
                   <div className={pageStyles.open_Modal}>
-                    <Image src={email} objectFit={"cover"}  onClick={()=>{setModalActive(true)}}/>
+                    <Image src={email} objectFit={"cover"}  onClick={()=>{setModalActive(true);}}/>
                   </div>
                   {children}
                 </div>
               {!withoutHeaderAndFooter && <Footer/>}
             </main>
         </div>
-    )
-}
+    );
+};

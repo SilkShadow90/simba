@@ -1,6 +1,6 @@
-import styles from "../styles/Joined.module.css";
 import React, {PropsWithChildren, useState} from "react";
 import Image, { StaticImageData } from 'next/image';
+import styles from "../styles/Joined.module.css";
 import { Strings } from '../resources';
 import iconCat from "../public/iconCat.png";
 import iconCatTwo from "../public/iconCatTwo.png";
@@ -12,10 +12,10 @@ const icons = [
     iconCatTwo,
     iconCatThree,
     iconCatFour,
-]
+];
 
 const slide = (data: string | { title: string, text: string }, index: number) => {
-    const dataIsString = typeof data === 'string'
+    const dataIsString = typeof data === 'string';
 
     return (
       <div className={styles.joinDownBox}>
@@ -36,8 +36,8 @@ const slide = (data: string | { title: string, text: string }, index: number) =>
             </>
           )}
       </div>
-    )
-}
+    );
+};
 
 export const Join = () => {
     return (
@@ -47,5 +47,5 @@ export const Join = () => {
                     {Strings.joinClub.slides.map(slide)}
                 </div>
             </div>
-    )
-}
+    );
+};

@@ -27,17 +27,17 @@ const RenderDocsComponentInput: React.FC<Props> = ({
         type={type}
       />
     </>
-  ), [onChange, text, type, value])
+  ), [onChange, text, type, value]);
 
   if (useContainer) {
     return (
       <div>
         {content}
       </div>
-    )
+    );
   }
 
-  return content
-}
+  return content;
+};
 
-export const DocsComponentInput: React.FC<Props> = React.memo(RenderDocsComponentInput)
+export const DocsComponentInput: React.FC<Props> = React.memo(RenderDocsComponentInput);

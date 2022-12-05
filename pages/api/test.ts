@@ -1,8 +1,5 @@
 import { SERVER_DIRECTORY } from 'next/constants';
 
-let modelName;
-let modelFabricName;
-
 // process.argv.forEach((val, index, array) => {
 //   if (val?.includes('model') || index === 2) {
 //     modelName = val?.replace(/^model=(\S)|^(\S)/, ($0, $1) => ($1 ?? $0)?.toUpperCase());
@@ -18,6 +15,9 @@ let modelFabricName;
 // const fs = require('fs');
 import path from 'path';
 import { constants, promises as fs } from 'fs';
+
+let modelName;
+let modelFabricName;
 
 const getPath = (name: string) => `${name}`;
 
@@ -37,7 +37,7 @@ export const checkAvailableFile = (fileName: string): Promise<boolean | string> 
     }
 
     // const fileContents = await fs.readFile(jsonDirectory + '/data.json', 'utf8');
-    //Read the json data file data.json
+    // Read the json data file data.json
     // fs.access(getPath(fileName), function (error) {
     //   if (error) {
     //     if (error.message.includes('no such file or directory')) {

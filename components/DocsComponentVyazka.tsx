@@ -13,17 +13,17 @@ type Breed = {
 
 export const DocsComponentVyazka:any = () => {
 
-    const { data: breeds } = useFetchService<Breed[]>('breeds') || {}
+    const { data: breeds } = useFetchService<Breed[]>('breeds') || {};
 
-    const [dateVyazka, setdateVyazka] = useState<any>('')
-    const [birthsday, setBirthsday] = useState<string>('')
-    const [colorLittleCat, setColorLittleCat] = useState<any>('')
-    const [loginLittleCat, setLoginLittleCat] = useState<string>('')
-    const [gender, setGender] = useState<string>('')
-    const [juniorBreed, setJuniorBreed] = useState<string>('')
+    const [dateVyazka, setdateVyazka] = useState<any>('');
+    const [birthsday, setBirthsday] = useState<string>('');
+    const [colorLittleCat, setColorLittleCat] = useState<any>('');
+    const [loginLittleCat, setLoginLittleCat] = useState<string>('');
+    const [gender, setGender] = useState<string>('');
+    const [juniorBreed, setJuniorBreed] = useState<string>('');
 
-    const catInformationFormFatherRef = useRef<CatInformationFormRef>()
-    const catInformationFormMotherRef = useRef<CatInformationFormRef>()
+    const catInformationFormFatherRef = useRef<CatInformationFormRef>();
+    const catInformationFormMotherRef = useRef<CatInformationFormRef>();
 
     const onSubmit = async () => {
         const form = {
@@ -33,13 +33,13 @@ export const DocsComponentVyazka:any = () => {
             loginLittleCat,
             father: catInformationFormFatherRef.current?.getForm() || {},
             mother: catInformationFormMotherRef.current?.getForm() || {},
-        }
-        console.log(form)
+        };
+        console.log(form);
     };
 
     const onChangeInput = (func: (text: string) => void) => (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        func(e.target.value)
-    }
+        func(e.target.value);
+    };
 
     return (
         <div className={styles.docsRightVstuplenie}>
@@ -60,12 +60,20 @@ export const DocsComponentVyazka:any = () => {
                 <CatInformationForm breeds={breeds} gender={0} ref={catInformationFormMotherRef as Ref<CatInformationFormRef>}/>
             </div>
             <div className={styles.docsVstuplenieColumnNext}>
-                <div>
-                    <DocsComponentInput text={"Дата вязки"} onChange={onChangeInput(setdateVyazka)} value={dateVyazka} type={"date"}/>
-                </div>
-                <div>
-                    <DocsComponentInput text={"Дата рождения котят(*)"} onChange={onChangeInput(setBirthsday)} value={birthsday} type={"date"}/>
-                </div>
+                <DocsComponentInput
+                  useContainer
+                  text={"Дата вязки"}
+                  onChange={onChangeInput(setdateVyazka)}
+                  value={dateVyazka}
+                  type="date"
+                />
+                <DocsComponentInput
+                  useContainer
+                  text={"Дата рождения котят(*)"}
+                  onChange={onChangeInput(setBirthsday)}
+                  value={birthsday}
+                  type="date"
+                />
                 <div>
                     <div className={styles.docsPreSelect}>Количество котят в помете(*)</div>
                     <select className={styles.docsSelect} name="1" id="">
@@ -80,7 +88,12 @@ export const DocsComponentVyazka:any = () => {
             <div className={styles.docsVstuplenieColumnPreNext}>
                 <div>
                     <div className={styles.docsPreSelect}>Пол(*)</div>
-                    <select className={styles.docsSelect}  onChange={onChangeInput(setGender)} value={gender} name="Выберите пол котенка" id="">
+                    <select
+                      className={styles.docsSelect}
+                      onChange={onChangeInput(setGender)}
+                      value={gender}
+                      name="Выберите пол котенка"
+                    >
                         <option value="Выберите пол котенка">Выберите пол котенка</option>
                         <option value="1">Кот</option>
                         <option value="0">Кошка</option>
@@ -88,8 +101,16 @@ export const DocsComponentVyazka:any = () => {
                 </div>
                 <div>
                     <div className={styles.docsPreSelect}>Порода(*)</div>
-                    <select className={styles.docsSelect}  onChange={onChangeInput(setJuniorBreed)} value={juniorBreed} name="Выберите породу" id="">
-                        <option className={styles.docsOption} value="Выберите титул">Выберите породу</option>
+                    <select
+                      className={styles.docsSelect}
+                      onChange={onChangeInput(setJuniorBreed)}
+                      value={juniorBreed}
+                      name="Выберите породу"
+                    >
+                        <option
+                          className={styles.docsOption}
+                          value="Выберите титул"
+                        >Выберите породу</option>
                         {breeds?.map((breed: Breed) => (
                             <option key={breed.id} className={styles.docsOption} value={breed.value}>{breed.description}</option>
                         ))}
@@ -112,5 +133,5 @@ export const DocsComponentVyazka:any = () => {
             </div>
             <button className={styles.docsButton} onClick={onSubmit}>Отправить</button>
         </div>
-    )
+    );
 };

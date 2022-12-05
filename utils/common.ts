@@ -1,3 +1,5 @@
+import { ChangeEvent } from 'react';
+
 /**
  * @name delay
  * @description может использоваться в цепочке промисов для синтетической задержки выполнения кода или для выполнения функции с задержкой
@@ -32,9 +34,12 @@ export function isObject(obj: unknown): obj is object {
 }
 
 // @ts-ignore
-export const fetcher = (...args) => fetch(...args).then((res) => res.json())
+export const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
-export const isProd = (): boolean => process.env.NODE_ENV === 'production'
+export const isProd = (): boolean => process.env.NODE_ENV === 'production';
 
-export const getBackEndUrl = (): string => isProd() ? '/simba' : ''
+export const getBackEndUrl = (): string => isProd() ? '/simba' : '';
 
+export const onChangeInput = (func: (text: string) => void) => (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  func(e.target.value);
+};

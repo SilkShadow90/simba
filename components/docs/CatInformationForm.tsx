@@ -1,8 +1,8 @@
-import React, { ChangeEvent, Ref, useImperativeHandle, useState } from 'react';
+import React, { Ref, useImperativeHandle, useState } from 'react';
 import styles from '../../styles/docs/CatInformation.module.css';
 import { DocsComponentInput } from '../DocsComponentInput';
 import { Strings } from '../../resources';
-import {onChangeInput} from "../../utils/Func";
+import { onChangeInput } from "../../utils";
 
 type Breed = {
   id: string
@@ -30,15 +30,15 @@ export type CatInformationFormRef = {
 }
 
 const RenderCatInformationForm = ({ gender, breeds }: Props, ref: Ref<CatInformationFormRef>): React.ReactElement => {
-  const [owner, setOwner] = useState<string>('')
-  const [nursery, setNursery] = useState<string>('')
-  const [phone, setPhone] = useState<string>('')
-  const [email, setEmail] = useState<string>('')
-  const [titulesMan, setTitulesMan] = useState<string>('')
-  const [login, setLogin] = useState<string>('')
-  const [color, setColor] = useState<string>('')
-  const [parentsMan, setParentsMan] = useState<string>('')
-  const [breed, setBreed] = useState<string>('')
+  const [owner, setOwner] = useState<string>('');
+  const [nursery, setNursery] = useState<string>('');
+  const [phone, setPhone] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [titulesMan, setTitulesMan] = useState<string>('');
+  const [login, setLogin] = useState<string>('');
+  const [color, setColor] = useState<string>('');
+  const [parentsMan, setParentsMan] = useState<string>('');
+  const [currentBreed, setCurrentBreed] = useState<string>('');
 
   useImperativeHandle(ref, () => ({
     getForm: () => {
@@ -51,8 +51,8 @@ const RenderCatInformationForm = ({ gender, breeds }: Props, ref: Ref<CatInforma
         login,
         color,
         parentsMan,
-        breed,
-      }
+        breed: currentBreed,
+      };
     }
   }));
 
@@ -70,16 +70,16 @@ const RenderCatInformationForm = ({ gender, breeds }: Props, ref: Ref<CatInforma
         <DocsComponentInput text={gender ? Strings.CatInformationForm.manCat.titules : Strings.CatInformationForm.girlCat.titules} onChange={onChangeInput(setTitulesMan)} value={titulesMan} type={"text"}/>
         <DocsComponentInput text={gender ? Strings.CatInformationForm.manCat.login : Strings.CatInformationForm.girlCat.login} onChange={onChangeInput(setLogin)} value={login} type={"text"}/>
         <div className={styles.docsPreSelect}>{Strings.CatInformationForm.other.breed}</div>
-        <select className={styles.Select} onChange={onChangeInput(setBreed)} value={breed} name="Выберите титул" id="">
+        <select className={styles.Select} onChange={onChangeInput(setCurrentBreed)} value={currentBreed} name="Выберите титул" id="">
           {breeds?.map((breed: Breed) => (
             <option key={breed.id} className={styles.docsOption} value={breed.value}>{breed.description}</option>
           ))}
         </select>
-        <DocsComponentInput text={Strings.CatInformationForm.other.color} onChange={onChangeInput(setColor)} value={color} type={"text"}/>
-        <DocsComponentInput text={gender ? Strings.CatInformationForm.manCat.pedigree : Strings.CatInformationForm.girlCat.pedigree} onChange={onChangeInput(setParentsMan)} value={parentsMan} type={"file"}/>
+        <DocsComponentInput text={Strings.CatInformationForm.other.color} onChange={onChangeInput(setColor)} value={color} type="text" />
+        <DocsComponentInput text={gender ? Strings.CatInformationForm.manCat.pedigree : Strings.CatInformationForm.girlCat.pedigree} onChange={onChangeInput(setParentsMan)} value={parentsMan} type="file" />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export const CatInformationForm = React.memo(React.forwardRef(RenderCatInformationForm))
+export const CatInformationForm = React.memo(React.forwardRef(RenderCatInformationForm));

@@ -1,13 +1,13 @@
-import type { NextPage } from 'next'
-import styles from '../styles/Lastexhibition.module.css'
+import type { NextPage } from 'next';
 import React from 'react';
+import styles from '../styles/Lastexhibition.module.css';
 import {Page} from "../components/Page";
 import ExhibitionCard from "../components/Intro/ExhibitionCard";
 import {FirstBack} from "../components/Back";
 import { List } from '../components/List';
-import eft from '../public/eft.jpg'
-import efttwo from '../public/efttwo.jpg'
-import eftthree from '../public/eftthree.jpg'
+import eft from '../public/eft.jpg';
+import efttwo from '../public/efttwo.jpg';
+import eftthree from '../public/eftthree.jpg';
 
 const lastexhibition: NextPage = () => {
     return (
@@ -42,6 +42,6 @@ const lastexhibition: NextPage = () => {
                 </List>
             </div>
         </Page>
-    )
-}
-export default lastexhibition
+    );
+};
+export default lastexhibition;

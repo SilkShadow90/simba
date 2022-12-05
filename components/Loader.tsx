@@ -1,6 +1,6 @@
-import styles from "../styles/Loader.module.css";
 import React, {PropsWithChildren, useState} from "react";
 import classNames from 'classnames';
+import styles from "../styles/Loader.module.css";
 
 interface Props {
     isVisible: boolean
@@ -14,10 +14,10 @@ const Loader = ({ isVisible = false }: Props) => {
             <div className={styles.loader1}/>
             <div className={styles.loader2}/>
           </div>
-        )
+        );
     }
 
-    return null
-}
+    return null;
+};
 
 export default Loader;

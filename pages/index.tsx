@@ -1,6 +1,7 @@
-import type { NextPage } from 'next'
-import styles from '../styles/Home.module.css'
+import type { NextPage } from 'next';
 import React, {useState} from "react";
+import Image from "next/image";
+import styles from '../styles/Home.module.css';
 import { Strings } from '../resources';
 import {Page} from "../components/Page";
 import {Join} from "../components/Joined";
@@ -10,7 +11,6 @@ import showcat  from '../public/showcat.jpg';
 import kittens  from '../public/kittens.jpg';
 import catteries  from '../public/catteries.jpg';
 import wch  from '../public/wch.jpg';
-import Image from "next/image";
 import Loader from "../components/Loader";
 
 const Home: NextPage = () => {
@@ -46,13 +46,13 @@ const Home: NextPage = () => {
                       <div className={styles.razdelCardleft}>
                           <Image src={showcat} layout="fill" objectFit="cover" />
                               <div className={styles.razdelCardLine}>
-                                  Выставки
+                                  <span>Выставки</span>
                               </div>
                       </div>
                       <div className={styles.razdelCardleft}>
                           <Image src={kittens} layout="fill" objectFit="cover"/>
                           <div className={styles.razdelCardLine}>
-                              Котята
+                              <span>Котята</span>
                           </div>
                       </div>
                   </div>
@@ -60,20 +60,20 @@ const Home: NextPage = () => {
                       <div className={styles.razdelCardRight}>
                           <Image src={catteries} layout="fill" objectFit="cover" />
                           <div className={styles.razdelCardLine}>
-                              Питомника
+                              <span>Питомника</span>
                           </div>
                       </div>
                       <div className={styles.razdelCardRight}>
                           <Image src={wch} layout="fill" objectFit="cover" />
                           <div className={styles.razdelCardLine}>
-                              Чемпионы
+                             <span> Чемпионы</span>
                           </div>
                       </div>
                   </div>
               </div>
               <Intro/>
               <div className={styles.razdelCenter}>
-                  {/*Вынести в стринги (возможно в отдельный компонент)*/}
+                  {/* Вынести в стринги (возможно в отдельный компонент) */}
                   <div className={styles.razdelCenterBlockLeft}>
                       <div className={styles.razdelCenterBlockTextMain}>{Strings.infoCats.leftColumn.title}</div>
                       <div>{Strings.infoCats.leftColumn.info}</div>
@@ -98,7 +98,7 @@ const Home: NextPage = () => {
               <Join/>
           </div>
     </Page>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

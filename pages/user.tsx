@@ -1,4 +1,4 @@
-import type { NextPage } from 'next'
+import type { NextPage } from 'next';
 import React from 'react';
 import { Page } from '../components/Page';
 import styles from '../styles/user.module.css';
@@ -67,7 +67,7 @@ const user: NextPage = () => {
 
             </div>
         </Page>
-    )
-}
+    );
+};
 
 export default user;

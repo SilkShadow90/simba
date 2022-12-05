@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from 'react';
-import styles from '../styles/List.module.css';
 import classNames from 'classnames';
+import styles from '../styles/List.module.css';
 
 type Props = PropsWithChildren & {
   className?: string
@@ -11,5 +11,5 @@ export const List = ({ children, className }: Props) => {
     <div className={classNames(styles.container, className)}>
       {children}
     </div>
-  )
-}
+  );
+};

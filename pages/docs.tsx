@@ -1,9 +1,9 @@
 import type { NextPage } from 'next';
-import styles from '../styles/Docs.module.css';
 import React from 'react';
+import { useSelector } from 'react-redux';
+import styles from '../styles/Docs.module.css';
 import { Page } from '../components/Page';
 import { DocsPanel } from '../components/DocsPanel';
-import { useSelector } from 'react-redux';
 import {DocsComponentOpened} from "../components/DocsComponentOpened";
 import {DocsComponentTitles} from "../components/DocsComponentTitles";
 import {DocsComponentRegister} from "../components/DocsComponentRegister";

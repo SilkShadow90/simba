@@ -1,7 +1,7 @@
-import type { NextPage } from 'next'
-import styles from '../styles/Cats.module.css'
+import type { NextPage } from 'next';
 import React, { useEffect } from 'react';
-import Image from 'next/image'
+import Image from 'next/image';
+import styles from '../styles/Cats.module.css';
 import cat from '../public/cat.jpg';
 import catOne from '../public/catOne.jpeg';
 import cattwo from '../public/cattwo.jpg';
@@ -31,7 +31,7 @@ const Cats: NextPage = () => {
               <Card name={"Платон"} image={catthree} family={"английская"} years={"8 лет"}/>
           </div>
       </Page>
-  )
-}
+  );
+};
 
-export default Cats
+export default Cats;

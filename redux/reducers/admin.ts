@@ -15,6 +15,7 @@ export type AdminAction = {
 };
 
 export function adminReducer(
+  // eslint-disable-next-line default-param-last
   state = initialState.adminState,
   action: AdminAction,
 ) {

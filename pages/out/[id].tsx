@@ -1,28 +1,28 @@
 import React from 'react';
-import type { NextPage } from 'next'
+import type { NextPage } from 'next';
 import Image from "next/image";
+import { useRouter } from 'next/router';
 
 import { Page } from '../../components/Page';
 import styles from '../../styles/out.module.css';
 import stars from '../../public/stars.jpg';
 import ExhibitionCard from "../../components/Intro/ExhibitionCard";
-import { useRouter } from 'next/router';
 
 function jpeg(size: number = 150) {
-    return `https://source.unsplash.com/random/${size}`
+    return `https://source.unsplash.com/random/${size}`;
 }
 
 function getImages(length: number, size: number = 150) {
     return new Array(length).fill(null).map((_, index) => (
         <Image loader={() => jpeg(size)} src={jpeg(size)} key={index} width={`${size}px`} height={`${size}px`} objectFit={'none'}/>
-    ))
+    ));
 }
 
 
 const out: NextPage = () => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const router = useRouter()
-    const { id } = router.query
+    const router = useRouter();
+    const { id } = router.query;
 
     console.log('id', id);
 
@@ -98,7 +98,7 @@ const out: NextPage = () => {
                 </div>
             </div>
         </Page>
-    )
-}
+    );
+};
 
 export default out;

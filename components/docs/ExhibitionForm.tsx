@@ -1,9 +1,8 @@
-import React, { ChangeEvent, Ref, useImperativeHandle, useState } from 'react';
+import React, { Ref, useImperativeHandle, useState } from 'react';
 import styles from '../../styles/docs/ExhibitionForm.module.css';
 import { DocsComponentInput } from '../DocsComponentInput';
 import { Strings } from '../../resources';
-import {onChangeInput} from "../../utils/Func";
-
+import { onChangeInput } from "../../utils/common";
 
 type Props = {
   title: string
@@ -22,13 +21,13 @@ export type ExhibitionFormRef = {
 }
 
 const RenderExhibitionForm = ({ title }: Props, ref: Ref<ExhibitionFormRef>): React.ReactElement<Props> => {
-  const [ExhibitionDate, setExhibitionDate] = useState<string>('')
-  const [address, setAddress] = useState<string>('')
-  const [licenseNumber, setLicenseNumber] = useState<string>('')
-  const [club, setClub] = useState<string>('')
-  const [expert, setExpert] = useState<string>('')
-  const [evaluation, setEvaluation] = useState<string>('')
-  const [evaluationSheet, setEvaluationSheet] = useState<string>('')
+  const [ExhibitionDate, setExhibitionDate] = useState<string>('');
+  const [address, setAddress] = useState<string>('');
+  const [licenseNumber, setLicenseNumber] = useState<string>('');
+  const [club, setClub] = useState<string>('');
+  const [expert, setExpert] = useState<string>('');
+  const [evaluation, setEvaluation] = useState<string>('');
+  const [evaluationSheet, setEvaluationSheet] = useState<string>('');
 
   useImperativeHandle(ref, () => ({
     getForm: () => {
@@ -40,7 +39,7 @@ const RenderExhibitionForm = ({ title }: Props, ref: Ref<ExhibitionFormRef>): Re
         expert,
         evaluation,
         evaluationSheet,
-      }
+      };
     }
   }));
 
@@ -52,46 +51,46 @@ const RenderExhibitionForm = ({ title }: Props, ref: Ref<ExhibitionFormRef>): Re
         text={Strings.RenderExhibitionForm.ExhibitionDate}
         onChange={onChangeInput(setExhibitionDate)}
         value={ExhibitionDate}
-        type={"date"}
+        type="date"
       />
       <DocsComponentInput
         text={Strings.RenderExhibitionForm.Venue}
         onChange={onChangeInput(setAddress)}
         value={address}
-        type={"text"}
+        type="text"
       />
       <DocsComponentInput
         text={Strings.RenderExhibitionForm.LicenseNumber}
         onChange={onChangeInput(setLicenseNumber)}
         value={licenseNumber}
-        type={"text"}
+        type="text"
       />
       <DocsComponentInput
         text={Strings.RenderExhibitionForm.Club}
         onChange={onChangeInput(setClub)}
         value={club}
-        type={"text"}
+        type="text"
       />
       <DocsComponentInput
         text={Strings.RenderExhibitionForm.Expert}
         onChange={onChangeInput(setExpert)}
         value={expert}
-        type={"text"}
+        type="text"
       />
       <DocsComponentInput
         text={Strings.RenderExhibitionForm.Evaluation}
         onChange={onChangeInput(setEvaluation)}
         value={evaluation}
-        type={"text"}
+        type="text"
       />
       <DocsComponentInput
         text={Strings.RenderExhibitionForm.EvaluationSheet}
         onChange={onChangeInput(setEvaluationSheet)}
         value={evaluationSheet}
-        type={"file"}
+        type="file"
       />
     </div>
-  )
-}
+  );
+};
 
-export const ExhibitionForm = React.memo(React.forwardRef(RenderExhibitionForm))
+export const ExhibitionForm = React.memo(React.forwardRef(RenderExhibitionForm));

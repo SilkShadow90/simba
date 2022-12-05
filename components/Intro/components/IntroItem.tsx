@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from 'react';
-import styles from '../../../styles/Intro.module.css';
 import Image from 'next/image';
+import styles from '../../../styles/Intro.module.css';
 
 interface Props {
   title: string;
