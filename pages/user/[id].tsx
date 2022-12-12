@@ -1,28 +1,34 @@
 import type { NextPage } from 'next';
+import {useRouter} from "next/router";
 import React from 'react';
 import { Page } from '../../components/Page';
 import styles from '../../styles/user.module.css';
 import ExhibitionCard from "../../components/Intro/ExhibitionCard";
 import stars from '../../public/stars.jpg';
-import {useRouter} from "next/router";
+import { useFetchService } from '../../utils/useFetchService';
+import { User } from '../api/users';
 
-const id: NextPage = () => {
-
+const Id: NextPage = () => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const router = useRouter();
     const { id } = router.query;
 
-    console.log('id', id);
+    const { data: userData } = useFetchService<User>('user', { id: id as string }) || {};
+
+    if (!userData) {
+        return null;
+    }
 
     return (
         <Page title="Информация пользователя" meta="bla bla" styles={styles.container} >
             <div className={styles.usermain}>
                 <div className={styles.usercard}>
                     <ExhibitionCard
-                        title={'Иван Петрович Затравкин'}
-                        text={'Кот Лезвие'}
+                        title={userData.name}
+                        text={userData.catName}
                         csssrc={styles.user_src}
-                        link={''}
-                        image={stars.src}
+                        link={'#'}
+                        image={userData.image}
                     />
                     <div className={styles.usermain_block}>
                         <div className={styles.usermain_block_header}>
@@ -33,7 +39,7 @@ const id: NextPage = () => {
                                 ФИО:
                             </div>
                             <div className={styles.usermain_block_title_info}>
-                                Иван Петрович Затравкин
+                                {userData.name}
                             </div>
                         </div>
                         <div className={styles.usermain_block_title}>
@@ -41,7 +47,7 @@ const id: NextPage = () => {
                                 Порода кота
                             </div>
                             <div className={styles.usermain_block_title_info}>
-                                Бенгальский
+                                {userData.breed}
                             </div>
                         </div>
                         <div className={styles.usermain_block_title}>
@@ -49,7 +55,7 @@ const id: NextPage = () => {
                                 Телефон
                             </div>
                             <div className={styles.usermain_block_title_info}>
-                                +7 937 275 64 18
+                                {userData.phone}
                             </div>
                         </div>
                         <div className={styles.usermain_block_title}>
@@ -57,18 +63,25 @@ const id: NextPage = () => {
                                 Email:
                             </div>
                             <div className={styles.usermain_block_title_info}>
-                                vyazka@gmail.com
+                                {userData.email}
                             </div>
                         </div>
                         <div className={styles.usermain_block_header}>
                             Награды
                         </div>
-                        <div className={styles.usermain_block_title}>
-                            Призер Олимпиады
-                        </div>
-                        <div className={styles.usermain_block_title}>
-                            Двухкратный чемпион области
-                        </div>
+                        {
+                            userData.prizes?.length
+                            ? userData.prizes.map((value) => (
+                                <div key={value} className={styles.usermain_block_title}>
+                                    {value}
+                                </div>
+                            ))
+                            : (
+                              <div className={styles.usermain_block_title}>
+                                  Нет наград
+                              </div>
+                            )
+                        }
                     </div>
                 </div>
 
@@ -77,4 +90,4 @@ const id: NextPage = () => {
     );
 };
 
-export default id;
+export default Id;

@@ -22,13 +22,13 @@ export const Page = ({ children, title, meta, styles, withoutHeaderAndFooter = f
     }, []);
 
     return (
+      <>
+        <Head>
+          <title>{title}</title>
+          <meta name="description" content={meta} />
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
         <div className={styles}>
-            <Head>
-                <title>{title}</title>
-                <meta name="description" content={meta} />
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
-
             <main>
               {!withoutHeaderAndFooter && <Header/>}
                 <div className='flex'>
@@ -41,5 +41,6 @@ export const Page = ({ children, title, meta, styles, withoutHeaderAndFooter = f
               {!withoutHeaderAndFooter && <Footer/>}
             </main>
         </div>
+      </>
     );
 };
