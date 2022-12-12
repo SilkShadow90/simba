@@ -15,14 +15,14 @@ const nearexhibition: NextPage = () => {
             </div>
             <div className={styles.nearexhibition_Main}>
                 <ExhibitionCard
-                    link={"/come"}
+                    link={"/come/1"}
                     title={"Выставка кошек"}
                     text={'Выставка в г.Ульяновске 10.03.2022 в 15:30'}
                     csssrc={styles.nearexhibition_Main__src}
                     image={lastEx.src}
                 />
                 <ExhibitionCard
-                    link={"/come"}
+                    link={"/come/2"}
                     title={"Выставка кошек"}
                     text={'Выставка в г.Ульяновске 14.05.2022 в 16:30'}
                     csssrc={styles.nearexhibition_Main__src}

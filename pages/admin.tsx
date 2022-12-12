@@ -45,7 +45,7 @@ const Admin: NextPage = () => {
   };
 
   return (
-      <Page title="Cats" meta="bla bla" styles={styles.container} withoutHeaderAndFooter>
+      <Page title="Id" meta="bla bla" styles={styles.container} withoutHeaderAndFooter>
           <div className={styles.adminCards}>
               <div className={styles.adminCardsLeft}>
                 <AdminPanel text={"Главная"} type='openedMain' />

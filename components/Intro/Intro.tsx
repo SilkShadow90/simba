@@ -11,7 +11,7 @@ import { IntroItem } from './components/IntroItem';
 export const Intro = () => {
   return (
     <div className={styles.razdelDown}>
-      <div className={styles.razdelDownMain}>Чем занимается клуб Симба</div>
+      <div className={styles.razdelDownMain}>{Strings.intro.title}</div>
       <div className={styles.razdelDownMainIntro}>
         <IntroItem src={show} title={Strings.intro.one.title} text={Strings.intro.one.text}/>
         <IntroItem src={kits} title={Strings.intro.two.title} text={Strings.intro.two.text}/>

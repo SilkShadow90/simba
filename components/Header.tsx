@@ -6,6 +6,7 @@ import styles from '../styles/Header.module.css';
 
 
 export const Header= () => {
+
     return (
         <div className={styles.header}>
             <div className={styles.headerLeft}>
@@ -16,13 +17,13 @@ export const Header= () => {
                     <Link href="/docs">{Strings.footer.leftColumn.docs}</Link>
                 </div>
                 <div className={styles.headerText}>
-                    <Link href="/cats">{Strings.footer.leftColumn.cats}</Link>
+                    <Link href="/cats/1">{Strings.footer.leftColumn.cats}</Link>
                 </div>
                 <div className={styles.headerText}>
                     <Link href="/exhibition">{Strings.footer.leftColumn.Exhibitions}</Link>
                 </div>
                 <div className={styles.headerText}>
-                    {Strings.footer.leftColumn.Nurseries}
+                    <Link href="/nurseries">{Strings.footer.leftColumn.Nurseries}</Link>
                 </div>
                 <div className={styles.headerText}>
                     <Link href="/contacts">{Strings.footer.leftColumn.Contacts}</Link>
@@ -31,7 +32,6 @@ export const Header= () => {
                     <Link href="/partners">{Strings.footer.leftColumn.partners}</Link>
                 </div>
             </div>
-            {/* <Image className={styles.headerLogo} src={simba}/> */}
         </div>
     );
 };

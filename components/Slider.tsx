@@ -4,12 +4,12 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Image from "next/image";
-import catstar from "../public/catstar.jpg";
 import catzz from "../public/catzz.jpg";
 import fish from "../public/fish.jpg";
 import cosmo from "../public/cosmo.jpg";
 import forest from "../public/forest.jpg";
 import grass from "../public/list.jpg";
+import React from "react";
 
 
 export default function SimpleSlider() {
@@ -25,9 +25,6 @@ export default function SimpleSlider() {
     return (
         <div className={styles.type}>
             <Slider {...settings}>
-                {/* <div> */}
-                {/*    <Image src={catstar} objectFit={"cover"} height={'400px'} /> */}
-                {/* </div> */}
                 <div className={styles.slide}>
                     <Image src={catzz} objectFit="cover" layout="fill" />
                 </div>

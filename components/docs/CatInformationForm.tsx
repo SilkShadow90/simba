@@ -70,7 +70,7 @@ const RenderCatInformationForm = ({ gender, breeds }: Props, ref: Ref<CatInforma
         <DocsComponentInput text={gender ? Strings.CatInformationForm.manCat.titules : Strings.CatInformationForm.girlCat.titules} onChange={onChangeInput(setTitulesMan)} value={titulesMan} type={"text"}/>
         <DocsComponentInput text={gender ? Strings.CatInformationForm.manCat.login : Strings.CatInformationForm.girlCat.login} onChange={onChangeInput(setLogin)} value={login} type={"text"}/>
         <div className={styles.docsPreSelect}>{Strings.CatInformationForm.other.breed}</div>
-        <select className={styles.Select} onChange={onChangeInput(setCurrentBreed)} value={currentBreed} name="Выберите титул" id="">
+        <select className={styles.Select} onChange={onChangeInput(setCurrentBreed)} value={currentBreed} name={Strings.CatInformationForm.other.selectTitle} id="">
           {breeds?.map((breed: Breed) => (
             <option key={breed.id} className={styles.docsOption} value={breed.value}>{breed.description}</option>
           ))}

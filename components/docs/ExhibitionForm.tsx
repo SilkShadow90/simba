@@ -2,7 +2,7 @@ import React, { Ref, useImperativeHandle, useState } from 'react';
 import styles from '../../styles/docs/ExhibitionForm.module.css';
 import { DocsComponentInput } from '../DocsComponentInput';
 import { Strings } from '../../resources';
-import { onChangeInput } from "../../utils/common";
+import { onChangeInput } from "../../utils";
 
 type Props = {
   title: string

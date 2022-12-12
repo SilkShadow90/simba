@@ -16,7 +16,7 @@ export const DocsComponentOpened:any = () => {
             {Strings.docsStart.li.map(text => (
                 <li key={text} className={styles.docsLi}>{text}</li>))}
             </ul>
-            <button className={styles.docsButton}>Скачать заявление на вступление в клуб</button>
+            <button className={styles.docsButton}>{Strings.docsStart.titleDownload}</button>
         </div>
     );
 };

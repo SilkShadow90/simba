@@ -1,11 +1,18 @@
 import type { NextPage } from 'next';
 import React from 'react';
-import { Page } from '../components/Page';
-import styles from '../styles/user.module.css';
-import ExhibitionCard from "../components/Intro/ExhibitionCard";
-import stars from '../public/stars.jpg';
+import { Page } from '../../components/Page';
+import styles from '../../styles/user.module.css';
+import ExhibitionCard from "../../components/Intro/ExhibitionCard";
+import stars from '../../public/stars.jpg';
+import {useRouter} from "next/router";
 
-const user: NextPage = () => {
+const id: NextPage = () => {
+
+    const router = useRouter();
+    const { id } = router.query;
+
+    console.log('id', id);
+
     return (
         <Page title="Информация пользователя" meta="bla bla" styles={styles.container} >
             <div className={styles.usermain}>
@@ -70,4 +77,4 @@ const user: NextPage = () => {
     );
 };
 
-export default user;
+export default id;

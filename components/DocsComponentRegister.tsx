@@ -25,7 +25,7 @@ export const DocsComponentRegister:any = () => {
             </div>
             <div className={styles.docsRightEnd}>{Strings.register.registerHeader.postText}
             </div>
-            <button className={styles.docsButton}>Скачать заявление на регистрацию питомника</button>
+            <button className={styles.docsButton}>{Strings.register.registerHeader.button}</button>
 
             <div className={styles.docsRightTitul}>{Strings.register.registerMain.title}</div>
             <div className={styles.docsRightMain}>{Strings.register.registerMain.one.title}</div>
@@ -51,7 +51,7 @@ export const DocsComponentRegister:any = () => {
             <div className={styles.docsRightMain}>{Strings.register.registerMain.eight.title}</div>
             <div className={styles.docsRightEnd}>{Strings.register.registerMain.eight.text}
             </div>
-            <div className={styles.docsRightEnd}>Префикс и суффикс считаются длиной всего имени кошки.</div>
+            <div className={styles.docsRightEnd}>{Strings.register.registerMain.eight.postText}</div>
         </div>
     );
 };

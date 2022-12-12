@@ -1,34 +1,3 @@
-.container {
-  position: relative;
-}
-
-.main {
-  min-height: 100vh;
-  padding: 4rem 0;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.footer {
-  display: flex;
-  flex: 1;
-  padding: 2rem 0;
-  border-top: 1px solid #eaeaea;
-  justify-content: center;
-  align-items: center;
-}
-
-.footer a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
-}
-
-
 
 .cardsCats {
   display: grid;
@@ -92,3 +61,16 @@
   margin: 3px 30px 20px 30px;
 }
 
+.cats_Main__src {
+  margin: 10px 10px 20px 10px;
+  min-height: 400px;
+  background-size: auto;
+}
+
+.cats_Main {
+  display: grid;
+  margin: 0 auto;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 500px));
+  padding: 50px;
+  gap: 15px;
+}

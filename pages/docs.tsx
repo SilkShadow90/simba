@@ -1,6 +1,7 @@
 import type { NextPage } from 'next';
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { Strings } from '../resources';
 import styles from '../styles/Docs.module.css';
 import { Page } from '../components/Page';
 import { DocsPanel } from '../components/DocsPanel';
@@ -11,7 +12,99 @@ import {DocsComponentVyazka} from "../components/DocsComponentVyazka";
 import {DocsComponentPosition} from "../components/DocsComponentPosition";
 
 
+
 const Docs: NextPage = () => {
+
+
+
+  const PascalCase = true;
+  const snake_case = true;
+  // formatText('camelCase', 'text,text. VaLid  Date') // textTextValidDate
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  const formatText = (typeText:any, ...str:[string,string?,string?,string?]) => {
+    if (typeText === "camelCase") {
+
+      return str.join().
+      replaceAll(",","_").
+      replaceAll(".","_").
+      replaceAll("  ","_").
+      replaceAll(" ","").
+      split("_").
+      map(i => i[0].toUpperCase() + i.slice(1).toLowerCase()).join("").split('_')
+
+
+      // replaceAll(" ","_")
+      // split("_").
+      // map(i => i[0].toLowerCase()+ i.slice(1).toLowerCase()).join()
+    }
+  }
+    console.log(formatText("camelCase",'text,text. VaLid  Date'))
+
+
+
+  // formatText('camelCase', 'text,text. VaLid  Date') // textTextValidDate
+  // formatText('snake_case', 'VaLid  Date',  'TimE', 'third', 'four five') // valid_date_time_third_four_five
+
+
+  // filter(i => i!="").
+
+
+        //.map(i=>i[0].toUpperCase())
+        // .replaceAll(" ","")
+  // formatText('PascalCase', 'VaLid  Date',  'TimE') // ValidDateTime
+
+  //   паскаль готов
+  // if (typeText === "PascalCase") {
+  //   return str.join().
+  //   replaceAll(","," ").
+  //   replaceAll("."," ").
+  //   split(" ").filter(i => i!="").
+  //   map(i => i[0].toUpperCase()+ i.slice(1).toLowerCase()).
+  //   join("")
+  // }
+  // }
+  // снейк готов
+  // if (typeText === "snake_case") {
+  //   return str.join().
+  //   replaceAll(",","_").
+  //   replaceAll(".","_").
+  //   replaceAll("  ","_").
+  //   replaceAll(" ","_").
+  //   split("_").
+  //   map(i => i[0].toLowerCase()+ i.slice(1).toLowerCase()).join().
+  //   replaceAll(",","_")
+  // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   const docsState = useSelector((state: any) => state.docsState);
 
   const renderSecondElement = () => {
@@ -45,11 +138,11 @@ const Docs: NextPage = () => {
     <Page title="Docs" meta="bla bla" styles={styles.container}>
       <div className={styles.docsCards}>
         <div className={styles.docsCardsLeft}>
-          <DocsPanel text={'Вступление в клуб'} type="openedvstuplenie"/>
-          <DocsPanel text={'Заявление на титул'} type="openedtitul"/>
-          <DocsPanel text={'Регистрация питомника'} type="openedregister"/>
-          <DocsPanel text={'Заявление на вязку'} type="openedvyazka"/>
-          <DocsPanel text={'Племенное положение'} type="openedposition"/>
+          <DocsPanel text={Strings.DocsPanel.openedvstuplenie} type="openedvstuplenie"/>
+          <DocsPanel text={Strings.DocsPanel.openedtitul} type="openedtitul"/>
+          <DocsPanel text={Strings.DocsPanel.openedregister} type="openedregister"/>
+          <DocsPanel text={Strings.DocsPanel.openedvyazka} type="openedvyazka"/>
+          <DocsPanel text={Strings.DocsPanel.openedposition} type="openedposition"/>
         </div>
         <div className={styles.docsCardsRight}>
           {renderSecondElement()}

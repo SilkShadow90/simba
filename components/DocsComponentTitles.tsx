@@ -5,6 +5,7 @@ import styles from '../styles/Docs.module.css';
 import { Strings } from '../resources';
 import {useFetchService} from "../utils/useFetchService";
 import {DocsComponentInput} from "./DocsComponentInput";
+import { onChangeInput } from "../utils";
 import { ExhibitionForm, ExhibitionFormRef } from './docs/ExhibitionForm';
 
 type Breed = {
@@ -197,54 +198,13 @@ export const DocsComponentTitles:any = () => {
 
     console.log('filteredTitles', filteredTitles);
 
-    const onChangeBreed = (e: ChangeEvent<HTMLSelectElement>) => {
-        setBreed(e.target.value);
-    };
-
-    const onChangeTitles = (e: ChangeEvent<HTMLSelectElement>) => {
-        setCurrentTitle(e.target.value);
-    };
-
-    const onChangeBirthday = (e: ChangeEvent<HTMLInputElement >) => {
-        setBirthday(e.target.value);
-    };
-
-    const onChangeGender = (e: ChangeEvent<HTMLSelectElement>) => {
-        setGender(e.target.value);
-    };
-
-    const onChangeNewTitules = (e: ChangeEvent<HTMLSelectElement>) => {
-        setNewCurrentTitle(e.target.value);
-    };
-
-    const onChangeLogin = (e: ChangeEvent<HTMLInputElement>) => {
-        setName(e.target.value);
-    };
-    const onChangeColor = (e: ChangeEvent<HTMLInputElement>) => {
-        setColor(e.target.value);
-    };
-    const onChangeNumberDocs = (e: ChangeEvent<HTMLInputElement>) => {
-        setNumberDocs(e.target.value);
-    };
-    const onChangeName = (e: ChangeEvent<HTMLInputElement>) => {
-        setOwner(e.target.value);
-    };
-    const onChangePhone = (e: ChangeEvent<HTMLInputElement>) => {
-        setPhone(e.target.value);
-    };
-    const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
-        setEmail(e.target.value);
-    };
-
     return (
         <div className={styles.docsRightVstuplenie}>
             <div className={styles.docsRightTitul}>{Strings.titulStart.titulHeader.title}</div>
             <div className={styles.docsRightMain}>{Strings.titulStart.titulHeader.postTitle}</div>
-            <div className={styles.docsRightEnd}>{Strings.titulStart.titulHeader.info}
-            </div>
-            <div className={styles.docsRightEnd}>{Strings.titulStart.titulHeader.postInfo}
-            </div>
-            <button className={styles.docsButton}>Скачать заявление на титул</button>
+            <div className={styles.docsRightEnd}>{Strings.titulStart.titulHeader.info}</div>
+            <div className={styles.docsRightEnd}>{Strings.titulStart.titulHeader.postInfo}</div>
+            <button className={styles.docsButton}>{Strings.titulStart.titulHeader.button}</button>
 
             <div className={styles.docsRightTitul}>{Strings.titulStart.titulMain.title}</div>
             <div className={styles.docsRightEnd}>{Strings.titulStart.titulMain.postTitle}</div>
@@ -253,65 +213,64 @@ export const DocsComponentTitles:any = () => {
             <div className={styles.docsRightEnd}>{Strings.titulStart.titulMain.postInfo}
             </div>
 
-            <DocsComponentInput text={"Кличка животного(*)"} onChange={onChangeLogin} value={name} type={"text"}/>
-            {/* <DocsComponentInput text={} type={} onChange={} value={}/> */}
-            <div className={styles.docsPreSelect}>Порода кошки(*)</div>
-            <select className={styles.docsSelect} onChange={onChangeBreed} value={breed} name="Выберите породу" id="">
-                <option className={styles.docsOption} value="Выберите породу">Выберите породу</option>
+            <DocsComponentInput text={Strings.CatInformationForm.other.nameAminal} onChange={onChangeInput(setName)} value={name} type={"text"}/>
+            <div className={styles.docsPreSelect}>{Strings.CatInformationForm.other.breed}</div>
+            <select className={styles.docsSelect} onChange={onChangeInput(setBreed)} value={breed} name={Strings.CatInformationForm.other.selectBreed} id="">
+                <option className={styles.docsOption} value={Strings.CatInformationForm.other.selectBreed}>{Strings.CatInformationForm.other.selectBreed}</option>
                 {breeds?.map((breed: Breed) => (
                     <option key={breed.id} className={styles.docsOption} value={breed.value}>{breed.description}</option>
                 ))}
             </select>
 
-            <div className={styles.docsPreSelect}>Пол(*)</div>
-            <select className={styles.docsSelect} onChange={onChangeGender} value={gender} name="Выберите пол" id="">
-                <option className={styles.docsOption}  value="Выберите пол">Выберите пол</option>
-                <option className={styles.docsOption} value="Кот" > Кот</option>
-                <option className={styles.docsOption} value="Кошка"> Кошка</option>
-                <option className={styles.docsOption} value="Кастрированный кот"> Кастрированный кот</option>
-                <option className={styles.docsOption} value="Стерилизованная кошка"> Стерилизованная кошка</option>
+            <div className={styles.docsPreSelect}>{Strings.CatInformationForm.other.gender}</div>
+            <select className={styles.docsSelect} onChange={onChangeInput(setGender)} value={gender} name={Strings.CatInformationForm.other.selectGender} id="">
+                <option className={styles.docsOption} value={Strings.CatInformationForm.other.selectGender}>{Strings.CatInformationForm.other.selectGender}</option>
+                <option className={styles.docsOption} value={Strings.titulStart.titulMain.other.catMan} > {Strings.titulStart.titulMain.other.catMan}</option>
+                <option className={styles.docsOption} value={Strings.titulStart.titulMain.other.catGirl}> {Strings.titulStart.titulMain.other.catGirl}</option>
+                <option className={styles.docsOption} value={Strings.titulStart.titulMain.other.catManHalf}>  {Strings.titulStart.titulMain.other.catManHalf}</option>
+                <option className={styles.docsOption} value={Strings.titulStart.titulMain.other.catGirlHalf}> {Strings.titulStart.titulMain.other.catGirlHalf}</option>
             </select>
 
-            <div className={styles.docsPreSelect}>Дата рождения(*)</div>
-            <input className={styles.docsSelect} onChange={onChangeBirthday} value={birthday} type="date"/>
+            <div className={styles.docsPreSelect}>{Strings.titulStart.titulMain.other.birthsday}</div>
+            <input className={styles.docsSelect} onChange={onChangeInput(setBirthday)} value={birthday} type="date"/>
 
-            <div className={styles.docsPreSelect}>Последний полученный титул</div>
-            <select className={styles.docsSelect} onChange={onChangeTitles} value={currentTitle} name="Выберите титул" id="">
-                <option className={styles.docsOption}  value="Выберите титул">Выберите титул</option>
-                <option className={styles.docsOption}  value="none">Без титула</option>
+            <div className={styles.docsPreSelect}>{Strings.titulStart.titulMain.other.lastTitle}</div>
+            <select className={styles.docsSelect} onChange={onChangeInput(setCurrentTitle)} value={currentTitle} name={Strings.CatInformationForm.other.selectTitle} id="">
+                <option className={styles.docsOption}  value={Strings.CatInformationForm.other.selectTitle}>{Strings.CatInformationForm.other.selectTitle}</option>
+                <option className={styles.docsOption}  value="none">{Strings.CatInformationForm.other.noneTitle}</option>
                 {filteredTitles?.map((titul: Titul) => (
                     <option key={titul.id} className={styles.docsOption} value={titul.value}>{titul.description}</option>
                 ))}
             </select>
-            <div className={styles.docsPreSelect}>Запрашиваемый титул(*)</div>
-            <select className={styles.docsSelect} onChange={onChangeNewTitules} value={newCurrentTitle} name="Выберите титул" id="">
-                <option className={styles.docsOption} value="Выберите титул">Выберите титул</option>
+            <div className={styles.docsPreSelect}>{Strings.CatInformationForm.other.nextTitle}</div>
+            <select className={styles.docsSelect} onChange={onChangeInput(setNewCurrentTitle)} value={newCurrentTitle} name={Strings.CatInformationForm.other.selectTitle} id="">
+                <option className={styles.docsOption} value={Strings.CatInformationForm.other.selectTitle}>{Strings.CatInformationForm.other.selectTitle}</option>
                 {secondFilteredTitles?.map((titul: Titul) => (
                     <option key={titul.id} className={styles.docsOption} value={titul.value}>{titul.description}</option>
                 ))}
             </select>
 
-            <DocsComponentInput text={"Окрас"} onChange={onChangeColor} value={color} type={"text"}/>
+            <DocsComponentInput text={Strings.CatInformationForm.other.colorStock} onChange={onChangeInput(setColor)} value={color} type={"text"}/>
 
-            <DocsComponentInput text={"Номер родословной(*)"} onChange={onChangeNumberDocs} value={numberDocs} type={"text"}/>
+            <DocsComponentInput text={Strings.CatInformationForm.other.numberParents} onChange={onChangeInput(setNumberDocs)} value={numberDocs} type={"text"}/>
 
-            <div className={styles.docsRightTitul}>Информация о владельце</div>
+            <div className={styles.docsRightTitul}>{Strings.CatInformationForm.other.infoParents}</div>
             <div className={styles.docsRightInputs}>
                 <div className={styles.docsRightInputsColumns}>
-                    <DocsComponentInput text={"Владелец(*)"} onChange={onChangeName} value={owner} type={"text"}/>
+                    <DocsComponentInput text={Strings.CatInformationForm.other.owner} onChange={onChangeInput(setOwner)} value={owner} type={"text"}/>
                 </div>
                 <div className={styles.docsRightInputsColumns}>
-                    <DocsComponentInput text={"Телефон(*)"} onChange={onChangePhone} value={phone} type={"text"}/>
+                    <DocsComponentInput text={Strings.CatInformationForm.other.phone} onChange={onChangeInput(setPhone)} value={phone} type={"text"}/>
                 </div>
                 <div className={styles.docsRightInputsColumns}>
-                    <DocsComponentInput text={"E-mail(*)"} onChange={onChangeEmail} value={email} type={"text"}/>
+                    <DocsComponentInput text={Strings.CatInformationForm.other.email} onChange={onChangeInput(setEmail)} value={email} type={"text"}/>
                 </div>
             </div>
 
             <div className={styles.docsRightTitul}>
-                <span style={{ paddingRight: '16px' }}>Оценки получены на следующих выставках</span>
+                <span style={{ paddingRight: '16px' }}>{Strings.titulStart.titulEnd.title}</span>
                 {!!exhibitionCount && (
-                    <button className={styles.docsButton} onClick={deleteExhibition}>Удалить последний</button>
+                    <button className={styles.docsButton} onClick={deleteExhibition}>{Strings.titulStart.titulEnd.postTitle}</button>
                 )}
             </div>
             <div className={styles.docsRightInputs}>
@@ -327,16 +286,15 @@ export const DocsComponentTitles:any = () => {
                   />
                 ))}
                 {exhibitionCount <= 2 && (
-                    <button className={styles.docsButton} onClick={addExhibition}>Добавить</button>
+                    <button className={styles.docsButton} onClick={addExhibition}>{Strings.titulStart.titulEnd.text}</button>
                 )}
             </div>
             <div style={{ display: 'flex', marginBottom: '20px' }}>
                 <input type="checkbox"/>
-                <div>Даю согласие на обработку персональных данных
-                    (публикация ФИО и контактной информации в родословных, сертификатах, в каталогах выставок и т.д.)
+                <div>{Strings.titulStart.titulEnd.postText}
                 </div>
             </div>
-            <button className={styles.docsButton} onClick={onSubmit}>Отправить</button>
+            <button className={styles.docsButton} onClick={onSubmit}>{Strings.titulStart.titulEnd.button}</button>
         </div>
     );
 };

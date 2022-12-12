@@ -50,7 +50,7 @@ export const DocsComponentVyazka:any = () => {
             <div className={styles.docsRightEnd}> {Strings.vyazka.vyazkaHeader.postInfo}</div>
             <div className={styles.docsRightEnd}> {Strings.vyazka.vyazkaHeader.text}
             </div>
-            <button className={styles.docsButton}>Скачать направление на вязку</button>
+            <button className={styles.docsButton}>{Strings.vyazka.vyazkaHeader.button}</button>
             <div className={styles.docsRightTitul}>{Strings.vyazka.vyazkaMain.title}</div>
             <div className={styles.docsRightMain}>{Strings.vyazka.vyazkaMain.postTitle}</div>
             <div className={styles.docsRightEnd}>{Strings.vyazka.vyazkaMain.info}</div>
@@ -62,20 +62,20 @@ export const DocsComponentVyazka:any = () => {
             <div className={styles.docsVstuplenieColumnNext}>
                 <DocsComponentInput
                   useContainer
-                  text={"Дата вязки"}
+                  text={Strings.vyazka.vyazkaMain.dataVyazka}
                   onChange={onChangeInput(setdateVyazka)}
                   value={dateVyazka}
                   type="date"
                 />
                 <DocsComponentInput
                   useContainer
-                  text={"Дата рождения котят(*)"}
+                  text={Strings.vyazka.vyazkaMain.dateBirthsdayJunior}
                   onChange={onChangeInput(setBirthsday)}
                   value={birthsday}
                   type="date"
                 />
                 <div>
-                    <div className={styles.docsPreSelect}>Количество котят в помете(*)</div>
+                    <div className={styles.docsPreSelect}>{Strings.vyazka.vyazkaMain.anyJunior}</div>
                     <select className={styles.docsSelect} name="1" id="">
                         {new Array(10).fill(null).map((_, index) => (
                           <option key={index} value={index + 1}>{index + 1}</option>
@@ -83,55 +83,54 @@ export const DocsComponentVyazka:any = () => {
                     </select>
                 </div>
             </div>
-            <div className={styles.docsRightTitul}>Котята</div>
-            <div className={styles.docsRightMain}>Заполните информацию о каждом котенке</div>
+            <div className={styles.docsRightTitul}>{Strings.vyazka.vyazkaMain.juniorCats}</div>
+            <div className={styles.docsRightMain}>{Strings.vyazka.vyazkaMain.infoJuniorCats}</div>
             <div className={styles.docsVstuplenieColumnPreNext}>
                 <div>
-                    <div className={styles.docsPreSelect}>Пол(*)</div>
+                    <div className={styles.docsPreSelect}>{Strings.CatInformationForm.other.gender}</div>
                     <select
                       className={styles.docsSelect}
                       onChange={onChangeInput(setGender)}
                       value={gender}
-                      name="Выберите пол котенка"
+                      name={Strings.vyazka.vyazkaMain.selectGenderJunior}
                     >
-                        <option value="Выберите пол котенка">Выберите пол котенка</option>
-                        <option value="1">Кот</option>
-                        <option value="0">Кошка</option>
+                        <option value={Strings.vyazka.vyazkaMain.selectGenderJunior}>{Strings.vyazka.vyazkaMain.selectGenderJunior}</option>
+                        <option value="1">{Strings.titulStart.titulMain.other.catMan}</option>
+                        <option value="0">{Strings.titulStart.titulMain.other.catGirl}</option>
                     </select>
                 </div>
                 <div>
-                    <div className={styles.docsPreSelect}>Порода(*)</div>
+                    <div className={styles.docsPreSelect}>{Strings.CatInformationForm.other.miniBreed}</div>
                     <select
                       className={styles.docsSelect}
                       onChange={onChangeInput(setJuniorBreed)}
                       value={juniorBreed}
-                      name="Выберите породу"
+                      name={Strings.CatInformationForm.other.selectBreed}
                     >
                         <option
                           className={styles.docsOption}
-                          value="Выберите титул"
-                        >Выберите породу</option>
+                          value={Strings.CatInformationForm.other.selectTitle}
+                        >{Strings.CatInformationForm.other.selectTitle}</option>
                         {breeds?.map((breed: Breed) => (
                             <option key={breed.id} className={styles.docsOption} value={breed.value}>{breed.description}</option>
                         ))}
                     </select>
                 </div>
-                <DocsComponentInput useContainer text={"Окрас(*)"} onChange={onChangeInput(setColorLittleCat)} value={colorLittleCat} type={"text"}/>
-                <DocsComponentInput useContainer text={"Кличка(*)"} onChange={onChangeInput(setLoginLittleCat)} value={loginLittleCat} type={"text"}/>
+                <DocsComponentInput useContainer text={Strings.CatInformationForm.other.color} onChange={onChangeInput(setColorLittleCat)} value={colorLittleCat} type={"text"}/>
+                <DocsComponentInput useContainer text={Strings.CatInformationForm.other.miniNameAnimal} onChange={onChangeInput(setLoginLittleCat)} value={loginLittleCat} type={"text"}/>
             </div>
             <div style={{ display: 'flex', marginBottom: '20px' }}>
                 <input type="checkbox"/>
-                <div>Даю согласие на обработку персональных данных
-                    (публикация ФИО и контактной информации в родословных, сертификатах, в каталогах выставок и т.д.)
+                <div>{Strings.vyazka.vyazkaMain.button.title}
                 </div>
             </div>
             <div style={{ display: 'flex', marginBottom: '20px' }}>
                 <input type="checkbox"/>
                 <div>
-                    С Правилами племенной работы ознакомлен.
+                   {Strings.vyazka.vyazkaMain.button.text}
                 </div>
             </div>
-            <button className={styles.docsButton} onClick={onSubmit}>Отправить</button>
+            <button className={styles.docsButton} onClick={onSubmit}>{Strings.vyazka.vyazkaMain.button.button}</button>
         </div>
     );
 };
