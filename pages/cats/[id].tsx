@@ -1,59 +1,35 @@
 import type { NextPage } from 'next';
-import {useRouter} from "next/router";
 import React from 'react';
-import styles from '../../styles/Cats.module.css';
-import cat from '../../public/cat.jpg';
-import catOne from '../../public/catOne.jpeg';
-import cattwo from '../../public/cattwo.jpg';
-import catthree from '../../public/catthree.jpg';
+import Image from "next/image";
 import { Page } from '../../components/Page';
-import { List } from '../../components/List';
-import ExhibitionCard from "../../components/Intro/ExhibitionCard";
+import styles from '../../styles/Partners.module.css';
+import cattwo from "../../public/cattwo.jpg";
 
-const Id: NextPage = () => {
-    const router = useRouter();
-    const { id } = router.query;
-    console.log('id', id);
-  return (
-      <Page title="Id" meta="bla bla" styles={styles.container} >
-          <List className={styles.cats_Main}>
-              <ExhibitionCard
-                  link={"#"}
-                  title={"Прометей"}
-                  text={'Веслоухая британская'}
-                  csssrc={styles.cats_Main__src}
-                  image={cat.src}
-              />
-              <ExhibitionCard
-                  link={"#"}
-                  title={"Шпилька"}
-                  text={'дворовый бродяга'}
-                  csssrc={styles.cats_Main__src}
-                  image={catOne.src}
-              />
-              <ExhibitionCard
-                  link={"#"}
-                  title={"Пушок"}
-                  text={'кокер спаниель'}
-                  csssrc={styles.cats_Main__src}
-                  image={cattwo.src}
-              />
-              <ExhibitionCard
-                  link={"#"}
-                  title={"Платон"}
-                  text={'английская'}
-                  csssrc={styles.cats_Main__src}
-                  image={catthree.src}
-              />
-          </List>
-      </Page>
-  );
+
+
+const id: NextPage = () => {
+    return (
+        <Page title="Профиль кошки" meta="bla bla" styles={styles.container} >
+            <div className={styles.partners_Main}>
+                <h3>Имя питомца</h3>
+                <div className={styles.partners_logo}>
+                    <div className={styles.partners_logos}>
+                        <Image className={styles.partners_logotype} src={cattwo} objectFit={"cover"}/>
+                    </div>
+                    <div className={styles.partners_info_Main}>
+                        <div className={styles.partners_info}>контакты</div>
+                        <div className={styles.partners_info}>контакты</div>
+                        <div className={styles.partners_info}>контакты</div>
+                        <div className={styles.partners_info}>http://goldenpride.ulsimba.ru/</div>
+                        <div className={styles.partners_info}>контакты
+                        </div>
+                        <div> контакты
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </Page>
+    );
 };
 
-export default Id;
-// /*<div className={styles.cardsCats}>*/
-// /*    <Card name={"Прометей"} image={cat} family={"Веслоухая британская"} years={"5 лет"}/>*/
-// /*    <Card name={"Шпилька"} image={catOne} family={"дворовый бродяга"} years={"6 лет"}/>*/
-// /*    <Card name={"Пушок"} image={cattwo} family={"кокер спаниель"} years={"7 лет"}/>*/
-// /*    <Card name={"Платон"} image={catthree} family={"английская"} years={"8 лет"}/>*/
-// /*</div>*/
+export default id;

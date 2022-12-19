@@ -1,13 +1,13 @@
 import type { NextPage } from 'next';
 import React from 'react';
-import styles from '../styles/Lastexhibition.module.css';
-import {Page} from "../components/Page";
-import ExhibitionCard from "../components/Intro/ExhibitionCard";
-import {FirstBack} from "../components/Back";
-import { List } from '../components/List';
-import eft from '../public/eft.jpg';
-import efttwo from '../public/efttwo.jpg';
-import eftthree from '../public/eftthree.jpg';
+import styles from '../../styles/Lastexhibition.module.css';
+import {Page} from "../../components/Page";
+import ExhibitionCard from "../../components/Intro/ExhibitionCard";
+import {FirstBack} from "../../components/Back";
+import { List } from '../../components/List';
+import eft from '../../public/eft.jpg';
+import efttwo from '../../public/efttwo.jpg';
+import eftthree from '../../public/eftthree.jpg';
 
 const lastexhibition: NextPage = () => {
     return (
@@ -22,14 +22,14 @@ const lastexhibition: NextPage = () => {
                         title={'Выставка кошек 10-11 октября 2020'}
                         text={'10-11 октября 2020 г, прошла Международная выставка кошек РФОО Коргоруши, Москва'}
                         csssrc={styles.lasthibition_srcone}
-                        link={'/out/1'}
+                        link={'lastexhibition/out/1'}
                         image={eft.src}
                     />
                     <ExhibitionCard
                         title={'Выставка кошек 25-26 января 2020 г.'}
                         text={'25-26 января 2020г, прошла Международная выставка кошек памяти Людмилы Есиной, РФОО Коргоруши, Москва, парк Сокольники'}
                         csssrc={styles.lasthibition_srctwo}
-                        link={'/out/2'}
+                        link={'lastexhibition/out/2'}
                         image={efttwo.src}
                     />
                     <ExhibitionCard
@@ -37,7 +37,7 @@ const lastexhibition: NextPage = () => {
                         text={'05-06 октября 2019 г, прошла Международная выставка кошек РФОО Коргоруши, Москва'}
                         csssrc={styles.lasthibition_srcthree}
                         image={eftthree.src}
-                        link={'/out/3'}
+                        link={'lastexhibition/out/3'}
                     />
                 </List>
             </div>

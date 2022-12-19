@@ -11,14 +11,14 @@ const exhibition: NextPage = () => {
         <Page title="Выставки" meta="bla bla" styles={styles.container} >
             <div className={styles.exhibition_Main}>
                 <ExhibitionCard
-                    link={"/nearexhibition"}
+                    link={"/exhibition/nearexhibition"}
                     title={"Ближайшие выставки"}
                     text={'Информация о ближайшей выставке кошек КЛК Коргоруши г. Москва.'}
                     csssrc={styles.exhibition_Main__leftColumn}
                     image={lastEx.src}
                 />
                 <ExhibitionCard
-                    link={"/lastexhibition"}
+                    link={"/exhibition/lastexhibition"}
                     title={"Прошедшие выставки"}
                     text={'Результаты и и фоторепортаж с прошедших выставок КЛК Коргоруши'}
                     csssrc={styles.exhibition_Main__rightColumn}

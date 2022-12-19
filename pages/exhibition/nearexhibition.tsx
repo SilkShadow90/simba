@@ -1,10 +1,10 @@
 import type { NextPage } from 'next';
 import React from 'react';
-import styles from '../styles/Nearex.module.css';
-import {Page} from "../components/Page";
-import ExhibitionCard from "../components/Intro/ExhibitionCard";
-import {FirstBack} from "../components/Back";
-import lastEx from "../public/lastEx.jpg";
+import styles from '../../styles/Nearex.module.css';
+import {Page} from "../../components/Page";
+import ExhibitionCard from "../../components/Intro/ExhibitionCard";
+import {FirstBack} from "../../components/Back";
+import lastEx from "../../public/lastEx.jpg";
 
 const nearexhibition: NextPage = () => {
     return (
@@ -15,14 +15,14 @@ const nearexhibition: NextPage = () => {
             </div>
             <div className={styles.nearexhibition_Main}>
                 <ExhibitionCard
-                    link={"/come/1"}
+                    link={"nearexhibition/come/1"}
                     title={"Выставка кошек"}
                     text={'Выставка в г.Ульяновске 10.03.2022 в 15:30'}
                     csssrc={styles.nearexhibition_Main__src}
                     image={lastEx.src}
                 />
                 <ExhibitionCard
-                    link={"/come/2"}
+                    link={"nearexhibition/come/2"}
                     title={"Выставка кошек"}
                     text={'Выставка в г.Ульяновске 14.05.2022 в 16:30'}
                     csssrc={styles.nearexhibition_Main__src}
