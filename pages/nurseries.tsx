@@ -6,44 +6,18 @@ import cattwo from "../public/cattwo.jpg";
 import kzn from "../public/kzn.jpg";
 import ExhibitionCard from "../components/Intro/ExhibitionCard";
 import {useFetchService} from "../utils/useFetchService";
-import {Nurseries} from "./api/nurseries";
+import { Nurser } from "./api/nurser/[id]";
 import Loader from "../components/Loader";
-import {type} from "os";
-import {number} from "prop-types";
+import { earlyDate } from '../examples';
 
+const NurseriesScreen: NextPage = () => {
+    const { data: nurseriesData } = useFetchService<Nurser[]>('nurseries') || {};
 
-const nurseries: NextPage = () => {
-    const { data: nurseriesData } = useFetchService<Nurseries[]>('nurseries') || {};
-
-    //
-    // const earlyDate = (nextDate:string) => {
-    //     const date:object = new Date();
-    //
-    //     return nextDate - Number(date);
-    // }
-
-
-    // console.log(earlyDate("2022-12-30"))
-    // const options = {
-    //     // era: 'long',
-    //     year: 'numeric',
-    //     month: 'long',
-    //     day: 'numeric',
-    //     weekday: 'long',
-    //     timezone: 'UTC',
-    //     hour: 'numeric',
-    //     minute: 'numeric',
-    //     second: 'numeric'
-    // };
-    // @ts-ignore
-    // console.log('date',date.toLocaleString("ru", options));
-
-    // if (!nurseriesData) {
-    //     return (
-    //         <Loader isVisible={true} />
-    //     );
-    // }
-    // console.log('nurseriesData',nurseriesData);
+    if (!nurseriesData) {
+        return (
+            <Loader isVisible={true} />
+        );
+    }
     return (
         <Page title="Питомники" meta="bla bla" styles={styles.container} >
             <div className={styles.partners_Main}>
@@ -69,4 +43,4 @@ const nurseries: NextPage = () => {
     );
 };
 
-export default nurseries;
+export default NurseriesScreen;

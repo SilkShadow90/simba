@@ -49,16 +49,18 @@ export const Strings = {
     register:'Скачать заявление на регистрацию питомника',
     vyazka:'Скачать заявление направления на вязку',
   },
+  navigation: {
+    main: 'Главная',
+    docs: 'Документы',
+    cats: 'Кошки',
+    exhibitions: 'Выставки',
+    nurseries: 'Питомники',
+    contacts: 'Контакты',
+    partners: "Партнеры",
+  },
   footer:{
     leftColumn:{
-      title:'Клуб любителей кошек Симба',
-      main:'Главная',
-      docs:'Документы',
-      cats:'Кошки',
-      Exhibitions:'Выставки',
-      Nurseries:'Питомники',
-      Contacts:'Контакты',
-      partners:"Партнеры",
+      title: 'Клуб любителей кошек Симба',
     },
     centerColumn:{
       title:'Документация',

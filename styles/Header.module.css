@@ -38,6 +38,10 @@
     transition: border-bottom 500ms ease-in-out;
 }
 
+.headerTextActive {
+    border-bottom: 1px solid #f3f3f3;
+}
+
 .headerText:hover {
     border-bottom: 1px solid #f3f3f3;
 }

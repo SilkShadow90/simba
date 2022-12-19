@@ -18,28 +18,28 @@ const Cats: NextPage = () => {
       <Page title="Cats" meta="bla bla" styles={styles.container} >
           <List className={styles.cats_Main}>
               <ExhibitionCard
-                  link={"/cats/id"}
+                  link={"/cats/1"}
                   title={"Прометей"}
                   text={'Веслоухая британская'}
                   csssrc={styles.cats_Main__src}
                   image={cat.src}
               />
               <ExhibitionCard
-                  link={"#"}
+                  link={"/cats/2"}
                   title={"Шпилька"}
                   text={'дворовый бродяга'}
                   csssrc={styles.cats_Main__src}
                   image={catOne.src}
               />
               <ExhibitionCard
-                  link={"#"}
+                  link={"/cats/3"}
                   title={"Пушок"}
                   text={'кокер спаниель'}
                   csssrc={styles.cats_Main__src}
                   image={cattwo.src}
               />
               <ExhibitionCard
-                  link={"#"}
+                  link={"/cats/4"}
                   title={"Платон"}
                   text={'английская'}
                   csssrc={styles.cats_Main__src}

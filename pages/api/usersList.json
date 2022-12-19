@@ -10,7 +10,10 @@
       "Призер Олимпиады",
       "Двухкратный чемпион области"
     ],
-    "image": "/stars.jpg"
+    "image": "/stars.jpg",
+    "isReferee": true,
+    "exhibitions": ["2"],
+    "exhibitionsWinner": ["1"]
   },
   {
     "id": "2",
@@ -23,7 +26,10 @@
       "Призер Олимпиады",
       "Двухкратный чемпион области"
     ],
-    "image": "/stars.jpg"
+    "image": "/stars.jpg",
+    "isReferee": true,
+    "exhibitions": ["1"],
+    "exhibitionsWinner": ["1"]
   },
   {
     "id": "3",
@@ -36,6 +42,9 @@
       "Призер Олимпиады",
       "Двухкратный чемпион области"
     ],
-    "image": "/stars.jpg"
+    "image": "/stars.jpg",
+    "isReferee": true,
+    "exhibitions": ["1"],
+    "exhibitionsWinner": ["2"]
   }
 ]

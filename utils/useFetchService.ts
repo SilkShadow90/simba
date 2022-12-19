@@ -6,7 +6,7 @@ import titulsList from '../pages/api/titulsList.json';
 import usersList from '../pages/api/usersList.json';
 import nurseriesList from '../pages/api/nurseriesList.json';
 
-type dataType = 'breeds' | 'tituls' | 'users' | 'user' | 'nurseries'
+type dataType = 'breeds' | 'tituls' | 'users' | 'user' | 'nurseries' | 'nurser' | 'referees' | 'exhibitionReferees' | 'exhibitionsWinner'
 
 export const useFetchService = <T>(apiName: dataType, reqData?: { id: string }): ApiResponse<T> | undefined => {
   const url = `${getBackEndUrl()}/api/${apiName}${reqData?.id ? `/${reqData?.id}` : ''}`;
@@ -19,11 +19,16 @@ export const useFetchService = <T>(apiName: dataType, reqData?: { id: string }):
       case 'tituls':
         return { data: titulsList as never as T, url, name: 'tituls' };
       case 'users':
-        return { data: usersList as never as T, url, name: 'users' };
+      case 'referees':
+      case 'exhibitionsWinner':
+      case 'exhibitionReferees':
+        return { data: usersList as never as T, url, name: 'referees' };
       case 'user':
         return { data: usersList[0] as never as T, url, name: 'users' };
       case 'nurseries':
-        return { data: nurseriesList[0] as never as T, url, name: 'nurseries' };
+        return { data: nurseriesList as never as T, url, name: 'nurseries' };
+      case 'nurser':
+        return { data: nurseriesList[0] as never as T, url, name: 'nurser' };
       default:
         return data;
     }

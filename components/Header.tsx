@@ -1,36 +1,23 @@
 import React from "react";
 import Link from 'next/link';
-import Image from 'next/image';
-import { Strings } from '../resources';
+import { useRouter } from 'next/router';
+import classNames from 'classnames';
 import styles from '../styles/Header.module.css';
+import { navigationList } from '../utils/navigation';
 
 
 export const Header= () => {
+    const route = useRouter();
+    const activeUrl = route.pathname.split('/')?.[1] || '';
 
     return (
         <div className={styles.header}>
             <div className={styles.headerLeft}>
-                <div className={styles.headerText}>
-                    <Link href="/">{Strings.footer.leftColumn.main}</Link>
-                </div>
-                <div className={styles.headerText}>
-                    <Link href="/docs">{Strings.footer.leftColumn.docs}</Link>
-                </div>
-                <div className={styles.headerText}>
-                    <Link href="/cats/1">{Strings.footer.leftColumn.cats}</Link>
-                </div>
-                <div className={styles.headerText}>
-                    <Link href="/exhibition">{Strings.footer.leftColumn.Exhibitions}</Link>
-                </div>
-                <div className={styles.headerText}>
-                    <Link href="/nurseries">{Strings.footer.leftColumn.Nurseries}</Link>
-                </div>
-                <div className={styles.headerText}>
-                    <Link href="/contacts">{Strings.footer.leftColumn.Contacts}</Link>
-                </div>
-                <div className={styles.headerText}>
-                    <Link href="/partners">{Strings.footer.leftColumn.partners}</Link>
-                </div>
+                {navigationList.map(nav => (
+                  <div key={nav.link} className={classNames(styles.headerText, activeUrl === nav.link && styles.headerTextActive)}>
+                      <Link href={`/${nav.link}`}>{nav.text}</Link>
+                  </div>
+                ))}
             </div>
         </div>
     );

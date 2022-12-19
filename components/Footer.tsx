@@ -4,6 +4,7 @@ import Link from 'next/link';
 import styles from '../styles/Footer.module.css';
 import { Strings } from '../resources';
 import simba from '../public/simba.jpeg';
+import { navigationList } from '../utils/navigation';
 
 
 export const Footer= () => {
@@ -13,36 +14,13 @@ export const Footer= () => {
               {Strings.footer.leftColumn.title}
               <div className={styles.footerTextContainer}>
                   <div className={styles.inline}>
-                      <li className={styles.footerText}>
-                          <Link href="/">
-                             {Strings.footer.leftColumn.main}
-                          </Link>
-                      </li>
-                      <li className={styles.footerText}>
-                          <Link href="/docs">
-                             {Strings.footer.leftColumn.docs}
-                          </Link>
-                      </li>
-                      <li className={styles.footerText}>
-                          <Link href="/cats">
-                            {Strings.footer.leftColumn.cats}
-                          </Link>
-                      </li>
-                      <li className={styles.footerText}>
-                          <Link href="/exhibition">
-                              {Strings.footer.leftColumn.Exhibitions}
-                          </Link>
-                      </li>
-                      <li className={styles.footerText}>
-                          <Link href="/nurseries">
-                              {Strings.footer.leftColumn.Nurseries}
-                          </Link>
-                      </li>
-                      <li className={styles.footerText}>
-                          <Link href="/contacts">
-                              {Strings.footer.leftColumn.Contacts}
-                          </Link>
-                      </li>
+                      {navigationList.filter(nav => nav.link).map(nav => (
+                         <li key={nav.link} className={styles.footerText}>
+                              <Link href={`/${nav.link}`}>
+                                 {nav.text}
+                              </Link>
+                          </li>
+                      ))}
                   </div>
               </div>
           </div>

@@ -22,20 +22,22 @@ function getImages(length: number, size: number = 150) {
 }
 
 
-const out: NextPage = () => {
+const Out: NextPage = () => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const router = useRouter();
     const { id } = router.query;
-    const { data: usersData } = useFetchService<User[]>('users') || {};
+    // const { data: usersData } = useFetchService<User[]>('users') || {};
+    const { data: usersData } = useFetchService<User[]>('exhibitionsWinner', { id: id as string }) || {};
+    const { data: referees } = useFetchService<User[]>('exhibitionReferees', { id: id as string }) || {};
+    console.log('referees',referees);
 
-    if (!usersData) {
+    if (!usersData || !referees) {
         return (
             <Loader isVisible={true} />
         );
     }
 
 
-    console.log('user',usersData);
 
     return (
         <Page title="Прошедшие выставки" meta="bla bla" styles={styles.container} >
@@ -49,7 +51,7 @@ const out: NextPage = () => {
                 <div className={styles.outwinner}>
                     <div className={styles.outinfo}>Победители</div>
                     <div className={styles.outwinner_dinner}>
-                        {usersData.map((user) => (
+                        {usersData && usersData.map((user) => (
                             <ExhibitionCard
                                 key={user.id}
                                 title={user.name}
@@ -64,7 +66,7 @@ const out: NextPage = () => {
                 <div className={styles.outarbiter}>
                     <div className={styles.outinfo}>Судьи</div>
                     <div className={styles.outarbiter_info}>
-                        {!!usersData && usersData.map((user) => (
+                        {!!referees && referees.map((user) => (
                             <ExhibitionCard
                                 key={user.id}
                                 title={user.name}
@@ -90,4 +92,4 @@ const out: NextPage = () => {
     );
 };
 
-export default out;
+export default Out;
