@@ -1,13 +1,13 @@
 import type { NextPage } from 'next';
 import React from 'react';
 import {useRouter} from "next/router";
-import { Page } from '../../../../components/Page';
-import styles from '../../../../styles/come.module.css';
-import ExhibitionCard from "../../../../components/Intro/ExhibitionCard";
-import stars from "../../../../public/stars.jpg";
-import { useFetchService } from '../../../../utils/useFetchService';
-import { User } from '../../../api/users';
-import Loader from '../../../../components/Loader';
+import { Page } from '../../../components/Page';
+import styles from '../../../styles/come.module.css';
+import ExhibitionCard from "../../../components/Intro/ExhibitionCard";
+import stars from "../../../public/stars.jpg";
+import { useFetchService } from '../../../utils/useFetchService';
+import { User } from '../../api/users';
+import Loader from '../../../components/Loader';
 
 const сome: NextPage = () => {
     // eslint-disable-next-line react-hooks/rules-of-hooks

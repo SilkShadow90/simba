@@ -1,22 +1,34 @@
 import type { NextPage } from 'next';
 import React from 'react';
 import Image from "next/image";
-import { Page } from '../../../components/Page';
-import styles from '../../../styles/Partners.module.css';
-import kzn from "../../../public/kzn.jpg";
-
+import { Page } from '../../components/Page';
+import styles from '../../styles/Partners.module.css';
+import kzn from "../../public/kzn.jpg";
+import {useFetchService} from "../../utils/useFetchService";
+import { Nurser } from "../api/nurser/[id]";
+import {useRouter} from "next/router";
 
 
 const nurseriesProfile: NextPage = () => {
+    const router = useRouter();
+    const { id } = router.query;
+
+    const { data: nurseriesData } = useFetchService<Nurser>('nurser', { id: id as string }) || {};
+
+    if (!nurseriesData) {
+        return null;
+    }
+    console.log(nurseriesData);
+
     return (
         <Page title="Партнеры" meta="bla bla" styles={styles.container} >
             <div className={styles.partners_Main}>
-                <h3>«Golden Pride»</h3>
                 <div className={styles.partners_logo}>
                     <div className={styles.partners_logos}>
                         <Image className={styles.partners_logotype} src={kzn} objectFit={"cover"}/>
                     </div>
                     <div className={styles.partners_info_Main}>
+                        <h3>«{nurseriesData.worked}»</h3>
                         <div className={styles.partners_info}>********************************** </div>
                         <div className={styles.partners_info}>********************************</div>
                         <div className={styles.partners_info}>***********</div>

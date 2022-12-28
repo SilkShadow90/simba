@@ -14,14 +14,14 @@ const partners: NextPage = () => {
     return (
         <Page title="Партнеры" meta="bla bla" styles={styles.container} >
             <div className={styles.partners_Main}>
-                <h2>Наши партнеры</h2>
-                <h3>Группа компаний Симбио</h3>
                 <div className={styles.partners_logo}>
                     <div className={styles.partners_logos}>
                         <Image className={styles.partners_logotype} src={logos} objectFit={"cover"}/>
                         {/* требует доработки */}
                     </div>
                     <div className={styles.partners_info_Main}>
+                        <h2>Наши партнеры</h2>
+                        <h3>Группа компаний Симбио</h3>
                         <div className={styles.partners_info}>Журавлева Кристина Игоревна / Kristina Zhuravleva </div>
                         <div className={styles.partners_info}>Менеджер по работе с заводчиками / Breeder Service Manager</div>
                         <div className={styles.partners_info}>SIMBIO LLC</div>

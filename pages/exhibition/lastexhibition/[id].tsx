@@ -3,13 +3,13 @@ import type { NextPage } from 'next';
 import Image from "next/image";
 import { useRouter } from 'next/router';
 
-import { Page } from '../../../../components/Page';
-import styles from '../../../../styles/out.module.css';
-import ExhibitionCard from "../../../../components/Intro/ExhibitionCard";
-import stars from '../../../../public/stars.jpg';
-import {useFetchService} from "../../../../utils/useFetchService";
-import {User} from "../../../api/users";
-import Loader from "../../../../components/Loader";
+import { Page } from '../../../components/Page';
+import styles from '../../../styles/out.module.css';
+import ExhibitionCard from "../../../components/Intro/ExhibitionCard";
+import stars from '../../../public/stars.jpg';
+import {useFetchService} from "../../../utils/useFetchService";
+import {User} from "../../api/users";
+import Loader from "../../../components/Loader";
 
 function jpeg(size: number = 150) {
     return `https://source.unsplash.com/random/${size}`;

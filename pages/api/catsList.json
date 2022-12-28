@@ -1,0 +1,38 @@
+[
+  {
+    "id": "1",
+    "name": "Прометей",
+    "breed": "Веслоухая британская",
+    "image": "/cat.jpg",
+    "csssrc": "styles.cats_Main__src",
+    "favorite": "",
+    "club": "Golder Pride"
+  },
+  {
+    "id": "2",
+    "name": "Шпилька",
+    "breed": "дворовый бродяга",
+    "image": "/catOne.jpeg",
+    "csssrc": "styles.cats_Main__src",
+    "favorite": "",
+    "club": "Golder Pride"
+  },
+  {
+    "id": "3",
+    "name": "Пушок",
+    "breed": "кокер спаниель",
+    "image": "/cattwo.jpg",
+    "csssrc": "styles.cats_Main__src",
+    "favorite": "",
+    "club": "Golder Pride"
+  },
+  {
+  "id": "4",
+  "name": "Платон",
+  "breed": "английская",
+  "image": "/catthree.jpg",
+  "csssrc": "styles.cats_Main__src",
+    "favorite": "",
+    "club": "Golder Pride"
+}
+]

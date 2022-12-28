@@ -4,12 +4,13 @@ import { Page } from '../components/Page';
 import styles from '../styles/Ex.module.css';
 import ExhibitionCard from "../components/Intro/ExhibitionCard";
 import lastEx from "../public/lastEx.jpg";
+import { List } from '../components/List';
 import nolastEX from "../public/nolastEX.jpg";
 
 const exhibition: NextPage = () => {
     return (
         <Page title="Выставки" meta="bla bla" styles={styles.container} >
-            <div className={styles.exhibition_Main}>
+            <List>
                 <ExhibitionCard
                     link={"/exhibition/nearexhibition"}
                     title={"Ближайшие выставки"}
@@ -24,7 +25,7 @@ const exhibition: NextPage = () => {
                     csssrc={styles.exhibition_Main__rightColumn}
                     image={nolastEX.src}
                 />
-            </div>
+            </List>
         </Page>
     );
 };

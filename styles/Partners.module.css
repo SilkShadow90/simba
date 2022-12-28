@@ -1,13 +1,15 @@
 .partners_Main {
-    margin: 5% 15%;
+    padding: 50px;
 }
 
 .partners_logo {
     display: flex;
+    position: relative;
     flex-direction: row;
 }
 
 .partners_logos {
+    position: relative;
     width: 40%;
 }
 
@@ -26,9 +28,10 @@
 
 .partners_info_Main {
     display: grid;
-    margin: 0 auto;
+    /*margin: 0 auto;*/
+    margin-left: 50px;
     grid-template-columns: repeat(auto-fit, minmax(200px, 500px));
-    padding: 50px;
+    /*padding: 50px;*/
     gap: 15px;
 }
 

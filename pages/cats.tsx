@@ -9,51 +9,42 @@ import catthree from '../public/catthree.jpg';
 import { Page } from '../components/Page';
 import { List } from '../components/List';
 import ExhibitionCard from "../components/Intro/ExhibitionCard";
+import {useFetchService} from "../utils/useFetchService";
+import {Cats} from "./api/cats";
+import Loader from "../components/Loader";
+
 
 const Cats: NextPage = () => {
     const router = useRouter();
     const { id } = router.query;
     console.log('id', id);
+
+
+    const { data: catsData } = useFetchService<Cats[]>('cats') || {};
+
+    if (!catsData) {
+        return (
+            <Loader isVisible={true} />
+        );
+    }
+    console.log(catsData)
+
   return (
       <Page title="Cats" meta="bla bla" styles={styles.container} >
-          <List className={styles.cats_Main}>
-              <ExhibitionCard
-                  link={"/cats/1"}
-                  title={"Прометей"}
-                  text={'Веслоухая британская'}
-                  csssrc={styles.cats_Main__src}
-                  image={cat.src}
-              />
-              <ExhibitionCard
-                  link={"/cats/2"}
-                  title={"Шпилька"}
-                  text={'дворовый бродяга'}
-                  csssrc={styles.cats_Main__src}
-                  image={catOne.src}
-              />
-              <ExhibitionCard
-                  link={"/cats/3"}
-                  title={"Пушок"}
-                  text={'кокер спаниель'}
-                  csssrc={styles.cats_Main__src}
-                  image={cattwo.src}
-              />
-              <ExhibitionCard
-                  link={"/cats/4"}
-                  title={"Платон"}
-                  text={'английская'}
-                  csssrc={styles.cats_Main__src}
-                  image={catthree.src}
-              />
+          <List>
+              {!!catsData && catsData.map((cats) => (
+                  <ExhibitionCard
+                      key={cats.id}
+                      title={cats.name}
+                      text={cats.breed}
+                      csssrc={styles.cats_Main__src}
+                      image={cats.image}
+                      link={`/cats/${cats.id}`}
+                  />
+              ))}
           </List>
       </Page>
   );
 };
 
 export default Cats;
-// /*<div className={styles.cardsCats}>*/
-// /*    <Card name={"Прометей"} image={cat} family={"Веслоухая британская"} years={"5 лет"}/>*/
-// /*    <Card name={"Шпилька"} image={catOne} family={"дворовый бродяга"} years={"6 лет"}/>*/
-// /*    <Card name={"Пушок"} image={cattwo} family={"кокер спаниель"} years={"7 лет"}/>*/
-// /*    <Card name={"Платон"} image={catthree} family={"английская"} years={"8 лет"}/>*/
-// /*</div>*/
