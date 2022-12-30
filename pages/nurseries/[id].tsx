@@ -1,15 +1,13 @@
 import type { NextPage } from 'next';
 import React from 'react';
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { Page } from '../../components/Page';
 import styles from '../../styles/Partners.module.css';
-import kzn from "../../public/kzn.jpg";
 import {useFetchService} from "../../utils/useFetchService";
 import { Nurser } from "../api/nurser/[id]";
-import {useRouter} from "next/router";
 
-
-const nurseriesProfile: NextPage = () => {
+const NurseriesProfile: NextPage = () => {
     const router = useRouter();
     const { id } = router.query;
 
@@ -24,8 +22,9 @@ const nurseriesProfile: NextPage = () => {
         <Page title="Партнеры" meta="bla bla" styles={styles.container} >
             <div className={styles.partners_Main}>
                 <div className={styles.partners_logo}>
+                    {/* todo поменять на компонент карточки */}
                     <div className={styles.partners_logos}>
-                        <Image className={styles.partners_logotype} src={kzn} objectFit={"cover"}/>
+                        <Image className={styles.partners_logotype} src={nurseriesData.image} layout={"fill"}/>
                     </div>
                     <div className={styles.partners_info_Main}>
                         <h3>«{nurseriesData.worked}»</h3>
@@ -49,4 +48,4 @@ const nurseriesProfile: NextPage = () => {
     );
 };
 
-export default nurseriesProfile;
+export default NurseriesProfile;

@@ -1,4 +1,4 @@
-export const earlyDate = (nextDate:string) => {
+export const earlyDate = (nextDate:string): string => {
   const dayStrings: [string, string, string] = ['день', 'дня', 'дней'];
   const hourStrings: [string, string, string] = ['час', 'часа', 'часов'];
   const minuteStrings: [string, string, string] = ['минута', 'минуты', 'минут'];
