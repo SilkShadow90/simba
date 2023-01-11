@@ -1,18 +1,15 @@
 import type { NextPage } from 'next';
 import React from 'react';
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { Page } from '../../components/Page';
 import styles from '../../styles/Partners.module.css';
 import cattwo from "../../public/cattwo.jpg";
-import {useRouter} from "next/router";
-import {useFetchService} from "../../utils/useFetchService";
-import {Cats} from "../api/cats";
+import { useFetchService } from "../../utils/useFetchService";
+import { Cats } from "../api/cats";
 import ExhibitionCard from "../../components/Intro/ExhibitionCard";
 
-
-
-const id: NextPage = () => {
-
+const Cat: NextPage = () => {
     const router = useRouter();
     const { id } = router.query;
 
@@ -37,7 +34,6 @@ const id: NextPage = () => {
                             image={catsData.image}
                             link={"#"}
                         />
-                        {/*<Image className={styles.partners_logotype} layout={"fill"} src={catsData.image} objectFit={"cover"}/>*/}
                     </div>
                     <div className={styles.partners_info_Main}>
                         <h3>{catsData.name}</h3>
@@ -56,4 +52,4 @@ const id: NextPage = () => {
     );
 };
 
-export default id;
+export default Cat;

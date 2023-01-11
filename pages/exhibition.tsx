@@ -27,6 +27,7 @@ const exhibition: NextPage = () => {
                     csssrc={styles.exhibition_Main__rightColumn}
                     image={nolastEX.src}
                 />
+                <div />
             </List>
         </Page>
     );

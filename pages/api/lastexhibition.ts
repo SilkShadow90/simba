@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { checkAvailableFile } from './test';
 import lastexhibitionList from './lastexhibitionList.json';
+import { earlyDate } from '../../utils';
 
 type Data = {
     name: string
@@ -8,10 +9,13 @@ type Data = {
 
 export type Lastexhibition = {
     id: string
-    name: string
-    time: string
+    location: string,
+    type?: string,
+    club?: string,
     image: string
     csssrc: string
+    dateStart: string
+    dateEnd: string
 }
 
 export default async function handler(
@@ -20,11 +24,13 @@ export default async function handler(
 ) {
     const isAvailableFile: boolean | string = await checkAvailableFile('lastexhibitionList.json');
 
+    const filteredExhibitionList = lastexhibitionList.filter(ex => earlyDate(ex.dateStart));
+
     if (isAvailableFile) {
         const ww = {
             name: 'lastexhibition',
             url: req.url,
-            data: lastexhibitionList,
+            data: filteredExhibitionList,
         };
         res.status(200).json(ww);
     }
