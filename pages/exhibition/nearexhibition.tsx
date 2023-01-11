@@ -32,6 +32,7 @@ const nearexhibition: NextPage = () => {
             <List>
                 {!!nearexhibitionData && nearexhibitionData.map((nearexhibition) => (
                     <ExhibitionCard
+                        opacityBlock={true}
                         key={nearexhibition.id}
                         title={nearexhibition.name}
                         text={nearexhibition.time}

@@ -6,6 +6,7 @@ import { Page } from '../../components/Page';
 import styles from '../../styles/Partners.module.css';
 import {useFetchService} from "../../utils/useFetchService";
 import { Nurser } from "../api/nurser/[id]";
+import ExhibitionCard from "../../components/Intro/ExhibitionCard";
 
 const NurseriesProfile: NextPage = () => {
     const router = useRouter();
@@ -22,9 +23,16 @@ const NurseriesProfile: NextPage = () => {
         <Page title="Партнеры" meta="bla bla" styles={styles.container} >
             <div className={styles.partners_Main}>
                 <div className={styles.partners_logo}>
-                    {/* todo поменять на компонент карточки */}
                     <div className={styles.partners_logos}>
-                        <Image className={styles.partners_logotype} src={nurseriesData.image} layout={"fill"}/>
+                        <ExhibitionCard
+                            opacityBlock={false}
+                            key={""}
+                            title={""}
+                            text={""}
+                            csssrc={styles.partners_Main__src}
+                            image={nurseriesData.image}
+                            link={"#"}
+                        />
                     </div>
                     <div className={styles.partners_info_Main}>
                         <h3>«{nurseriesData.worked}»</h3>

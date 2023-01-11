@@ -30,6 +30,7 @@ const lastexhibition: NextPage = () => {
 
                     {!!lastexhibitionData && lastexhibitionData.map((lastexhibition) => (
                         <ExhibitionCard
+                            opacityBlock={true}
                             key={lastexhibition.id}
                             title={lastexhibition.time}
                             text={lastexhibition.name}

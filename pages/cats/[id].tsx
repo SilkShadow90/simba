@@ -7,6 +7,7 @@ import cattwo from "../../public/cattwo.jpg";
 import {useRouter} from "next/router";
 import {useFetchService} from "../../utils/useFetchService";
 import {Cats} from "../api/cats";
+import ExhibitionCard from "../../components/Intro/ExhibitionCard";
 
 
 
@@ -25,8 +26,18 @@ const id: NextPage = () => {
         <Page title="Профиль кошки" meta="bla bla" styles={styles.container} >
             <div className={styles.partners_Main}>
                 <div className={styles.partners_logo}>
+
                     <div className={styles.partners_logos}>
-                        <Image className={styles.partners_logotype} layout={"fill"} src={catsData.image} objectFit={"cover"}/>
+                        <ExhibitionCard
+                            opacityBlock={false}
+                            key={""}
+                            title={""}
+                            text={""}
+                            csssrc={styles.partners_Main__src}
+                            image={catsData.image}
+                            link={"#"}
+                        />
+                        {/*<Image className={styles.partners_logotype} layout={"fill"} src={catsData.image} objectFit={"cover"}/>*/}
                     </div>
                     <div className={styles.partners_info_Main}>
                         <h3>{catsData.name}</h3>

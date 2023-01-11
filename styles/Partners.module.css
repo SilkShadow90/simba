@@ -10,7 +10,7 @@
 
 .partners_logos {
     position: relative;
-    width: 40%;
+    width: 60%;
 }
 
 .partners_logotype {
@@ -24,6 +24,12 @@
 
 .partners_info {
     margin-bottom: 15px;
+}
+
+.partners_Main__src {
+    margin: 10px 10px 20px 10px;
+    min-height: 400px;
+    background-size: auto;
 }
 
 .partners_info_Main {

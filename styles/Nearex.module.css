@@ -49,19 +49,17 @@
 
 
 .nearlasthibition_title {
-    display: flex;
     font-size: 30px;
-    line-height: 1.2;
     font-family: inherit;
-    word-wrap: break-word;
     color: black;
-    margin-bottom: 15px;
     margin-left:100px;
 }
 
 .nearlasthibition_header {
+    position: absolute;
     display: flex;
     flex-direction: row;
+    top: 105px;
 }
 
 .nearexhibition_Main__card {

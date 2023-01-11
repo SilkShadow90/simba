@@ -13,6 +13,7 @@ const exhibition: NextPage = () => {
             <List>
                 <ExhibitionCard
                     link={"/exhibition/nearexhibition"}
+                    opacityBlock={true}
                     title={"Ближайшие выставки"}
                     text={'Информация о ближайшей выставке кошек КЛК Коргоруши г. Москва.'}
                     csssrc={styles.exhibition_Main__leftColumn}
@@ -20,6 +21,7 @@ const exhibition: NextPage = () => {
                 />
                 <ExhibitionCard
                     link={"/exhibition/lastexhibition"}
+                    opacityBlock={true}
                     title={"Прошедшие выставки"}
                     text={'Результаты и и фоторепортаж с прошедших выставок КЛК Коргоруши'}
                     csssrc={styles.exhibition_Main__rightColumn}

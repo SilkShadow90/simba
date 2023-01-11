@@ -36,6 +36,7 @@ const сome: NextPage = () => {
                   <div className={styles.comearbiter_info}>
                       {!!usersData && usersData.map((user) => (
                         <ExhibitionCard
+                          opacityBlock={true}
                           key={user.id}
                           title={user.name}
                           text={user.catName}
