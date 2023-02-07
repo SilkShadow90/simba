@@ -67,4 +67,20 @@ export const getDateString = (start: string, end: string) => {
   return dateString.replace(/^\S+/, `${startDate.getDate()} - ${endDate.getDate()}` );
 };
 
+
+// export const getFutureDateString = (start: string, end: string) => {
+//
+//   const date = new Date();
+//   const startDate = new Date(start);
+//   const endDate = new Date(end);
+//
+//   const dateString = `${endDate.toLocaleString('ru', {dateStyle: 'long'})}`;
+//
+//   if (new Date() >= (startDate.getDate() === endDate.getDate())) {
+//     return dateString;
+//   }
+//
+//   return dateString.replace(/^\S+/, `${startDate.getDate()} - ${endDate.getDate()}` );
+// };
+
 // console.warn(getDateString(new Date().toString(), new Date().toString()));

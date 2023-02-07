@@ -12,16 +12,13 @@ import { getDateString } from '../../utils';
 
 const LastexhibitionPage: NextPage = () => {
     const { data: lastexhibitionData } = useFetchService<Lastexhibition[]>('lastexhibition') || {};
-
     if (!lastexhibitionData) {
         return (
             <Loader isVisible={true} />
         );
     }
-    console.log(lastexhibitionData);
+    console.log("asdasda",lastexhibitionData.sort((a:any, b:any) => Number(new Date(b.dateStart)) - Number(new Date(a.dateStart))));
 
-    //   "name": "10-11 октября 2020 г, прошла Международная выставка кошек РФОО Коргоруши, Москва",
-    //     "time": "Выставка кошек 10-11 октября 2020",
 
     return (
         <Page title="Прошедшие выставки" meta="bla bla" styles={styles.container}>
@@ -31,9 +28,9 @@ const LastexhibitionPage: NextPage = () => {
                     <div className={styles.lasthibition_title}>Прошедшие выставки</div>
                 </div>
                 <List>
-
                     {!!lastexhibitionData && lastexhibitionData.map((lastexhibition) => (
                         <ExhibitionCard
+                            hoverBlock={true}
                             opacityBlock={true}
                             key={lastexhibition.id}
                             title={`Выставка кошек ${getDateString(lastexhibition.dateStart, lastexhibition.dateEnd)}`}

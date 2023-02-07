@@ -10,13 +10,14 @@ interface Props {
     link: string;
     image?: string
     opacityBlock?:boolean
+    hoverBlock?:boolean
 }
 
-const ExhibitionCard = ({ title, text,  csssrc, link, image , opacityBlock }: PropsWithChildren<Props>) => {
+const ExhibitionCard = ({ title, text,  csssrc, link, image, opacityBlock, hoverBlock }: PropsWithChildren<Props>) => {
     console.log(image);
     return (
         <Link href={link}>
-            <div className={styles.ex}>
+            <div className={hoverBlock ? styles.ex : styles.ex_noHover}>
                 <div className={classNames(csssrc, styles.cardMargin)} style={image ? { background: `url(${image})`,backgroundSize:"cover", objectFit: 'cover' }: undefined}/>
                 <div className={opacityBlock ? styles.ex_opacity : styles.ex_opacity_DisplayNone}>
                     <div className={styles.exhibition_Main__cardTitle}>{title}</div>

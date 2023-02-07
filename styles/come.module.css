@@ -10,6 +10,10 @@
     margin-left: 50px;
     margin-bottom: 50px;
 }
+.comeinfo_text {
+    margin-bottom: 15px;
+    max-width: 80%;
+}
 .comeinfo_title {
     display: flex;
     justify-content: flex-start;

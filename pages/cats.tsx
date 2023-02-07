@@ -34,6 +34,7 @@ const Cats: NextPage = () => {
           <List>
               {!!catsData && catsData.map((cats) => (
                   <ExhibitionCard
+                      hoverBlock={true}
                       opacityBlock={true}
                       key={cats.id}
                       title={cats.name}

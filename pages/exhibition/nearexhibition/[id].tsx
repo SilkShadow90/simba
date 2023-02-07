@@ -8,6 +8,8 @@ import stars from "../../../public/stars.jpg";
 import { useFetchService } from '../../../utils/useFetchService';
 import { User } from '../../api/users';
 import Loader from '../../../components/Loader';
+import {Lastexhibition} from "../../api/lastexhibition";
+import {getDateString} from "../../../utils";
 
 const сome: NextPage = () => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -15,6 +17,14 @@ const сome: NextPage = () => {
     const { id } = router.query;
     console.log('id', id);
     const { data: usersData } = useFetchService<User[]>('users') || {};
+    const { data: lastexhibitionData } = useFetchService<Lastexhibition[]>('lastexhibition') || {};
+    const { data: exhibition } = useFetchService<any>('exhibition',{ id: id as string }) || {};
+    if (!lastexhibitionData) {
+        return (
+            <Loader isVisible={true} />
+        );
+    }
+
 
     if (!usersData) {
         return (
@@ -26,16 +36,28 @@ const сome: NextPage = () => {
       <Page title="Ближайщие выставки" meta="bla bla" styles={styles.container} >
           <div className={styles.exhibition_Main}>
               <div className={styles.comeinfo}>
-                  <div>Выставка кошек 10-11 октября 2020</div>
+                  <div>
+                      {/*{!!lastexhibitionData && lastexhibitionData.map((lastexhibition) => (*/}
+                      {/*  <div>{ lastexhibition.id && getDateString(lastexhibition.dateStart, lastexhibition.dateEnd)}</div>*/}
+                      {/*  ))}*/}
+                      <div className={styles.comeinfo_text}>{getDateString(exhibition?.dateStart, exhibition?.dateEnd)}
+                      будет проводиться {exhibition?.type} выставка кошек, по адресу {exhibition?.streets}
+                      </div>
+                      <div className={styles.comeinfo_text}>Что бы подать заявку на участие , необходимо связаться с руководителем выставки через вкладку контакты,
+                          а так же заполнить предварительно анкету и отправить ее нам
+                      </div>
+                  </div>
               </div>
               <div className={styles.comeinfo_title}>
-                  10-11 октября 2020 г, прошла Международная выставка кошек РФОО Коргоруши, Москва
+                   {/*{`${getDateString(lastexhibition.dateStart, lastexhibition.dateEnd)}, прошла${lastexhibition.type ? ` ${lastexhibition.type}` : ''}*/}
+                    {/* выставка кошек${lastexhibition.club ? ` ${lastexhibition.club}` : ''}, ${lastexhibition.location}`}*/}
               </div>
               <div className={styles.comearbiter}>
                   <div className={styles.comeinfo}>Судьи</div>
                   <div className={styles.comearbiter_info}>
-                      {!!usersData && usersData.map((user) => (
+                      {usersData && usersData.map((user) => (
                         <ExhibitionCard
+                            hoverBlock={true}
                           opacityBlock={true}
                           key={user.id}
                           title={user.name}

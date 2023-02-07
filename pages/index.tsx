@@ -96,6 +96,16 @@ const Home: NextPage = () => {
                   </div>
               </div>
               <Join/>
+              <div className={styles.Block}>
+                  <div className={styles.Block_Line}>
+                      <div className={styles.kvadro}><div className={styles.kvadro_rotate}>123123</div></div>
+                      <div className={styles.kvadro_one}></div>
+                      <div className={styles.kvadro_two}></div>
+                      <div className={styles.kvadro_three}></div>
+                      <div className={styles.kvadro_four}></div>
+                  </div>
+              </div>
+
           </div>
     </Page>
   );

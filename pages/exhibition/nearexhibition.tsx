@@ -1,48 +1,49 @@
 import type { NextPage } from 'next';
 import React from 'react';
-import styles from '../../styles/Nearex.module.css';
+import styles from '../../styles/Lastexhibition.module.css';
 import {Page} from "../../components/Page";
 import ExhibitionCard from "../../components/Intro/ExhibitionCard";
 import {FirstBack} from "../../components/Back";
 import { List } from '../../components/List';
-
-import lastEx from "../../public/lastEx.jpg";
 import {useFetchService} from "../../utils/useFetchService";
 import Loader from "../../components/Loader";
-import {Nearexhibition} from "../api/nearexhibition";
-import stars from "../../public/stars.jpg";
+import {Lastexhibition} from "../api/lastexhibition";
+import {getDateString} from "../../utils";
 
-const nearexhibition: NextPage = () => {
+const NearexhibitionPage: NextPage = () => {
 
-    const { data: nearexhibitionData } = useFetchService<Nearexhibition[]>('nearexhibition') || {};
+    // const { data: nearexhibitionData } = useFetchService<Nearexhibition[]>('nearexhibition') || {};
+    const { data: lastexhibitionData } = useFetchService<Lastexhibition[]>('nearexhibition') || {};
 
-    if (!nearexhibitionData) {
+    if (!lastexhibitionData) {
         return (
             <Loader isVisible={true} />
         );
     }
-    console.log(nearexhibitionData)
+
+    console.log(lastexhibitionData);
 
     return (
         <Page title="Ближайщие выставки" meta="bla bla" styles={styles.container}>
-            <div className={styles.nearlasthibition_header}>
+            <div className={styles.lasthibition_header}>
                 <FirstBack link={"/exhibition"}/>
-                <div className={styles.nearlasthibition_title}>Ближайщие выставки</div>
+                <div className={styles.lasthibition_title}>Ближайщие выставки</div>
             </div>
             <List>
-                {!!nearexhibitionData && nearexhibitionData.map((nearexhibition) => (
+                {!!lastexhibitionData && lastexhibitionData.map((lastexhibition) => (
                     <ExhibitionCard
+                        hoverBlock={true}
                         opacityBlock={true}
-                        key={nearexhibition.id}
-                        title={nearexhibition.name}
-                        text={nearexhibition.time}
-                        csssrc={styles.nearexhibition_Main__src}
-                        image={nearexhibition.image}
-                        link={`/exhibition/nearexhibition/${nearexhibition.id}`}
+                        key={lastexhibition.id}
+                        title={`Выставка кошек ${getDateString(lastexhibition.dateStart, lastexhibition.dateEnd)}`}
+                        text={`${getDateString(lastexhibition.dateStart, lastexhibition.dateEnd)}, будет проходить${lastexhibition.type ? ` ${lastexhibition.type}` : ''} выставка кошек${lastexhibition.club ? ` ${lastexhibition.club}` : ''}, ${lastexhibition.location}`}
+                        csssrc={styles.lasthibition_srcone}
+                        image={lastexhibition.image}
+                        link={`/exhibition/nearexhibition/${lastexhibition.id}`}
                     />
                 ))}
             </List>
         </Page>
     );
 };
-export default nearexhibition;
+export default NearexhibitionPage;

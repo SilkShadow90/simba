@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { checkAvailableFile } from './test';
-import lastexhibitionList from './lastexhibitionList.json';
+import lastexhibitionList from './allExhibitionList.json';
 import { earlyDate } from '../../utils';
 
 type Data = {
@@ -22,9 +22,11 @@ export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse<Data>
 ) {
-    const isAvailableFile: boolean | string = await checkAvailableFile('lastexhibitionList.json');
+    const isAvailableFile: boolean | string = await checkAvailableFile('allExhibitionList.json');
 
-    const filteredExhibitionList = lastexhibitionList.filter(ex => earlyDate(ex.dateStart));
+    const filteredExhibitionList = lastexhibitionList.sort((a:any, b:any) => Number(new Date(a.dateStart)) - Number(new Date(b.dateStart))).filter(ex => earlyDate(ex.dateStart));
+
+  // const filteredExhibitionListDate =  lastexhibitionList
 
     if (isAvailableFile) {
         const ww = {

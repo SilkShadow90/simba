@@ -7,6 +7,15 @@
     box-shadow: var(--shadow);
     border-radius: var(--border);
 }
+.ex_noHover {
+    position: relative;
+    min-height: auto;
+    overflow: hidden;
+    transition: all 200ms linear;
+    border: none;
+    box-shadow: var(--shadow);
+    border-radius: var(--border);
+}
 .ex:hover{
     box-shadow: 0 2px 9px 0 rgba(3, 7, 10, 0.8);
 }

@@ -24,6 +24,7 @@ const Id: NextPage = () => {
             <div className={styles.usermain}>
                 <div className={styles.usercard}>
                     <ExhibitionCard
+                        hoverBlock={false}
                         opacityBlock={false}
                         title={userData.name}
                         text={userData.catName}

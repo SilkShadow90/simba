@@ -13,7 +13,7 @@
     "image": "/stars.jpg",
     "isReferee": true,
     "exhibitions": ["2"],
-    "exhibitionsWinner": ["1"]
+    "exhibitionsWinner": ["3"]
   },
   {
     "id": "2",
@@ -44,7 +44,7 @@
     ],
     "image": "/stars.jpg",
     "isReferee": true,
-    "exhibitions": ["1"],
+    "exhibitions": ["3"],
     "exhibitionsWinner": ["2"]
   }
 ]

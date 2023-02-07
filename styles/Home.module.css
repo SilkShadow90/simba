@@ -195,6 +195,92 @@ font-weight: 700;
   font-family: sans-serif;
 }
 
+
+.Block {
+  display: flex;
+  position: relative;
+  min-height: 400px;
+  background-color: #dedede;
+  align-items: center;
+  margin-top: 150px;
+  margin-bottom: 150px;
+}
+.Block_Line {
+  max-height: 351px;
+  min-height: 350px;
+  background-color: red;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.kvadro {
+  position: absolute;
+  top: 50px;
+  left: 150px;
+  width: 200px;
+  height: 200px;
+  background-color: white;
+  transform: rotate(45deg)
+}
+.kvadro_rotate {
+  overflow: hidden;
+  top: 50px;
+  left: 150px;
+  width: 200px;
+  height: 200px;
+  background-color: white;
+  transform: rotate(-45deg)
+}
+
+.kvadro_one {
+  position: absolute;
+  top: 200px;
+  left: 350px;
+  width: 200px;
+  height: 200px;
+  background-color: white;
+  transform: rotate(45deg)
+}
+
+.kvadro_two {
+  position: absolute;
+  top: 50px;
+  left: 550px;
+  width: 200px;
+  height: 200px;
+  background-color: white;
+  transform: rotate(45deg)
+}
+.kvadro_three {
+  position: absolute;
+  top: 200px;
+  left: 750px;
+  width: 200px;
+  height: 200px;
+  background-color: white;
+  transform: rotate(45deg)
+}
+.kvadro_four {
+  position: absolute;
+  top: 50px;
+  left: 950px;
+  width: 200px;
+  height: 200px;
+  background-color: white;
+  transform: rotate(45deg)
+}
+
+.triangle {
+  width: 0;
+  height: 0;
+  border-left: 100px solid transparent;
+  border-right: 100px solid transparent;
+  border-bottom: 200px solid blue;
+  background-image: url('../public/showcat.jpg');
+}
+
+
 @media (min-width: 320px) and (max-width: 840px) {
   .razdelCenter {
     display: flex;

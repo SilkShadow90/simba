@@ -24,6 +24,7 @@ const NurseriesScreen: NextPage = () => {
             <List>
                 {!!nurseriesData && nurseriesData.map((nurseries) => (
                     <ExhibitionCard
+                        hoverBlock={true}
                         opacityBlock={true}
                         key={nurseries.id}
                         title={nurseries.worked}
