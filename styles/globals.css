@@ -2,7 +2,19 @@
   --main-bg-color: #77aba3;
   --main-bg-color-alpha: #77aba399;
   --border: 12px;
-  --shadow: 0 2px 9px 0 rgba(3, 7, 10, 0.5);;
+  --shadow: 0 2px 9px 0 rgba(3, 7, 10, 0.5);
+  --admin-color-blue: #109CF1;
+  --admin-color-yellow: #FFB946;
+  --admin-color-red: #F7685B;
+  --admin-color-green: #2ED47A;
+  --admin-color-purple: #885AF8;
+  --admin-color-black: #192A3E;
+  --admin-color-table-black: #323C47;
+  --admin-color-table-gray: #707683;
+  --admin-color-dark-blue: #334D6E;
+  --admin-color-gray: #90A0B7;
+  --admin-color-icon-gray: #C2CFE0;
+  --admin-color-icon-white: #FFFFFF;
 }
 
 html,

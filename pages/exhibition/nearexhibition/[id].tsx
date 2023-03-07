@@ -9,10 +9,10 @@ import { useFetchService } from '../../../utils/useFetchService';
 import { User } from '../../api/users';
 import Loader from '../../../components/Loader';
 import {Lastexhibition} from "../../api/lastexhibition";
+import { Strings } from '../../../resources';
 import {getDateString} from "../../../utils";
 
 const сome: NextPage = () => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
     const router = useRouter();
     const { id } = router.query;
     console.log('id', id);
@@ -37,11 +37,8 @@ const сome: NextPage = () => {
           <div className={styles.exhibition_Main}>
               <div className={styles.comeinfo}>
                   <div>
-                      {/*{!!lastexhibitionData && lastexhibitionData.map((lastexhibition) => (*/}
-                      {/*  <div>{ lastexhibition.id && getDateString(lastexhibition.dateStart, lastexhibition.dateEnd)}</div>*/}
-                      {/*  ))}*/}
-                      <div className={styles.comeinfo_text}>{getDateString(exhibition?.dateStart, exhibition?.dateEnd)}
-                      будет проводиться {exhibition?.type} выставка кошек, по адресу {exhibition?.streets}
+                      <div className={styles.comeinfo_text}>
+                          {Strings.maket(exhibition)}
                       </div>
                       <div className={styles.comeinfo_text}>Что бы подать заявку на участие , необходимо связаться с руководителем выставки через вкладку контакты,
                           а так же заполнить предварительно анкету и отправить ее нам
@@ -49,8 +46,6 @@ const сome: NextPage = () => {
                   </div>
               </div>
               <div className={styles.comeinfo_title}>
-                   {/*{`${getDateString(lastexhibition.dateStart, lastexhibition.dateEnd)}, прошла${lastexhibition.type ? ` ${lastexhibition.type}` : ''}*/}
-                    {/* выставка кошек${lastexhibition.club ? ` ${lastexhibition.club}` : ''}, ${lastexhibition.location}`}*/}
               </div>
               <div className={styles.comearbiter}>
                   <div className={styles.comeinfo}>Судьи</div>

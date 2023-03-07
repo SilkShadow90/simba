@@ -1,5 +1,4 @@
 import React, {PropsWithChildren, useState} from "react";
-import classNames from 'classnames';
 import styles from "../styles/Loader.module.css";
 
 interface Props {

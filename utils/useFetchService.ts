@@ -7,10 +7,11 @@ import usersList from '../pages/api/usersList.json';
 import nurseriesList from '../pages/api/nurseriesList.json';
 import lastexhibitionList from '../pages/api/allExhibitionList.json';
 import catsList from '../pages/api/catsList.json';
+import allExhibition from "../pages/api/allExhibition";
 
 
 type dataType = 'breeds' | 'tituls' | 'users' | 'user' | 'nurseries' | 'nurser' | 'referees' | 'exhibitionReferees' |
-    'exhibitionsWinner' | "nearexhibition" | "lastexhibition"| "cats" | "cat" | "exhibition"
+    'exhibitionsWinner' | "nearexhibition" | "lastexhibition"| "cats" | "cat" | "exhibition" | "allExhibition"
 
 export const useFetchService = <T>(apiName: dataType, reqData?: { id: string }): ApiResponse<T> | undefined => {
   const url = `${getBackEndUrl()}/api/${apiName}${reqData?.id ? `/${reqData?.id}` : ''}`;
@@ -41,6 +42,8 @@ export const useFetchService = <T>(apiName: dataType, reqData?: { id: string }):
         return { data: lastexhibitionList as never as T, url, name: 'nearexhibition' };
       case 'lastexhibition':
         return { data: lastexhibitionList as never as T, url, name: 'lastexhibition' };
+      case 'allExhibition':
+        return { data: lastexhibitionList as never as T, url, name: 'allExhibition' };
       case 'nurser':
         return { data: nurseriesList[0] as never as T, url, name: 'nurser' };
       default:

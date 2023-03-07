@@ -12,7 +12,7 @@ export type Cats = {
     breed: string
     image: string
     csssrc: string
-    favorite: string
+    favorite: boolean
     club: string
 }
 

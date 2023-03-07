@@ -52,8 +52,6 @@ const Out: NextPage = () => {
                     <div>{getDateString(exhibition?.dateStart, exhibition?.dateEnd)} была проведена {exhibition?.type} выставка кошек</div>
                 </div>
                 <div className={styles.outinfo_title}>
-                    {/*{`${getDateString(lastexhibition.dateStart, lastexhibition.dateEnd)}, прошла${lastexhibition.type ? ` ${lastexhibition.type}` : ''}*/}
-                    {/* выставка кошек${lastexhibition.club ? ` ${lastexhibition.club}` : ''}, ${lastexhibition.location}`}*/}
                 </div>
                 <div className={styles.outwinner}>
                     <div className={styles.outinfo}>Победители</div>

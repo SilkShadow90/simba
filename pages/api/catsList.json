@@ -5,7 +5,7 @@
     "breed": "Веслоухая британская",
     "image": "/cat.jpg",
     "csssrc": "styles.cats_Main__src",
-    "favorite": "",
+    "favorite": false,
     "club": "Golder Pride"
   },
   {
@@ -14,7 +14,7 @@
     "breed": "дворовый бродяга",
     "image": "/catOne.jpeg",
     "csssrc": "styles.cats_Main__src",
-    "favorite": "",
+    "favorite": false,
     "club": "Golder Pride"
   },
   {
@@ -23,7 +23,7 @@
     "breed": "кокер спаниель",
     "image": "/cattwo.jpg",
     "csssrc": "styles.cats_Main__src",
-    "favorite": "",
+    "favorite": false,
     "club": "Golder Pride"
   },
   {
@@ -32,7 +32,7 @@
   "breed": "английская",
   "image": "/catthree.jpg",
   "csssrc": "styles.cats_Main__src",
-    "favorite": "",
+    "favorite": true,
     "club": "Golder Pride"
 }
 ]

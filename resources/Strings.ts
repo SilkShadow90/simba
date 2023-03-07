@@ -1,4 +1,5 @@
 import React from "react";
+import {getDateString} from "../utils";
 
 export const Strings = {
   errors: {
@@ -455,6 +456,7 @@ export const Strings = {
     openedvyazka:"Заявление на вязку",
     openedposition:"Племенное положение",
   },
+  maket:(exhibition:any) => `${getDateString(exhibition?.dateStart, exhibition?.dateEnd)} будет проводиться ${exhibition?.type || ""} выставка кошек, по адресу ${exhibition?.streets}`,
     // textOne:"Нам потребуется ваш паспорт, поэтому вам должно быть больше 18 лет.\n" +
     //     "\n" +
     //     "Изучите племенное положение клуба - это правила, по которым работают наши члены.",
