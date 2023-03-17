@@ -1,0 +1,65 @@
+.adminCardsLeft {
+    min-width: 256px;
+    position: relative;
+    box-shadow: 6px 0px 18px rgba(0, 0, 0, 0.06);
+    background: white;
+}
+
+.adminCardsLeftToogleOn {
+    min-width: 86px;
+    position: relative;
+    box-shadow: 6px 0 18px rgba(0, 0, 0, 0.06);
+    background: white;
+}
+
+.adminCardsLeft_input {
+    display: flex;
+    position: fixed;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 24px;
+    min-height: 100%;
+    margin-top: 24px;
+    justify-content: flex-start;
+}
+
+.adminCardsLeft_input_position {
+    align-items: center;
+    display: flex;
+    border: none;
+    background-color: inherit;
+    position: relative;
+    justify-content: center;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+
+.adminCardsLeft_input_position_img {
+    max-width: 26px;
+    max-height: 26px;
+    position: absolute;
+}
+
+.adminCardsLeft_input_position_toggle_img {
+    max-width: 26px;
+    max-height: 26px;
+    position: absolute;
+}
+
+.adminCardsLeftToogleText {
+    position:fixed;
+    bottom:26px;
+    color: var(--admin-color-icon-gray);
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 16px;
+    background-color: inherit;
+    border: none;
+    cursor: pointer;
+}
+
+.adminCardsLeftToogleText_margin {
+    margin-left: 30px;
+    margin-bottom: 3px;
+}

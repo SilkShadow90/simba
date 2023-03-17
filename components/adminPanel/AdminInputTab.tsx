@@ -1,35 +1,45 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styles from "../../styles/adminStyles/Admin.module.css";
 
+type ID = string
+export type IDObject = { id: ID }
+
+export type Titles<T> = Partial<Record<keyof T, string>>
 
 
-interface Props {
-    name:string;
-    email: string;
-    info: string;
-    infotwo:string;
-    procent:number;
-    date:number;
-    checked?:boolean
+export type AdminTabProps<T> = {
+    titles: Titles<T>
+    item: T
+    checked?:boolean;
+    onClick?():any;
 }
 
-export const AdminInputTab = ({name, email, info, infotwo, procent, date ,checked: initialChecked = false }:Props) => {
-
-    const [checked , setChecked] = useState<boolean>(initialChecked)
-
-    const toggleChecked = () => setChecked(prevState => !prevState)
+export const AdminInputTab = <T extends IDObject>({ item, titles, checked ,onClick }: AdminTabProps<T>) => {
 
     return (
-        <div className={styles.admin_Input_Tab}>
+
+        <div className={styles.admin_Input_Tab} style={{ display: 'grid', gridTemplateColumns:`repeat(${Object.values(titles).length +1},1fr)`}}>
             <div className={styles.admin_input_tab_checked}>
-                <input type="checkbox" onClick={toggleChecked} checked={checked} />
+                <input type="checkbox" onClick={onClick} checked={checked} />
             </div>
-            <div>{name}</div>
-            <div>{email}</div>
-            <div>{info}</div>
-            <div>{infotwo}</div>
-            <div>{procent}</div>
-            <div>{date}</div>
+            {Object.keys(titles)
+
+                .map((key) => {
+                    if (typeof item[key as keyof T]  === 'string') {
+                        return (
+                            <div>{item[key as keyof T] as any}</div>
+                        )
+                    }
+                    if (typeof item[key as keyof T] === 'boolean') {
+                        return (
+                            <div className={styles.admin_input_tab_checked}>
+                                <input type="checkbox"  checked={item[key as keyof T]as any} />
+                            </div>
+                        )
+                    }
+
+                    return <div />
+                })}
         </div>
-    );
+    )
 };
