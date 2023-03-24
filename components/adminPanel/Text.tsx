@@ -41,6 +41,6 @@ export const Text = ({text, size, color}:Props) => {
         [color],
     );
     return (
-        <span className={classNames(fontStyle && colorStyle)}>{text}</span>
+        <span className={classNames(fontStyle, colorStyle)}>{text}</span>
     );
 };

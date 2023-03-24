@@ -1,0 +1,37 @@
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: black;
+    opacity: 40%;
+}
+
+.modal_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+}
+
+.modal_none {
+    display: none;
+}
+
+.modal_main {
+    overflow-y: auto;
+    border-radius: 4px;
+    padding: 20px;
+    position: absolute;
+    max-height: 70vh;
+    background-color: white;
+}

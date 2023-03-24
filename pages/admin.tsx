@@ -2,7 +2,7 @@ import type { NextPage } from 'next';
 import React, {useState} from 'react';
 import { useSelector } from 'react-redux';
 import styles from '../styles/adminStyles/Admin.module.css';
-import { Page } from '../components/Page';
+import {Page} from '../components/Page';
 import {MainPage} from "../components/adminPanel/adminPage/MainPage";
 import {CatsPage} from "../components/adminPanel/adminPage/CatsPage";
 import {ExhibitionPage} from "../components/adminPanel/adminPage/ExhibitionPage";

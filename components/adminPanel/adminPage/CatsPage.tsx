@@ -6,6 +6,7 @@ import {useFetchService} from "../../../utils/useFetchService";
 import {Cats} from "../../../pages/api/cats";
 import Loader from "../../Loader";
 import {AdminInputList} from "../AdminInputList";
+import {AdminModal} from "../AdminModal";
 
 const catTitles: Titles<Cats> = {
     name: 'Имя',
@@ -40,7 +41,6 @@ export const CatsPage = () => {
                 </div>
                 <AdminButton type={"primary"} onClick={onSubmit} text={"Add Contact"}/>
             </div>
-            {/*//todo Придумать как заталкать в один компонент*/}
             <div className={styles.openMainStart}>
                 <AdminInputList
                     titles={catTitles}

@@ -1,4 +1,6 @@
 .areaStyle {
+    font-size: 18px;
+    line-height: 20px;
     border: none;
     resize: none;
     /*border-bottom: solid 1px #818E9B;*/
@@ -12,9 +14,10 @@
 .areaMain {
     display: flex;
     flex-direction: column;
-    max-width: 300px;
+    min-width: 300px;
 }
 .areaMain_Title {
+    padding-left: 2px;
     margin-bottom: 4px;
 }
 
