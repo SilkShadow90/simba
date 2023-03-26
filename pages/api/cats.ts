@@ -1,32 +1,19 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { checkAvailableFile } from './test';
-import catsList from './catsList.json';
-
-type Data = {
-    name: string
-}
-
-export type Cats = {
-    id: string
-    name: string
-    breed: string
-    image: string
-    csssrc: string
-    favorite: boolean
-    club: string
-}
+import { checkAvailableFile } from './utils';
+import { cats } from './mockData.json';
+import { NextApiData } from '../../api/types';
 
 export default async function handler(
     req: NextApiRequest,
-    res: NextApiResponse<Data>
+    res: NextApiResponse<NextApiData>
 ) {
-    const isAvailableFile: boolean | string = await checkAvailableFile('catsList.json');
+    const isAvailableFile: boolean | string = await checkAvailableFile('mockData.json');
 
     if (isAvailableFile) {
         const ww = {
             name: 'cats',
             url: req.url,
-            data: catsList,
+            data: Object.values(cats),
         };
         res.status(200).json(ww);
     }

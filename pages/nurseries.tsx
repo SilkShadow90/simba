@@ -1,37 +1,34 @@
 import type { NextPage } from 'next';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Page } from '../components/Page';
 import styles from '../styles/Partners.module.css';
 import ExhibitionCard from "../components/Intro/ExhibitionCard";
-import {useFetchService} from "../utils/useFetchService";
-import { Nurser } from "./api/nurser/[id]";
 import { List } from '../components/List';
 import Loader from "../components/Loader";
+import { Nurser } from '../api/types';
+import { useFetchService } from '../utils/useFetchService';
 
 const NurseriesScreen: NextPage = () => {
+    const { data: nurseries } = useFetchService<Nurser[]>('nurseries') || {};
 
-    const { data: nurseriesData } = useFetchService<Nurser[]>('nurseries') || {};
-
-    if (!nurseriesData) {
+    if (!nurseries) {
         return (
             <Loader isVisible={true} />
         );
     }
-    console.log(nurseriesData)
-
     return (
         <Page title="Питомники" meta="bla bla" styles={styles.container} >
             <List>
-                {!!nurseriesData && nurseriesData.map((nurseries) => (
+                {!!nurseries && nurseries.map((nurser) => (
                     <ExhibitionCard
                         hoverBlock={true}
                         opacityBlock={true}
-                        key={nurseries.id}
-                        title={nurseries.worked}
-                        text={nurseries.name}
+                        key={nurser.id}
+                        title={nurser.worked}
+                        text={nurser.name}
                         csssrc={styles.nurseries_Main__src}
-                        image={nurseries.image}
-                        link={`/nurseries/${nurseries.id}`}
+                        image={nurser.image}
+                        link={`/nurseries/${nurser.id}`}
                     />
                 ))}
             </List>

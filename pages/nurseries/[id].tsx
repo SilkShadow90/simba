@@ -1,18 +1,17 @@
 import type { NextPage } from 'next';
 import React from 'react';
-import Image from "next/image";
 import { useRouter } from "next/router";
 import { Page } from '../../components/Page';
 import styles from '../../styles/Partners.module.css';
 import {useFetchService} from "../../utils/useFetchService";
-import { Nurser } from "../api/nurser/[id]";
 import ExhibitionCard from "../../components/Intro/ExhibitionCard";
+import { Nurser } from '../../api/types';
 
 const NurseriesProfile: NextPage = () => {
     const router = useRouter();
     const { id } = router.query;
 
-    const { data: nurseriesData } = useFetchService<Nurser>('nurser', { id: id as string }) || {};
+    const { data: nurseriesData } = useFetchService<Nurser>('nurseries/id', { id: id as string }) || {};
 
     if (!nurseriesData) {
         return null;

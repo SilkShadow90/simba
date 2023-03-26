@@ -1,0 +1,644 @@
+{
+  "users": {
+    "UUID1": {
+      "id": "UUID1",
+      "name": "Иван Петрович Затравкин",
+      "catName": "Кот Лезвие",
+      "breed": "Бенгальский",
+      "phone": "+7 937 275 64 18",
+      "email": "vyazka@gmail.com",
+      "prizes": [
+        "Призер Олимпиады",
+        "Двухкратный чемпион области"
+      ],
+      "image": "/stars.jpg",
+      "isReferee": true,
+      "exhibitions": [
+        "2"
+      ],
+      "exhibitionsWinner": [
+        "3"
+      ]
+    },
+    "UUID2": {
+      "id": "UUID2",
+      "name": "Виктор Алексеев Лосев",
+      "catName": "Кот Бритва",
+      "breed": "Бенгальский",
+      "phone": "+7 937 275 64 18",
+      "email": "vyazka@gmail.com",
+      "prizes": [
+        "Призер Олимпиады",
+        "Двухкратный чемпион области"
+      ],
+      "image": "/stars.jpg",
+      "isReferee": true,
+      "exhibitions": [
+        "1"
+      ],
+      "exhibitionsWinner": [
+        "1"
+      ]
+    },
+    "UUID3": {
+      "id": "UUID3",
+      "name": "Михеев Лука Илларионович",
+      "catName": "Кот Борис",
+      "breed": "Бенгальский",
+      "phone": "+7 937 275 64 18",
+      "email": "vyazka@gmail.com",
+      "prizes": [
+        "Призер Олимпиады",
+        "Двухкратный чемпион области"
+      ],
+      "image": "/stars.jpg",
+      "isReferee": true,
+      "exhibitions": [
+        "3"
+      ],
+      "exhibitionsWinner": [
+        "2"
+      ]
+    }
+  },
+  "breeds": {
+    "UUID1": {
+      "id": "UUID1",
+      "value": "PER",
+      "description": "Персидская (PER)"
+    },
+    "UUID2": {
+      "id": "UUID2",
+      "value": "BLH",
+      "description": "Британская Длинношерстная (BLH)"
+    },
+    "UUID3": {
+      "id": "UUID3",
+      "value": "PER",
+      "description": "Колорпойнт (PER)"
+    },
+    "UUID4": {
+      "id": "UUID4",
+      "value": "SFL",
+      "description": "Хайленд фолд (SFL)"
+    },
+    "UUID5": {
+      "id": "UUID5",
+      "value": "SRL",
+      "description": "Селкирк рекс длинношерстный (SRL)"
+    },
+    "UUID6": {
+      "id": "UUID6",
+      "value": "L71",
+      "description": "Шотландская полудлинношерстная/хайленд-страйт (SFL71)"
+    },
+    "UUID7": {
+      "id": "UUID7",
+      "value": "ACL",
+      "description": "Американский кёрл длинношерстный (ACL)"
+    },
+    "UUID8": {
+      "id": "UUID8",
+      "value": "BAL",
+      "description": "Балинезийская (BAL)"
+    },
+    "UUID9": {
+      "id": "UUID9",
+      "value": "BML",
+      "description": "Бурмилла длинношерстный (BML)"
+    },
+    "UUID10": {
+      "id": "1UUID0",
+      "value": "CYM",
+      "description": "Кимрик (CYM)"
+    },
+    "UUID11": {
+      "id": "1UUID1",
+      "value": "JBL",
+      "description": "Японский бобтейл длинношерстный (JBL)"
+    },
+    "UUID12": {
+      "id": "1UUID2",
+      "value": "KAL",
+      "description": "Карельский бобтейл (KAL)"
+    },
+    "UUID13": {
+      "id": "1UUID3",
+      "value": "KBL",
+      "description": "Курильский бобтейл длинношерстный (KBL)"
+    },
+    "UUID14": {
+      "id": "1UUID4",
+      "value": "MNL",
+      "description": "Манчкин длинношерстный (MNL)"
+    },
+    "UUID15": {
+      "id": "1UUID5",
+      "value": "MCO",
+      "description": "Мэйн кун (MCO)"
+    },
+    "UUID16": {
+      "id": "1UUID6",
+      "value": "NEB",
+      "description": "Нибелунг (NEB)"
+    },
+    "UUID17": {
+      "id": "1UUID7",
+      "value": "NFO",
+      "description": "Норвежская лесная (NFO)"
+    },
+    "UUID18": {
+      "id": "1UUID8",
+      "value": "OSL",
+      "description": "Ориентальная полудлиношерстная (OSL)"
+    },
+    "UUID19": {
+      "id": "1UUID9",
+      "value": "RAG",
+      "description": "Рэгдолл (RAG)"
+    },
+    "UUID20": {
+      "id": "2UUID0",
+      "value": "RGM",
+      "description": "Рагамаффин (RGM)"
+    },
+    "UUID21": {
+      "id": "2UUID1",
+      "value": "SBI",
+      "description": "Бирманская (SBI)"
+    },
+    "UUID22": {
+      "id": "2UUID2",
+      "value": "SIB",
+      "description": "Сибирская / Невская Маскарадная (SIB)"
+    },
+    "UUID23": {
+      "id": "2UUID3",
+      "value": "SOM",
+      "description": "Сомали (SOM)"
+    },
+    "UUID24": {
+      "id": "2UUID4",
+      "value": "TUA",
+      "description": "Турецкая ангора (TUA)"
+    },
+    "UUID25": {
+      "id": "2UUID5",
+      "value": "TUV",
+      "description": "Турецкий ван (TUV)"
+    },
+    "UUID26": {
+      "id": "2UUID6",
+      "value": "URL",
+      "description": "Уральский рекс длинношерстный (URL)"
+    },
+    "UUID27": {
+      "id": "2UUID7",
+      "value": "ABY",
+      "description": "Абиссинская (ABY)"
+    },
+    "UUID28": {
+      "id": "2UUID8",
+      "value": "ACS",
+      "description": "Американский кёрл короткошерстный (ACS)"
+    },
+    "UUID29": {
+      "id": "2UUID9",
+      "value": "ASH",
+      "description": "Американская короткошерстная (ASH)"
+    },
+    "UUID30": {
+      "id": "3UUID0",
+      "value": "ASI",
+      "description": "Азиатская (ASI)"
+    },
+    "UUID31": {
+      "id": "3UUID1",
+      "value": "AWH",
+      "description": "Американская жесткошерстная (AWH)"
+    },
+    "UUID32": {
+      "id": "3UUID2",
+      "value": "BEN",
+      "description": "Бенгальская (BEN)"
+    },
+    "UUID33": {
+      "id": "3UUID3",
+      "value": "BMS",
+      "description": "Бурмилла короткошерстный (BMS)"
+    },
+    "UUID34": {
+      "id": "3UUID4",
+      "value": "BOM",
+      "description": "Бомбейская (BOM)"
+    },
+    "UUID35": {
+      "id": "3UUID5",
+      "value": "BRA",
+      "description": "Бразильская короткошерстная (BRA)"
+    },
+    "UUID36": {
+      "id": "3UUID6",
+      "value": "BRI",
+      "description": "Британская короткошерстная (BRI)"
+    },
+    "UUID37": {
+      "id": "3UUID7",
+      "value": "BUR",
+      "description": "Бурманская (BUR)"
+    },
+    "UUID38": {
+      "id": "3UUID8",
+      "value": "MNS",
+      "description": "Манчкин (MNS)"
+    },
+    "UUID39": {
+      "id": "3UUID9",
+      "value": "CEY",
+      "description": "Цейлонская (CEY)"
+    },
+    "UUID40": {
+      "id": "4UUID0",
+      "value": "CHA",
+      "description": "Шартрез (CHA)"
+    },
+    "UUID41": {
+      "id": "4UUID1",
+      "value": "CRX",
+      "description": "Корниш рекс (CRX)"
+    },
+    "UUID42": {
+      "id": "4UUID2",
+      "value": "DRX",
+      "description": "Девон рекс (DRX)"
+    },
+    "UUID43": {
+      "id": "4UUID3",
+      "value": "EXO",
+      "description": "Экзотическая короткошерстная (EXO)"
+    },
+    "UUID44": {
+      "id": "4UUID4",
+      "value": "GRX",
+      "description": "Немецкий рекс (GRX)"
+    },
+    "UUID45": {
+      "id": "4UUID5",
+      "value": "JBS",
+      "description": "Японский бобтейл короткошерстный (JBS)"
+    },
+    "UUID46": {
+      "id": "4UUID6",
+      "value": "KAS",
+      "description": "Карельский бобтейл короткошерстный (KAS)"
+    },
+    "UUID47": {
+      "id": "4UUID7",
+      "value": "KBS",
+      "description": "Курильский бобтейл короткошерстный (KBS)"
+    },
+    "UUID48": {
+      "id": "4UUID8",
+      "value": "KKH",
+      "description": "Кельтская короткошерстная (KKH)"
+    },
+    "UUID49": {
+      "id": "4UUID9",
+      "value": "KOR",
+      "description": "Корат (KOR)"
+    },
+    "UUID50": {
+      "id": "5UUID0",
+      "value": "MAN",
+      "description": "Мэнкс (MAN)"
+    },
+    "UUID51": {
+      "id": "5UUID1",
+      "value": "MAU",
+      "description": "Египетская мау (MAU)"
+    },
+    "UUID52": {
+      "id": "5UUID2",
+      "value": "OCI",
+      "description": "Оцикет (OCI)"
+    },
+    "UUID53": {
+      "id": "5UUID3",
+      "value": "RUS",
+      "description": "Русская голубая (RUS)"
+    },
+    "UUID54": {
+      "id": "5UUID4",
+      "value": "SFS",
+      "description": "Скоттиш фолд (SFS)"
+    },
+    "UUID55": {
+      "id": "5UUID5",
+      "value": "SIN",
+      "description": "Сингапурская (SIN)"
+    },
+    "UUID56": {
+      "id": "5UUID6",
+      "value": "SRS",
+      "description": "Селкирк рекс короткошерстный (SRS)"
+    },
+    "UUID57": {
+      "id": "5UUID7",
+      "value": "URS",
+      "description": "Уральский рекс короткошерстный (URS)"
+    },
+    "UUID58": {
+      "id": "5UUID8",
+      "value": "S71",
+      "description": "Шотландская короткошерстная/скоттиш-страйт (SFS71)"
+    },
+    "UUID59": {
+      "id": "5UUID9",
+      "value": "OSH",
+      "description": "Ориентальная короткошерстная (OSH)"
+    },
+    "UUID60": {
+      "id": "6UUID0",
+      "value": "MBT",
+      "description": "Меконгский бобтейл (MBT)"
+    },
+    "UUID61": {
+      "id": "6UUID1",
+      "value": "SIA",
+      "description": "Сиамская (SIA)"
+    },
+    "UUID62": {
+      "id": "6UUID2",
+      "value": "SYS",
+      "description": "Сейшел (SYS)"
+    },
+    "UUID63": {
+      "id": "6UUID3",
+      "value": "THA",
+      "description": "Тайская (THA)"
+    },
+    "UUID64": {
+      "id": "6UUID4",
+      "value": "TON",
+      "description": "Тонкинская (TON)"
+    },
+    "UUID65": {
+      "id": "6UUID5",
+      "value": "DSX",
+      "description": "Донской сфинкс (DSX)"
+    },
+    "UUID66": {
+      "id": "6UUID6",
+      "value": "PBD",
+      "description": "Петерболд (PBD)"
+    },
+    "UUID67": {
+      "id": "6UUID7",
+      "value": "SPH",
+      "description": "Канадский сфинкс (SPH)"
+    },
+    "UUID68": {
+      "id": "6UUID8",
+      "value": "CHA",
+      "description": "Чаузи (CHA)"
+    },
+    "UUID69": {
+      "id": "6UUID9",
+      "value": "Той-Боб",
+      "description": "Той-Боб"
+    },
+    "UUID70": {
+      "id": "7UUID0",
+      "value": "HHP",
+      "description": "Домашняя кошка (HHP)"
+    }
+  },
+  "titles": {
+    "UUID1": {
+      "id": "UUID1",
+      "value": "Котенок-Чемпион",
+      "description": "Котенок-Чемпион",
+      "kitten": true
+    },
+    "UUID2": {
+      "id": "UUID2",
+      "value": "Котенок Премиор",
+      "description": "Котенок Премиор",
+      "castration": true,
+      "kitten": true
+    },
+    "UUID3": {
+      "id": "UUID3",
+      "value": "Юниор Чемпион",
+      "description": "Юниор Чемпион",
+      "junior": true
+    },
+    "UUID4": {
+      "id": "UUID4",
+      "value": "JCAC",
+      "description": "Юниор Премиор (JCAC)",
+      "castration": true,
+      "junior": true
+    },
+    "UUID5": {
+      "id": "UUID5",
+      "value": "CAC",
+      "description": "Чемпион (CAC)"
+    },
+    "UUID6": {
+      "id": "UUID6",
+      "value": "Премиор",
+      "description": "Премиор",
+      "castration": true
+    },
+    "UUID7": {
+      "id": "UUID7",
+      "value": "CAGCI",
+      "description": "Международный Чемпион (CAGCI)"
+    },
+    "UUID8": {
+      "id": "UUID8",
+      "value": "CAGPI",
+      "description": "Международный Премиор (CAGPI)",
+      "castration": true
+    },
+    "UUID9": {
+      "id": "UUID9",
+      "value": "CACE",
+      "description": "Большой Международный Чемпион (CACE)"
+    },
+    "UUID10": {
+      "id": "1UUID0",
+      "value": "CAPE",
+      "description": "Большой Международный Премиор (CAPE)",
+      "castration": true
+    },
+    "UUID11": {
+      "id": "1UUID1",
+      "value": "Евро Чемпион",
+      "description": "Евро Чемпион"
+    },
+    "UUID12": {
+      "id": "1UUID2",
+      "value": "Евро Премиор",
+      "description": "Евро Премиор",
+      "castration": true
+    },
+    "UUID13": {
+      "id": "1UUID3",
+      "value": "CACM",
+      "description": "Большой Евро Чемпион (CACM)"
+    },
+    "UUID14": {
+      "id": "1UUID4",
+      "value": "CAPM",
+      "description": "Большой Евро Премиор (CAPM)",
+      "castration": true
+    },
+    "UUID15": {
+      "id": "1UUID5",
+      "value": "WCH",
+      "description": "Чемпион Мира (WCH)"
+    },
+    "UUID16": {
+      "id": "1UUID6",
+      "value": "WPR",
+      "description": "Премиор Мира (WPR)",
+      "castration": true
+    },
+    "UUID17": {
+      "id": "1UUID7",
+      "value": "Домашняя",
+      "description": "Домашняя",
+      "castration": true,
+      "isHomeCat": true
+    }
+  },
+  "nurseries": {
+    "UUID1": {
+      "id": "UUID1",
+      "name": "Мейн-кун",
+      "worked": "Golden Pride",
+      "nameWork": "Бенгальский",
+      "suite": "Бенгальский",
+      "phone": "+7 937 275 64 18",
+      "email": "vyazka@gmail.com",
+      "image": "/kzn.jpg"
+    },
+    "UUID2": {
+      "id": "UUID2",
+      "name": "Британцы",
+      "worked": "BritishCO",
+      "nameWork":  "Бенгальский",
+      "suite": "Бенгальский",
+      "phone":  "+7 937 275 64 18",
+      "email":  "vyazka@gmail.com",
+      "image": "/cattwo.jpg"
+    }
+  },
+  "cats": {
+    "UUID1": {
+      "id": "UUID1",
+      "name": "Прометей",
+      "breed": "Веслоухая британская",
+      "image": "/cat.jpg",
+      "csssrc": "styles.cats_Main__src",
+      "favorite": false,
+      "club": "Golder Pride"
+    },
+    "UUID2": {
+      "id": "UUID2",
+      "name": "Шпилька",
+      "breed": "дворовый бродяга",
+      "image": "/catOne.jpeg",
+      "csssrc": "styles.cats_Main__src",
+      "favorite": false,
+      "club": "Golder Pride"
+    },
+    "UUID3": {
+      "id": "UUID3",
+      "name": "Пушок",
+      "breed": "кокер спаниель",
+      "image": "/cattwo.jpg",
+      "csssrc": "styles.cats_Main__src",
+      "favorite": false,
+      "club": "Golder Pride"
+    },
+    "UUID4": {
+      "id": "UUID4",
+      "name": "Платон",
+      "breed": "английская",
+      "image": "/catthree.jpg",
+      "csssrc": "styles.cats_Main__src",
+      "favorite": true,
+      "club": "Golder Pride"
+    }
+  },
+  "exhibitions": {
+    "UUID1": {
+      "id": "UUID1",
+      "status": "processing",
+      "dateStart": "2020-09-10T23:59:59",
+      "dateEnd": "2020-09-11T23:59:59",
+      "location": "Москва",
+      "streets": "Ленина д.15",
+      "type": "Международная",
+      "club": "РФОО Коргоруши",
+      "image": "/eft.jpg",
+      "csssrc": "lasthibition_srcone",
+      "userList": ["1","2","3"]
+    },
+    "UUID2": {
+      "id": "UUID2",
+      "status": "processing",
+      "dateStart": "2020-01-25T23:59:59",
+      "dateEnd": "2020-01-26T23:59:59",
+      "location": "Москва, парк Сокольники",
+      "streets": "ул.Комсомола д.6",
+      "type": "Международная",
+      "club": "РФОО Коргоруши",
+      "image": "/efttwo.jpg",
+      "csssrc": "lasthibition_srcone",
+      "userList": ["1","2","3"]
+    },
+    "UUID3": {
+      "id": "UUID3",
+      "status": "processing",
+      "dateStart": "2020-09-05T23:59:59",
+      "dateEnd": "2020-09-06T23:59:59",
+      "location": "Москва",
+      "streets": "ул.Нефтянников пер.2 д.3",
+      "type": "Международная",
+      "club": "РФОО Коргоруши",
+      "image": "/eftthree.jpg",
+      "csssrc": "lasthibition_srcone",
+      "userList": ["1","2","3"]
+    },
+    "UUID4": {
+      "id": "UUID4",
+      "status": "complited",
+      "dateStart": "2023-03-10T23:59:59",
+      "dateEnd": "2023-03-11T23:59:59",
+      "type": null,
+      "club": null,
+      "location": "Ульяновск",
+      "streets": "ул.Первомай д.13",
+      "image": "/lastEx.jpg",
+      "csssrc": "nearexhibition_Main__src",
+      "userList": ["1","2","3"]
+    },
+    "UUID5": {
+      "id": "UUID5",
+      "status": "complited",
+      "dateStart": "2023-05-14T23:59:59",
+      "dateEnd": "2023-05-15T23:59:59",
+      "type": null,
+      "club": null,
+      "location": "Ульяновск",
+      "streets": "ул.Каменка д.14",
+      "image": "/lastEx.jpg",
+      "csssrc": "nearexhibition_Main__src",
+      "userList": ["1","2","3"]
+    }
+  }
+}

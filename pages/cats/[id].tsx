@@ -1,19 +1,17 @@
 import type { NextPage } from 'next';
-import React from 'react';
-import Image from "next/image";
+import React, { useEffect } from 'react';
 import { useRouter } from "next/router";
 import { Page } from '../../components/Page';
 import styles from '../../styles/Partners.module.css';
-import cattwo from "../../public/cattwo.jpg";
 import { useFetchService } from "../../utils/useFetchService";
-import { Cats } from "../api/cats";
 import ExhibitionCard from "../../components/Intro/ExhibitionCard";
+import { Cat } from '../../api/types';
 
-const Cat: NextPage = () => {
+const CatPage: NextPage = () => {
     const router = useRouter();
     const { id } = router.query;
 
-    const { data: catsData } = useFetchService<Cats>('cat', { id: id as string }) || {};
+    const { data: catsData } = useFetchService<Cat>('cats/id', { id: id as string }) || {};
 
     if (!catsData) {
         return null;
@@ -52,4 +50,4 @@ const Cat: NextPage = () => {
     );
 };
 
-export default Cat;
+export default CatPage;

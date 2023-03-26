@@ -4,16 +4,15 @@ import React from 'react';
 import { Page } from '../../components/Page';
 import styles from '../../styles/user.module.css';
 import ExhibitionCard from "../../components/Intro/ExhibitionCard";
-import stars from '../../public/stars.jpg';
 import { useFetchService } from '../../utils/useFetchService';
-import { User } from '../api/users';
+import { User } from '../../api/types';
 
 const Id: NextPage = () => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const router = useRouter();
     const { id } = router.query;
 
-    const { data: userData } = useFetchService<User>('user', { id: id as string }) || {};
+    const { data: userData } = useFetchService<User>('users/id', { id: id as string }) || {};
 
     if (!userData) {
         return null;

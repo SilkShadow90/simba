@@ -1,55 +1,80 @@
-import useSWR from 'swr';
-import { ApiResponse, fetcher, getBackEndUrl, isProd } from "./index";
+import { useCallback, useEffect, useState } from 'react';
+import CatMethods from '../api/CatMethods';
+import ExhibitionMethods from '../api/ExhibitionMethods';
+import DictionaryMethods from '../api/DictionaryMethods';
+import NurserMethods from '../api/NurserMethods';
+import UserMethods from '../api/UserMethods';
 
-import breedsList from '../pages/api/breedsList.json';
-import titulsList from '../pages/api/titulsList.json';
-import usersList from '../pages/api/usersList.json';
-import nurseriesList from '../pages/api/nurseriesList.json';
-import lastexhibitionList from '../pages/api/allExhibitionList.json';
-import catsList from '../pages/api/catsList.json';
-import allExhibition from "../pages/api/allExhibition";
+type dataType = 'breeds' | 'titles' | 'users' | 'users/id' | 'nurseries' | 'nurseries/id' | 'referees' | 'exhibitionReferees' |
+    'exhibitionsWinner' | "nearexhibition" | "lastexhibition"| "cats" | "cats/id" | "exhibitions/id" | "allExhibition"
 
+export type FetchService<T> = {
+  data?: T | null,
+  fetchData?(): void
+} | undefined
 
-type dataType = 'breeds' | 'tituls' | 'users' | 'user' | 'nurseries' | 'nurser' | 'referees' | 'exhibitionReferees' |
-    'exhibitionsWinner' | "nearexhibition" | "lastexhibition"| "cats" | "cat" | "exhibition" | "allExhibition"
+export const useFetchService = <T>(apiName: dataType, reqData?: { id?: string }): FetchService<T> => {
+  const [data, setData] = useState<T | null>();
 
-export const useFetchService = <T>(apiName: dataType, reqData?: { id: string }): ApiResponse<T> | undefined => {
-  const url = `${getBackEndUrl()}/api/${apiName}${reqData?.id ? `/${reqData?.id}` : ''}`;
-  const { data } = useSWR<ApiResponse<T>>(url, fetcher);
+  const fetchData = useCallback(async () => {
+    let fetched: T;
 
-  if (isProd()) {
     switch (apiName) {
+      case 'titles':
+        fetched = await DictionaryMethods.getTitles() as never as T;
+        break;
       case 'breeds':
-        return { data: breedsList as never as T, url, name: 'breeds' };
-      case 'tituls':
-        return { data: titulsList as never as T, url, name: 'tituls' };
+        fetched = await DictionaryMethods.getBreeds() as never as T;
+        break;
       case 'users':
-      case 'referees':
-      case 'exhibitionsWinner':
-      case 'exhibitionReferees':
-        return { data: usersList as never as T, url, name: 'referees' };
-      case 'user':
-        return { data: usersList[0] as never as T, url, name: 'users' };
-      case 'exhibition':
-        return { data: lastexhibitionList[0] as never as T, url, name: 'allExhibitionList' };
-      case 'cat':
-        return { data: catsList[0] as never as T, url, name: 'cats' };
-      case 'nurseries':
-        return { data: nurseriesList as never as T, url, name: 'nurseries' };
+        fetched = await UserMethods.getUsers() as never as T;
+        break;
+      case 'users/id':
+        fetched = await UserMethods.getUser(reqData?.id || '') as never as T;
+        break;
       case 'cats':
-        return { data: catsList as never as T, url, name: 'cats' };
+        fetched = await CatMethods.getCats() as never as T;
+        break;
+      case 'cats/id':
+        fetched = await CatMethods.getCat(reqData?.id || '') as never as T;
+        break;
+      case 'referees':
+        fetched = await UserMethods.getReferees() as never as T;
+        break;
+      case 'exhibitionsWinner':
+        fetched = await UserMethods.getExhibitionWinners(reqData?.id || '') as never as T;
+        break;
+      case 'exhibitionReferees':
+        fetched = await UserMethods.getExhibitionReferees(reqData?.id || '') as never as T;
+        break;
       case 'nearexhibition':
-        return { data: lastexhibitionList as never as T, url, name: 'nearexhibition' };
+        fetched = await ExhibitionMethods.getNearestExhibitions() as never as T;
+        break;
       case 'lastexhibition':
-        return { data: lastexhibitionList as never as T, url, name: 'lastexhibition' };
+        fetched = await ExhibitionMethods.getLatestExhibitions() as never as T;
+        break;
       case 'allExhibition':
-        return { data: lastexhibitionList as never as T, url, name: 'allExhibition' };
-      case 'nurser':
-        return { data: nurseriesList[0] as never as T, url, name: 'nurser' };
+        fetched = await ExhibitionMethods.getExhibitions() as never as T;
+        break;
+      case 'exhibitions/id':
+        fetched = await ExhibitionMethods.getExhibition(reqData?.id || '') as never as T;
+        break;
+      case 'nurseries':
+        fetched = await NurserMethods.getNurseries() as never as T;
+        break;
+      case 'nurseries/id':
+        fetched = await NurserMethods.getNurser(reqData?.id || '') as never as T;
+        break;
       default:
-        return data;
+        fetched = {} as never as T;
     }
-  }
 
-  return data;
+    setData(fetched);
+  }, [apiName, reqData?.id]);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
+  return { data, fetchData };
 };

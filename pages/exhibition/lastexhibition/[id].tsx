@@ -8,10 +8,9 @@ import styles from '../../../styles/out.module.css';
 import ExhibitionCard from "../../../components/Intro/ExhibitionCard";
 import stars from '../../../public/stars.jpg';
 import {useFetchService} from "../../../utils/useFetchService";
-import {User} from "../../api/users";
 import Loader from "../../../components/Loader";
-import {Lastexhibition} from "../../api/lastexhibition";
 import {getDateString} from "../../../utils";
+import { Exhibition, User } from '../../../api/types';
 
 function jpeg(size: number = 150) {
     return `https://source.unsplash.com/random/${size}`;
@@ -28,10 +27,9 @@ const Out: NextPage = () => {
     const { id } = router.query;
     const { data: usersData } = useFetchService<User[]>('exhibitionsWinner', { id: id as string }) || {};
     const { data: referees } = useFetchService<User[]>('exhibitionReferees', { id: id as string }) || {};
-    const { data: lastexhibitionData } = useFetchService<Lastexhibition[]>('lastexhibition') || {};
+    const { data: lastexhibitionData } = useFetchService<Exhibition[]>('lastexhibition') || {};
 
-    const { data: exhibition } = useFetchService<any>('exhibition',{ id: id as string }) || {};
-    console.log("ex",exhibition)
+    const { data: exhibition } = useFetchService<any>('exhibitions/id',{ id: id as string }) || {};
 
     if (!lastexhibitionData) {
         return (
@@ -89,10 +87,10 @@ const Out: NextPage = () => {
                 </div>
                 <div className={styles.outphotos}>
                     <div className={styles.outinfo}>Фотографии с выставки</div>
-                    {/*<div className={styles.outinfo_title}>*/}
-                    {/*    /!*#todo починить*!/*/}
-                    {/*    {getDateString(exhibition.dateStart, exhibition.dateEnd)}*/}
-                    {/*</div>*/}
+                    {/* <div className={styles.outinfo_title}> */}
+                    {/*    /!*#todo починить*!/ */}
+                    {/*    {getDateString(exhibition.dateStart, exhibition.dateEnd)} */}
+                    {/* </div> */}
                     <div className={styles.outarbiter_info}>
                         {getImages(30, 300)}
                     </div>

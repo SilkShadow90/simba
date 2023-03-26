@@ -41,6 +41,10 @@ export const DocsComponentVyazka:any = () => {
         func(e.target.value);
     };
 
+    if (!breeds?.length) {
+      return null;
+    }
+
     return (
         <div className={styles.docsRightVstuplenie}>
             <div className={styles.docsRightTitul}>{Strings.vyazka.vyazkaHeader.title}</div>

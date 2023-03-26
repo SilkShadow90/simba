@@ -7,13 +7,11 @@ import {FirstBack} from "../../components/Back";
 import { List } from '../../components/List';
 import {useFetchService} from "../../utils/useFetchService";
 import Loader from "../../components/Loader";
-import {Lastexhibition} from "../api/lastexhibition";
 import {getDateString} from "../../utils";
+import { Exhibition } from '../../api/types';
 
 const NearexhibitionPage: NextPage = () => {
-
-    // const { data: nearexhibitionData } = useFetchService<Nearexhibition[]>('nearexhibition') || {};
-    const { data: lastexhibitionData } = useFetchService<Lastexhibition[]>('nearexhibition') || {};
+    const { data: lastexhibitionData } = useFetchService<Exhibition[]>('nearexhibition') || {};
 
     if (!lastexhibitionData) {
         return (

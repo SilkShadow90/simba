@@ -6,19 +6,16 @@ import styles from '../../../styles/come.module.css';
 import ExhibitionCard from "../../../components/Intro/ExhibitionCard";
 import stars from "../../../public/stars.jpg";
 import { useFetchService } from '../../../utils/useFetchService';
-import { User } from '../../api/users';
 import Loader from '../../../components/Loader';
-import {Lastexhibition} from "../../api/lastexhibition";
 import { Strings } from '../../../resources';
-import {getDateString} from "../../../utils";
+import { Exhibition, User } from '../../../api/types';
 
 const сome: NextPage = () => {
     const router = useRouter();
     const { id } = router.query;
-    console.log('id', id);
     const { data: usersData } = useFetchService<User[]>('users') || {};
-    const { data: lastexhibitionData } = useFetchService<Lastexhibition[]>('lastexhibition') || {};
-    const { data: exhibition } = useFetchService<any>('exhibition',{ id: id as string }) || {};
+    const { data: lastexhibitionData } = useFetchService<Exhibition[]>('lastexhibition') || {};
+    const { data: exhibition } = useFetchService<any>('exhibitions/id',{ id: id as string }) || {};
     if (!lastexhibitionData) {
         return (
             <Loader isVisible={true} />

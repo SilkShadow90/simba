@@ -1,21 +1,19 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { checkAvailableFile } from '../test';
-import allExhibitionList from '../allExhibitionList.json';
-
-type Data = {
-    name: string
-}
+import { checkAvailableFile } from '../utils';
+import { exhibitions } from '../mockData.json';
+import { NextApiData } from '../../../api/types';
 
 
 export default async function handler(
     req: NextApiRequest,
-    res: NextApiResponse<Data>
+    res: NextApiResponse<NextApiData>
 ) {
-    const isAvailableFile: boolean | string = await checkAvailableFile('allExhibitionList.json');
+    const isAvailableFile: boolean | string = await checkAvailableFile('mockData.json');
 
     const { id } = req.query;
-    const ex = allExhibitionList.find((exhibition) => exhibition.id === id);
-    console.log("ex",ex)
+    // @ts-ignore
+    const ex = exhibitions[id];
+
     if (isAvailableFile) {
         const ww = {
             name: 'exhibition',

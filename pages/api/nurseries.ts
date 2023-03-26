@@ -1,24 +1,20 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { checkAvailableFile } from './test';
-import nurseriesList from './nurseriesList.json';
-
-export type Data = {
-    name: string
-    id: string
-}
+import { checkAvailableFile } from './utils';
+import { nurseries } from './mockData.json';
+import { NextApiDataWithId } from '../../api/types';
 
 export default async function handler(
     req: NextApiRequest,
-    res: NextApiResponse<Data>
+    res: NextApiResponse<NextApiDataWithId>
 ) {
-    const isAvailableFile: boolean | string = await checkAvailableFile('nurseriesList.json');
+    const isAvailableFile: boolean | string = await checkAvailableFile('mockData.json');
 
     if (isAvailableFile) {
         const ww = {
             name: 'nurseries',
             url: req.url,
-            data: nurseriesList,
+            data: Object.values(nurseries),
         };
         // @ts-ignore
         res.status(200).json(ww);

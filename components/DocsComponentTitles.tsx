@@ -26,7 +26,7 @@ type Titul = {
 
 export const DocsComponentTitles:any = () => {
     const { data: breeds } = useFetchService<Breed[]>('breeds') || {};
-    const { data: titlesData } = useFetchService<Titul[]>('tituls') || {};
+    const { data: titlesData } = useFetchService<Titul[]>('titles') || {};
 
     const [birthday, setBirthday] = useState<string>('');
     const [isAdult, setAdult] = useState<boolean>();

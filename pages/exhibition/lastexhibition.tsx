@@ -6,12 +6,12 @@ import ExhibitionCard from "../../components/Intro/ExhibitionCard";
 import {FirstBack} from "../../components/Back";
 import { List } from '../../components/List';
 import {useFetchService} from "../../utils/useFetchService";
-import {Lastexhibition} from "../api/lastexhibition";
 import Loader from "../../components/Loader";
 import { getDateString } from '../../utils';
+import { Exhibition } from '../../api/types';
 
 const LastexhibitionPage: NextPage = () => {
-    const { data: lastexhibitionData } = useFetchService<Lastexhibition[]>('lastexhibition') || {};
+    const { data: lastexhibitionData } = useFetchService<Exhibition[]>('lastexhibition') || {};
     if (!lastexhibitionData) {
         return (
             <Loader isVisible={true} />
