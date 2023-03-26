@@ -1,5 +1,5 @@
 import { ApiMethods } from './ApiMethods';
-import { Cat, Exhibition } from './types';
+import { Exhibition } from './types';
 import { DB } from '../utils/db';
 import { earlyDate } from '../utils';
 

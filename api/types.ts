@@ -59,11 +59,3 @@ export type Exhibition = {
   dateStart: string
   dateEnd: string
 }
-
-export type NextApiData<T = {}> = {
-  name: string
-} & T
-
-export type NextApiDataWithId<T = {}> = {
-  id: string
-} & NextApiData<T>
