@@ -1,8 +1,10 @@
-import React, { ChangeEvent, PropsWithChildren, useEffect, useState } from 'react';
+import React, { ChangeEvent, PropsWithChildren, useCallback, useEffect, useState } from 'react';
 import classNames from 'classnames';
 import styles from "../styles/Modal.module.css";
 import Loader from "./Loader";
-import { delay } from '../utils';
+import { useFetchService } from '../utils/useFetchService';
+import FeedbackMethods from '../api/FeedbackMethods';
+import { Feedback } from '../api/types';
 
 interface Props {
     active: boolean;
@@ -10,15 +12,22 @@ interface Props {
 }
 
  const Modal = ({ active, onClose }: PropsWithChildren<Props>) => {
-     const [isLoading, setLoading] = useState<boolean>(false);
      const [isError, setError] = useState<boolean>(false);
 
+     const errorCallback = useCallback(() => {
+         setError(true);
+     }, []);
+
+     const { fetchData, loading = false } = useFetchService<void, Feedback>({
+         methodFunc: FeedbackMethods.createFeedback,
+         pending: true,
+         successCallback: onClose,
+         errorCallback,
+     });
+
      const [name, setName] = useState<string>('');
-
-     const [phone, setPhone] = useState<any>('');
-
+     const [phone, setPhone] = useState<string>('');
      const [email, setEmail] = useState<string>('');
-
      const [sms, setSMS] = useState<string>('');
 
      const submitIsActive: boolean = !!name;
@@ -44,33 +53,12 @@ interface Props {
      }, [name, phone, email, sms]);
 
      const onSubmit = async () => {
-         const form = {
+         await fetchData({
              name,
              phone,
              email,
-             sms
-         };
-
-         console.log(form);
-
-         try {
-             setLoading(true);
-
-             await delay(4000);
-             const result = await fetch('google.com', { method: 'post', body: JSON.stringify(form) });
-
-             if (result.ok) {
-                 console.log('Все ок');
-             } else {
-                 throw new Error(String(result.status));
-             }
-             onClose();
-         } catch (e) {
-             setError(true);
-             console.error('Что-то пошло не так: ', e);
-         } finally {
-             setLoading(false);
-         }
+             text: sms
+         });
      };
     return (
         <div className={classNames(styles.modal, active && styles.modal_active)} onClick={onClose}>
@@ -96,8 +84,8 @@ interface Props {
                           disabled={!submitIsActive || isError}
                           onClick={onSubmit}
                         >
-                            <Loader isVisible={isLoading} />
-                            {!isLoading && 'Отправить'}
+                            <Loader isVisible={loading} />
+                            {!loading && 'Отправить'}
                         </button>
                     </div>
                 </div>

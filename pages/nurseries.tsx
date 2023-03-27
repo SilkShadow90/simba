@@ -1,23 +1,18 @@
 import type { NextPage } from 'next';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Page } from '../components/Page';
 import styles from '../styles/Partners.module.css';
 import ExhibitionCard from "../components/Intro/ExhibitionCard";
 import { List } from '../components/List';
-import Loader from "../components/Loader";
 import { Nurser } from '../api/types';
 import { useFetchService } from '../utils/useFetchService';
+import NurserMethods from '../api/NurserMethods';
 
 const NurseriesScreen: NextPage = () => {
-    const { data: nurseries } = useFetchService<Nurser[]>('nurseries') || {};
+    const { data: nurseries, loading } = useFetchService<Nurser[]>(NurserMethods.getNurseries) || {};
 
-    if (!nurseries) {
-        return (
-            <Loader isVisible={true} />
-        );
-    }
     return (
-        <Page title="Питомники" meta="bla bla" styles={styles.container} >
+        <Page title="Питомники" meta="bla bla" styles={styles.container} isLoading={loading}>
             <List>
                 {!!nurseries && nurseries.map((nurser) => (
                     <ExhibitionCard

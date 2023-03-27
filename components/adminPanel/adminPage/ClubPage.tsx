@@ -6,6 +6,7 @@ import Loader from '../../Loader';
 import { AdminInputList } from '../AdminInputList';
 import { Titles } from '../AdminInputTab';
 import { Nurser } from '../../../api/types';
+import NurserMethods from '../../../api/NurserMethods';
 
 const nurserTitles: Titles<Nurser> = {
   name: 'Специализация',
@@ -17,12 +18,12 @@ const nurserTitles: Titles<Nurser> = {
 };
 
 export const ClubPage = () => {
-  const { data: nurseriesData } = useFetchService<Nurser[]>('nurseries') || {};
+  const { data: nurseriesData, loading } = useFetchService<Nurser[]>(NurserMethods.getNurseries) || {};
   const onSubmit = useCallback(() => {
     console.log(nurseriesData);
   }, [nurseriesData]);
 
-  if (!nurseriesData) {
+  if (loading) {
     return (
       <Loader isVisible={true}/>
     );
@@ -39,10 +40,12 @@ export const ClubPage = () => {
         </div>
         <AdminButton type={'primary'} onClick={onSubmit} text={'Add Contact'}/>
       </div>
-      <AdminInputList
-        items={nurseriesData}
-        titles={nurserTitles}
-      />
+      {!!nurseriesData && (
+        <AdminInputList
+          items={nurseriesData}
+          titles={nurserTitles}
+        />
+      )}
     </>
   );
 };

@@ -6,6 +6,7 @@ import { useFetchService } from '../../../utils/useFetchService';
 import Loader from '../../Loader';
 import { AdminInputList } from '../AdminInputList';
 import { Cat } from '../../../api/types';
+import CatMethods from '../../../api/CatMethods';
 
 const catTitles: Titles<Cat> = {
   name: 'Имя',
@@ -15,13 +16,13 @@ const catTitles: Titles<Cat> = {
 };
 
 export const CatsPage = () => {
-  const { data: catsData } = useFetchService<Cat[]>('cats') || {};
+  const { data: catsData, loading } = useFetchService<Cat[]>(CatMethods.getCats) || {};
 
   const onSubmit = useCallback(() => {
     console.log(catsData);
   }, [catsData]);
 
-  if (!catsData) {
+  if (loading) {
     return (
       <Loader isVisible={true}/>
     );
@@ -39,10 +40,12 @@ export const CatsPage = () => {
         <AdminButton type={'primary'} onClick={onSubmit} text={'Add Contact'}/>
       </div>
       <div className={styles.openMainStart}>
-        <AdminInputList
-          titles={catTitles}
-          items={catsData}
-        />
+        {!!catsData && (
+          <AdminInputList
+            titles={catTitles}
+            items={catsData}
+          />
+        )}
       </div>
     </>
   );

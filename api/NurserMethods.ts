@@ -19,12 +19,16 @@ class NurserMethods extends ApiMethods {
     return [];
   };
 
-  getNurser = async (id: string): Promise<Nurser | null> => {
+  getNurser = async (id?: string): Promise<Nurser | null> => {
     try {
       if (this.useMock) {
         return this.getMock('nurseries', true, id);
       }
-      return await DB.getApi<Nurser>(`nurseries/${id}`) || null;
+
+      if (id) {
+        return await DB.getApi<Nurser>(`nurseries/${id}`) || null;
+      }
+      console.log('getNurser id is undefined');
     } catch (error) {
       console.log('getNurser error');
     }
@@ -32,49 +36,65 @@ class NurserMethods extends ApiMethods {
     return null;
   };
 
-  createNurser = async (nurser: Partial<Nurser>, callback?: () => void): Promise<void> => {
+  createNurser = async (nurser?: Partial<Nurser>, callback?: () => void, errorCallback?: () => void): Promise<void> => {
     try {
       if (this.useMock) {
         return;
       }
 
-      await DB.postApi<Partial<Nurser>>(`nurseries`, nurser, callback);
+      if (nurser) {
+        await DB.postApi<Partial<Nurser>>(`nurseries`, nurser, callback, errorCallback);
+      } else {
+        console.log('createNurser nurser is undefined');
+      }
     } catch (error) {
       console.log('createNurser error');
     }
   };
 
-  updateNurser = async (nurser: Nurser, callback?: () => void): Promise<void> => {
+  updateNurser = async (nurser?: Nurser, callback?: () => void, errorCallback?: () => void): Promise<void> => {
     try {
       if (this.useMock) {
         return;
       }
 
-      await DB.updateApi<Nurser>(`nurseries`, nurser, callback);
+      if (nurser) {
+        await DB.updateApi<Nurser>(`nurseries`, nurser, callback, errorCallback);
+      } else {
+        console.log('updateNurser nurser is undefined');
+      }
     } catch (error) {
       console.log('updateNurser error');
     }
   };
 
-  deleteNurser = async (id: string, callback?: () => void): Promise<void> => {
+  deleteNurser = async (id?: string, callback?: () => void, errorCallback?: () => void): Promise<void> => {
     try {
       if (this.useMock) {
         return;
       }
 
-      await DB.deleteApi(`nurseries`, id, callback);
+      if (id) {
+        await DB.deleteApi(`nurseries`, id, callback, errorCallback);
+      } else {
+        console.log('deleteNurser id is undefined');
+      }
     } catch (error) {
       console.log('deleteNurser error');
     }
   };
 
-  multiDeleteNurser = async (ids: string[], callback?: () => void): Promise<void> => {
+  multiDeleteNurser = async (ids?: string[], callback?: () => void, errorCallback?: () => void): Promise<void> => {
     try {
       if (this.useMock) {
         return;
       }
 
-      await DB.multiDeleteApi(`nurseries`, ids, callback);
+      if (ids?.length) {
+        await DB.multiDeleteApi(`nurseries`, ids, callback, errorCallback);
+      } else {
+        console.log('multiDeleteNurser id is undefined');
+      }
     } catch (error) {
       console.log('multiDeleteNurser error');
     }

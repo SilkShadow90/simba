@@ -1,3 +1,5 @@
+export type MethodFunc<T, U = undefined> = (data?: U, successCallback?: () => void, errorCallback?: () => void) => Promise<T | void | null>
+
 export type Nurser = {
   id: string
   name: string
@@ -58,4 +60,12 @@ export type Exhibition = {
   csssrc: string
   dateStart: string
   dateEnd: string
+}
+
+export type Feedback = {
+  id: string
+  name: string
+  phone: string
+  email: string
+  text: string
 }

@@ -1,24 +1,8 @@
 import { ApiMethods } from './ApiMethods';
-import { Breed, Exhibition, Title } from './types';
+import { Breed, Title } from './types';
 import { DB } from '../utils/db';
 
 class DictionaryMethods extends ApiMethods {
-  getExhibitions = async (): Promise<Exhibition[]> => {
-    try {
-      if (this.useMock) {
-        return this.getMock('exhibitions');
-      }
-
-      const exhibitionRecord = await DB.getApi<Record<string, Exhibition>>('exhibitions') || {};
-
-      return Object.values(exhibitionRecord) || [];
-    } catch (error) {
-      console.log('getExhibitions error');
-    }
-
-    return [];
-  };
-
   getTitles = async (): Promise<Title[]> => {
     try {
       if (this.useMock) {

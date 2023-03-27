@@ -5,20 +5,14 @@ import { Page } from '../components/Page';
 import { List } from '../components/List';
 import ExhibitionCard from '../components/Intro/ExhibitionCard';
 import { useFetchService } from '../utils/useFetchService';
-import Loader from '../components/Loader';
 import { Cat } from '../api/types';
+import CatMethods from '../api/CatMethods';
 
 const Cats: NextPage = () => {
-  const { data: catsData } = useFetchService<Cat[]>('cats') || {};
-
-  if (!catsData) {
-    return (
-      <Loader isVisible={true}/>
-    );
-  }
+  const { data: catsData, loading } = useFetchService<Cat[]>(CatMethods.getCats) || {};
 
   return (
-    <Page title="Cats" meta="bla bla" styles={styles.container}>
+    <Page title="Cats" meta="bla bla" styles={styles.container} isLoading={loading}>
       <List>
         {!!catsData && catsData.map((cats) => (
           <ExhibitionCard

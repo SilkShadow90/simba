@@ -1,5 +1,5 @@
 import { ApiMethods } from './ApiMethods';
-import { Cat } from './types';
+import { Cat, MethodFunc } from './types';
 import { DB } from '../utils/db';
 
 class CatMethods extends ApiMethods {
@@ -19,12 +19,16 @@ class CatMethods extends ApiMethods {
     return [];
   };
 
-  getCat = async (id: string): Promise<Cat | null> => {
+  getCat = async (id?: string): Promise<Cat | null> => {
     try {
       if (this.useMock) {
         return this.getMock('cats', true, id);
       }
-      return await DB.getApi<Cat>(`cats/${id}`) || null;
+
+      if (id) {
+        return await DB.getApi<Cat>(`cats/${id}`) || null;
+      }
+      console.log('getCat id is undefined');
     } catch (error) {
       console.log('getCat error');
     }
@@ -32,49 +36,65 @@ class CatMethods extends ApiMethods {
     return null;
   };
 
-  createCat = async (cat: Partial<Cat>, callback?: () => void): Promise<void> => {
+  createCat = async (cat?: Partial<Cat>, callback?: () => void, errorCallback?: () => void): Promise<void> => {
     try {
       if (this.useMock) {
         return;
       }
 
-      await DB.postApi<Partial<Cat>>(`cats`, cat, callback);
+      if (cat) {
+        await DB.postApi<Partial<Cat>>(`cats`, cat, callback, errorCallback);
+      } else {
+        console.log('createCat cat is undefined');
+      }
     } catch (error) {
       console.log('createCat error');
     }
   };
 
-  updateCat = async (cat: Cat, callback?: () => void): Promise<void> => {
+  updateCat = async (cat?: Cat, callback?: () => void, errorCallback?: () => void): Promise<void> => {
     try {
       if (this.useMock) {
         return;
       }
 
-      await DB.updateApi<Cat>(`cats`, cat, callback);
+      if (cat) {
+        await DB.updateApi<Cat>(`cats`, cat, callback, errorCallback);
+      } else {
+        console.log('updateCat cat is undefined');
+      }
     } catch (error) {
       console.log('updateCat error');
     }
   };
 
-  deleteCat = async (id: string, callback?: () => void): Promise<void> => {
+  deleteCat = async (id?: string, callback?: () => void, errorCallback?: () => void): Promise<void> => {
     try {
       if (this.useMock) {
         return;
       }
 
-      await DB.deleteApi(`cats`, id, callback);
+      if (id) {
+        await DB.deleteApi(`cats`, id, callback, errorCallback);
+      } else {
+        console.log('deleteCat id is undefined');
+      }
     } catch (error) {
       console.log('deleteCat error');
     }
   };
 
-  multiDeleteCat = async (ids: string[], callback?: () => void): Promise<void> => {
+  multiDeleteCat = async (ids?: string[], callback?: () => void, errorCallback?: () => void): Promise<void> => {
     try {
       if (this.useMock) {
         return;
       }
 
-      await DB.multiDeleteApi(`cats`, ids, callback);
+      if (ids?.length) {
+        await DB.multiDeleteApi(`cats`, ids, callback, errorCallback);
+      } else {
+        console.log('multiDeleteCat ids is undefined');
+      }
     } catch (error) {
       console.log('multiDeleteCat error');
     }

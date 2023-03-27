@@ -7,6 +7,7 @@ import {useFetchService} from "../utils/useFetchService";
 import {DocsComponentInput} from "./DocsComponentInput";
 import { onChangeInput } from "../utils";
 import { ExhibitionForm, ExhibitionFormRef } from './docs/ExhibitionForm';
+import DictionaryMethods from '../api/DictionaryMethods';
 
 type Breed = {
     id: string
@@ -25,8 +26,8 @@ type Titul = {
 }
 
 export const DocsComponentTitles:any = () => {
-    const { data: breeds } = useFetchService<Breed[]>('breeds') || {};
-    const { data: titlesData } = useFetchService<Titul[]>('titles') || {};
+    const { data: breeds } = useFetchService<Breed[]>(DictionaryMethods.getBreeds) || {};
+    const { data: titlesData } = useFetchService<Titul[]>(DictionaryMethods.getTitles) || {};
 
     const [birthday, setBirthday] = useState<string>('');
     const [isAdult, setAdult] = useState<boolean>();

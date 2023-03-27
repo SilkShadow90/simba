@@ -4,6 +4,7 @@ import { Strings } from '../resources';
 import {useFetchService} from "../utils/useFetchService";
 import {DocsComponentInput} from "./DocsComponentInput";
 import { CatInformationForm, CatInformationFormRef } from './docs/CatInformationForm';
+import DictionaryMethods from '../api/DictionaryMethods';
 
 type Breed = {
     id: string
@@ -12,8 +13,7 @@ type Breed = {
 }
 
 export const DocsComponentVyazka:any = () => {
-
-    const { data: breeds } = useFetchService<Breed[]>('breeds') || {};
+    const { data: breeds } = useFetchService<Breed[]>(DictionaryMethods.getBreeds) || {};
 
     const [dateVyazka, setdateVyazka] = useState<any>('');
     const [birthsday, setBirthsday] = useState<string>('');

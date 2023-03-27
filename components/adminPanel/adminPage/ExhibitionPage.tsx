@@ -6,6 +6,7 @@ import { useFetchService } from '../../../utils/useFetchService';
 import Loader from '../../Loader';
 import { AdminInputList } from '../AdminInputList';
 import { Exhibition } from '../../../api/types';
+import ExhibitionMethods from '../../../api/ExhibitionMethods';
 
 
 const exhibitionTitles: Titles<Exhibition> = {
@@ -17,13 +18,13 @@ const exhibitionTitles: Titles<Exhibition> = {
 };
 
 export const ExhibitionPage = () => {
-  const { data: exhibitionData } = useFetchService<Exhibition[]>('allExhibition') || {};
+  const { data: exhibitionData, loading } = useFetchService<Exhibition[]>(ExhibitionMethods.getExhibitions) || {};
 
   const onSubmit = useCallback(() => {
     console.log(exhibitionData);
   }, [exhibitionData]);
 
-  if (!exhibitionData) {
+  if (loading) {
     return (
       <Loader isVisible={true}/>
     );
@@ -41,10 +42,12 @@ export const ExhibitionPage = () => {
         <AdminButton type={'primary'} onClick={onSubmit} text={'Add Contact'}/>
       </div>
       <div className={styles.openMainStart}>
-        <AdminInputList
-          titles={exhibitionTitles}
-          items={exhibitionData}
-        />
+        {!!exhibitionData && (
+          <AdminInputList
+            titles={exhibitionTitles}
+            items={exhibitionData}
+          />
+        )}
       </div>
     </>
   );

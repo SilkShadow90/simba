@@ -35,7 +35,7 @@ class UserMethods extends ApiMethods {
     return [];
   };
 
-  getExhibitionWinners = async (id: string): Promise<User[]> => {
+  getExhibitionWinners = async (id?: string): Promise<User[]> => {
     try {
       if (this.useMock) {
         return this.getMock('users');
@@ -51,7 +51,7 @@ class UserMethods extends ApiMethods {
     return [];
   };
 
-  getExhibitionReferees = async (id: string): Promise<User[]> => {
+  getExhibitionReferees = async (id?: string): Promise<User[]> => {
     try {
       if (this.useMock) {
         return this.getMock('users');
@@ -67,12 +67,16 @@ class UserMethods extends ApiMethods {
     return [];
   };
 
-  getUser = async (id: string): Promise<User | null> => {
+  getUser = async (id?: string): Promise<User | null> => {
     try {
       if (this.useMock) {
         return this.getMock('users', true, id);
       }
-      return await DB.getApi<User>(`users/${id}`);
+
+      if (id) {
+        return await DB.getApi<User>(`users/${id}`);
+      }
+      console.log('getUsers id is undefined');
     } catch (error) {
       console.log('getUsers error');
     }
@@ -80,49 +84,65 @@ class UserMethods extends ApiMethods {
     return null;
   };
 
-  createUser = async (user: Partial<User>, callback?: () => void): Promise<void> => {
+  createUser = async (user?: Partial<User>, callback?: () => void, errorCallback?: () => void): Promise<void> => {
     try {
       if (this.useMock) {
         return;
       }
 
-      await DB.postApi<Partial<User>>(`users`, user, callback);
+      if (user) {
+        await DB.postApi<Partial<User>>(`users`, user, callback, errorCallback);
+      } else {
+        console.log('createUser user is undefined');
+      }
     } catch (error) {
       console.log('createUser error');
     }
   };
 
-  updateUser = async (user: User, callback?: () => void): Promise<void> => {
+  updateUser = async (user?: User, callback?: () => void, errorCallback?: () => void): Promise<void> => {
     try {
       if (this.useMock) {
         return;
       }
 
-      await DB.updateApi<User>(`users`, user, callback);
+      if (user) {
+        await DB.updateApi<User>(`users`, user, callback, errorCallback);
+      } else {
+        console.log('updateUser user is undefined');
+      }
     } catch (error) {
       console.log('updateUser error');
     }
   };
 
-  deleteUser = async (id: string, callback?: () => void): Promise<void> => {
+  deleteUser = async (id?: string, callback?: () => void, errorCallback?: () => void): Promise<void> => {
     try {
       if (this.useMock) {
         return;
       }
 
-      await DB.deleteApi(`users`, id, callback);
+      if (id) {
+        await DB.deleteApi(`users`, id, callback, errorCallback);
+      } else {
+        console.log('deleteUser id is undefined');
+      }
     } catch (error) {
       console.log('deleteUser error');
     }
   };
 
-  multiDeleteUser = async (ids: string[], callback?: () => void): Promise<void> => {
+  multiDeleteUser = async (ids?: string[], callback?: () => void, errorCallback?: () => void): Promise<void> => {
     try {
       if (this.useMock) {
         return;
       }
 
-      await DB.multiDeleteApi(`users`, ids, callback);
+      if (ids?.length) {
+        await DB.multiDeleteApi(`users`, ids, callback, errorCallback);
+      } else {
+        console.log('multiDeleteUser ids is undefined');
+      }
     } catch (error) {
       console.log('multiDeleteUser error');
     }
