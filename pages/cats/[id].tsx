@@ -11,7 +11,7 @@ import CatMethods from '../../api/CatMethods';
 const CatPage: NextPage = () => {
   const { id } = useQuery();
 
-  const { data: catsData, loading } = useFetchService<Cat, string>(CatMethods.getCat, id) || {};
+  const { data: catsData, loading } = useFetchService<Cat, string>(CatMethods.getCat, id);
 
   return (
     <Page title="Профиль кошки" meta="bla bla" styles={styles.container} isLoading={loading}>

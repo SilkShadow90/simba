@@ -16,13 +16,27 @@ const catTitles: Titles<Cat> = {
 };
 
 export const CatsPage = () => {
-  const { data: catsData, loading } = useFetchService<Cat[]>(CatMethods.getCats) || {};
+  const { data: catsData, loading, fetchData: fetchCats } = useFetchService<Cat[]>(CatMethods.getCats);
 
-  const onSubmit = useCallback(() => {
-    console.log(catsData);
-  }, [catsData]);
+  const { loading: createCatLoading, fetchData: fetchCreateCat } = useFetchService<void, Cat>({
+    methodFunc: CatMethods.createCat,
+    pending: true,
+    successCallback: fetchCats
+  });
 
-  if (loading) {
+
+  const onCreate = useCallback(() => {
+    // fetchCreateCat({
+    //   name: "Васян 2.0",
+    //   breed: "Веслоухая британская",
+    //   image: "/cat.jpg",
+    //   csssrc: "styles.cats_Main__src",
+    //   favorite: true,
+    //   club: "Golder Pride"
+    // });
+  }, [fetchCreateCat]);
+
+  if (loading || createCatLoading) {
     return (
       <Loader isVisible={true}/>
     );
@@ -37,7 +51,7 @@ export const CatsPage = () => {
             <option value="1">all</option>
           </select>
         </div>
-        <AdminButton type={'primary'} onClick={onSubmit} text={'Add Contact'}/>
+        <AdminButton type={'primary'} onClick={onCreate} text={'Добавить животное'}/>
       </div>
       <div className={styles.openMainStart}>
         {!!catsData && (
