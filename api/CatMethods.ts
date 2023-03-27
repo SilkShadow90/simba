@@ -32,13 +32,13 @@ class CatMethods extends ApiMethods {
     return null;
   };
 
-  createCat = async (cat: Cat, callback?: () => void): Promise<void> => {
+  createCat = async (cat: Partial<Cat>, callback?: () => void): Promise<void> => {
     try {
       if (this.useMock) {
         return;
       }
 
-      await DB.postApi<Cat>(`cats`, cat, callback);
+      await DB.postApi<Partial<Cat>>(`cats`, cat, callback);
     } catch (error) {
       console.log('createCat error');
     }

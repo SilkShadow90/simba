@@ -80,13 +80,13 @@ class UserMethods extends ApiMethods {
     return null;
   };
 
-  createUser = async (user: User, callback?: () => void): Promise<void> => {
+  createUser = async (user: Partial<User>, callback?: () => void): Promise<void> => {
     try {
       if (this.useMock) {
         return;
       }
 
-      await DB.postApi<User>(`users`, user, callback);
+      await DB.postApi<Partial<User>>(`users`, user, callback);
     } catch (error) {
       console.log('createUser error');
     }

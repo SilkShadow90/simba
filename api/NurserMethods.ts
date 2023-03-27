@@ -32,13 +32,13 @@ class NurserMethods extends ApiMethods {
     return null;
   };
 
-  createNurser = async (nurser: Nurser, callback?: () => void): Promise<void> => {
+  createNurser = async (nurser: Partial<Nurser>, callback?: () => void): Promise<void> => {
     try {
       if (this.useMock) {
         return;
       }
 
-      await DB.postApi<Nurser>(`nurseries`, nurser, callback);
+      await DB.postApi<Partial<Nurser>>(`nurseries`, nurser, callback);
     } catch (error) {
       console.log('createNurser error');
     }

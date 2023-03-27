@@ -62,13 +62,13 @@ class ExhibitionMethods extends ApiMethods {
     return [];
   };
 
-  createExhibition = async (exhibition: Exhibition, callback?: () => void): Promise<void> => {
+  createExhibition = async (exhibition: Partial<Exhibition>, callback?: () => void): Promise<void> => {
     try {
       if (this.useMock) {
         return;
       }
 
-      await DB.postApi<Exhibition>(`exhibitions`, exhibition, callback);
+      await DB.postApi<Partial<Exhibition>>(`exhibitions`, exhibition, callback);
     } catch (error) {
       console.log('createExhibition error');
     }
