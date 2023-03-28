@@ -33,10 +33,10 @@ export const AdminButton = ({ text, onClick, type, stretch, isLoading = false }:
   );
 
   return (
-    <button className={classNames(buttonStyle, stretch && 'stretch')} color={''} onClick={onClick}>
+    <button className={classNames(buttonStyle, stretch && 'stretch')} color={''} onClick={isLoading ? undefined : onClick}>
       {isLoading ? (
         <div className="centered" style={{ height: '40px' }}>
-          <Loader isVisible={true} />
+          <Loader isVisible />
         </div>
       ) : (
         <div className={textStyle}>{text}</div>
