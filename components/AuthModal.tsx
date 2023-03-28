@@ -18,11 +18,11 @@ export const AuthModal = () => {
     await auth(email, pass);
   }, [auth, email, pass]);
 
-  useEffect(() => {
-    if (isAuth) {
-      setTimeout(logout, 3000);
-    }
-  }, [isAuth, logout]);
+  // useEffect(() => {
+  //   if (isAuth) {
+  //     setTimeout(logout, 3000);
+  //   }
+  // }, [isAuth, logout]);
 
   return (
     <Portal isVisible={!isAuth}>
