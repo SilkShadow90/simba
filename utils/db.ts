@@ -1,10 +1,15 @@
-import { initializeApp, deleteApp } from 'firebase/app';
+import { initializeApp } from 'firebase/app';
+import { Auth, getAuth, signInAnonymously, signInWithEmailAndPassword, User } from 'firebase/auth';
+
 import {
-  child, Database, DatabaseReference, get, getDatabase, onValue, orderByChild, push, Query, query, ref, remove, update,
+  child, Database, DatabaseReference, get, getDatabase, orderByChild, push, Query, query, ref, remove, update,
 } from 'firebase/database';
-import { refFromURL } from '@firebase/database';
+
+import Cookies from 'js-cookie';
+
 import { IDObject } from '../components/adminPanel/AdminInputTab';
 import { delay } from './common';
+
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyBJF0gEYSjKHrDki0Pzw-GjGXNHVlytErQ',
@@ -19,16 +24,14 @@ export const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-const database = getDatabase(app);
-
-const dbRef = ref(database);
-
 export class DB {
-  static delay = 300;
+  private static readonly delay = 300;
 
-  static database: Database = database;
+  private static readonly database: Database = getDatabase(app);
 
-  static dbRef: DatabaseReference = dbRef;
+  private static readonly dbRef: DatabaseReference = ref(DB.database);
+
+  static readonly auth: Auth = getAuth(app);
 
   static getQuery = <T extends {}>(url: string, key?: string): Query => {
     const defaultQuery = child(DB.dbRef, url);
@@ -139,6 +142,29 @@ export class DB {
       console.error(error);
       errorCallback();
     }
+  };
+
+  static emailPassAuth = (email: string, password: string): Promise<void> => {
+    return signInWithEmailAndPassword(DB.auth, email, password)
+      .then((userCredential) => {
+
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
+  };
+
+  static anonymouslyAuth = () => {
+    signInAnonymously(DB.auth)
+      .then(() => {
+        // Signed in..
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ...
+      });
   };
 }
 

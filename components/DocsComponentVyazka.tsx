@@ -116,7 +116,7 @@ export const DocsComponentVyazka:any = () => {
                           value={Strings.CatInformationForm.other.selectTitle}
                         >{Strings.CatInformationForm.other.selectTitle}</option>
                         {breeds?.map((breed: Breed) => (
-                            <option key={breed.id} className={styles.docsOption} value={breed.value}>{breed.description}</option>
+                            <option key={breed.id} className={styles.docsOption} value={breed.value}>{`${breed.description} (${breed.value})`}</option>
                         ))}
                     </select>
                 </div>

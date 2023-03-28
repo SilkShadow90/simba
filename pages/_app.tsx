@@ -8,6 +8,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Provider store={store}>
       <Component {...pageProps} />
+      <div id="portal" />
     </Provider>
   );
 }

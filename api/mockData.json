@@ -14,10 +14,10 @@
       "image": "/stars.jpg",
       "isReferee": true,
       "exhibitions": [
-        "2"
+        "UUID2"
       ],
       "exhibitionsWinner": [
-        "3"
+        "UUID3"
       ]
     },
     "UUID2": {
@@ -34,10 +34,10 @@
       "image": "/stars.jpg",
       "isReferee": true,
       "exhibitions": [
-        "1"
+        "UUID1"
       ],
       "exhibitionsWinner": [
-        "1"
+        "UUID1"
       ]
     },
     "UUID3": {
@@ -54,10 +54,10 @@
       "image": "/stars.jpg",
       "isReferee": true,
       "exhibitions": [
-        "3"
+        "UUID3"
       ],
       "exhibitionsWinner": [
-        "2"
+        "UUID2"
       ]
     }
   },
@@ -65,450 +65,440 @@
     "UUID1": {
       "id": "UUID1",
       "value": "PER",
-      "description": "Персидская (PER)"
+      "description": "Персидская"
     },
     "UUID2": {
       "id": "UUID2",
       "value": "BLH",
-      "description": "Британская Длинношерстная (BLH)"
-    },
-    "UUID3": {
-      "id": "UUID3",
-      "value": "PER",
-      "description": "Колорпойнт (PER)"
+      "description": "Британская Длинношерстная"
     },
     "UUID4": {
       "id": "UUID4",
       "value": "SFL",
-      "description": "Хайленд фолд (SFL)"
+      "description": "Хайленд фолд"
     },
     "UUID5": {
       "id": "UUID5",
       "value": "SRL",
-      "description": "Селкирк рекс длинношерстный (SRL)"
+      "description": "Селкирк рекс длинношерстный"
     },
     "UUID6": {
       "id": "UUID6",
       "value": "L71",
-      "description": "Шотландская полудлинношерстная/хайленд-страйт (SFL71)"
+      "description": "хайленд-страйт"
     },
     "UUID7": {
       "id": "UUID7",
       "value": "ACL",
-      "description": "Американский кёрл длинношерстный (ACL)"
+      "description": "Американский кёрл длинношерстный"
     },
     "UUID8": {
       "id": "UUID8",
       "value": "BAL",
-      "description": "Балинезийская (BAL)"
+      "description": "Балинезийская"
     },
     "UUID9": {
       "id": "UUID9",
       "value": "BML",
-      "description": "Бурмилла длинношерстный (BML)"
+      "description": "Бурмилла длинношерстный"
     },
     "UUID10": {
       "id": "1UUID0",
       "value": "CYM",
-      "description": "Кимрик (CYM)"
+      "description": "Кимрик"
     },
     "UUID11": {
       "id": "1UUID1",
       "value": "JBL",
-      "description": "Японский бобтейл длинношерстный (JBL)"
+      "description": "Японский бобтейл длинношерстный"
     },
     "UUID12": {
       "id": "1UUID2",
       "value": "KAL",
-      "description": "Карельский бобтейл (KAL)"
+      "description": "Карельский бобтейл"
     },
     "UUID13": {
       "id": "1UUID3",
       "value": "KBL",
-      "description": "Курильский бобтейл длинношерстный (KBL)"
+      "description": "Курильский бобтейл длинношерстный"
     },
     "UUID14": {
       "id": "1UUID4",
       "value": "MNL",
-      "description": "Манчкин длинношерстный (MNL)"
+      "description": "Манчкин длинношерстный"
     },
     "UUID15": {
       "id": "1UUID5",
       "value": "MCO",
-      "description": "Мэйн кун (MCO)"
+      "description": "Мэйн кун"
     },
     "UUID16": {
       "id": "1UUID6",
       "value": "NEB",
-      "description": "Нибелунг (NEB)"
+      "description": "Нибелунг"
     },
     "UUID17": {
       "id": "1UUID7",
       "value": "NFO",
-      "description": "Норвежская лесная (NFO)"
+      "description": "Норвежская лесная"
     },
     "UUID18": {
       "id": "1UUID8",
       "value": "OSL",
-      "description": "Ориентальная полудлиношерстная (OSL)"
+      "description": "Ориентальная полудлиношерстная"
     },
     "UUID19": {
       "id": "1UUID9",
       "value": "RAG",
-      "description": "Рэгдолл (RAG)"
+      "description": "Рэгдолл"
     },
     "UUID20": {
       "id": "2UUID0",
       "value": "RGM",
-      "description": "Рагамаффин (RGM)"
+      "description": "Рагамаффин"
     },
     "UUID21": {
       "id": "2UUID1",
       "value": "SBI",
-      "description": "Бирманская (SBI)"
+      "description": "Бирманская"
     },
     "UUID22": {
       "id": "2UUID2",
       "value": "SIB",
-      "description": "Сибирская / Невская Маскарадная (SIB)"
+      "description": "Сибирская / Невская Маскарадная"
     },
     "UUID23": {
       "id": "2UUID3",
       "value": "SOM",
-      "description": "Сомали (SOM)"
+      "description": "Сомали"
     },
     "UUID24": {
       "id": "2UUID4",
       "value": "TUA",
-      "description": "Турецкая ангора (TUA)"
+      "description": "Турецкая ангора"
     },
     "UUID25": {
       "id": "2UUID5",
       "value": "TUV",
-      "description": "Турецкий ван (TUV)"
+      "description": "Турецкий ван"
     },
     "UUID26": {
       "id": "2UUID6",
       "value": "URL",
-      "description": "Уральский рекс длинношерстный (URL)"
+      "description": "Уральский рекс длинношерстный"
     },
     "UUID27": {
       "id": "2UUID7",
       "value": "ABY",
-      "description": "Абиссинская (ABY)"
+      "description": "Абиссинская"
     },
     "UUID28": {
       "id": "2UUID8",
       "value": "ACS",
-      "description": "Американский кёрл короткошерстный (ACS)"
+      "description": "Американский кёрл короткошерстный"
     },
     "UUID29": {
       "id": "2UUID9",
       "value": "ASH",
-      "description": "Американская короткошерстная (ASH)"
+      "description": "Американская короткошерстная"
     },
     "UUID30": {
       "id": "3UUID0",
       "value": "ASI",
-      "description": "Азиатская (ASI)"
+      "description": "Азиатская"
     },
     "UUID31": {
       "id": "3UUID1",
       "value": "AWH",
-      "description": "Американская жесткошерстная (AWH)"
+      "description": "Американская жесткошерстная"
     },
     "UUID32": {
       "id": "3UUID2",
       "value": "BEN",
-      "description": "Бенгальская (BEN)"
+      "description": "Бенгальская"
     },
     "UUID33": {
       "id": "3UUID3",
       "value": "BMS",
-      "description": "Бурмилла короткошерстный (BMS)"
+      "description": "Бурмилла короткошерстный"
     },
     "UUID34": {
       "id": "3UUID4",
       "value": "BOM",
-      "description": "Бомбейская (BOM)"
+      "description": "Бомбейская"
     },
     "UUID35": {
       "id": "3UUID5",
       "value": "BRA",
-      "description": "Бразильская короткошерстная (BRA)"
+      "description": "Бразильская короткошерстная"
     },
     "UUID36": {
       "id": "3UUID6",
       "value": "BRI",
-      "description": "Британская короткошерстная (BRI)"
+      "description": "Британская короткошерстная"
     },
     "UUID37": {
       "id": "3UUID7",
       "value": "BUR",
-      "description": "Бурманская (BUR)"
+      "description": "Бурманская"
     },
     "UUID38": {
       "id": "3UUID8",
       "value": "MNS",
-      "description": "Манчкин (MNS)"
+      "description": "Манчкин"
     },
     "UUID39": {
       "id": "3UUID9",
       "value": "CEY",
-      "description": "Цейлонская (CEY)"
+      "description": "Цейлонская"
     },
     "UUID40": {
       "id": "4UUID0",
       "value": "CHA",
-      "description": "Шартрез (CHA)"
+      "description": "Шартрез"
     },
     "UUID41": {
       "id": "4UUID1",
       "value": "CRX",
-      "description": "Корниш рекс (CRX)"
+      "description": "Корниш рекс"
     },
     "UUID42": {
       "id": "4UUID2",
       "value": "DRX",
-      "description": "Девон рекс (DRX)"
+      "description": "Девон рекс"
     },
     "UUID43": {
       "id": "4UUID3",
       "value": "EXO",
-      "description": "Экзотическая короткошерстная (EXO)"
+      "description": "Экзотическая короткошерстная"
     },
     "UUID44": {
       "id": "4UUID4",
       "value": "GRX",
-      "description": "Немецкий рекс (GRX)"
+      "description": "Немецкий рекс"
     },
     "UUID45": {
       "id": "4UUID5",
       "value": "JBS",
-      "description": "Японский бобтейл короткошерстный (JBS)"
+      "description": "Японский бобтейл короткошерстный"
     },
     "UUID46": {
       "id": "4UUID6",
       "value": "KAS",
-      "description": "Карельский бобтейл короткошерстный (KAS)"
+      "description": "Карельский бобтейл короткошерстный"
     },
     "UUID47": {
       "id": "4UUID7",
       "value": "KBS",
-      "description": "Курильский бобтейл короткошерстный (KBS)"
+      "description": "Курильский бобтейл короткошерстный"
     },
     "UUID48": {
       "id": "4UUID8",
       "value": "KKH",
-      "description": "Кельтская короткошерстная (KKH)"
+      "description": "Кельтская короткошерстная"
     },
     "UUID49": {
       "id": "4UUID9",
       "value": "KOR",
-      "description": "Корат (KOR)"
+      "description": "Корат"
     },
     "UUID50": {
       "id": "5UUID0",
       "value": "MAN",
-      "description": "Мэнкс (MAN)"
+      "description": "Мэнкс"
     },
     "UUID51": {
       "id": "5UUID1",
       "value": "MAU",
-      "description": "Египетская мау (MAU)"
+      "description": "Египетская мау"
     },
     "UUID52": {
       "id": "5UUID2",
       "value": "OCI",
-      "description": "Оцикет (OCI)"
+      "description": "Оцикет"
     },
     "UUID53": {
       "id": "5UUID3",
       "value": "RUS",
-      "description": "Русская голубая (RUS)"
+      "description": "Русская голубая "
     },
     "UUID54": {
       "id": "5UUID4",
       "value": "SFS",
-      "description": "Скоттиш фолд (SFS)"
+      "description": "Скоттиш фолд"
     },
     "UUID55": {
       "id": "5UUID5",
       "value": "SIN",
-      "description": "Сингапурская (SIN)"
+      "description": "Сингапурская"
     },
     "UUID56": {
       "id": "5UUID6",
       "value": "SRS",
-      "description": "Селкирк рекс короткошерстный (SRS)"
+      "description": "Селкирк рекс короткошерстный"
     },
     "UUID57": {
       "id": "5UUID7",
       "value": "URS",
-      "description": "Уральский рекс короткошерстный (URS)"
+      "description": "Уральский рекс короткошерстный"
     },
     "UUID58": {
-      "id": "5UUID8",
-      "value": "S71",
-      "description": "Шотландская короткошерстная/скоттиш-страйт (SFS71)"
+      "id": "5UUID81",
+      "value": "SFS71",
+      "description": "скоттиш-страйт"
     },
     "UUID59": {
       "id": "5UUID9",
       "value": "OSH",
-      "description": "Ориентальная короткошерстная (OSH)"
+      "description": "Ориентальная короткошерстная"
     },
     "UUID60": {
       "id": "6UUID0",
       "value": "MBT",
-      "description": "Меконгский бобтейл (MBT)"
+      "description": "Меконгский бобтейл"
     },
     "UUID61": {
       "id": "6UUID1",
       "value": "SIA",
-      "description": "Сиамская (SIA)"
+      "description": "Сиамская"
     },
     "UUID62": {
       "id": "6UUID2",
       "value": "SYS",
-      "description": "Сейшел (SYS)"
+      "description": "Сейшел"
     },
     "UUID63": {
       "id": "6UUID3",
       "value": "THA",
-      "description": "Тайская (THA)"
+      "description": "Тайская"
     },
     "UUID64": {
       "id": "6UUID4",
       "value": "TON",
-      "description": "Тонкинская (TON)"
+      "description": "Тонкинская"
     },
     "UUID65": {
       "id": "6UUID5",
       "value": "DSX",
-      "description": "Донской сфинкс (DSX)"
+      "description": "Донской сфинкс"
     },
     "UUID66": {
       "id": "6UUID6",
       "value": "PBD",
-      "description": "Петерболд (PBD)"
+      "description": "Петерболд"
     },
     "UUID67": {
       "id": "6UUID7",
       "value": "SPH",
-      "description": "Канадский сфинкс (SPH)"
+      "description": "Канадский сфинкс"
     },
     "UUID68": {
       "id": "6UUID8",
       "value": "CHA",
-      "description": "Чаузи (CHA)"
-    },
-    "UUID69": {
-      "id": "6UUID9",
-      "value": "Той-Боб",
-      "description": "Той-Боб"
+      "description": "Чаузи"
     },
     "UUID70": {
       "id": "7UUID0",
       "value": "HHP",
-      "description": "Домашняя кошка (HHP)"
+      "description": "Домашняя кошка"
     }
   },
   "titles": {
     "UUID1": {
       "id": "UUID1",
-      "value": "Котенок-Чемпион",
+      "value": "JCAC",
       "description": "Котенок-Чемпион",
       "kitten": true
     },
     "UUID2": {
       "id": "UUID2",
-      "value": "Котенок Премиор",
+      "value": "JCAP",
       "description": "Котенок Премиор",
       "castration": true,
       "kitten": true
     },
     "UUID3": {
       "id": "UUID3",
-      "value": "Юниор Чемпион",
+      "value": "JCAP",
       "description": "Юниор Чемпион",
       "junior": true
     },
     "UUID4": {
       "id": "UUID4",
       "value": "JCAC",
-      "description": "Юниор Премиор (JCAC)",
+      "description": "Юниор Премиор",
       "castration": true,
       "junior": true
     },
     "UUID5": {
       "id": "UUID5",
       "value": "CAC",
-      "description": "Чемпион (CAC)"
+      "description": "Чемпион"
     },
     "UUID6": {
       "id": "UUID6",
-      "value": "Премиор",
+      "value": "CAP",
       "description": "Премиор",
       "castration": true
     },
     "UUID7": {
       "id": "UUID7",
       "value": "CAGCI",
-      "description": "Международный Чемпион (CAGCI)"
+      "description": "Международный Чемпион"
     },
     "UUID8": {
       "id": "UUID8",
       "value": "CAGPI",
-      "description": "Международный Премиор (CAGPI)",
+      "description": "Международный Премиор",
       "castration": true
     },
     "UUID9": {
       "id": "UUID9",
-      "value": "CACE",
-      "description": "Большой Международный Чемпион (CACE)"
+      "value": "CAGCE",
+      "description": "Большой Международный Чемпион"
     },
     "UUID10": {
       "id": "1UUID0",
-      "value": "CAPE",
-      "description": "Большой Международный Премиор (CAPE)",
+      "value": "CAGPE",
+      "description": "Большой Международный Премиор",
       "castration": true
     },
     "UUID11": {
       "id": "1UUID1",
-      "value": "Евро Чемпион",
+      "value": "CACE",
       "description": "Евро Чемпион"
     },
     "UUID12": {
       "id": "1UUID2",
-      "value": "Евро Премиор",
+      "value": "CAPE",
       "description": "Евро Премиор",
       "castration": true
     },
     "UUID13": {
       "id": "1UUID3",
       "value": "CACM",
-      "description": "Большой Евро Чемпион (CACM)"
+      "description": "Большой Евро Чемпион"
     },
     "UUID14": {
       "id": "1UUID4",
       "value": "CAPM",
-      "description": "Большой Евро Премиор (CAPM)",
+      "description": "Большой Евро Премиор",
       "castration": true
     },
     "UUID15": {
       "id": "1UUID5",
       "value": "WCH",
-      "description": "Чемпион Мира (WCH)"
+      "description": "Чемпион Мира"
     },
     "UUID16": {
       "id": "1UUID6",
       "value": "WPR",
-      "description": "Премиор Мира (WPR)",
+      "description": "Премиор Мира",
       "castration": true
     },
     "UUID17": {
       "id": "1UUID7",
-      "value": "Домашняя",
+      "value": "HOME",
       "description": "Домашняя",
       "castration": true,
       "isHomeCat": true

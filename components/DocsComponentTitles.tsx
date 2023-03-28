@@ -129,7 +129,6 @@ export const DocsComponentTitles:any = () => {
 
     const filteredTitles = useMemo(() => {
         return titles.filter(title => {
-
             if (isHomeCat) {
                 return title.isHomeCat;
             }
@@ -177,7 +176,7 @@ export const DocsComponentTitles:any = () => {
         }
 
         if (currentTitle) {
-            const currentIndex: number = filteredTitles?.findIndex((title, index, array)=>{
+            const currentIndex: number = filteredTitles?.findIndex((title)=>{
                 return currentTitle === title.value;
             });
 
@@ -189,15 +188,11 @@ export const DocsComponentTitles:any = () => {
         return [];
     },[currentTitle, filteredTitles]);
 
-    console.log("secondFilteredTitles",secondFilteredTitles);
-
     useEffect(() => {
         if (filteredTitles) {
             setCurrentTitle(filteredTitles?.[0]?.value || '');
         }
     }, [isAdult, isJunior, isKitten, castration, filteredTitles]);
-
-    console.log('filteredTitles', filteredTitles);
 
     return (
         <div className={styles.docsRightVstuplenie}>
@@ -219,7 +214,7 @@ export const DocsComponentTitles:any = () => {
             <select className={styles.docsSelect} onChange={onChangeInput(setBreed)} value={breed} name={Strings.CatInformationForm.other.selectBreed} id="">
                 <option className={styles.docsOption} value={Strings.CatInformationForm.other.selectBreed}>{Strings.CatInformationForm.other.selectBreed}</option>
                 {breeds?.map((breed: Breed) => (
-                    <option key={breed.id} className={styles.docsOption} value={breed.value}>{breed.description}</option>
+                    <option key={breed.id} className={styles.docsOption} value={breed.value}>{`${breed.description} (${breed.value})`}</option>
                 ))}
             </select>
 
@@ -240,14 +235,14 @@ export const DocsComponentTitles:any = () => {
                 <option className={styles.docsOption}  value={Strings.CatInformationForm.other.selectTitle}>{Strings.CatInformationForm.other.selectTitle}</option>
                 <option className={styles.docsOption}  value="none">{Strings.CatInformationForm.other.noneTitle}</option>
                 {filteredTitles?.map((titul: Titul) => (
-                    <option key={titul.id} className={styles.docsOption} value={titul.value}>{titul.description}</option>
+                    <option key={titul.id} className={styles.docsOption} value={titul.value}>{`${titul.description} (${titul.value})`}</option>
                 ))}
             </select>
             <div className={styles.docsPreSelect}>{Strings.CatInformationForm.other.nextTitle}</div>
             <select className={styles.docsSelect} onChange={onChangeInput(setNewCurrentTitle)} value={newCurrentTitle} name={Strings.CatInformationForm.other.selectTitle} id="">
                 <option className={styles.docsOption} value={Strings.CatInformationForm.other.selectTitle}>{Strings.CatInformationForm.other.selectTitle}</option>
                 {secondFilteredTitles?.map((titul: Titul) => (
-                    <option key={titul.id} className={styles.docsOption} value={titul.value}>{titul.description}</option>
+                    <option key={titul.id} className={styles.docsOption} value={titul.value}>{`${titul.description} (${titul.value})`}</option>
                 ))}
             </select>
 
