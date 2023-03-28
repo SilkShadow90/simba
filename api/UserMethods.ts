@@ -5,6 +5,8 @@ import { devLog } from '../utils';
 class UserMethods extends ApiMethods<User> {
   readonly field = 'users';
 
+  readonly apiName = 'Пользователь';
+
   getReferees = async (): Promise<User[]> => {
     return this.getAllByKey('isReferee');
   };

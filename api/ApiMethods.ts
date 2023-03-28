@@ -2,6 +2,7 @@ import { devLog, getCapitalise, isProd } from '../utils';
 import mockData from './mockData.json';
 import { DB } from '../utils/db';
 import { IDObject, WithoutID } from './types';
+import { ToastService } from '../utils/ToastService';
 
 export abstract class ApiMethods<K extends IDObject> {
   isProd: boolean = isProd();
@@ -11,6 +12,8 @@ export abstract class ApiMethods<K extends IDObject> {
   useMock = this.isProd || this.isDev;
 
   abstract field: keyof typeof mockData
+
+  abstract apiName?: string
 
   getMock = (key: keyof typeof mockData, useId?: boolean, id?: string): any => {
     return Promise.resolve().then(() => {
@@ -42,7 +45,8 @@ export abstract class ApiMethods<K extends IDObject> {
 
       return Object.values<T>(fieldRecord) || [];
     } catch (error) {
-      devLog(`get${getCapitalise(field)} error`);
+      ToastService.show(`${this.apiName} - ошибка получения данных`, 'error');
+      devLog(`get${getCapitalise(field)} error`, error);
     }
 
     return [];
@@ -61,6 +65,7 @@ export abstract class ApiMethods<K extends IDObject> {
       }
       return Object.values<T>(fieldRecord).filter((item) => !!item[key]) || [];
     } catch (error) {
+      ToastService.show(`${this.apiName} - ошибка получения данных`, 'error');
       devLog(`get${getCapitalise(field)} error`);
     }
 
@@ -78,6 +83,7 @@ export abstract class ApiMethods<K extends IDObject> {
       }
       devLog(`${field}: getById - id is undefined`);
     } catch (error) {
+      ToastService.show(`${this.apiName} - ошибка получения данных`, 'error');
       devLog(`${field}: getById error`);
     }
 
@@ -93,10 +99,12 @@ export abstract class ApiMethods<K extends IDObject> {
       if (ids) {
         const items = await Promise.all(ids.map(id => this.getById(id)));
 
+        ToastService.show('test');
         return items.filter(v => v) as T[];
       }
       devLog(`${field}: getByIds - ids is undefined`);
     } catch (error) {
+      ToastService.show(`${this.apiName} - ошибка получения элемента`, 'error');
       devLog(`${field}: getByIds error`);
     }
 
@@ -111,10 +119,12 @@ export abstract class ApiMethods<K extends IDObject> {
 
       if (item) {
         await DB.postApi<WithoutID<T>>(field, item, callback, errorCallback);
+        ToastService.show(`${this.apiName} - запись успешно создана`, 'success');
       } else {
         devLog(`${field}: create - item is undefined`);
       }
     } catch (error) {
+      ToastService.show(`${this.apiName} - ошибка создания`, 'error');
       devLog(`${field}: create error`);
     }
   };
@@ -127,10 +137,12 @@ export abstract class ApiMethods<K extends IDObject> {
 
       if (item) {
         await DB.updateApi<T>(field, item, callback, errorCallback);
+        ToastService.show(`${this.apiName} - запись успешно изменена`, 'success');
       } else {
         devLog(`${field}: update - item is undefined`);
       }
     } catch (error) {
+      ToastService.show(`${this.apiName} - ошибка редактирования`, 'error');
       devLog(`${field}: update error`);
     }
   };
@@ -143,10 +155,12 @@ export abstract class ApiMethods<K extends IDObject> {
 
       if (id) {
         await DB.deleteApi(field, id, callback, errorCallback);
+        ToastService.show(`${this.apiName} - запись успешно удалена`, 'success');
       } else {
         devLog(`${field}: delete - id is undefined`);
       }
     } catch (error) {
+      ToastService.show(`${this.apiName} - ошибка удаления`, 'error');
       devLog(`${field}: delete error`);
     }
   };
@@ -160,9 +174,11 @@ export abstract class ApiMethods<K extends IDObject> {
       if (ids?.length) {
         await DB.multiDeleteApi(field, ids, callback, errorCallback);
       } else {
+        ToastService.show(`${this.apiName} - записи успешно удалены`, 'success');
         devLog(`${field}: multiDelete - ids is undefined`);
       }
     } catch (error) {
+      ToastService.show(`${this.apiName} - ошибка удаления`, 'error');
       devLog(`${field}: multiDelete error`);
     }
   };

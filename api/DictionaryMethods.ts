@@ -6,6 +6,8 @@ type RecordType<T extends BaseDictionary> = Record<T[keyof IDObject], T> | null
 class DictionaryMethods extends ApiMethods<BaseDictionary> {
   readonly field = 'titles' || 'breeds' || 'statuses';
 
+  readonly apiName = 'titles' || 'breeds' || 'statuses';
+
   getTitles = async (): Promise<Title[]> => {
     return this.getAll('titles');
   };

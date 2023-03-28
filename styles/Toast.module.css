@@ -1,0 +1,28 @@
+.toastContainer {
+    position: fixed;
+    top: 0;
+    right: 0;
+}
+
+.toast {
+    margin: 16px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    min-width: 140px;
+    background-color: var(--admin-color-icon-gray);
+    text-align: center;
+    box-shadow: var(--shadow);
+}
+
+.success {
+    background-color: var(--admin-color-blue);
+}
+
+.warning {
+    background-color: var(--admin-color-yellow);
+}
+
+.error {
+    background-color: var(--admin-color-red);
+}
+

@@ -4,11 +4,14 @@ import { DB } from './db';
 import { delay } from './common';
 
 export const useAuth = () => {
+  const [firstLoading, setFirstLoading] = useState(true);
+
   const [isAuth, setAuth] = useState(!!DB.auth.currentUser);
   const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
     const subscribe = onAuthStateChanged(DB.auth, (user) => {
+      setFirstLoading(false);
       if (user) {
         setAuth(!!user);
       } else {
@@ -32,5 +35,5 @@ export const useAuth = () => {
     setLoading(false);
   }, []);
 
-  return { auth, isAuth, logout, isLoading } as const;
+  return { auth, isAuth, logout, isLoading, firstLoading } as const;
 };

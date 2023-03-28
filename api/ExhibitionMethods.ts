@@ -6,6 +6,8 @@ import CatMethods from './CatMethods';
 class ExhibitionMethods extends ApiMethods<Exhibition> {
   readonly field = 'exhibitions';
 
+  readonly apiName = 'Выставка';
+
   getLatestExhibitions = async (): Promise<Exhibition[]> => {
     try {
       const exhibitions = await this.getAll();
