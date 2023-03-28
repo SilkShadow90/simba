@@ -1,52 +1,20 @@
 import { ApiMethods } from './ApiMethods';
-import { Exhibition } from './types';
-import { DB } from '../utils/db';
-import { earlyDate } from '../utils';
+import { Cat, Exhibition, ID } from './types';
+import { devLog, earlyDate } from '../utils';
+import CatMethods from './CatMethods';
 
-class ExhibitionMethods extends ApiMethods {
-  getExhibitions = async (): Promise<Exhibition[]> => {
-    try {
-      if (this.useMock) {
-        return this.getMock('exhibitions');
-      }
-
-      const exhibitionRecord = await DB.getApi<Record<string, Exhibition>>('exhibitions') || {};
-
-      return Object.values(exhibitionRecord) || [];
-    } catch (error) {
-      console.log('getExhibitions error');
-    }
-
-    return [];
-  };
-
-  getExhibition = async (id?: string): Promise<Exhibition | null> => {
-    try {
-      if (this.useMock) {
-        return this.getMock('exhibitions', true, id);
-      }
-
-      if (id) {
-        return await DB.getApi<Exhibition>(`exhibitions/${id}`) || null;
-      }
-      console.log('getExhibition id is undefined');
-    } catch (error) {
-      console.log('getExhibition error');
-    }
-
-    return null;
-  };
+class ExhibitionMethods extends ApiMethods<Exhibition> {
+  readonly field = 'exhibitions';
 
   getLatestExhibitions = async (): Promise<Exhibition[]> => {
     try {
-      const exhibitions = await this.getExhibitions();
+      const exhibitions = await this.getAll();
 
       return exhibitions.sort((a: Exhibition, b: Exhibition) =>
         Number(new Date(a.dateStart)) - Number(new Date(b.dateStart)))
         .filter((exhibition: Exhibition) => earlyDate(exhibition.dateStart));
-
     } catch (error) {
-      console.log('getLatestExhibitions error');
+      devLog('getLatestExhibitions error');
     }
 
     return [];
@@ -54,80 +22,43 @@ class ExhibitionMethods extends ApiMethods {
 
   getNearestExhibitions = async (): Promise<Exhibition[]> => {
     try {
-      const exhibitions = await this.getExhibitions();
+      const exhibitions = await this.getAll<Exhibition>();
 
-      return exhibitions.sort((a: Exhibition, b: Exhibition) => Number(new Date(a.dateStart)) - Number(new Date(b.dateStart)))
+      return exhibitions.sort((a: Exhibition, b: Exhibition) =>
+        Number(new Date(a.dateStart)) - Number(new Date(b.dateStart)))
         .filter((exhibition: Exhibition) => !earlyDate(exhibition.dateStart));
 
     } catch (error) {
-      console.log('getNearestExhibitions error');
+      devLog('getNearestExhibitions error');
     }
 
     return [];
   };
 
-  createExhibition = async (exhibition?: Partial<Exhibition>, callback?: () => void, errorCallback?: () => void): Promise<void> => {
+  getExhibitionWinners = async (id?: ID): Promise<Cat[]> => {
     try {
       if (this.useMock) {
-        return;
+        return this.getMock('cats');
       }
 
-      if (exhibition) {
-        await DB.postApi<Partial<Exhibition>>(`exhibitions`, exhibition, callback, errorCallback);
-      } else {
-        console.log('createExhibition exhibitions is undefined');
+      const exhibition = await this.getById(id);
+
+      const catWinnerIds = exhibition?.catWinnerIds;
+
+      let cats: Array<Cat | null> = [];
+
+      if (catWinnerIds?.length) {
+        cats = await Promise.all(catWinnerIds?.map((winnerId) => CatMethods.getById(winnerId)));
       }
+
+      console.warn('cats', cats);
+
+      return cats.filter(v => v !== null) as Cat[];
     } catch (error) {
-      console.log('createExhibition error');
+      devLog('getUserWinners error');
     }
-  };
 
-  updateExhibition = async (exhibition?: Exhibition, callback?: () => void, errorCallback?: () => void): Promise<void> => {
-    try {
-      if (this.useMock) {
-        return;
-      }
-
-      if (exhibition) {
-        await DB.updateApi<Exhibition>(`exhibitions`, exhibition, callback, errorCallback);
-      } else {
-        console.log('updateExhibition exhibitions is undefined');
-      }
-    } catch (error) {
-      console.log('updateExhibition error');
-    }
-  };
-
-  deleteExhibition = async (id?: string, callback?: () => void, errorCallback?: () => void): Promise<void> => {
-    try {
-      if (this.useMock) {
-        return;
-      }
-
-      if (id) {
-        await DB.deleteApi(`exhibitions`, id, callback, errorCallback);
-      } else {
-        console.log('deleteExhibition id is undefined');
-      }
-    } catch (error) {
-      console.log('deleteExhibition error');
-    }
-  };
-
-  multiDeleteExhibition = async (ids?: string[], callback?: () => void, errorCallback?: () => void): Promise<void> => {
-    try {
-      if (this.useMock) {
-        return;
-      }
-
-      if (ids?.length) {
-        await DB.multiDeleteApi(`exhibitions`, ids, callback, errorCallback);
-      } else {
-        console.log('multiDeleteExhibition ids is undefined');
-      }
-    } catch (error) {
-      console.log('multiDeleteExhibition error');
-    }
+    return [];
   };
 }
 

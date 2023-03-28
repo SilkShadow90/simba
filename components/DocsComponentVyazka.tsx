@@ -5,15 +5,10 @@ import {useFetchService} from "../utils/useFetchService";
 import {DocsComponentInput} from "./DocsComponentInput";
 import { CatInformationForm, CatInformationFormRef } from './docs/CatInformationForm';
 import DictionaryMethods from '../api/DictionaryMethods';
-
-type Breed = {
-    id: string
-    value: string
-    description: string
-}
+import { Breed } from '../api/types';
 
 export const DocsComponentVyazka:any = () => {
-    const { data: breeds } = useFetchService<Breed[]>(DictionaryMethods.getBreeds) || {};
+    const { data: breeds } = useFetchService(DictionaryMethods.getBreeds) || {};
 
     const [dateVyazka, setdateVyazka] = useState<any>('');
     const [birthsday, setBirthsday] = useState<string>('');
@@ -116,7 +111,7 @@ export const DocsComponentVyazka:any = () => {
                           value={Strings.CatInformationForm.other.selectTitle}
                         >{Strings.CatInformationForm.other.selectTitle}</option>
                         {breeds?.map((breed: Breed) => (
-                            <option key={breed.id} className={styles.docsOption} value={breed.value}>{`${breed.description} (${breed.value})`}</option>
+                            <option key={breed.id} className={styles.docsOption} value={breed.code}>{`${breed.name} (${breed.code})`}</option>
                         ))}
                     </select>
                 </div>

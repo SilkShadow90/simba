@@ -4,7 +4,7 @@ import styles from "../styles/Modal.module.css";
 import Loader from "./Loader";
 import { useFetchService } from '../utils/useFetchService';
 import FeedbackMethods from '../api/FeedbackMethods';
-import { Feedback } from '../api/types';
+import { Feedback, WithoutID } from '../api/types';
 
 interface Props {
     active: boolean;
@@ -18,8 +18,8 @@ interface Props {
          setError(true);
      }, []);
 
-     const { fetchData, loading = false } = useFetchService<void, Feedback>({
-         methodFunc: FeedbackMethods.createFeedback,
+     const { fetchData, loading = false } = useFetchService<void, WithoutID<Feedback>>({
+         methodFunc: FeedbackMethods.create,
          pending: true,
          successCallback: onClose,
          errorCallback,
@@ -28,7 +28,7 @@ interface Props {
      const [name, setName] = useState<string>('');
      const [phone, setPhone] = useState<string>('');
      const [email, setEmail] = useState<string>('');
-     const [sms, setSMS] = useState<string>('');
+     const [message, setMessage] = useState<string>('');
 
      const submitIsActive: boolean = !!name;
 
@@ -37,28 +37,23 @@ interface Props {
      };
 
      const onChangePhone = (e: ChangeEvent<HTMLInputElement>) => {
-         setPhone(e.target.value?.replace(/[^0-9\s]/g, ''));
+         setPhone(e.target.value?.replace(/[^+0-9\s]/g, ''));
      };
 
      const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
          setEmail(e.target.value?.replace(/[^a-zA-Zа-яА-Я\s]/g, ''));
      };
 
-     const onChangeSms = (e: ChangeEvent<HTMLInputElement>) => {
-         setSMS(e.target.value?.replace(/[^a-zA-Zа-яА-Я\s]/g, ''));
+     const onChangeMessage = (e: ChangeEvent<HTMLInputElement>) => {
+         setMessage(e.target.value?.replace(/[^a-zA-Zа-яА-Я\s]/g, ''));
      };
 
      useEffect(() => {
          setError(false);
-     }, [name, phone, email, sms]);
+     }, [name, phone, email, message]);
 
      const onSubmit = async () => {
-         await fetchData({
-             name,
-             phone,
-             email,
-             text: sms
-         });
+         await fetchData({ name, phone, email, message, status: 'UUID1' });
      };
     return (
         <div className={classNames(styles.modal, active && styles.modal_active)} onClick={onClose}>
@@ -78,7 +73,7 @@ interface Props {
                           type="tel"
                         />
                         <input className={styles.modal_window} onChange={onChangeEmail} value={email} placeholder="Ваш Email*" type="email" />
-                        <input className={styles.modal_window__sms} onChange={onChangeSms} value={sms} placeholder="Сообщения для нас" type={"text"}/>
+                        <input className={styles.modal_window__sms} onChange={onChangeMessage} value={message} placeholder="Сообщения для нас" type={"text"}/>
                         <button
                           className={classNames(styles.modal_window__button, isError && styles.modal_window__button__error)}
                           disabled={!submitIsActive || isError}

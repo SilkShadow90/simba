@@ -4,9 +4,10 @@ import { AdminButton } from '../AdminButton';
 import { useFetchService } from '../../../utils/useFetchService';
 import Loader from '../../Loader';
 import { AdminInputList } from '../AdminInputList';
-import { Titles } from '../AdminInputTab';
+import { Titles } from '../types';
 import { Nurser } from '../../../api/types';
 import NurserMethods from '../../../api/NurserMethods';
+import { devLog } from '../../../utils';
 
 const nurserTitles: Titles<Nurser> = {
   name: 'Специализация',
@@ -18,9 +19,9 @@ const nurserTitles: Titles<Nurser> = {
 };
 
 export const ClubPage = () => {
-  const { data: nurseriesData, loading } = useFetchService<Nurser[]>(NurserMethods.getNurseries) || {};
+  const { data: nurseriesData, loading } = useFetchService<Nurser[]>(NurserMethods.getAll);
   const onSubmit = useCallback(() => {
-    console.log(nurseriesData);
+    devLog(nurseriesData);
   }, [nurseriesData]);
 
   if (loading) {

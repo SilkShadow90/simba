@@ -1,5 +1,5 @@
 
-import React, { ChangeEvent, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import dayjs from "dayjs";
 import styles from '../styles/Docs.module.css';
 import { Strings } from '../resources';
@@ -8,26 +8,11 @@ import {DocsComponentInput} from "./DocsComponentInput";
 import { onChangeInput } from "../utils";
 import { ExhibitionForm, ExhibitionFormRef } from './docs/ExhibitionForm';
 import DictionaryMethods from '../api/DictionaryMethods';
-
-type Breed = {
-    id: string
-    value: string
-    description: string
-}
-
-type Titul = {
-    id: string
-    value: string
-    description: string
-    castration?: boolean
-    kitten?: boolean
-    junior?: boolean
-    isHomeCat?: boolean
-}
+import { Breed, Title } from '../api/types';
 
 export const DocsComponentTitles:any = () => {
-    const { data: breeds } = useFetchService<Breed[]>(DictionaryMethods.getBreeds) || {};
-    const { data: titlesData } = useFetchService<Titul[]>(DictionaryMethods.getTitles) || {};
+    const { data: breeds } = useFetchService(DictionaryMethods.getBreeds);
+    const { data: titlesData } = useFetchService(DictionaryMethods.getTitles);
 
     const [birthday, setBirthday] = useState<string>('');
     const [isAdult, setAdult] = useState<boolean>();
@@ -37,7 +22,7 @@ export const DocsComponentTitles:any = () => {
     const [breed, setBreed] = useState<string>('');
     const [gender, setGender] = useState<string>('');
     const [castration, setCastration] = useState<boolean>();
-    const [titles, setTitles] = useState<Titul[]>([]);
+    const [titles, setTitles] = useState<Title[]>([]);
     const [name, setName] = useState<string>('');
     const [color, setColor] = useState<string>('');
     const [numberDocs, setNumberDocs] = useState<string>('');
@@ -133,7 +118,7 @@ export const DocsComponentTitles:any = () => {
                 return title.isHomeCat;
             }
 
-            const castrationCheck = (title: Titul): boolean => {
+            const castrationCheck = (): boolean => {
                 if (castration) {
                     return !!title.castration;
                 }
@@ -141,7 +126,7 @@ export const DocsComponentTitles:any = () => {
                 return !title.castration;
             };
 
-            const juniorCheck = (title: Titul): boolean => {
+            const juniorCheck = (): boolean => {
                 if (isJunior) {
                     return !!title.junior;
                 }
@@ -149,7 +134,7 @@ export const DocsComponentTitles:any = () => {
                 return true;
             };
 
-            const adultCheck = (title: Titul): boolean => {
+            const adultCheck = (): boolean => {
                 if (isAdult) {
                     return !title.junior && !title.kitten;
                 }
@@ -157,7 +142,7 @@ export const DocsComponentTitles:any = () => {
                 return true;
             };
 
-            const kittenCheck = (title: Titul): boolean => {
+            const kittenCheck = (): boolean => {
                 if (isKitten) {
                     return !!title.kitten;
                 }
@@ -165,7 +150,7 @@ export const DocsComponentTitles:any = () => {
                 return true;
             };
 
-            return castrationCheck(title) && juniorCheck(title) && kittenCheck(title) && adultCheck(title);
+            return castrationCheck() && juniorCheck() && kittenCheck() && adultCheck();
         });
     }, [isJunior, isKitten, isAdult, castration, isHomeCat, titles]);
 
@@ -177,7 +162,7 @@ export const DocsComponentTitles:any = () => {
 
         if (currentTitle) {
             const currentIndex: number = filteredTitles?.findIndex((title)=>{
-                return currentTitle === title.value;
+                return currentTitle === title.code;
             });
 
             if (currentIndex !== -1) {
@@ -190,19 +175,19 @@ export const DocsComponentTitles:any = () => {
 
     useEffect(() => {
         if (filteredTitles) {
-            setCurrentTitle(filteredTitles?.[0]?.value || '');
+            setCurrentTitle(filteredTitles?.[0]?.code || '');
         }
     }, [isAdult, isJunior, isKitten, castration, filteredTitles]);
 
     return (
         <div className={styles.docsRightVstuplenie}>
-            <div className={styles.docsRightTitul}>{Strings.titulStart.titulHeader.title}</div>
+            <div className={styles.docsRightTitle}>{Strings.titulStart.titulHeader.title}</div>
             <div className={styles.docsRightMain}>{Strings.titulStart.titulHeader.postTitle}</div>
             <div className={styles.docsRightEnd}>{Strings.titulStart.titulHeader.info}</div>
             <div className={styles.docsRightEnd}>{Strings.titulStart.titulHeader.postInfo}</div>
             <button className={styles.docsButton}>{Strings.titulStart.titulHeader.button}</button>
 
-            <div className={styles.docsRightTitul}>{Strings.titulStart.titulMain.title}</div>
+            <div className={styles.docsRightTitle}>{Strings.titulStart.titulMain.title}</div>
             <div className={styles.docsRightEnd}>{Strings.titulStart.titulMain.postTitle}</div>
             <div className={styles.docsRightEnd}>{Strings.titulStart.titulMain.info}
             </div>
@@ -214,7 +199,7 @@ export const DocsComponentTitles:any = () => {
             <select className={styles.docsSelect} onChange={onChangeInput(setBreed)} value={breed} name={Strings.CatInformationForm.other.selectBreed} id="">
                 <option className={styles.docsOption} value={Strings.CatInformationForm.other.selectBreed}>{Strings.CatInformationForm.other.selectBreed}</option>
                 {breeds?.map((breed: Breed) => (
-                    <option key={breed.id} className={styles.docsOption} value={breed.value}>{`${breed.description} (${breed.value})`}</option>
+                    <option key={breed.id} className={styles.docsOption} value={breed.code}>{`${breed.name} (${breed.code})`}</option>
                 ))}
             </select>
 
@@ -234,15 +219,15 @@ export const DocsComponentTitles:any = () => {
             <select className={styles.docsSelect} onChange={onChangeInput(setCurrentTitle)} value={currentTitle} name={Strings.CatInformationForm.other.selectTitle} id="">
                 <option className={styles.docsOption}  value={Strings.CatInformationForm.other.selectTitle}>{Strings.CatInformationForm.other.selectTitle}</option>
                 <option className={styles.docsOption}  value="none">{Strings.CatInformationForm.other.noneTitle}</option>
-                {filteredTitles?.map((titul: Titul) => (
-                    <option key={titul.id} className={styles.docsOption} value={titul.value}>{`${titul.description} (${titul.value})`}</option>
+                {filteredTitles?.map((titul: Title) => (
+                    <option key={titul.id} className={styles.docsOption} value={titul.code}>{`${titul.name} (${titul.code})`}</option>
                 ))}
             </select>
             <div className={styles.docsPreSelect}>{Strings.CatInformationForm.other.nextTitle}</div>
             <select className={styles.docsSelect} onChange={onChangeInput(setNewCurrentTitle)} value={newCurrentTitle} name={Strings.CatInformationForm.other.selectTitle} id="">
                 <option className={styles.docsOption} value={Strings.CatInformationForm.other.selectTitle}>{Strings.CatInformationForm.other.selectTitle}</option>
-                {secondFilteredTitles?.map((titul: Titul) => (
-                    <option key={titul.id} className={styles.docsOption} value={titul.value}>{`${titul.description} (${titul.value})`}</option>
+                {secondFilteredTitles?.map((titul: Title) => (
+                    <option key={titul.id} className={styles.docsOption} value={titul.code}>{`${titul.name} (${titul.code})`}</option>
                 ))}
             </select>
 
@@ -250,7 +235,7 @@ export const DocsComponentTitles:any = () => {
 
             <DocsComponentInput text={Strings.CatInformationForm.other.numberParents} onChange={onChangeInput(setNumberDocs)} value={numberDocs} type={"text"}/>
 
-            <div className={styles.docsRightTitul}>{Strings.CatInformationForm.other.infoParents}</div>
+            <div className={styles.docsRightTitle}>{Strings.CatInformationForm.other.infoParents}</div>
             <div className={styles.docsRightInputs}>
                 <div className={styles.docsRightInputsColumns}>
                     <DocsComponentInput text={Strings.CatInformationForm.other.owner} onChange={onChangeInput(setOwner)} value={owner} type={"text"}/>
@@ -263,7 +248,7 @@ export const DocsComponentTitles:any = () => {
                 </div>
             </div>
 
-            <div className={styles.docsRightTitul}>
+            <div className={styles.docsRightTitle}>
                 <span style={{ paddingRight: '16px' }}>{Strings.titulStart.titulEnd.title}</span>
                 {!!exhibitionCount && (
                     <button className={styles.docsButton} onClick={deleteExhibition}>{Strings.titulStart.titulEnd.postTitle}</button>

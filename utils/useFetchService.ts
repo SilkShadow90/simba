@@ -18,7 +18,7 @@ type FetchServicePropsObj<T, U = undefined> = {
 
 export type FetchServiceProps<T, U = undefined> = FetchServicePropsObj<T, U> | MethodFunc<T, U>
 
-export const useFetchService = <T, U = undefined>(props: FetchServiceProps<T, U>, req?: U, pendingProps?: boolean): FetchService<T, Partial<U>> => {
+export const useFetchService = <T, U = undefined>(props: FetchServiceProps<T, U>, req?: U, pendingProps?: boolean): FetchService<T, U> => {
   const { methodFunc, reqData, successCallback, errorCallback, pending = false } = useMemo(() => {
     if (typeof props === 'function') {
       return { methodFunc: props, reqData: req, pending: pendingProps };
@@ -44,7 +44,7 @@ export const useFetchService = <T, U = undefined>(props: FetchServiceProps<T, U>
       setData(fetched);
     }
 
-  }, [errorCallback, methodFunc, reqData, successCallback]);
+  }, [errorFunc, methodFunc, reqData, successCallback]);
 
   useEffect(() => {
     if (!pending) {

@@ -11,7 +11,7 @@ import NurserMethods from '../../api/NurserMethods';
 const NurseriesProfile: NextPage = () => {
   const { id } = useQuery();
 
-  const { data: nurseriesData, loading } = useFetchService<Nurser, string>(NurserMethods.getNurser, id) || {};
+  const { data: nurseriesData, loading } = useFetchService<Nurser, string>(NurserMethods.getById, id);
 
   return (
     <Page title="Партнеры" meta="bla bla" styles={styles.container} isLoading={loading}>

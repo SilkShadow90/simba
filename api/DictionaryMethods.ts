@@ -1,39 +1,41 @@
 import { ApiMethods } from './ApiMethods';
-import { Breed, Title } from './types';
-import { DB } from '../utils/db';
+import { BaseDictionary, Breed, ExhibitionType, IDObject, Status, Title } from './types';
 
-class DictionaryMethods extends ApiMethods {
+type RecordType<T extends BaseDictionary> = Record<T[keyof IDObject], T> | null
+
+class DictionaryMethods extends ApiMethods<BaseDictionary> {
+  readonly field = 'titles' || 'breeds' || 'statuses';
+
   getTitles = async (): Promise<Title[]> => {
-    try {
-      if (this.useMock) {
-        return this.getMock('titles');
-      }
+    return this.getAll('titles');
+  };
 
-      const titleRecord = await DB.getApi<Record<string, Title>>('titles') || {};
+  getTitleRecord = async (): Promise<RecordType<Title>> => {
+    return this.getRecord('titles');
+  };
 
-      return Object.values(titleRecord) || [];
-    } catch (error) {
-      console.log('getTitles error');
-    }
+  getTypes = async (): Promise<ExhibitionType[]> => {
+    return this.getAll('titles');
+  };
 
-    return [];
+  getTypeRecord = async (): Promise<RecordType<ExhibitionType>> => {
+    return this.getRecord('titles');
   };
 
   getBreeds = async (): Promise<Breed[]> => {
-    try {
-      if (this.useMock) {
-        return this.getMock('breeds');
-      }
+    return this.getAll('breeds');
+  };
 
-      const breedRecord = await DB.getApi<Record<string, Breed>>('breeds') || {};
+  getBreedRecord = async (): Promise<RecordType<Breed>> => {
+    return this.getRecord('breeds');
+  };
 
+  getStatuses = async (): Promise<Status[]> => {
+    return this.getAll('statuses');
+  };
 
-      return Object.values(breedRecord) || [];
-    } catch (error) {
-      console.log('getBreeds error');
-    }
-
-    return [];
+  getStatusesRecord = async (): Promise<RecordType<Status>> => {
+    return this.getRecord('statuses');
   };
 }
 

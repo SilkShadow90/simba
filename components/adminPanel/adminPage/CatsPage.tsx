@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import styles from '../../../styles/adminStyles/AdminCatsPage.module.css';
 import { AdminButton } from '../AdminButton';
-import { Titles } from '../AdminInputTab';
+import { Titles } from '../types';
 import { useFetchService } from '../../../utils/useFetchService';
 import Loader from '../../Loader';
 import { AdminInputList } from '../AdminInputList';
@@ -10,16 +10,16 @@ import CatMethods from '../../../api/CatMethods';
 
 const catTitles: Titles<Cat> = {
   name: 'Имя',
-  breed: 'Порода',
+  breedId: 'Порода',
   favorite: 'Избранное',
-  club: 'Клуб',
+  clubId: 'Клуб',
 };
 
 export const CatsPage = () => {
-  const { data: catsData, loading, fetchData: fetchCats } = useFetchService<Cat[]>(CatMethods.getCats);
+  const { data: catsData, loading, fetchData: fetchCats } = useFetchService<Cat[]>(CatMethods.getAll);
 
   const { loading: createCatLoading, fetchData: fetchCreateCat } = useFetchService<void, Cat>({
-    methodFunc: CatMethods.createCat,
+    methodFunc: CatMethods.create,
     pending: true,
     successCallback: fetchCats
   });

@@ -14,11 +14,11 @@ import ExhibitionMethods from '../../../api/ExhibitionMethods';
 const NearestExhibition: NextPage = () => {
   const { id } = useQuery();
 
-  const { data: usersData, loading: usersLoading } = useFetchService<User[]>(UserMethods.getUsers) || {};
+  const { data: usersData, loading: usersLoading } = useFetchService<User[]>(UserMethods.getAll);
   const {
     data: exhibition,
     loading: exhibitionLoading,
-  } = useFetchService<Exhibition | null, string>(ExhibitionMethods.getExhibition, id) || {};
+  } = useFetchService<Exhibition | null, string>(ExhibitionMethods.getById, id);
 
   return (
     <Page
@@ -51,7 +51,7 @@ const NearestExhibition: NextPage = () => {
                   opacityBlock={true}
                   key={user.id}
                   title={user.name}
-                  text={user.catName}
+                  text={user.email}
                   csssrc={styles.come_src_winner_one}
                   image={stars.src}
                   link={`/user/${user.id}`}

@@ -1,71 +1,89 @@
-export type MethodFunc<T, U = undefined> = (data?: U, successCallback?: () => void, errorCallback?: () => void) => Promise<T | void | null>
+export type ID = string
+export type IDObject = { id: ID }
+
+export type DateTimeISOString = string // YYYY-MM-DDTHH:mm:ss
+export type url = string
+
+export type UpdateMethodFunc<U = undefined> = (data?: U, successCallback?: () => void, errorCallback?: () => void) => Promise<void | null>
+export type GetMethodFunc<T, U = undefined> = (data?: U) => Promise<T | void | null>
+
+export type MethodFunc<T, U = undefined> = UpdateMethodFunc<U> | GetMethodFunc<T, U>
+
+export type BaseDictionary = {
+  code: string
+  name: string
+} & IDObject
+
+export type Status = BaseDictionary
 
 export type Nurser = {
-  id: string
   name: string
   worked: string
   nameWork: string
-  suite:string
+  suite: string
   phone: string
   email: string
-  image: string
-}
+  master: User[keyof IDObject]
+  image: url
+} & IDObject
 
 export type User = {
-  id: string
   name: string
-  catName: string
-  breed: string
+  catsIds: Array<Cat[keyof IDObject]>,
+  breedIds: Array<Breed[keyof IDObject]>,
   phone: string
   email: string
-  prizes?: string[]
-  image: string,
+  image: url,
   isReferee: boolean
-  exhibitions: string[]
-  exhibitionsWinner: string[]
-}
+  exhibitionRefereeIds?: Array<Exhibition[keyof IDObject]>
+} & IDObject
 
-export type Breed = {
-  id: string
-  value: string
-  description: string
-}
+export type Breed = BaseDictionary
 
 export type Title = {
-  id: string
-  value: string
-  description: string
   castration?: boolean
   kitten?: boolean
   junior?: boolean
   isHomeCat?: boolean
-}
+} & BaseDictionary
 
 export type Cat = {
-  id: string
   name: string
-  breed: string
-  image: string
-  csssrc: string
+  breedId: Breed[keyof IDObject]
+  masterId: User[keyof IDObject]
+  breederId: User[keyof IDObject]
+  image: url
   favorite: boolean
-  club: string
-}
+  clubId: Club[keyof IDObject]
+  nurserId: Nurser[keyof IDObject]
+  exhibitionIds: Array<Exhibition[keyof IDObject]>
+  exhibitionWinnerIds: Array<Exhibition[keyof IDObject]>
+} & IDObject
+
+export type Club = {
+  name: string
+  president: User[keyof IDObject]
+} & IDObject
+
+export type ExhibitionType = BaseDictionary
 
 export type Exhibition = {
-  id: string
   location: string,
-  type?: string,
-  club?: string,
-  image: string
-  csssrc: string
-  dateStart: string
-  dateEnd: string
-}
+  typeId?: ExhibitionType[keyof IDObject],
+  clubId?: Club[keyof IDObject],
+  image: url
+  dateStart: DateTimeISOString
+  dateEnd: DateTimeISOString
+  catIds: Array<Cat[keyof IDObject]>
+  catWinnerIds: Array<Cat[keyof IDObject]>
+} & IDObject
 
 export type Feedback = {
-  id: string
   name: string
   phone: string
   email: string
-  text: string
-}
+  message: string
+  status: Status[keyof IDObject]
+} & IDObject
+
+export type WithoutID<T> = Omit<T, keyof IDObject>

@@ -7,8 +7,10 @@ import { FirstBack } from '../../components/Back';
 import { List } from '../../components/List';
 import { useFetchService } from '../../utils/useFetchService';
 import { getDateString } from '../../utils';
-import { Exhibition } from '../../api/types';
+import { Club, Exhibition } from '../../api/types';
 import ExhibitionMethods from '../../api/ExhibitionMethods';
+import DictionaryMethods from '../../api/DictionaryMethods';
+import ClubMethods from '../../api/ClubMethods';
 
 const NearExhibitionPage: NextPage = () => {
   const {
@@ -16,8 +18,16 @@ const NearExhibitionPage: NextPage = () => {
     loading,
   } = useFetchService<Exhibition[]>(ExhibitionMethods.getNearestExhibitions) || {};
 
+  const { data: typeRecord, loading: loadingType } = useFetchService(DictionaryMethods.getTypeRecord);
+  const { data: clubRecord, loading: loadingClub } = useFetchService(ClubMethods.getRecord<Club>);
+
   return (
-    <Page title="Ближайщие выставки" meta="bla bla" styles={styles.container} isLoading={loading}>
+    <Page
+      title="Ближайщие выставки"
+      meta="bla bla"
+      styles={styles.container}
+      isLoading={loading || loadingType || loadingClub}
+    >
       <div className={styles.lasthibition_header}>
         <FirstBack link={'/exhibition'}/>
         <div className={styles.lasthibition_title}>Ближайщие выставки</div>
@@ -29,7 +39,7 @@ const NearExhibitionPage: NextPage = () => {
             opacityBlock={true}
             key={exhibition.id}
             title={`Выставка кошек ${getDateString(exhibition.dateStart, exhibition.dateEnd)}`}
-            text={`${getDateString(exhibition.dateStart, exhibition.dateEnd)}, будет проходить${exhibition.type ? ` ${exhibition.type}` : ''} выставка кошек${exhibition.club ? ` ${exhibition.club}` : ''}, ${exhibition.location}`}
+            text={`${getDateString(exhibition.dateStart, exhibition.dateEnd)}, будет проходить${exhibition.typeId && typeRecord ? ` ${typeRecord[exhibition.typeId].name}` : ''} выставка кошек${exhibition.clubId && clubRecord ? ` ${clubRecord[exhibition.clubId].name}` : ''}, ${exhibition.location}`}
             csssrc={styles.lasthibition_srcone}
             image={exhibition.image}
             link={`/exhibition/nearexhibition/${exhibition.id}`}

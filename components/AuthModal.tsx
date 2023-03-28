@@ -1,11 +1,11 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { Portal } from './Portal';
 import { DocsComponentInput } from './DocsComponentInput';
 import { useAuth } from '../utils/useAuth';
 import { AdminButton } from './adminPanel/AdminButton';
 
 export const AuthModal = () => {
-  const { isAuth, auth, isLoading, logout } = useAuth();
+  const { isAuth, auth, isLoading } = useAuth();
 
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
@@ -17,12 +17,6 @@ export const AuthModal = () => {
   const submit = useCallback(async () => {
     await auth(email, pass);
   }, [auth, email, pass]);
-
-  // useEffect(() => {
-  //   if (isAuth) {
-  //     setTimeout(logout, 3000);
-  //   }
-  // }, [isAuth, logout]);
 
   return (
     <Portal isVisible={!isAuth}>

@@ -4,12 +4,11 @@ import { Page } from '../components/Page';
 import styles from '../styles/Partners.module.css';
 import ExhibitionCard from "../components/Intro/ExhibitionCard";
 import { List } from '../components/List';
-import { Nurser } from '../api/types';
 import { useFetchService } from '../utils/useFetchService';
 import NurserMethods from '../api/NurserMethods';
 
 const NurseriesScreen: NextPage = () => {
-    const { data: nurseries, loading } = useFetchService<Nurser[]>(NurserMethods.getNurseries) || {};
+    const { data: nurseries, loading } = useFetchService(NurserMethods.getAll) || {};
 
     return (
         <Page title="Питомники" meta="bla bla" styles={styles.container} isLoading={loading}>

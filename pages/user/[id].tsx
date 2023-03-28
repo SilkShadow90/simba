@@ -4,28 +4,36 @@ import { Page } from '../../components/Page';
 import styles from '../../styles/user.module.css';
 import ExhibitionCard from '../../components/Intro/ExhibitionCard';
 import { useFetchService } from '../../utils/useFetchService';
-import { User } from '../../api/types';
 import { useQuery } from '../../redux/hooks';
 import UserMethods from '../../api/UserMethods';
+import DictionaryMethods from '../../api/DictionaryMethods';
+import CatMethods from '../../api/CatMethods';
 
 const Id: NextPage = () => {
   const { id } = useQuery();
 
-  const { data: userData, loading } = useFetchService<User, string>(UserMethods.getUser, id) || {};
+  const { data: user, loading } = useFetchService(UserMethods.getById, id);
+  const { data: breedRecord, loading: breedLoading } = useFetchService(DictionaryMethods.getBreedRecord);
+  const { data: cats, loading: catsLoading } = useFetchService(CatMethods.getByIds, user?.catsIds);
 
   return (
-    <Page title="Информация пользователя" meta="bla bla" styles={styles.container} isLoading={loading}>
-      {!!userData && (
+    <Page
+      title="Информация пользователя"
+      meta="bla bla"
+      styles={styles.container}
+      isLoading={loading || breedLoading || catsLoading}
+    >
+      {!!user && breedRecord && (
         <div className={styles.usermain}>
           <div className={styles.usercard}>
             <ExhibitionCard
               hoverBlock={false}
               opacityBlock={false}
-              title={userData.name}
-              text={userData.catName}
+              title={user.name}
+              text={user.email}
               csssrc={styles.user_src}
               link={'#'}
-              image={userData.image}
+              image={user.image}
             />
             <div className={styles.usermain_block}>
               <div className={styles.usermain_block_header}>
@@ -36,15 +44,7 @@ const Id: NextPage = () => {
                   ФИО:
                 </div>
                 <div className={styles.usermain_block_title_info}>
-                  {userData.name}
-                </div>
-              </div>
-              <div className={styles.usermain_block_title}>
-                <div>
-                  Порода кота
-                </div>
-                <div className={styles.usermain_block_title_info}>
-                  {userData.breed}
+                  {user.name}
                 </div>
               </div>
               <div className={styles.usermain_block_title}>
@@ -52,7 +52,7 @@ const Id: NextPage = () => {
                   Телефон
                 </div>
                 <div className={styles.usermain_block_title_info}>
-                  {userData.phone}
+                  {user.phone}
                 </div>
               </div>
               <div className={styles.usermain_block_title}>
@@ -60,26 +60,24 @@ const Id: NextPage = () => {
                   Email:
                 </div>
                 <div className={styles.usermain_block_title_info}>
-                  {userData.email}
+                  {user.email}
                 </div>
               </div>
-              <div className={styles.usermain_block_header}>
-                Награды
-              </div>
-              {
-                userData.prizes?.length
-                  ? userData.prizes.map((value) => (
-                    <div key={value} className={styles.usermain_block_title}>
-                      {value}
-                    </div>
-                  ))
-                  : (
-                    <div className={styles.usermain_block_title}>
-                      Нет наград
-                    </div>
-                  )
-              }
             </div>
+          </div>
+          <div className={styles.usercard}>
+            {!!cats && cats.map(cat => (
+              <ExhibitionCard
+                key={cat.id}
+                hoverBlock={true}
+                opacityBlock={true}
+                title={cat.name}
+                text={breedRecord[cat.breedId].name}
+                csssrc={styles.user_src}
+                image={cat.image}
+                link={`/cats/${cat.id}`}
+              />
+            ))}
           </div>
         </div>
       )}

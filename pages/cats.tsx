@@ -5,25 +5,27 @@ import { Page } from '../components/Page';
 import { List } from '../components/List';
 import ExhibitionCard from '../components/Intro/ExhibitionCard';
 import { useFetchService } from '../utils/useFetchService';
-import { Cat } from '../api/types';
+import { Breed, Cat } from '../api/types';
 import CatMethods from '../api/CatMethods';
+import DictionaryMethods from '../api/DictionaryMethods';
 
 const Cats: NextPage = () => {
-  const { data: catsData, loading } = useFetchService<Cat[]>(CatMethods.getCats) || {};
+  const { data: cats, loading: catLoading } = useFetchService<Cat[]>(CatMethods.getAll);
+  const { data: breeds, loading: breedsLoading } = useFetchService<Record<Breed['id'], Breed>>(DictionaryMethods.getBreedRecord);
 
   return (
-    <Page title="Cats" meta="bla bla" styles={styles.container} isLoading={loading}>
+    <Page title="Cats" meta="bla bla" styles={styles.container} isLoading={catLoading || breedsLoading}>
       <List>
-        {!!catsData && catsData.map((cats) => (
+        {!!cats && !!breeds && cats.map((cat) => (
           <ExhibitionCard
             hoverBlock={true}
             opacityBlock={true}
-            key={cats.id}
-            title={cats.name}
-            text={cats.breed}
+            key={cat.id}
+            title={cat.name}
+            text={breeds[cat.breedId]?.name}
             csssrc={styles.cats_Main__src}
-            image={cats.image}
-            link={`/cats/${cats.id}`}
+            image={cat.image}
+            link={`/cats/${cat.id}`}
           />
         ))}
       </List>

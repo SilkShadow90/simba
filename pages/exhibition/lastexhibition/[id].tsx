@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import type { NextPage } from 'next';
 import Image from 'next/image';
 
@@ -8,10 +8,10 @@ import ExhibitionCard from '../../../components/Intro/ExhibitionCard';
 import stars from '../../../public/stars.jpg';
 import { useFetchService } from '../../../utils/useFetchService';
 import { getDateString } from '../../../utils';
-import { Exhibition, User } from '../../../api/types';
 import { useQuery } from '../../../redux/hooks';
 import UserMethods from '../../../api/UserMethods';
 import ExhibitionMethods from '../../../api/ExhibitionMethods';
+import DictionaryMethods from '../../../api/DictionaryMethods';
 
 function jpeg(size: number = 150) {
   return `https://source.unsplash.com/random/${size}`;
@@ -33,21 +33,31 @@ function getImages(length: number, size: number = 150) {
 const Out: NextPage = () => {
   const { id } = useQuery();
 
-  const { data: usersData, loading: userLoading } = useFetchService<User[], string>(UserMethods.getExhibitionWinners, id) || {};
-  const { data: referees, loading: refereesLoading } = useFetchService<User[], string>(UserMethods.getExhibitionReferees, id) || {};
-  const { data: exhibition, loading: exhibitionLoading } = useFetchService<Exhibition, string>(ExhibitionMethods.getExhibition, id) || {};
+  const { data: cats, loading: catsLoading } = useFetchService(ExhibitionMethods.getExhibitionWinners, id);
+  const { data: referees, loading: refereesLoading } = useFetchService(UserMethods.getExhibitionReferees, id);
+  const { data: exhibition, loading: exhibitionLoading } = useFetchService(ExhibitionMethods.getById, id);
+  const { data: exhibitionType, loading: typeLoading } = useFetchService(DictionaryMethods.getTypeRecord);
+  const { data: breedRecord, loading: breedLoading } = useFetchService(DictionaryMethods.getBreedRecord);
+
+  const type: string = useMemo(() => {
+    if (exhibition?.typeId && exhibitionType) {
+      return exhibitionType[exhibition?.typeId].name;
+    }
+
+    return '';
+  }, [exhibition?.typeId, exhibitionType]);
 
   return (
     <Page
       title="Прошедшие выставки"
       meta="bla bla"
       styles={styles.container}
-      isLoading={userLoading || refereesLoading || exhibitionLoading}
+      isLoading={catsLoading || refereesLoading || exhibitionLoading || typeLoading || breedLoading}
     >
-      {!!usersData && !!referees && !!exhibition && (
+      {!!cats && !!referees && !!exhibition && breedRecord && (
         <div className={styles.exhibition_Main}>
           <div className={styles.outinfo}>
-            <div>{getDateString(exhibition?.dateStart, exhibition?.dateEnd)} была проведена {exhibition?.type} выставка
+            <div>{getDateString(exhibition?.dateStart, exhibition?.dateEnd)} была проведена {type} выставка
               кошек
             </div>
           </div>
@@ -56,16 +66,16 @@ const Out: NextPage = () => {
           <div className={styles.outwinner}>
             <div className={styles.outinfo}>Победители</div>
             <div className={styles.outwinner_dinner}>
-              {usersData && usersData.map((user) => (
+              {cats && cats.map((cat) => (
                 <ExhibitionCard
+                  key={cat.id}
                   hoverBlock={true}
                   opacityBlock={true}
-                  key={user.id}
-                  title={user.name}
-                  text={user.catName}
+                  title={cat.name}
+                  text={breedRecord[cat.breedId].name}
                   csssrc={styles.out_src_winner_one}
-                  image={stars.src}
-                  link={`/user/${user.id}`}
+                  image={cat.image}
+                  link={`/cats/${cat.id}`}
                 />
               ))}
             </div>
@@ -79,7 +89,7 @@ const Out: NextPage = () => {
                   opacityBlock={true}
                   key={user.id}
                   title={user.name}
-                  text={user.catName}
+                  text={user.email}
                   csssrc={styles.out_src_winner_one}
                   image={stars.src}
                   link={`/user/${user.id}`}

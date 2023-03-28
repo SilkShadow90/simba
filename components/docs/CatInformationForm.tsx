@@ -3,12 +3,7 @@ import styles from '../../styles/docs/CatInformation.module.css';
 import { DocsComponentInput } from '../DocsComponentInput';
 import { Strings } from '../../resources';
 import { onChangeInput } from "../../utils";
-
-type Breed = {
-  id: string
-  value: string
-  description: string
-}
+import { Breed } from '../../api/types';
 
 type Props = {
   gender: number;
@@ -72,7 +67,7 @@ const RenderCatInformationForm = ({ gender, breeds }: Props, ref: Ref<CatInforma
         <div className={styles.docsPreSelect}>{Strings.CatInformationForm.other.breed}</div>
         <select className={styles.Select} onChange={onChangeInput(setCurrentBreed)} value={currentBreed} name={Strings.CatInformationForm.other.selectTitle} id="">
           {breeds?.map((breed: Breed) => (
-            <option key={breed.id} className={styles.docsOption} value={breed.value}>{breed.description}</option>
+            <option key={breed.id} className={styles.docsOption} value={breed.code}>{breed.name}</option>
           ))}
         </select>
         <DocsComponentInput text={Strings.CatInformationForm.other.color} onChange={onChangeInput(setColor)} value={color} type="text" />

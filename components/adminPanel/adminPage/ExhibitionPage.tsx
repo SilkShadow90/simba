@@ -1,27 +1,28 @@
 import React, { useCallback } from 'react';
 import styles from '../../../styles/adminStyles/AdminExhibitionPage.module.css';
 import { AdminButton } from '../AdminButton';
-import { Titles } from '../AdminInputTab';
+import { Titles } from '../types';
 import { useFetchService } from '../../../utils/useFetchService';
 import Loader from '../../Loader';
 import { AdminInputList } from '../AdminInputList';
 import { Exhibition } from '../../../api/types';
 import ExhibitionMethods from '../../../api/ExhibitionMethods';
+import { devLog } from '../../../utils';
 
 
 const exhibitionTitles: Titles<Exhibition> = {
   location: 'Местоположение',
-  type: 'Тип',
-  club: 'Клуб',
+  typeId: 'Тип',
+  clubId: 'Клуб',
   dateStart: 'Дата начала',
   dateEnd: 'Дата конца',
 };
 
 export const ExhibitionPage = () => {
-  const { data: exhibitionData, loading } = useFetchService<Exhibition[]>(ExhibitionMethods.getExhibitions) || {};
+  const { data: exhibitionData, loading } = useFetchService<Exhibition[]>(ExhibitionMethods.getAll);
 
   const onSubmit = useCallback(() => {
-    console.log(exhibitionData);
+    devLog(exhibitionData);
   }, [exhibitionData]);
 
   if (loading) {

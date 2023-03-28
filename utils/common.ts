@@ -7,7 +7,7 @@ import { ChangeEvent } from 'react';
  * @param func функция которая будет выполнена с задержкой
  * @return void
  */
-export function delay<T>(ms: number = 1000, func?: () => T) {
+export function delay<T>(ms: number = 1000, func: () => T | unknown = () => {}) {
   return new Promise(resolve => {
     setTimeout(() => resolve(func), ms);
   });
@@ -84,3 +84,10 @@ export const getDateString = (start: string, end: string) => {
 // };
 
 // console.warn(getDateString(new Date().toString(), new Date().toString()));
+
+export const getCapitalise = (text: string = '') => text[0].toUpperCase() + text.slice(1).toLowerCase();
+
+export const devLog = (...args: Array<string | Error | unknown>) => {
+  // eslint-disable-next-line no-console
+  console.log(args);
+};
