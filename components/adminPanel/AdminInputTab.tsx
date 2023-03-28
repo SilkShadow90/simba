@@ -1,12 +1,16 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import Image from 'next/image';
 import styles from '../../styles/adminStyles/Admin.module.css';
 import { AdminCheckbox } from './AdminCheckbox';
 import { AdminModal } from './AdminModal';
 import edit from '../../public/adminImg/other/edit.svg';
 import deleteIcon from '../../public/adminImg/other/delete.svg';
-import { IDObject } from '../../api/types';
+import { Club, IDObject } from '../../api/types';
 import { Titles } from './types';
+import { useFetchService } from '../../utils/useFetchService';
+import DictionaryMethods from '../../api/DictionaryMethods';
+import ClubMethods from '../../api/ClubMethods';
+import Loader from '../Loader';
 
 export type AdminTabProps<T> = {
   titles: Titles<T>
@@ -16,6 +20,19 @@ export type AdminTabProps<T> = {
 }
 
 export const AdminInputTab = <T extends IDObject>({ item, titles, checked, onClick }: AdminTabProps<T>) => {
+  const { data: breedRecord, loading: breedLoading } = useFetchService(DictionaryMethods.getBreedRecord);
+  const { data: typeRecord, loading: typeLoading } = useFetchService(DictionaryMethods.getTypeRecord);
+  const { data: statusRecord, loading: statusLoading } = useFetchService(DictionaryMethods.getStatusesRecord);
+  const { data: clubRecord, loading: clubLoading } = useFetchService(ClubMethods.getRecord<Club>);
+
+  const records = useMemo(() => ({
+    breedRecord,
+    typeRecord,
+    statusRecord,
+    clubRecord,
+  }), [breedRecord, clubRecord, statusRecord, typeRecord]);
+
+  const isLoading = breedLoading || typeLoading || statusLoading || clubLoading;
 
   const [modalActive, setModalActive] = useState(false);
 
@@ -40,7 +57,6 @@ export const AdminInputTab = <T extends IDObject>({ item, titles, checked, onCli
 
 
   return (
-
     <div className={styles.admin_Input_Tab}
          style={{ display: 'grid', gridTemplateColumns: `100px ${getGridSize()} 60px 60px` }}>
       <div className={styles.admin_input_tab_checked}>
@@ -48,15 +64,31 @@ export const AdminInputTab = <T extends IDObject>({ item, titles, checked, onCli
       </div>
       {Object.keys(titles)
         .map((key) => {
-          if (typeof item[key as keyof T] === 'string') {
+          const value = item[key as keyof T] as any;
+          const recordName = key.includes('Id') && key.replace(/(\w+)Id/, '$1Record') || '';
+
+          // @ts-ignore
+          if (key.includes('Id') && records[recordName]) {
             return (
-              <div key={key}>{item[key as keyof T] as any}</div>
+              // @ts-ignore
+              <div key={key}>{value && records[recordName][value].name}</div>
             );
           }
-          if (typeof item[key as keyof T] === 'boolean') {
+
+          if (isLoading && key.includes('Id')) {
+            // eslint-disable-next-line react/jsx-key
+            return <Loader isVisible />;
+          }
+
+          if (typeof value === 'string') {
+            return (
+              <div key={key}>{value}</div>
+            );
+          }
+          if (typeof value === 'boolean') {
             return (
               <div key={key} className={styles.admin_input_tab_checked_boolean}>
-                <AdminCheckbox type={item[key as keyof T] as any ? 'checked' : 'unchecked'}/>
+                <AdminCheckbox type={value ? 'checked' : 'unchecked'}/>
                 {/* <input type="checkbox"  checked={item[key as keyof T]as any} /> */}
               </div>
             );

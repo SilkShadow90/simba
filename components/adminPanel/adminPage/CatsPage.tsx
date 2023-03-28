@@ -7,7 +7,6 @@ import Loader from '../../Loader';
 import { AdminInputList } from '../AdminInputList';
 import { Cat } from '../../../api/types';
 import CatMethods from '../../../api/CatMethods';
-import { ToastService } from '../../../utils/ToastService';
 
 const catTitles: Titles<Cat> = {
   name: 'Имя',
