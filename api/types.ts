@@ -38,6 +38,16 @@ export type User = {
   exhibitionRefereeIds?: Array<Exhibition[keyof IDObject]>
 } & IDObject
 
+export type Faq = {
+  "title": string
+  "description": string
+  "points": string[]
+} & IDObject
+
+export type Info = {
+  faqText: string
+}
+
 export type Breed = BaseDictionary
 
 export type Title = {

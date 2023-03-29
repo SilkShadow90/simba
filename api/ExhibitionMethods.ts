@@ -24,7 +24,7 @@ class ExhibitionMethods extends ApiMethods<Exhibition> {
 
   getNearestExhibitions = async (): Promise<Exhibition[]> => {
     try {
-      const exhibitions = await this.getAll<Exhibition>();
+      const exhibitions = await this.getAll();
 
       return exhibitions.sort((a: Exhibition, b: Exhibition) =>
         Number(new Date(a.dateStart)) - Number(new Date(b.dateStart)))
