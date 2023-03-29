@@ -12,10 +12,26 @@
     background-color: var(--admin-color-icon-gray);
     text-align: center;
     box-shadow: var(--shadow);
+    color: var(--admin-color-black);
+    animation: 1s normal fadeout;
+    animation-fill-mode: forwards;
+    animation-delay: 3s;
+    pointer-events: none;
+}
+
+@keyframes fadeout {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
 }
 
 .success {
     background-color: var(--admin-color-blue);
+    color: var(--admin-color-icon-white)
 }
 
 .warning {
@@ -24,5 +40,6 @@
 
 .error {
     background-color: var(--admin-color-red);
+    color: var(--admin-color-icon-white)
 }
 

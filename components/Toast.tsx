@@ -1,4 +1,4 @@
-import { useEffect, useState, useImperativeHandle, forwardRef, useLayoutEffect } from 'react';
+import React, { useEffect, useState, useImperativeHandle, forwardRef } from 'react';
 import classNames from 'classnames';
 import styles from '../styles/Toast.module.css';
 
@@ -10,19 +10,27 @@ export type ToastRefAttributes = {
 }
 
 
-type ToastItem = {
+type ToastItemProps = {
   text: string
   type: ToastType
-  timestamp: Date
+  timestamp: number
 }
 
+const ToastItem = React.memo(({ type, timestamp, text }: ToastItemProps) => (
+  <div className={classNames(styles.toast, styles?.[type])} key={timestamp}>
+    {text}
+  </div>
+));
+
+ToastItem.displayName = 'ToastItem';
+
 export const Toast = forwardRef<ToastRefAttributes>((_, ref) => {
-  const [toasts, setToasts] = useState<ToastItem[]>([]);
+  const [toasts, setToasts] = useState<ToastItemProps[]>([]);
   const [delay, setDelay] = useState<number>(3000);
 
   useImperativeHandle(ref, () => ({
     showToast: (text: string, type: ToastType = 'info') => {
-      setToasts(prevState => prevState.concat({ text, type, timestamp: new Date() }));
+      setToasts(prevState => [{ text, type, timestamp: Number(new Date()) }, ...prevState]);
     },
     setDelay: (newDelay) => {
       setDelay(newDelay);
@@ -34,7 +42,7 @@ export const Toast = forwardRef<ToastRefAttributes>((_, ref) => {
       setToasts(prevState => prevState.filter((toast) => {
         return (Number(new Date()) - Number(toast.timestamp)) < delay;
       }));
-    }, 1000);
+    }, delay);
 
     return () => clearInterval(interval);
   }, [delay]);
@@ -46,9 +54,7 @@ export const Toast = forwardRef<ToastRefAttributes>((_, ref) => {
   return (
     <div className={styles.toastContainer}>
       {toasts.map((toast) => (
-        <div className={classNames(styles.toast, styles?.[toast.type])} key={Number(toast.timestamp)}>
-          {toast.text}
-        </div>
+        <ToastItem text={toast.text} type={toast.type} timestamp={toast.timestamp} key={toast.timestamp} />
       ))}
     </div>
   );
