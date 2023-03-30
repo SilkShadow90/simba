@@ -13,14 +13,15 @@
 }
 .joinDown {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-areas: 'step1 step2 step3'
-                         'step4 step4 step4';
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas: 'step1 step2'
+                         'step3 step4';
     gap: var(--gap);
 }
 
 .joinDownBoxImg {
     position: relative;
+    align-items: center;
     display: flex;
 }
 

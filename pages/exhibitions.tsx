@@ -2,7 +2,7 @@ import type { NextPage } from 'next';
 import React from 'react';
 import { Page } from '../components/Page';
 import styles from '../styles/Ex.module.css';
-import ExhibitionCard from "../components/Intro/ExhibitionCard";
+import ExhibitionCard from "../components/ExhibitionCard";
 import lastEx from "../public/lastEx.jpg";
 import { List } from '../components/List';
 import nolastEX from "../public/nolastEX.jpg";
@@ -17,7 +17,7 @@ const Exhibitions: NextPage = () => {
                     opacityBlock={true}
                     title={"Ближайшие выставки"}
                     text={'Информация о ближайшей выставке кошек КЛК Коргоруши г. Москва.'}
-                    csssrc={styles.exhibition_Main__leftColumn}
+                    // csssrc={styles.exhibition_Main__leftColumn}
                     image={lastEx.src}
                 />
                 <ExhibitionCard
@@ -26,7 +26,7 @@ const Exhibitions: NextPage = () => {
                     opacityBlock={true}
                     title={"Прошедшие выставки"}
                     text={'Результаты и и фоторепортаж с прошедших выставок КЛК Коргоруши'}
-                    csssrc={styles.exhibition_Main__rightColumn}
+                    // csssrc={styles.exhibition_Main__rightColumn}
                     image={nolastEX.src}
                 />
                 <div />

@@ -7,3 +7,26 @@
     width: 100%;
     position: relative;
 }
+
+.buttonContainer {
+    position: absolute;
+    bottom: 20%;
+    right: 30%;
+}
+
+.button {
+    border: var(--admin-color-icon-white) 1px solid;
+    padding: var(--padding-vertical) var(--padding-horizontal);
+    /*background-color: var(--main-bg-color-alpha);*/
+    background-color: transparent;
+    color: var(--admin-color-icon-white);
+    border-radius: calc(var(--border) / 2);
+    /*box-shadow: var(--shadow);*/
+    transition: all 200ms linear;
+    font-size: 30px;
+}
+
+.button:hover {
+    background-color: var(--main-bg-color-alpha);
+    /*box-shadow: var(--active-shadow);*/
+}

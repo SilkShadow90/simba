@@ -3,7 +3,7 @@ import React from 'react';
 import { Page } from '../../components/Page';
 import styles from '../../styles/Partners.module.css';
 import { useFetchService } from "../../utils/useFetchService";
-import ExhibitionCard from "../../components/Intro/ExhibitionCard";
+import ExhibitionCard from "../../components/ExhibitionCard";
 import { Club } from '../../api/types';
 import { useQuery } from '../../redux/hooks';
 import CatMethods from '../../api/CatMethods';
@@ -33,7 +33,6 @@ const CatPage: NextPage = () => {
                 key={""}
                 title={""}
                 text={""}
-                csssrc={styles.partners_Main__src}
                 image={cats.image}
                 link={"#"}
               />

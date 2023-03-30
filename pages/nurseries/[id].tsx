@@ -3,7 +3,7 @@ import type { NextPage } from 'next';
 import { Page } from '../../components/Page';
 import styles from '../../styles/Partners.module.css';
 import { useFetchService } from '../../utils/useFetchService';
-import ExhibitionCard from '../../components/Intro/ExhibitionCard';
+import ExhibitionCard from '../../components/ExhibitionCard';
 import { Nurser } from '../../api/types';
 import { useQuery } from '../../redux/hooks';
 import NurserMethods from '../../api/NurserMethods';
@@ -24,7 +24,6 @@ const NurseriesProfile: NextPage = () => {
                 key={''}
                 title={''}
                 text={''}
-                csssrc={styles.partners_Main__src}
                 image={nurseriesData.image}
                 link={'#'}
               />

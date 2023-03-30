@@ -21,22 +21,14 @@ export const JoinSteps = React.memo(() => {
     return (
       <div style={{ gridArea: `step${index + 1}` }} key={index}>
         <div className={styles.joinDownBoxImg}>
-          <div className={styles.joinDownBoxImgNumber}>{index + 1}.</div>
+          <div className={styles.joinDownBoxImgNumber}>{index + 1}. {!dataIsString ? data?.title : 'шаг'}</div>
           {!!icons[index] && (
             // eslint-disable-next-line jsx-a11y/alt-text
             <Image className={styles.joinDownBoxImgSize} layout={"intrinsic"} objectFit="cover" src={icons[index]}/>
           )}
         </div>
 
-        {dataIsString && (
-          <span>{data}</span>
-        )}
-        {!dataIsString && (
-          <>
-            <div className={styles.joinDownBoxCongratulation}>{data.title}</div>
-            <span>{data.text}</span>
-          </>
-        )}
+        <span>{dataIsString ? data : data.text}</span>
       </div>
     );
   }, []);

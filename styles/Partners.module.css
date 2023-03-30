@@ -26,24 +26,9 @@
     margin-bottom: 15px;
 }
 
-.partners_Main__src {
-    margin: 10px 10px 20px 10px;
-    min-height: 400px;
-    background-size: auto;
-}
-
 .partners_info_Main {
     display: grid;
-    /*margin: 0 auto;*/
     margin-left: 50px;
     grid-template-columns: repeat(auto-fit, minmax(200px, 500px));
-    /*padding: 50px;*/
-    gap: 15px;
-}
-
-
-.nurseries_Main__src {
-    margin: 10px 10px 20px 10px;
-    min-height: 400px;
-    background-size: auto;
+    gap: var(--gap);
 }

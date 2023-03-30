@@ -2,7 +2,7 @@ import type { NextPage } from 'next';
 import React from 'react';
 import { Page } from '../../../components/Page';
 import styles from '../../../styles/come.module.css';
-import ExhibitionCard from '../../../components/Intro/ExhibitionCard';
+import ExhibitionCard from '../../../components/ExhibitionCard';
 import stars from '../../../public/stars.jpg';
 import { useFetchService } from '../../../utils/useFetchService';
 import { Strings } from '../../../resources';
@@ -52,7 +52,6 @@ const NearestExhibition: NextPage = () => {
                   key={user.id}
                   title={user.name}
                   text={user.email}
-                  csssrc={styles.come_src_winner_one}
                   image={stars.src}
                   link={`/user/${user.id}`}
                 />

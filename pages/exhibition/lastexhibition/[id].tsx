@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 import { Page } from '../../../components/Page';
 import styles from '../../../styles/out.module.css';
-import ExhibitionCard from '../../../components/Intro/ExhibitionCard';
+import ExhibitionCard from '../../../components/ExhibitionCard';
 import stars from '../../../public/stars.jpg';
 import { useFetchService } from '../../../utils/useFetchService';
 import { getDateString } from '../../../utils';
@@ -73,7 +73,6 @@ const Out: NextPage = () => {
                   opacityBlock={true}
                   title={cat.name}
                   text={breedRecord[cat.breedId].name}
-                  csssrc={styles.out_src_winner_one}
                   image={cat.image}
                   link={`/cats/${cat.id}`}
                 />
@@ -90,7 +89,6 @@ const Out: NextPage = () => {
                   key={user.id}
                   title={user.name}
                   text={user.email}
-                  csssrc={styles.out_src_winner_one}
                   image={stars.src}
                   link={`/user/${user.id}`}
                 />

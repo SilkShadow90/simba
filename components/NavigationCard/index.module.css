@@ -6,6 +6,7 @@
     border: none;
     display: grid;
     padding: 0;
+    transition: all ease-in-out 0.7s;
 }
 
 .card img {
@@ -38,6 +39,10 @@
     text-align: left;
     color: #424242;
     transition: all ease-in-out 0.5s;
+}
+
+.card:hover{
+    box-shadow: var(--active-shadow);
 }
 
 .card:hover .cardText span {

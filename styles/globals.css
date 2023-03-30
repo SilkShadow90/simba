@@ -1,5 +1,7 @@
 :root {
-  --main-bg-color: #77aba3;
+  /*--main-bg-color: #26865c;*/
+  --main-bg-color: #3ea192;
+  /*--main-bg-color: #77aba3;*/
   --main-bg-color-alpha: #77aba399;
   --border: 12px;
   --padding-vertical: 8px;
@@ -8,6 +10,7 @@
   --screen-width: 1200px;
   --gap: 16px;
   --shadow: 0 2px 9px 0 rgba(3, 7, 10, 0.5);
+  --active-shadow: 0 2px 9px 0 rgba(3, 7, 10, 0.8);
   --admin-color-blue: #109CF1;
   --admin-color-yellow: #FFB946;
   --admin-color-red: #F7685B;

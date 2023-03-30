@@ -22,22 +22,5 @@
     min-height: 600px;
 }
 .exhibition_Main__card:hover {
-    box-shadow: 0 2px 9px 0 rgba(3, 7, 10, 0.8);
-}
-
-.lasthibition_srcone {
-    margin: 10px 10px 20px 10px;
-    min-height: 400px;
-    background-size: cover;
-}
-.lasthibition_srctwo {
-    margin: 10px 10px 20px 10px;
-    min-height: 400px;
-    background-size: cover;
-}
-
-.lasthibition_srcthree {
-    margin: 10px 10px 20px 10px;
-    min-height: 400px;
-    background-size: cover;
+    box-shadow: var(--active-shadow);
 }

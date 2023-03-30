@@ -2,7 +2,7 @@ import type { NextPage } from 'next';
 import React from 'react';
 import { Page } from '../../components/Page';
 import styles from '../../styles/user.module.css';
-import ExhibitionCard from '../../components/Intro/ExhibitionCard';
+import ExhibitionCard from '../../components/ExhibitionCard';
 import { useFetchService } from '../../utils/useFetchService';
 import { useQuery } from '../../redux/hooks';
 import UserMethods from '../../api/UserMethods';
@@ -31,7 +31,6 @@ const Id: NextPage = () => {
               opacityBlock={false}
               title={user.name}
               text={user.email}
-              csssrc={styles.user_src}
               link={'#'}
               image={user.image}
             />
@@ -73,7 +72,6 @@ const Id: NextPage = () => {
                 opacityBlock={true}
                 title={cat.name}
                 text={breedRecord[cat.breedId].name}
-                csssrc={styles.user_src}
                 image={cat.image}
                 link={`/cats/${cat.id}`}
               />

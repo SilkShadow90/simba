@@ -53,7 +53,7 @@ export const Page = ({
             {!isAdmin && !isContacts && (
               <>
                 <Modal active={modalActive} onClose={onClose}/>
-                <button className={pageStyles.open_Modal} onClick={onOpen}>
+                <button className={pageStyles.feedback_modal} onClick={onOpen}>
                   {/* eslint-disable-next-line jsx-a11y/alt-text */}
                   <Image src={feedback}/>
                 </button>

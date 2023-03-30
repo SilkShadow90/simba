@@ -2,7 +2,7 @@ import type { NextPage } from 'next';
 import React from 'react';
 import { Page } from '../components/Page';
 import styles from '../styles/Partners.module.css';
-import ExhibitionCard from "../components/Intro/ExhibitionCard";
+import ExhibitionCard from "../components/ExhibitionCard";
 import { List } from '../components/List';
 import { useFetchService } from '../utils/useFetchService';
 import NurserMethods from '../api/NurserMethods';
@@ -20,7 +20,6 @@ const NurseriesScreen: NextPage = () => {
                         key={nurser.id}
                         title={nurser.worked}
                         text={nurser.name}
-                        csssrc={styles.nurseries_Main__src}
                         image={nurser.image}
                         link={`/nurseries/${nurser.id}`}
                     />

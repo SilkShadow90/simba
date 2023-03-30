@@ -14,5 +14,8 @@
     margin: var(--padding-vertical) 0;
     font-weight: 700;
     font-size: 25px;
-    font-family: sans-serif;
+}
+
+.faq li {
+    font-size: 20px;
 }

@@ -3,7 +3,7 @@ import React from 'react';
 import styles from '../styles/Cats.module.css';
 import { Page } from '../components/Page';
 import { List } from '../components/List';
-import ExhibitionCard from '../components/Intro/ExhibitionCard';
+import ExhibitionCard from '../components/ExhibitionCard';
 import { useFetchService } from '../utils/useFetchService';
 import { Breed, Cat } from '../api/types';
 import CatMethods from '../api/CatMethods';
@@ -23,7 +23,6 @@ const Cats: NextPage = () => {
             key={cat.id}
             title={cat.name}
             text={breeds[cat.breedId]?.name}
-            csssrc={styles.cats_Main__src}
             image={cat.image}
             link={`/cats/${cat.id}`}
           />

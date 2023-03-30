@@ -71,7 +71,7 @@
     min-height: 600px;
 }
 .nearexhibition_Main__card:hover {
-    box-shadow: 0 2px 9px 0 rgba(3, 7, 10, 0.8);
+    box-shadow: var(--active-shadow);
 }
 
 .nearexhibition_Main__src {

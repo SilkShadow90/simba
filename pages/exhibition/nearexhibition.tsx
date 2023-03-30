@@ -2,7 +2,7 @@ import type { NextPage } from 'next';
 import React from 'react';
 import styles from '../../styles/Lastexhibition.module.css';
 import { Page } from '../../components/Page';
-import ExhibitionCard from '../../components/Intro/ExhibitionCard';
+import ExhibitionCard from '../../components/ExhibitionCard';
 import { FirstBack } from '../../components/Back';
 import { List } from '../../components/List';
 import { useFetchService } from '../../utils/useFetchService';
@@ -40,7 +40,6 @@ const NearExhibitionPage: NextPage = () => {
             key={exhibition.id}
             title={`Выставка кошек ${getDateString(exhibition.dateStart, exhibition.dateEnd)}`}
             text={`${getDateString(exhibition.dateStart, exhibition.dateEnd)}, будет проходить${exhibition.typeId && typeRecord ? ` ${typeRecord[exhibition.typeId].name}` : ''} выставка кошек${exhibition.clubId && clubRecord ? ` ${clubRecord[exhibition.clubId].name}` : ''}, ${exhibition.location}`}
-            csssrc={styles.lasthibition_srcone}
             image={exhibition.image}
             link={`/exhibition/nearexhibition/${exhibition.id}`}
           />
