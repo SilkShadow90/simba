@@ -1,0 +1,18 @@
+.faq {
+    border-radius: var(--border);
+    box-shadow: var(--shadow);
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: calc(var(--padding-vertical) * 2) calc(var(--padding-horizontal) * 2);
+    background: var(--main-bg-color);
+    color: var(--admin-color-icon-white);
+}
+
+.faq_text {
+    margin: var(--padding-vertical) 0;
+    font-weight: 700;
+    font-size: 25px;
+    font-family: sans-serif;
+}

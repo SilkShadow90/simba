@@ -1,27 +1,24 @@
 .join {
     display: flex;
     flex-direction: column;
-    margin-bottom: 40px;
+    width: var(--screen-width);
+    margin: var(--margin) auto;
 }
 .joinUpper {
     display: flex;
     font-size: 30px;
     font-weight: 700;
     justify-content: center;
-    margin-bottom: 30px;
+    margin: calc(var(--margin) * 2) auto var(--margin);
 }
 .joinDown {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1px));
-    min-height: 100px;
-    justify-content: center;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas: 'step1 step2 step3'
+                         'step4 step4 step4';
+    gap: var(--gap);
 }
 
-.joinDownBox {
-    margin: 10px;
-    /*background: #534f4f;*/
-    /*box-shadow: 0px -3px 48px -15px #534f4f;*/
-}
 .joinDownBoxImg {
     position: relative;
     display: flex;
@@ -41,4 +38,14 @@
 .joinDownBoxCongratulation {
     font-weight: 700;
     font-size: 20px;
+}
+
+@media (min-width: 320px) and (max-width: 840px) {
+    .joinDown {
+        grid-template-areas:
+        "step1"
+        "step2"
+        "step3"
+        "step4";
+    }
 }

@@ -10,9 +10,9 @@ import { IntroItem } from './components/IntroItem';
 
 export const Intro = () => {
   return (
-    <div className={styles.razdelDown}>
-      <div className={styles.razdelDownMain}>{Strings.intro.title}</div>
-      <div className={styles.razdelDownMainIntro}>
+    <div className={styles.wrapperDown}>
+      <div className={styles.wrapperDownMain}>{Strings.intro.title}</div>
+      <div className={styles.wrapperDownMainIntro}>
         <IntroItem src={show} title={Strings.intro.one.title} text={Strings.intro.one.text}/>
         <IntroItem src={kits} title={Strings.intro.two.title} text={Strings.intro.two.text}/>
         <IntroItem src={doc1} title={Strings.intro.three.title} text={Strings.intro.three.text}/>

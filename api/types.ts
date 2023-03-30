@@ -46,6 +46,12 @@ export type Faq = {
 
 export type Info = {
   faqText: string
+  "contacts": {
+    "tel": string[]
+    "name": string
+    "email": string
+    "person": string
+  }
 }
 
 export type Breed = BaseDictionary

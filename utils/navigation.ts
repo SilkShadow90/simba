@@ -14,7 +14,7 @@ export const navigationList = [
     text: Strings.navigation.cats,
   },
   {
-    link: 'exhibition',
+    link: 'exhibitions',
     text: Strings.navigation.exhibitions,
   },
   {

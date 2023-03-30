@@ -1,13 +1,15 @@
 .contact {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     justify-items: center;
-    margin-bottom: 50px;
-    margin-top: 50px;
+    width: var(--screen-width);
+    margin: var(--margin) auto;
+    gap: var(--gap);
 }
 
 .contact_Blockleft {
- margin-left: 50px;
+    grid-column-start: 1;
+    grid-column-end: 3;
 }
 
 .contact_Blockleft__Bold {

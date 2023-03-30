@@ -29,6 +29,7 @@ export const Page = ({
   const router = useRouter();
 
   const isAdmin = router.pathname.includes('admin');
+  const isContacts = router.pathname.includes('contacts');
 
   const onClose = useCallback(() => {
     setModalActive(false);
@@ -49,12 +50,13 @@ export const Page = ({
         <main>
           {!withoutHeaderAndFooter && <Header/>}
           <div className="flex">
-            {!isAdmin && (
+            {!isAdmin && !isContacts && (
               <>
                 <Modal active={modalActive} onClose={onClose}/>
-                <div className={pageStyles.open_Modal}>
-                  <Image src={feedback} objectFit={'cover'} onClick={onOpen}/>
-                </div>
+                <button className={pageStyles.open_Modal} onClick={onOpen}>
+                  {/* eslint-disable-next-line jsx-a11y/alt-text */}
+                  <Image src={feedback}/>
+                </button>
               </>
             )}
             {children}

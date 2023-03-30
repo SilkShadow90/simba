@@ -7,7 +7,7 @@ import lastEx from "../public/lastEx.jpg";
 import { List } from '../components/List';
 import nolastEX from "../public/nolastEX.jpg";
 
-const exhibition: NextPage = () => {
+const Exhibitions: NextPage = () => {
     return (
         <Page title="Выставки" meta="bla bla" styles={styles.container} >
             <List>
@@ -35,4 +35,4 @@ const exhibition: NextPage = () => {
     );
 };
 
-export default exhibition;
+export default Exhibitions;

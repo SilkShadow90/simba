@@ -84,7 +84,8 @@
 .docsCards {
     display: flex;
     flex-direction: row;
-    padding: 0 100px;
+    margin: var(--margin) auto;
+    width: var(--screen-width);
 }
 
 .docsCardsLeft {

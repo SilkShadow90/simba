@@ -2,6 +2,11 @@
   --main-bg-color: #77aba3;
   --main-bg-color-alpha: #77aba399;
   --border: 12px;
+  --padding-vertical: 8px;
+  --padding-horizontal: 12px;
+  --margin: 24px;
+  --screen-width: 1200px;
+  --gap: 16px;
   --shadow: 0 2px 9px 0 rgba(3, 7, 10, 0.5);
   --admin-color-blue: #109CF1;
   --admin-color-yellow: #FFB946;
@@ -85,4 +90,25 @@ main {
 
 .stretch {
   width: 100%;
+}
+
+.slick-slider {
+  display: flex !important;
+  flex-direction: column;
+  box-shadow: var(--shadow);
+  height: 400px;
+}
+
+.slick-slider .slick-dots {
+  position: absolute;
+  display: flex !important;
+  align-self: center;
+  /*left: 0;*/
+  /*right: 0;*/
+  bottom: var(--padding-vertical);
+  width: auto;
+  margin: 0 auto;
+  padding-top: 2px;
+  border-radius: var(--border);
+  background-color: var(--main-bg-color-alpha);
 }

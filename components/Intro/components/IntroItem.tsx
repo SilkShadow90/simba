@@ -10,12 +10,13 @@ interface Props {
 
 export const IntroItem = ({ title, text, src }: PropsWithChildren<Props>) => {
   return (
-    <div className={styles.razdelDownBlock}>
+    <div className={styles.wrapperDownBlock}>
       <div className={styles.imageBlock}>
+        {/* eslint-disable-next-line jsx-a11y/alt-text */}
         <Image src={src}/>
       </div>
-      <div className={styles.razdelDownBlockText}>
-        <div className={styles.razdelDownBlockTextTitle}>{title}</div>
+      <div className={styles.wrapperDownBlockText}>
+        <div className={styles.wrapperDownBlockTextTitle}>{title}</div>
         <span>{text}</span>
       </div>
     </div>
