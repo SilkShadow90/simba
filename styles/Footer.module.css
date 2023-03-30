@@ -13,6 +13,7 @@
     font-weight: 300;
     margin: 0 auto;
     width: var(--screen-width);
+    gap: calc(var(--gap) / 2);
 }
 
 .footerColumn {
