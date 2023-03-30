@@ -1,22 +1,6 @@
 .faq {
     border-radius: var(--border);
     box-shadow: var(--shadow);
-    display: flex;
-    flex: 1 1 auto;
-    flex-direction: column;
-    justify-content: space-around;
     padding: calc(var(--padding-vertical) * 2) calc(var(--padding-horizontal) * 2);
-    /*background: var(--main-bg-color);*/
     background: var(--admin-color-icon-white);
-    color: var(--admin-color-black);
-}
-
-.faq_text {
-    margin: var(--padding-vertical) 0;
-    font-weight: 700;
-    font-size: 25px;
-}
-
-.faq li {
-    font-size: 20px;
 }

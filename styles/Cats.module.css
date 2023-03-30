@@ -64,3 +64,8 @@
 .cats_Main {
   margin: 0 auto;
 }
+
+.catInfo {
+  grid-column-start: 2;
+  grid-column-end: 4;
+}

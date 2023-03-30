@@ -2,55 +2,6 @@
   position: relative;
 }
 
-.titleList {
-  width: 100%;
-  box-shadow: var(--shadow);
-  background:var(--main-bg-color);
-  min-height: 410px;
-  max-height: 500px;
-  margin-bottom: 55px;
-}
-
-.info {
-  display: flex;
-  flex-direction: column;
-}
-
-.title {
-  font-weight: 700;
-  width: var(--screen-width);
-  font-size: 30px;
-  margin: calc(var(--margin) * 2) auto var(--margin);
-  text-align: center;
-}
-
-.infoOver {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  width: var(--screen-width);
-  margin: var(--margin) auto;
-  font-family: sans-serif;
-  line-height: 23px;
-  gap: var(--gap);
-}
-
-.column {
-  padding: calc(var(--padding-vertical) * 2) calc(var(--padding-horizontal) * 2);
-  background: var(--main-bg-color);
-  border-radius: var(--border);
-  box-shadow: var(--shadow);
-}
-
-.leftColumnText {
-  color: white;
-  grid-column-start: 1;
-  grid-column-end: 3;
-}
-
-.rightColumnText {
-  color: white;
-}
-
 .wrapper {
   display: grid;
   margin: 0 auto var(--margin);

@@ -34,7 +34,7 @@
     line-height: 23px;
 }
 .columnBlock {
-    min-height: 400px;
+    min-height: var(--block-height);
     min-width: 400px;
     margin: 8px;
     padding: 16px 24px;

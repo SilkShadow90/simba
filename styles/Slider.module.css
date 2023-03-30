@@ -3,7 +3,7 @@
 }
 
 .slide {
-    height: 400px;
+    height: var(--block-height);
     width: 100%;
     position: relative;
 }
@@ -62,4 +62,15 @@
 .slide:hover .buttonContainer {
     transform: scale(1.3) translateX(20%);
     color: var(--admin-color-black);
+}
+
+@media (min-width: 320px) and (max-width: 840px) {
+    .buttonWrapper {
+        bottom: 15%;
+        height: 50px;
+    }
+
+    .buttonWrapper .buttonContainer {
+        left: 5%;
+    }
 }

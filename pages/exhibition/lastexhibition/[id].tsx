@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react';
 import type { NextPage } from 'next';
-import Image from 'next/image';
 
 import { Page } from '../../../components/Page';
 import styles from '../../../styles/out.module.css';
@@ -12,22 +11,21 @@ import { useQuery } from '../../../redux/hooks';
 import UserMethods from '../../../api/UserMethods';
 import ExhibitionMethods from '../../../api/ExhibitionMethods';
 import DictionaryMethods from '../../../api/DictionaryMethods';
+import { ScreenLayout } from '../../../components/UIKit/ScreenLayout';
+import { Grid } from '../../../components/UIKit/Grid';
+import { TextBlock } from '../../../components/UIKit/TextBlock';
+import { GridItem } from '../../../components/UIKit/GridItem';
+import { Flex } from '../../../components/UIKit/Flex';
+import { Slider, SliderItem } from '../../../components/Slider';
 
 function jpeg(size: number = 150) {
   return `https://source.unsplash.com/random/${size}`;
 }
 
-function getImages(length: number, size: number = 150) {
-  return new Array(length).fill(null).map((_, index) => (
-    <Image
-      loader={() => jpeg(size)}
-      src={jpeg(size)}
-      key={index}
-      width={`${size}px`}
-      height={`${size}px`}
-      objectFit={'none'}
-    />
-  ));
+function getImages(length: number, size: number = 150): SliderItem[] {
+  return new Array(length).fill(null).map(() => ({
+    image: jpeg(size)
+  }));
 }
 
 const Out: NextPage = () => {
@@ -47,6 +45,8 @@ const Out: NextPage = () => {
     return '';
   }, [exhibition?.typeId, exhibitionType]);
 
+  const images = useMemo(() => getImages(30, 300), []);
+
   return (
     <Page
       title="Прошедшие выставки"
@@ -55,57 +55,57 @@ const Out: NextPage = () => {
       isLoading={catsLoading || refereesLoading || exhibitionLoading || typeLoading || breedLoading}
     >
       {!!cats && !!referees && !!exhibition && breedRecord && (
-        <div className={styles.exhibition_Main}>
-          <div className={styles.outinfo}>
-            <div>{getDateString(exhibition?.dateStart, exhibition?.dateEnd)} была проведена {type} выставка
-              кошек
-            </div>
-          </div>
-          <div className={styles.outinfo_title}>
-          </div>
-          <div className={styles.outwinner}>
-            <div className={styles.outinfo}>Победители</div>
-            <div className={styles.outwinner_dinner}>
-              {cats && cats.map((cat) => (
-                <ExhibitionCard
-                  key={cat.id}
-                  hoverBlock={true}
-                  opacityBlock={true}
-                  title={cat.name}
-                  text={breedRecord[cat.breedId].name}
-                  image={cat.image}
-                  link={`/cats/${cat.id}`}
-                />
-              ))}
-            </div>
-          </div>
-          <div className={styles.outarbiter}>
-            <div className={styles.outinfo}>Судьи</div>
-            <div className={styles.outarbiter_info}>
-              {!!referees && referees.map((user) => (
-                <ExhibitionCard
-                  hoverBlock={true}
-                  opacityBlock={true}
-                  key={user.id}
-                  title={user.name}
-                  text={user.email}
-                  image={stars.src}
-                  link={`/user/${user.id}`}
-                />
-              ))}
-            </div>
-          </div>
-          <div className={styles.outphotos}>
-            <div className={styles.outinfo}>Фотографии с выставки</div>
-            {/* <div className={styles.outinfo_title}> */}
-            {/*    /!*#todo починить*!/ */}
-            {/*    {getDateString(exhibition.dateStart, exhibition.dateEnd)} */}
-            {/* </div> */}
-            <div className={styles.outarbiter_info}>
-              {getImages(30, 300)}
-            </div>
-          </div>
-        </div>
+        <ScreenLayout stretch marginVertical={0}>
+          <ScreenLayout>
+            <Flex>
+              <TextBlock type="H3">
+                {`${getDateString(exhibition?.dateStart, exhibition?.dateEnd)} была проведена ${type} выставка кошек`}
+              </TextBlock>
+            </Flex>
+            <ScreenLayout>
+              <TextBlock type="H2" centered>
+                {'Победители'}
+              </TextBlock>
+              <Grid>
+                {cats && cats.map((cat) => (
+                  <GridItem key={cat.id}>
+                    <ExhibitionCard
+                      hoverBlock={true}
+                      opacityBlock={true}
+                      title={cat.name}
+                      text={breedRecord[cat.breedId].name}
+                      image={cat.image}
+                      link={`/cats/${cat.id}`}
+                    />
+                  </GridItem>
+                ))}
+              </Grid>
+            </ScreenLayout>
+            <ScreenLayout>
+              <TextBlock type="H2" centered>
+                {'Судьи'}
+              </TextBlock>
+              <Grid>
+                {!!referees && referees.map((user) => (
+                  <GridItem key={user.id}>
+                    <ExhibitionCard
+                      hoverBlock={true}
+                      opacityBlock={true}
+                      title={user.name}
+                      text={user.email}
+                      image={stars.src}
+                      link={`/user/${user.id}`}
+                    />
+                  </GridItem>
+                ))}
+              </Grid>
+            </ScreenLayout>
+          </ScreenLayout>
+          <TextBlock type="H2" centered>
+            {'Фотографии с выставки'}
+          </TextBlock>
+          <Slider data={images} />
+        </ScreenLayout>
       )}
     </Page>
   );

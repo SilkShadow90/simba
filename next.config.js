@@ -7,7 +7,8 @@ module.exports = {
   basePath: isProd ? '/simba' : '',
   images: {
     loader: 'akamai',
-    path: '/'
+    path: '/',
+    domains: ['source.unsplash.com'],
   },
   output: 'standalone',
   eslint: {

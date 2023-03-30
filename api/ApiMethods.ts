@@ -99,7 +99,6 @@ export abstract class ApiMethods<K extends IDObject> {
       if (ids) {
         const items = await Promise.all(ids.map(id => this.getById(id)));
 
-        ToastService.show('test');
         return items.filter(v => v) as T[];
       }
       devLog(`${field}: getByIds - ids is undefined`);

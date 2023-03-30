@@ -8,6 +8,11 @@ import { useQuery } from '../../redux/hooks';
 import UserMethods from '../../api/UserMethods';
 import DictionaryMethods from '../../api/DictionaryMethods';
 import CatMethods from '../../api/CatMethods';
+import { ScreenLayout } from '../../components/UIKit/ScreenLayout';
+import { Grid } from '../../components/UIKit/Grid';
+import { GridItem } from '../../components/UIKit/GridItem';
+import { TextBlock } from '../../components/UIKit/TextBlock';
+import { Flex } from '../../components/UIKit/Flex';
 
 const Id: NextPage = () => {
   const { id } = useQuery();
@@ -24,60 +29,68 @@ const Id: NextPage = () => {
       isLoading={loading || breedLoading || catsLoading}
     >
       {!!user && breedRecord && (
-        <div className={styles.usermain}>
-          <div className={styles.usercard}>
-            <ExhibitionCard
-              hoverBlock={false}
-              opacityBlock={false}
-              title={user.name}
-              text={user.email}
-              link={'#'}
-              image={user.image}
-            />
-            <div className={styles.usermain_block}>
-              <div className={styles.usermain_block_header}>
-                Информация пользователя
-              </div>
-              <div className={styles.usermain_block_title}>
-                <div>
-                  ФИО:
-                </div>
-                <div className={styles.usermain_block_title_info}>
-                  {user.name}
-                </div>
-              </div>
-              <div className={styles.usermain_block_title}>
-                <div>
-                  Телефон
-                </div>
-                <div className={styles.usermain_block_title_info}>
-                  {user.phone}
-                </div>
-              </div>
-              <div className={styles.usermain_block_title}>
-                <div>
-                  Email:
-                </div>
-                <div className={styles.usermain_block_title_info}>
-                  {user.email}
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className={styles.usercard}>
-            {!!cats && cats.map(cat => (
+        <ScreenLayout>
+          <Grid>
+            <GridItem>
               <ExhibitionCard
-                key={cat.id}
-                hoverBlock={true}
-                opacityBlock={true}
-                title={cat.name}
-                text={breedRecord[cat.breedId].name}
-                image={cat.image}
-                link={`/cats/${cat.id}`}
+                hoverBlock={false}
+                opacityBlock={false}
+                title={user.name}
+                text={user.email}
+                link={'#'}
+                image={user.image}
               />
-            ))}
-          </div>
-        </div>
+            </GridItem>
+            <GridItem>
+              <Flex flexDirection="column">
+                <TextBlock type="H2" centered>
+                  {'Информация пользователя'}
+                </TextBlock>
+
+                <TextBlock type="Body">
+                  {'ФИО: '}
+                  <TextBlock type="Body">
+                    {user.name}
+                  </TextBlock>
+                </TextBlock>
+                <TextBlock type="Body">
+                  {'Телефон: '}
+                  <TextBlock type="Link">
+                    {user.phone}
+                  </TextBlock>
+                </TextBlock>
+                <TextBlock type="Body">
+                  {'Email: '}
+                  <TextBlock type="Link">
+                    {user.email}
+                  </TextBlock>
+                </TextBlock>
+              </Flex>
+            </GridItem>
+          </Grid>
+
+          {!!cats && (
+            <ScreenLayout>
+              <TextBlock type="H3" centered>
+                {'Животные'}
+              </TextBlock>
+              <Grid>
+                {cats?.map(cat => (
+                  <GridItem key={cat.id}>
+                    <ExhibitionCard
+                      hoverBlock={true}
+                      opacityBlock={true}
+                      title={cat.name}
+                      text={breedRecord[cat.breedId].name}
+                      image={cat.image}
+                      link={`/cats/${cat.id}`}
+                    />
+                  </GridItem>
+                ))}
+              </Grid>
+            </ScreenLayout>
+          )}
+        </ScreenLayout>
       )}
     </Page>
   );

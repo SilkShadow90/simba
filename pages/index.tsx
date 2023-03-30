@@ -1,6 +1,5 @@
 import type { NextPage } from 'next';
 import React, { useMemo } from 'react';
-import styles from '../styles/Home.module.css';
 import { Strings } from '../resources';
 import { Page } from '../components/Page';
 import { Intro } from '../components/Intro';
@@ -17,6 +16,10 @@ import fish from '../public/fish.jpg';
 import cosmo from '../public/cosmo.jpg';
 import forest from '../public/forest.jpg';
 import grass from '../public/list.jpg';
+import { TextBlock } from '../components/UIKit/TextBlock';
+import { ScreenLayout } from '../components/UIKit/ScreenLayout';
+import { Grid } from '../components/UIKit/Grid';
+import { GridItem } from '../components/UIKit/GridItem';
 
 const Home: NextPage = () => {
   const sliderDataList: SliderItem[] = useMemo(() => [
@@ -48,22 +51,38 @@ const Home: NextPage = () => {
   ], []);
 
   return (
-    <Page title="Home" meta="bla bla" styles={styles.container}>
+    <Page title="Home" meta="bla bla">
       <Slider data={sliderDataList} />
-      <div className={styles.title}>{Strings.main.title}</div>
-      <div className={styles.info}>
-        <div className={styles.wrapper}>
-          <NavigationCard title={'Выставки'} image={showcat} url={'exhibitions'} />
-          <NavigationCard title={'Кошки'} image={kittens} url={'cats'} />
-          <NavigationCard title={'Питомники'} image={catteries} url={'nurseries'} />
-          <NavigationCard title={'Документы'} image={wch} url={'docs'} />
-        </div>
+      <ScreenLayout stretch>
+        <TextBlock type="H1" centered>{Strings.main.title}</TextBlock>
+        <ScreenLayout>
+          <Grid
+            gridTemplateColumns={'repeat(3, 1fr)'}
+            gridTemplateRows={'repeat(2, 240px)'}
+            gridTemplateAreas={'"a b c" "a b d"'}
+          >
+            <GridItem gridArea="a">
+              <NavigationCard title={'Выставки'} image={showcat} url={'exhibitions'} />
+            </GridItem>
+            <GridItem gridArea="b">
+              <NavigationCard title={'Кошки'} image={kittens} url={'cats'} />
+            </GridItem>
+            <GridItem gridArea="c">
+              <NavigationCard title={'Питомники'} image={catteries} url={'nurseries'} />
+            </GridItem>
+            <GridItem gridArea="d">
+              <NavigationCard title={'Документы'} image={wch} url={'docs'} />
+            </GridItem>
+          </Grid>
+        </ScreenLayout>
         <Intro />
-        <div className={styles.title}>{Strings.main.faq}</div>
-        <div className={styles.faqWrapper}>
-          <Faq />
-        </div>
-      </div>
+        <ScreenLayout>
+          <TextBlock type="H2" centered>{Strings.main.faq}</TextBlock>
+          <Grid gridTemplateColumns={'repeat(2, 1fr)'}>
+            <Faq />
+          </Grid>
+        </ScreenLayout>
+      </ScreenLayout>
     </Page>
   );
 };

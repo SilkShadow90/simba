@@ -14,7 +14,7 @@ export const Footer = () => {
   return (
     <div className={styles.footerWrapper}>
       <div className={styles.footer}>
-        <div className={classNames(styles.footerColumn, styles.startColumn)}>
+        <div className={classNames(styles.footerColumn, styles.startColumn, styles.footerNav)}>
           {Strings.footer.leftColumn.title}
           <div className={styles.footerTextContainer}>
             {navigationList.filter(nav => nav.link && nav.link !== 'docs' && nav.link !== 'contacts')
@@ -28,7 +28,7 @@ export const Footer = () => {
           </div>
         </div>
         <div className={styles.separator} />
-        <div className={styles.footerColumn}>
+        <div className={classNames(styles.footerColumn, styles.footerDocs)}>
           {Strings.footer.centerColumn.title}
           <div className={styles.footerTextContainer}>
               {Strings.footer.centerColumn.docs.map((doc) => (

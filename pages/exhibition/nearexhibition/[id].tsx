@@ -10,6 +10,11 @@ import { Exhibition, User } from '../../../api/types';
 import { useQuery } from '../../../redux/hooks';
 import UserMethods from '../../../api/UserMethods';
 import ExhibitionMethods from '../../../api/ExhibitionMethods';
+import { Grid } from '../../../components/UIKit/Grid';
+import { GridItem } from '../../../components/UIKit/GridItem';
+import { ScreenLayout } from '../../../components/UIKit/ScreenLayout';
+import { TextBlock } from '../../../components/UIKit/TextBlock';
+import { Flex } from '../../../components/UIKit/Flex';
 
 const NearestExhibition: NextPage = () => {
   const { id } = useQuery();
@@ -28,37 +33,35 @@ const NearestExhibition: NextPage = () => {
       isLoading={usersLoading || exhibitionLoading}
     >
       {!!exhibition && (
-        <div className={styles.exhibition_Main}>
-          <div className={styles.comeinfo}>
-            <div>
-              <div className={styles.comeinfo_text}>
-                {Strings.maket(exhibition)}
-              </div>
-              <div className={styles.comeinfo_text}>Что бы подать заявку на участие , необходимо связаться с
-                руководителем выставки через вкладку контакты,
-                а так же заполнить предварительно анкету и отправить ее нам
-              </div>
-            </div>
-          </div>
-          <div className={styles.comeinfo_title}>
-          </div>
-          <div className={styles.comearbiter}>
-            <div className={styles.comeinfo}>Судьи</div>
-            <div className={styles.comearbiter_info}>
+        <ScreenLayout>
+          <Flex flexDirection="column">
+            <TextBlock type="H3">
+              {Strings.maket(exhibition)}
+            </TextBlock>
+            <TextBlock type="Small">
+              {'Что бы подать заявку на участие , необходимо связаться с руководителем выставки через вкладку контакты, а так же заполнить предварительно анкету и отправить ее нам'}
+            </TextBlock>
+          </Flex>
+          <ScreenLayout>
+            <TextBlock type="H2" centered>
+              {'Судьи'}
+            </TextBlock>
+            <Grid>
               {usersData && usersData.map((user) => (
-                <ExhibitionCard
-                  hoverBlock={true}
-                  opacityBlock={true}
-                  key={user.id}
-                  title={user.name}
-                  text={user.email}
-                  image={stars.src}
-                  link={`/user/${user.id}`}
-                />
+                <GridItem key={user.id}>
+                  <ExhibitionCard
+                    hoverBlock={true}
+                    opacityBlock={true}
+                    title={user.name}
+                    text={user.email}
+                    image={stars.src}
+                    link={`/user/${user.id}`}
+                  />
+                </GridItem>
               ))}
-            </div>
-          </div>
-        </div>
+            </Grid>
+          </ScreenLayout>
+        </ScreenLayout>
       )}
     </Page>
   );

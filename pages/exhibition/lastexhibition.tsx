@@ -1,16 +1,18 @@
 import type { NextPage } from 'next';
 import React from 'react';
 import styles from '../../styles/Lastexhibition.module.css';
-import {Page} from "../../components/Page";
-import ExhibitionCard from "../../components/ExhibitionCard";
-import {FirstBack} from "../../components/Back";
-import { List } from '../../components/List';
-import {useFetchService} from "../../utils/useFetchService";
+import { Page } from '../../components/Page';
+import ExhibitionCard from '../../components/ExhibitionCard';
+import { FirstBack } from '../../components/Back';
+import { useFetchService } from '../../utils/useFetchService';
 import { getDateString } from '../../utils';
 import { Club } from '../../api/types';
 import ExhibitionMethods from '../../api/ExhibitionMethods';
 import DictionaryMethods from '../../api/DictionaryMethods';
 import ClubMethods from '../../api/ClubMethods';
+import { Grid } from '../../components/UIKit/Grid';
+import { GridItem } from '../../components/UIKit/GridItem';
+import { ScreenLayout } from '../../components/UIKit/ScreenLayout';
 
 const LastExhibitionPage: NextPage = () => {
   const { data: exhibitions, loading: loadingExhibition } = useFetchService(ExhibitionMethods.getLatestExhibitions);
@@ -29,19 +31,22 @@ const LastExhibitionPage: NextPage = () => {
           <FirstBack link={'/exhibition'}/>
           <div className={styles.lasthibition_title}>Прошедшие выставки</div>
         </div>
-        <List>
-          {!!exhibitions && exhibitions.map((exhibition) => (
-            <ExhibitionCard
-              hoverBlock={true}
-              opacityBlock={true}
-              key={exhibition.id}
-              title={`Выставка кошек ${getDateString(exhibition.dateStart, exhibition.dateEnd)}`}
-              text={`${getDateString(exhibition.dateStart, exhibition.dateEnd)}, прошла${exhibition.typeId && typeRecord ? ` ${typeRecord[exhibition.typeId].name}` : ''} выставка кошек${exhibition.clubId && clubRecord ? ` ${clubRecord[exhibition.clubId].name}` : ''}, ${exhibition.location}`}
-              image={exhibition.image}
-              link={`/exhibition/lastexhibition/${exhibition.id}`}
-            />
-          ))}
-        </List>
+        <ScreenLayout>
+          <Grid>
+            {!!exhibitions && exhibitions.map((exhibition) => (
+              <GridItem key={exhibition.id}>
+                <ExhibitionCard
+                  hoverBlock={true}
+                  opacityBlock={true}
+                  title={`Выставка кошек ${getDateString(exhibition.dateStart, exhibition.dateEnd)}`}
+                  text={`${getDateString(exhibition.dateStart, exhibition.dateEnd)}, прошла${exhibition.typeId && typeRecord ? ` ${typeRecord[exhibition.typeId].name}` : ''} выставка кошек${exhibition.clubId && clubRecord ? ` ${clubRecord[exhibition.clubId].name}` : ''}, ${exhibition.location}`}
+                  image={exhibition.image}
+                  link={`/exhibition/lastexhibition/${exhibition.id}`}
+                />
+              </GridItem>
+            ))}
+          </Grid>
+        </ScreenLayout>
       </div>
     </Page>
   );

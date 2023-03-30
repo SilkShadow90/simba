@@ -23,6 +23,7 @@
   --admin-color-gray: #90A0B7;
   --admin-color-icon-gray: #C2CFE0;
   --admin-color-icon-white: #FFFFFF;
+  --block-height: 400px;
   --font: "Georgia", serif;
 }
 
@@ -66,12 +67,13 @@ main {
 
 .flex {
   flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .overlay {
   display: flex;
   position: fixed;
-  padding-top: 100px;
   left: 0;
   top: 0;
   width: 100%;
@@ -105,7 +107,7 @@ main {
   display: flex !important;
   flex-direction: column;
   box-shadow: var(--shadow);
-  height: 400px;
+  height: var(--block-height);
 }
 
 .slick-slider .slick-dots {
@@ -130,13 +132,27 @@ main {
   opacity: 1;
 }
 
-.slick-slider .slick-dots li button {
+.slick-slider .slick-dots li {
   transition: all linear 0.3s;
   margin: 0;
 }
 
+.slick-slider .slick-dots li button {
+  transition: all linear 0.3s;
+}
+
 .slick-slider .slick-dots li button:hover {
   transform: scale(1.7);
+}
+
+@media (min-width: 320px) and (max-width: 840px) {
+  :root {
+    --block-height: 240px;
+    --screen-width: 100%;
+    --padding-vertical: 4px;
+    --padding-horizontal: 6px;
+    --margin: 12px;
+  }
 }
 
 

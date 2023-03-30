@@ -8,11 +8,13 @@ import Modal from './Modal';
 import pageStyles from '../styles/Page.module.css';
 import feedback from '../public/feedback.png';
 import Loader from './Loader';
+import { ScreenLayout } from './UIKit/ScreenLayout';
+import { Portal } from './Portal';
 
 interface Props {
   title: string;
   meta: string;
-  styles: string;
+  styles?: string;
   withoutHeaderAndFooter?: boolean;
   isLoading?: boolean;
 }
@@ -49,7 +51,7 @@ export const Page = ({
       <div className={styles}>
         <main>
           {!withoutHeaderAndFooter && <Header/>}
-          <div className="flex">
+          <ScreenLayout stretch marginVertical={0}>
             {!isAdmin && !isContacts && (
               <>
                 <Modal active={modalActive} onClose={onClose}/>
@@ -60,11 +62,11 @@ export const Page = ({
               </>
             )}
             {children}
-          </div>
+          </ScreenLayout>
           {isLoading && (
-            <div className={pageStyles.page_loaderBox}>
-              <Loader isVisible={true}/>
-            </div>
+            <Portal>
+              <Loader isVisible />
+            </Portal>
           )}
           {!withoutHeaderAndFooter && <Footer/>}
         </main>

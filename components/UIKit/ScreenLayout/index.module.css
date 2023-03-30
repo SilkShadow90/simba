@@ -1,0 +1,18 @@
+.screen {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    width: var(--screen-width);
+    margin: var(--margin) auto;
+}
+
+.stretch {
+    width: 100%;
+}
+
+/*@media (min-width: 320px) and (max-width: 840px) {*/
+/*    .screen {*/
+/*        width: 100%;*/
+/*    }*/
+/*}*/
