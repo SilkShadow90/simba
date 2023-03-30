@@ -37,7 +37,7 @@ const Home: NextPage = () => {
         <div className={styles.infoOver}>
           <div className={classNames(styles.column, styles.leftColumnText)}>
             {Strings.main.text.map(text => (
-              <div key={text}>
+              <div style={{ textAlign: 'justify', fontSize: '18px' }} key={text}>
                 {text}
               </div>
             ))}
@@ -49,7 +49,7 @@ const Home: NextPage = () => {
             <div>
               {Strings.main.textRightOne.map(text => (
                 <div key={text}>
-                  {text}
+                  &#8226; {text}
                 </div>
               ))}
             </div>
