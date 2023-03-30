@@ -6,8 +6,9 @@
     flex-direction: column;
     justify-content: space-around;
     padding: calc(var(--padding-vertical) * 2) calc(var(--padding-horizontal) * 2);
-    background: var(--main-bg-color);
-    color: var(--admin-color-icon-white);
+    /*background: var(--main-bg-color);*/
+    background: var(--admin-color-icon-white);
+    color: var(--admin-color-black);
 }
 
 .faq_text {

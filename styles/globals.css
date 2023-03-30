@@ -119,5 +119,24 @@ main {
   margin: 0 auto;
   padding-top: 2px;
   border-radius: var(--border);
-  background-color: var(--main-bg-color-alpha);
+  background-color: var(--admin-color-icon-white);
+  opacity: 0.3;
+  transform: scale(0.7);
+  transition: all linear 0.3s;
 }
+
+.slick-slider .slick-dots:hover {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.slick-slider .slick-dots li button {
+  transition: all linear 0.3s;
+  margin: 0;
+}
+
+.slick-slider .slick-dots li button:hover {
+  transform: scale(1.7);
+}
+
+

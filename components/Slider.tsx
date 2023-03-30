@@ -24,7 +24,7 @@ const defaultSettings: Settings = {
   slidesToShow: 1,
   slidesToScroll: 1,
   autoplaySpeed: 2000,
-  autoplay: true,
+  autoplay: false,
 };
 
 export const Slider = React.memo(({ data, settings }: Props) => {
@@ -36,9 +36,12 @@ export const Slider = React.memo(({ data, settings }: Props) => {
             {/* eslint-disable-next-line jsx-a11y/alt-text */}
             <Image src={image} objectFit="cover" layout="fill"/>
             {!!(title && onClick) && (
-              <div className={styles.buttonContainer}>
-                <button className={styles.button} onClick={onClick}>{title}</button>
-              </div>
+              <button className={styles.buttonWrapper} onClick={onClick}>
+                <div className={styles.buttonWrapperBackground} />
+                <div className={styles.buttonContainer}>
+                  <span>{title}</span>
+                </div>
+              </button>
             )}
           </div>
         ))}
