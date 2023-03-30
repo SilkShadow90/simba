@@ -40,6 +40,12 @@
     font-size: 20px;
 }
 
+.join span {
+    display: inline-flex;
+    font-size: 20px;
+    padding: var(--padding-vertical) 0;
+}
+
 @media (min-width: 320px) and (max-width: 840px) {
     .joinDown {
         grid-template-areas:
