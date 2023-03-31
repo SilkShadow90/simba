@@ -10,8 +10,8 @@
 
 @media (min-width: 320px) and (max-width: 840px) {
     .gridItem {
-        grid-area: auto;
-        min-height: 240px;
+        grid-area: auto !important;
+        min-height: var(--block-height);
         grid-column-start: auto !important;
         grid-column-end: auto !important;
         padding: 0 var(--padding-horizontal);

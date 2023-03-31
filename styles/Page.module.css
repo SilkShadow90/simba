@@ -1,6 +1,6 @@
 .feedback_modal {
     position: fixed;
-    z-index: 1;
+    z-index: 3;
     right: 50px;
     bottom: 50px;
     border: none;
