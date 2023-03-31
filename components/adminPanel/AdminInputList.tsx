@@ -6,15 +6,31 @@ import styles from '../../styles/adminStyles/Admin.module.css';
 import deleteSrc from '../../public/adminImg/menu/delete.svg';
 import { AdminCheckbox } from './AdminCheckbox';
 import { Text } from './Text';
-import { IDObject } from '../../api/types';
+import {ID, IDObject} from '../../api/types';
+import {DeleteWarningModal} from "./DeleteWarningModal";
 
 export type AdminListProps<T> = {
   titles: Titles<T>
   items: T[]
+  deleteHandler?(id: string): void
+  multiDeleteHandler?(ids: string[]): void
 }
 
-export const AdminInputList = <T extends IDObject>({ titles, items }: AdminListProps<T>) => {
-  const [checkedList, setCheckedList] = useState<string[]>([]);
+export const AdminInputList = <T extends IDObject>({ titles, items, deleteHandler, multiDeleteHandler }: AdminListProps<T>) => {
+  const [deleteModalActive, setDeleteModalActive] = useState(false);
+  const [checkedList, setCheckedList] = useState<ID[]>([]);
+
+  const toggleDeleteModal = useCallback(() => {
+    setDeleteModalActive((prevState) => !prevState);
+  }, []);
+
+  const deleteModalPress = useCallback(() => {
+    if (multiDeleteHandler) {
+      multiDeleteHandler(checkedList);
+    }
+    toggleDeleteModal();
+  },[multiDeleteHandler, checkedList, toggleDeleteModal])
+
   const toggle = (id: string) => () => setCheckedList((prevState) => {
     if (prevState.includes(id)) {
       return prevState.filter((value) => value !== id);
@@ -47,6 +63,7 @@ export const AdminInputList = <T extends IDObject>({ titles, items }: AdminListP
 
   return (
     <div>
+      <DeleteWarningModal isVisible={deleteModalActive} onDelete={deleteModalPress} onClose={toggleDeleteModal}/>
       <div className={styles.admin_Input_Tab}
            style={{ display: 'grid', gridTemplateColumns: allChecked ? '1fr' : `100px ${getGridSize()} 60px 60px` }}>
         {!allChecked ? (
@@ -68,8 +85,7 @@ export const AdminInputList = <T extends IDObject>({ titles, items }: AdminListP
                 <div className={styles.admin_input_tab_checked_boxStyle}>
                   {checkedList.length} <Text size={'small'} color={'black'} text={'Selected'}/>
                 </div>
-                <button className={styles.admin_input_tab_checked_boxStyleButton}>
-                  {/* eslint-disable-next-line jsx-a11y/alt-text */}
+                <button onClick={toggleDeleteModal} className={styles.admin_input_tab_checked_boxStyleButton}>
                   <Image className={styles.adminCardsLeft_input_position_img} objectFit={'cover'} src={deleteSrc}/>
                 </button>
               </div>
@@ -81,6 +97,7 @@ export const AdminInputList = <T extends IDObject>({ titles, items }: AdminListP
       {items.map((item) => (
         <AdminInputTab
           key={item.id}
+          deleteHandler={deleteHandler}
           item={item}
           checked={checkedList.includes(item.id)}
           onClick={toggle(item.id)}

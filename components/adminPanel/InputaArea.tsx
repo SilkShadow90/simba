@@ -12,9 +12,10 @@ interface Props {
     width?:number;
     placeholder:string;
     placeholderColor?:string;
+    onChange?(text:string):void;
 }
 
-export const InputArea = ({text, placeholder, height=1, width=50, placeholderColor="gray"}:Props) => {
+export const InputArea = ({text, placeholder, height=1, width=50, placeholderColor="gray", onChange}:Props) => {
 
     const [focused, setFocused] = useState(false);
 
@@ -41,7 +42,7 @@ export const InputArea = ({text, placeholder, height=1, width=50, placeholderCol
             <textarea
                 onFocus={()=>setFocused(true)}
                 onBlur={()=>setFocused(false)}
-                onChange={event => console.log(event.target.value)}
+                onChange={event => onChange?.(event.target.value)}
                 placeholder={placeholder}
                 className={classNames(styles.areaStyle,!text && colorPlaceholder )}
                 wrap={"soft"}

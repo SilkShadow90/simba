@@ -6,10 +6,10 @@ import styles from "../../styles/adminStyles/Text.module.css";
 interface Props {
     text:string;
     size:"high" | "medium" | "small";
-    color:"black" | "blue" | "gray";
+    color?:"black" | "blue" | "gray";
 }
 
-export const Text = ({text, size, color}:Props) => {
+export const Text = ({text, size, color = "black"}:Props) => {
 
     const fontStyle = useMemo(
         ():string => {

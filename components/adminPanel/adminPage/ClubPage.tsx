@@ -8,6 +8,7 @@ import { Titles } from '../types';
 import { Nurser } from '../../../api/types';
 import NurserMethods from '../../../api/NurserMethods';
 import { devLog } from '../../../utils';
+import CatMethods from "../../../api/CatMethods";
 
 const nurserTitles: Titles<Nurser> = {
   name: 'Специализация',
@@ -19,10 +20,29 @@ const nurserTitles: Titles<Nurser> = {
 };
 
 export const ClubPage = () => {
-  const { data: nurseriesData, loading } = useFetchService<Nurser[]>(NurserMethods.getAll);
+  const { data: nurseriesData, loading, fetchData: fetchNursers } = useFetchService<Nurser[]>(NurserMethods.getAll);
+
+
+  const { loading: deleteNurserLoading, fetchData: fetchDeleteNurser } = useFetchService({
+    methodFunc: NurserMethods.delete,
+    pending: true,
+    successCallback: fetchNursers
+  });
+  const { loading: multiDeleteNurserLoading, fetchData: fetchMultiDeleteNurser } = useFetchService({
+    methodFunc: NurserMethods.multiDelete,
+    pending: true,
+    successCallback: fetchNursers
+  });
   const onSubmit = useCallback(() => {
     devLog(nurseriesData);
   }, [nurseriesData]);
+  const onDelete = useCallback((id:string) => {
+    fetchDeleteNurser(id);
+  }, [fetchDeleteNurser]);
+
+  const onMultiDelete = useCallback((ids:string[]) => {
+    fetchMultiDeleteNurser(ids);
+  }, [fetchMultiDeleteNurser]);
 
   if (loading) {
     return (
@@ -43,6 +63,8 @@ export const ClubPage = () => {
       </div>
       {!!nurseriesData && (
         <AdminInputList
+          multiDeleteHandler={onMultiDelete}
+          deleteHandler={onDelete}
           items={nurseriesData}
           titles={nurserTitles}
         />

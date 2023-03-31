@@ -28,10 +28,26 @@
 }
 
 .modal_main {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
     overflow-y: auto;
     border-radius: 4px;
     padding: 20px;
     position: absolute;
     max-height: 70vh;
     background-color: white;
+}
+
+.admin_input_tab_checked_boolean {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.modal_main_ButtonCancel {
+    width: 50px;
+    height: 50px;
+    border: none;
+    right: 1px;
+
 }

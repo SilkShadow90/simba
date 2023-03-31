@@ -11,15 +11,20 @@ import { useFetchService } from '../../utils/useFetchService';
 import DictionaryMethods from '../../api/DictionaryMethods';
 import ClubMethods from '../../api/ClubMethods';
 import Loader from '../Loader';
+import {Portal} from "../Portal";
+import {AdminButton} from "./AdminButton";
+import {Text} from "./Text";
+import {DeleteWarningModal} from "./DeleteWarningModal";
 
 export type AdminTabProps<T> = {
   titles: Titles<T>
   item: T
   checked?: boolean;
   onClick?(): any;
+  deleteHandler?(id: string): void
 }
 
-export const AdminInputTab = <T extends IDObject>({ item, titles, checked, onClick }: AdminTabProps<T>) => {
+export const AdminInputTab = <T extends IDObject>({ item, titles, checked, onClick, deleteHandler }: AdminTabProps<T>) => {
   const { data: breedRecord, loading: breedLoading } = useFetchService(DictionaryMethods.getBreedRecord);
   const { data: typeRecord, loading: typeLoading } = useFetchService(DictionaryMethods.getTypeRecord);
   const { data: statusRecord, loading: statusLoading } = useFetchService(DictionaryMethods.getStatusesRecord);
@@ -35,6 +40,19 @@ export const AdminInputTab = <T extends IDObject>({ item, titles, checked, onCli
   const isLoading = breedLoading || typeLoading || statusLoading || clubLoading;
 
   const [modalActive, setModalActive] = useState(false);
+
+  const [deleteModalActive, setDeleteModalActive] = useState(false);
+
+  const toggleDeleteModal = useCallback(() => {
+    setDeleteModalActive((prevState) => !prevState);
+  }, []);
+
+  const deleteModalPress = useCallback(() => {
+    if (deleteHandler) {
+      deleteHandler(item.id);
+    }
+    toggleDeleteModal();
+  },[])
 
   const toggleModal = useCallback(() => {
     setModalActive((prevState) => !prevState);
@@ -56,6 +74,7 @@ export const AdminInputTab = <T extends IDObject>({ item, titles, checked, onCli
     }).join(' ');
 
 
+  // @ts-ignore
   return (
     <div className={styles.admin_Input_Tab}
          style={{ display: 'grid', gridTemplateColumns: `100px ${getGridSize()} 60px 60px` }}>
@@ -89,7 +108,6 @@ export const AdminInputTab = <T extends IDObject>({ item, titles, checked, onCli
             return (
               <div key={key} className={styles.admin_input_tab_checked_boolean}>
                 <AdminCheckbox type={value ? 'checked' : 'unchecked'}/>
-                {/* <input type="checkbox"  checked={item[key as keyof T]as any} /> */}
               </div>
             );
           }
@@ -97,13 +115,16 @@ export const AdminInputTab = <T extends IDObject>({ item, titles, checked, onCli
         })}
       <AdminModal item={item} titles={titles} active={modalActive} closeModal={closeModal}/>
       <button className={styles.adminTab_edit} onClick={toggleModal}>
-        {/* eslint-disable-next-line jsx-a11y/alt-text */}
         <Image className={styles.adminCardsLeft_input_position_img} objectFit={'cover'} src={edit}/>
       </button>
-      <button className={styles.adminTab_edit}>
-        {/* eslint-disable-next-line jsx-a11y/alt-text */}
-        <Image className={styles.adminCardsLeft_input_position_img} objectFit={'cover'} src={deleteIcon}/>
-      </button>
+      {!!deleteHandler && (
+        <>
+          <DeleteWarningModal isVisible={deleteModalActive} onClose={toggleDeleteModal} onDelete={deleteModalPress}/>
+          <button className={styles.adminTab_edit} onClick={toggleDeleteModal}>
+            <Image className={styles.adminCardsLeft_input_position_img} objectFit={'cover'} src={deleteIcon}/>
+          </button>
+        </>
+      )}
     </div>
   );
 };

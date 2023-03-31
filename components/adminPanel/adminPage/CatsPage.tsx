@@ -23,8 +23,6 @@ export const CatsPage = () => {
     pending: true,
     successCallback: fetchCats
   });
-
-
   const onCreate = useCallback(() => {
     // fetchCreateCat({
     //   name: "Васян 2.0",
@@ -35,6 +33,30 @@ export const CatsPage = () => {
     //   club: "Golder Pride"
     // });
   }, [fetchCreateCat]);
+
+
+  // const { data: catsData, loading, fetchData: fetchCatsDelete } = useFetchService<Cat[]>(CatMethods.delete);
+  //
+  const { loading: deleteCatLoading, fetchData: fetchDeleteCat } = useFetchService({
+    methodFunc: CatMethods.delete,
+    pending: true,
+    successCallback: fetchCats
+  });
+  const { loading: multiDeleteCatLoading, fetchData: fetchMultiDeleteCat } = useFetchService({
+    methodFunc: CatMethods.multiDelete,
+    pending: true,
+    successCallback: fetchCats
+  });
+
+  const onDelete = useCallback((id:string) => {
+    fetchDeleteCat(id);
+  }, [fetchDeleteCat]);
+
+  const onMultiDelete = useCallback((ids:string[]) => {
+    fetchMultiDeleteCat(ids);
+  }, [fetchMultiDeleteCat]);
+
+
 
   if (loading || createCatLoading) {
     return (
@@ -51,11 +73,13 @@ export const CatsPage = () => {
             <option value="1">all</option>
           </select>
         </div>
-        <AdminButton type={'primary'} onClick={onCreate} text={'Добавить животное'}/>
+        <AdminButton type={'primary'} onClick={onCreate}  text={'Добавить животное'}/>
       </div>
       <div className={styles.openMainStart}>
         {!!catsData && (
           <AdminInputList
+            multiDeleteHandler={onMultiDelete}
+            deleteHandler={onDelete}
             titles={catTitles}
             items={catsData}
           />

@@ -13,24 +13,24 @@ interface Props {
     count?:string;
 }
 
-export const AdminCheckbox = ({onClick,type,count}:Props) => {
-
-
-    const [CheckboxSrc] = useMemo(
-        ():[string] => {
+export const AdminCheckbox = React.memo(({onClick,type,count}:Props) => {
+    
+    const CheckboxSrc = useMemo(
+        ():string => {
             switch (type) {
+
                 case "unchecked" :
-                    return [unchecked];
+                    return unchecked;
                 case "sent" :
-                    return [sent]
+                    return sent
                 case "disable" :
-                    return [disableSent]
+                    return disableSent
                 case "error" :
-                    return [error]
+                    return error
                 case "checked" :
-                    return [checked]
+                    return checked
                 default:
-                    return [unchecked]
+                    return unchecked
             }
         },
         [type],
@@ -41,5 +41,5 @@ export const AdminCheckbox = ({onClick,type,count}:Props) => {
             <Image className={styles.adminCardsLeft_input_position_img} objectFit={"cover"} src={CheckboxSrc}/>
         </button>
     );
-};
+});
 

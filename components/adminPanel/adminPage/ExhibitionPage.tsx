@@ -8,6 +8,7 @@ import { AdminInputList } from '../AdminInputList';
 import { Exhibition } from '../../../api/types';
 import ExhibitionMethods from '../../../api/ExhibitionMethods';
 import { devLog } from '../../../utils';
+import NurserMethods from "../../../api/NurserMethods";
 
 
 const exhibitionTitles: Titles<Exhibition> = {
@@ -19,11 +20,32 @@ const exhibitionTitles: Titles<Exhibition> = {
 };
 
 export const ExhibitionPage = () => {
-  const { data: exhibitionData, loading } = useFetchService<Exhibition[]>(ExhibitionMethods.getAll);
+  const { data: exhibitionData, loading, fetchData: fetchExhibitions } = useFetchService<Exhibition[]>(ExhibitionMethods.getAll);
+
+
+  const { loading: deleteExhibitionLoading, fetchData: fetchDeleteExhibition } = useFetchService({
+    methodFunc: ExhibitionMethods.delete,
+    pending: true,
+    successCallback: fetchExhibitions
+  });
+  const { loading: multiDeleteExhibitionLoading, fetchData: fetchMultiDeleteExhibition } = useFetchService({
+    methodFunc: ExhibitionMethods.multiDelete,
+    pending: true,
+    successCallback: fetchExhibitions
+  });
+
 
   const onSubmit = useCallback(() => {
     devLog(exhibitionData);
   }, [exhibitionData]);
+
+  const onDelete = useCallback((id:string) => {
+    fetchDeleteExhibition(id);
+  }, [fetchDeleteExhibition]);
+
+  const onMultiDelete = useCallback((ids:string[]) => {
+    fetchMultiDeleteExhibition(ids);
+  }, [fetchMultiDeleteExhibition]);
 
   if (loading) {
     return (
@@ -47,6 +69,8 @@ export const ExhibitionPage = () => {
           <AdminInputList
             titles={exhibitionTitles}
             items={exhibitionData}
+            multiDeleteHandler={onMultiDelete}
+            deleteHandler={onDelete}
           />
         )}
       </div>

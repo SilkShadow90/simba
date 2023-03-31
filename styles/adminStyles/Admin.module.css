@@ -152,6 +152,25 @@
     justify-content: left;
 }
 
+.deleteModal {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--admin-color-icon-white);
+    border-radius: 8px;
+    padding: 8px 12px;
+    box-shadow: var(--shadow);
+    min-width: 20vw;
+    min-height: 100px;
+}
+
+.deleteModal_buttons {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
 
 
 
