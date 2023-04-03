@@ -18,6 +18,12 @@
 }
 .ex:hover{
     box-shadow: var(--active-shadow);
+    transform: scale(1.01);
+}
+
+.ex:hover .ex_opacity {
+    box-shadow: var(--active-shadow);
+    padding: calc(var(--padding-vertical) * 2) 0;
 }
 
 .ex_opacity {
@@ -30,6 +36,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    transition: all 200ms linear;
 }
 
 .ex_opacity_DisplayNone{
@@ -39,6 +46,7 @@
 div .ex_card {
     margin: 0;
     min-height: var(--block-height);
+    background-color: var(--admin-color-icon-white);
 }
 
 .ex_title {

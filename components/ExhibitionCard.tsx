@@ -20,7 +20,7 @@ const ExhibitionCard = ({ title, text, link, image, opacityBlock, hoverBlock }: 
                 {image && (
                   <div className={styles.ex_card}>
                       {/* eslint-disable-next-line jsx-a11y/alt-text */}
-                    <Image src={`${isProd() ? '/simba' : ''}${image}`} objectFit={'cover'} layout={'fill'} />
+                    <Image placeholder={'blur'} blurDataURL={`${isProd() ? '/simba' : ''}${image}`} src={`${isProd() ? '/simba' : ''}${image}`} objectFit={'cover'} layout={'fill'} />
                   </div>
                 )}
                 <div className={opacityBlock ? styles.ex_opacity : styles.ex_opacity_DisplayNone}>
