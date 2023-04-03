@@ -10,6 +10,7 @@
   --screen-width: 1200px;
   --gap: 16px;
   --shadow: 0 2px 9px 0 rgba(3, 7, 10, 0.5);
+  --shadow-admin: 6px 0 18px rgba(0, 0, 0, 0.06);
   --active-shadow: 0 2px 9px 0 rgba(3, 7, 10, 0.8);
   --admin-color-blue: #109CF1;
   --admin-color-yellow: #FFB946;

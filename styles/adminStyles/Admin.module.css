@@ -1,3 +1,7 @@
+.adminPage {
+    min-height: 100vh;
+}
+
 .adminCards {
     display: flex;
     flex-direction: row;
@@ -39,30 +43,46 @@
 }
 
 .adminCardsLeftColumn {
-    border: none;
-    cursor: pointer;
-    background-color: inherit;
-    transition:  500ms ease-in-out;
-    margin-left: 17px;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 13px;
-    line-height: 20px;
-    letter-spacing: 0.01em;
     color: #334D6E;
 }
 .adminCardsLeftColumnRed{
-    border: none;
+    color: #109CF1;
+}
+
+.tabText {
+    animation: 300ms linear toShow;
+    animation-fill-mode: forwards;
     cursor: pointer;
-    background-color: inherit;
-    transition:  500ms ease-in-out;
-    margin-left: 17px;
+    transition: 500ms ease-in-out;
+    margin-left: var(--padding-horizontal);
     font-style: normal;
     font-weight: 500;
     font-size: 13px;
     line-height: 20px;
     letter-spacing: 0.01em;
-    color: #109CF1;
+}
+
+.tabTextHide {
+    animation: 300ms linear toHidden;
+    animation-fill-mode: forwards;
+}
+
+@keyframes toHidden {
+    from {
+       opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes toShow {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .adminCardsLeftColumn:hover {

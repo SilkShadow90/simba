@@ -1,3 +1,5 @@
+import { Titles } from '../components/adminPanel/types';
+
 export type ID = string
 export type IDObject = { id: ID }
 
@@ -84,15 +86,24 @@ export type Club = {
 export type ExhibitionType = BaseDictionary
 
 export type Exhibition = {
-  location: string,
-  typeId?: ExhibitionType[keyof IDObject],
-  clubId?: Club[keyof IDObject],
+  location: string
+  typeId?: ExhibitionType[keyof IDObject]
+  clubId?: Club[keyof IDObject]
   image: url
   dateStart: DateTimeISOString
   dateEnd: DateTimeISOString
   catIds: Array<Cat[keyof IDObject]>
   catWinnerIds: Array<Cat[keyof IDObject]>
 } & IDObject
+
+export type FieldCRUD<T> = {
+  name: string
+  icon: string
+  title: string
+  tabTitles: Titles<T>
+}
+
+export type RecordCRUD = Record<string, FieldCRUD<any>>
 
 export type Feedback = {
   name: string

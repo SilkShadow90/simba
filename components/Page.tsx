@@ -13,7 +13,7 @@ import { Portal } from './Portal';
 
 interface Props {
   title: string;
-  meta: string;
+  meta?: string;
   styles?: string;
   withoutHeaderAndFooter?: boolean;
   isLoading?: boolean;

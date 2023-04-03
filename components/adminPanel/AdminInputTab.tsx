@@ -5,16 +5,14 @@ import { AdminCheckbox } from './AdminCheckbox';
 import { AdminModal } from './AdminModal';
 import edit from '../../public/adminImg/other/edit.svg';
 import deleteIcon from '../../public/adminImg/other/delete.svg';
-import { Club, IDObject } from '../../api/types';
+import { Club, IDObject, User } from '../../api/types';
 import { Titles } from './types';
 import { useFetchService } from '../../utils/useFetchService';
 import DictionaryMethods from '../../api/DictionaryMethods';
 import ClubMethods from '../../api/ClubMethods';
 import Loader from '../Loader';
-import {Portal} from "../Portal";
-import {AdminButton} from "./AdminButton";
-import {Text} from "./Text";
 import {DeleteWarningModal} from "./DeleteWarningModal";
+import UserMethods from '../../api/UserMethods';
 
 export type AdminTabProps<T> = {
   titles: Titles<T>
@@ -29,15 +27,17 @@ export const AdminInputTab = <T extends IDObject>({ item, titles, checked, onCli
   const { data: typeRecord, loading: typeLoading } = useFetchService(DictionaryMethods.getTypeRecord);
   const { data: statusRecord, loading: statusLoading } = useFetchService(DictionaryMethods.getStatusesRecord);
   const { data: clubRecord, loading: clubLoading } = useFetchService(ClubMethods.getRecord<Club>);
+  const { data: userRecord, loading: userLoading } = useFetchService(UserMethods.getRecord<User>);
 
   const records = useMemo(() => ({
     breedRecord,
     typeRecord,
     statusRecord,
     clubRecord,
-  }), [breedRecord, clubRecord, statusRecord, typeRecord]);
+    userRecord,
+  }), [breedRecord, clubRecord, statusRecord, typeRecord, userRecord]);
 
-  const isLoading = breedLoading || typeLoading || statusLoading || clubLoading;
+  const isLoading = breedLoading || typeLoading || statusLoading || clubLoading || userLoading;
 
   const [modalActive, setModalActive] = useState(false);
 
@@ -52,7 +52,7 @@ export const AdminInputTab = <T extends IDObject>({ item, titles, checked, onCli
       deleteHandler(item.id);
     }
     toggleDeleteModal();
-  },[])
+  },[deleteHandler, item.id, toggleDeleteModal]);
 
   const toggleModal = useCallback(() => {
     setModalActive((prevState) => !prevState);

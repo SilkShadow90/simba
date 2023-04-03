@@ -519,12 +519,12 @@
     "UUID1": {
       "id": "UUID1",
       "name": "Golder Pride",
-      "president": "UUID1"
+      "userId": "UUID1"
     },
     "UUID2": {
       "id": "UUID2",
       "name": "РФОО Коргоруши",
-      "president": "UUID2"
+      "userId": "UUID2"
     }
   },
   "cats": {
@@ -750,11 +750,72 @@
       "person": "Москвичев Роман Алексеевич"
     }
   },
-  "fieldsCRUD": [
-    "exhibitions",
-    "cats",
-    "nurseries",
-    "users",
-    "faqs"
-  ]
+  "fieldsCRUD": {
+    "exhibitions":  {
+      "name": "exhibitions",
+      "icon": "tabs",
+      "title": "Выставки",
+      "tabTitles": {
+        "location": "Местоположение",
+        "typeId": "Тип",
+        "clubId": "Клуб",
+        "dateStart": "Дата начала",
+        "dateEnd": "Дата конца"
+      }
+    },
+    "cats":  {
+      "name": "cats",
+      "icon": "tabs",
+      "title": "Кошки",
+      "tabTitles": {
+        "name": "Имя",
+        "breedId": "Порода",
+        "favorite": "Избранное",
+        "clubId": "Клуб"
+      }
+    },
+    "nurseries":  {
+      "name": "nurseries",
+      "icon": "tabs",
+      "title": "Питомники",
+      "tabTitles": {
+        "name": "Специализация",
+        "worked": "Питомник",
+        "nameWork": "Порода",
+        "suite": "сайт",
+        "phone": "Телефон",
+        "email": "email"
+      }
+    },
+    "clubs":  {
+      "name": "clubs",
+      "icon": "tabs",
+      "title": "Клубы",
+      "tabTitles": {
+        "name": "Название",
+        "userId": "Председатель"
+      }
+    },
+    "users":  {
+      "name": "users",
+      "icon": "users",
+      "title": "Пользователи",
+      "tabTitles": {
+        "name":  "ФИО",
+        "phone": "Телефон",
+        "email":  "email",
+        "isReferee": "Судья"
+      }
+    },
+    "faqs":  {
+      "name": "faqs",
+      "icon": "tabs",
+      "title": "Частые вопросы",
+      "tabTitles": {
+        "title": "Заголовок",
+        "description": "Описание",
+        "points": "Список пунктов"
+      }
+    }
+  }
 }

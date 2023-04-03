@@ -1,4 +1,4 @@
-import React, {useMemo, useRef, useState} from "react";
+import React, {useMemo, useState} from "react";
 import classNames from 'classnames';
 import styles from "../../styles/adminStyles/InputArea.module.css";
 import {Text} from "./Text";
@@ -48,9 +48,8 @@ export const InputArea = ({text, placeholder, height=1, width=50, placeholderCol
                 wrap={"soft"}
                 rows={height}
                 cols={width}
-            >
-                {text}
-            </textarea>
+                value={text}
+            />
             <div className={styles.areaMain_borderBottom}/>
         </div>
     );
