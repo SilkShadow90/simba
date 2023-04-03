@@ -31,9 +31,9 @@ export const Footer = () => {
         <div className={classNames(styles.footerColumn, styles.footerDocs)}>
           {Strings.footer.centerColumn.title}
           <div className={styles.footerTextContainer}>
-              {Strings.footer.centerColumn.docs.map((doc) => (
+              {Strings.footer.centerColumn.docs.map((doc, index) => (
                 <div className={styles.inline} key={doc}>
-                  &#8226; <Link href="/docs">{doc}</Link>
+                  &#8226; <Link href={`/docs?doc=${index + 1}`}>{doc}</Link>
                 </div>
               ))}
           </div>

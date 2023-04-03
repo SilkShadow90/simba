@@ -21,7 +21,7 @@ class DictionaryMethods extends ApiMethods<BaseDictionary> {
   };
 
   getTypeRecord = async (): Promise<RecordType<ExhibitionType>> => {
-    return this.getRecord('titles');
+    return this.getRecord('types');
   };
 
   getBreeds = async (): Promise<Breed[]> => {
