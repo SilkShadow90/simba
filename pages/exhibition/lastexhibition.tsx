@@ -31,7 +31,7 @@ const LastExhibitionPage: NextPage = () => {
           {'Прошедшие выставки'}
         </TextBlock>
         <Grid>
-          {!!exhibitions && exhibitions.map((exhibition) => (
+          {!!exhibitions && typeRecord && clubRecord && exhibitions.map((exhibition) => (
             <GridItem key={exhibition.id}>
               <ExhibitionCard
                 hoverBlock={true}
