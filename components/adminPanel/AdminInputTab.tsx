@@ -87,10 +87,10 @@ export const AdminInputTab = <T extends IDObject>({ item, titles, checked, onCli
           const recordName = key.includes('Id') && key.replace(/(\w+)Id/, '$1Record') || '';
 
           // @ts-ignore
-          if (key.includes('Id') && records[recordName]) {
+          if (key.includes('Id') && records?.[recordName]) {
             return (
               // @ts-ignore
-              <div key={key}>{value && records[recordName][value].name}</div>
+              <div key={key}>{value && records[recordName]?.[value]?.name}</div>
             );
           }
 
