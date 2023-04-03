@@ -15,7 +15,7 @@ const ExhibitionCard = ({ title, text, link, image, opacityBlock, hoverBlock }: 
     return (
         <Link href={link}>
             <div className={hoverBlock ? styles.ex : styles.ex_noHover}>
-                <div className={styles.ex_card} style={image ? { background: `url(${image})`,backgroundSize:"cover", objectFit: 'cover' }: undefined}/>
+                <div className={styles.ex_card} style={image ? { background: `url(/simba${image})`,backgroundSize:"cover", objectFit: 'cover' }: undefined}/>
                 <div className={opacityBlock ? styles.ex_opacity : styles.ex_opacity_DisplayNone}>
                     <div className={styles.ex_title}>{title}</div>
                     <div className={styles.ex_description}>{text}</div>
