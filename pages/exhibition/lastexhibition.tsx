@@ -31,13 +31,13 @@ const LastExhibitionPage: NextPage = () => {
           {'Прошедшие выставки'}
         </TextBlock>
         <Grid>
-          {!!exhibitions && exhibitions.map((exhibition) => (
+          {!!exhibitions && typeRecord && clubRecord && exhibitions.map((exhibition) => (
             <GridItem key={exhibition.id}>
               <ExhibitionCard
                 hoverBlock={true}
                 opacityBlock={true}
                 title={`Выставка кошек ${getDateString(exhibition.dateStart, exhibition.dateEnd)}`}
-                text={`${getDateString(exhibition.dateStart, exhibition.dateEnd)}, прошла${exhibition.typeId && typeRecord ? ` ${typeRecord[exhibition.typeId].name}` : ''} выставка кошек${exhibition.clubId && clubRecord ? ` ${clubRecord[exhibition.clubId].name}` : ''}, ${exhibition.location}`}
+                text={`${getDateString(exhibition.dateStart, exhibition.dateEnd)}, прошла${exhibition.typeId && typeRecord ? ` ${typeRecord[exhibition.typeId]?.name}` : ''} выставка кошек${exhibition.clubId && clubRecord ? ` ${clubRecord[exhibition.clubId]?.name}` : ''}, ${exhibition.location}`}
                 image={exhibition.image}
                 link={`/exhibition/lastexhibition/${exhibition.id}`}
               />

@@ -39,7 +39,7 @@ const Out: NextPage = () => {
 
   const type: string = useMemo(() => {
     if (exhibition?.typeId && exhibitionType) {
-      return exhibitionType[exhibition?.typeId].name;
+      return exhibitionType[exhibition?.typeId]?.name;
     }
 
     return '';
@@ -74,7 +74,7 @@ const Out: NextPage = () => {
                         hoverBlock={true}
                         opacityBlock={true}
                         title={cat.name}
-                        text={breedRecord[cat.breedId].name}
+                        text={breedRecord[cat.breedId]?.name}
                         image={cat.image}
                         link={`/cats/${cat.id}`}
                       />

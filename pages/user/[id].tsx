@@ -81,7 +81,7 @@ const Id: NextPage = () => {
                       hoverBlock={true}
                       opacityBlock={true}
                       title={cat.name}
-                      text={breedRecord[cat.breedId].name}
+                      text={breedRecord[cat.breedId]?.name}
                       image={cat.image}
                       link={`/cats/${cat.id}`}
                     />
