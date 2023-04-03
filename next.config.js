@@ -8,7 +8,6 @@ module.exports = {
   images: {
     loader: 'akamai',
     path: '/',
-    domains: ['source.unsplash.com'],
   },
   output: 'standalone',
   eslint: {
