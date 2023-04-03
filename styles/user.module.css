@@ -2,16 +2,10 @@
     display: grid;
     margin: 0 auto;
     grid-template-columns: repeat(auto-fit, minmax(200px, 500px));
-    padding: 0 50px 0 50px;
+    padding: 50px;
     grid-gap: 15px;
     gap: 15px;
     margin-bottom: 50px;
-}
-
-.user_src {
-    margin: 10px 10px 20px 10px;
-    min-height: 400px;
-    background-size: cover;
 }
 
 .usermain_block {

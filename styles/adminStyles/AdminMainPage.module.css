@@ -1,0 +1,44 @@
+.openMain {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 50px 0;
+    margin: 0 36px ;
+    min-height: 100%;
+    left: 30px;
+    right: 30px;
+    background: white;
+    box-shadow: 6px 0 18px rgb(0 0 0 / 6%);
+}
+
+
+.openMainWindow {
+    display: flex;
+    margin-bottom: 100px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.info {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 0 100px;
+    margin-bottom: 30px;
+    font-family: sans-serif;
+    line-height: 23px;
+}
+.columnBlock {
+    min-height: var(--block-height);
+    min-width: 400px;
+    margin: 8px;
+    padding: 16px 24px;
+    background: white;
+    border:#D3D8DD solid 1px;
+    border-radius: 12px;
+}

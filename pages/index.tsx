@@ -1,86 +1,90 @@
-import type { NextPage } from 'next'
-import styles from '../styles/Home.module.css'
-import React from "react";
+import type { NextPage } from 'next';
+import React, { useMemo } from 'react';
 import { Strings } from '../resources';
-import {Page} from "../components/Page";
-import {Join} from "../components/Joined";
+import { Page } from '../components/Page';
 import { Intro } from '../components/Intro';
-import SimpleSlider from "../components/Slider";
+import { Slider, SliderItem } from '../components/Slider';
+import showcat from '../public/showcat.jpg';
+import kittens from '../public/kittens.jpg';
+import catteries from '../public/catteries.jpg';
+import wch from '../public/wch.jpg';
+import { Faq } from '../components/Faq';
+import { NavigationCard } from '../components/NavigationCard';
 
-
+import catzz from '../public/catzz.jpg';
+import fish from '../public/fish.jpg';
+import cosmo from '../public/cosmo.jpg';
+import forest from '../public/forest.jpg';
+import grass from '../public/list.jpg';
+import { TextBlock } from '../components/UIKit/TextBlock';
+import { ScreenLayout } from '../components/UIKit/ScreenLayout';
+import { Grid } from '../components/UIKit/Grid';
+import { GridItem } from '../components/UIKit/GridItem';
 
 const Home: NextPage = () => {
+  const sliderDataList: SliderItem[] = useMemo(() => [
+    {
+      title: 'Вступить в клуб',
+      onClick: () => null,
+      image: catzz,
+    },
+    {
+      title: '',
+      onClick: () => null,
+      image: fish,
+    },
+    {
+      title: '',
+      onClick: () => null,
+      image: cosmo,
+    },
+    {
+      title: '',
+      onClick: () => null,
+      image: forest,
+    },
+    {
+      title: '',
+      onClick: () => null,
+      image: grass,
+    },
+  ], []);
+
   return (
-      <Page title="Home" meta="bla bla" styles={styles.container}>
-    {/*<div className={styles.titleList}>*/}
-    {/*</div>*/}
-          <SimpleSlider/>
-
-        <div>
-        </div>
-          <div className={styles.infoUpper}>{Strings.main.title}</div>
-          <div className={styles.info}>
-              <div className={styles.infoOver}>
-                  <div className={styles.column}>
-                      {Strings.main.text.map(text => (
-                          <div key={text} className={styles.leftColumnText}>
-                              {text}
-                          </div>
-                      ))}
-                  </div>
-                  <div className={styles.column}>
-                          <div className={styles.rightColumnText}>
-                              {Strings.main.textRight}
-                          </div>
-                          <div className={styles.rightColumnText}>
-                              {Strings.main.textRightOne.map(text => (
-                                  <div key={text} className={styles.rightColumnText}>
-                                      {text}
-                                  </div>
-                              ))}
-                          </div>
-                  </div>
-              </div>
-              <div className={styles.razdel}>
-                  <div className={styles.razdelRow}>
-                      <div className={styles.razdelCardleft}></div>
-                      <div className={styles.razdelCardleft}></div>
-                  </div>
-                  <div className={styles.razdelColumn}>
-                      <div className={styles.razdelCardRight}>
-                      </div>
-                      <div className={styles.razdelCardRight}>
-                      </div>
-                  </div>
-              </div>
-              <Intro/>
-              <div className={styles.razdelCenter}>
-                  {/*Вынести в стринги (возможно в отдельный компонент)*/}
-                  <div className={styles.razdelCenterBlockLeft}>
-                      <div className={styles.razdelCenterBlockTextMain}>{Strings.infoCats.leftColumn.title}</div>
-                      <div>{Strings.infoCats.leftColumn.info}</div>
-                      <ul>
-                          {Strings.infoCats.leftColumn.li.map((text)=>(
-                              <li key={text}>{text}</li>
-                          ))}
-                      </ul>
-                      <div>{Strings.infoCats.leftColumn.lost}</div>
-                  </div>
-                  <div className={styles.razdelCenterBlockRight}>
-                      <div className={styles.razdelCenterBlockTextMain}>{Strings.infoCats.rightColumn.title}</div>
-                      <div>{Strings.infoCats.rightColumn.info}</div>
-                    <ul>
-                        {Strings.infoCats.rightColumn.li.map((text)=>(
-                            <li key={text}>{text}</li>
-                        ))}
-                    </ul>
-                      <div>{Strings.infoCats.rightColumn.lost}</div>
-                  </div>
-              </div>
-              <Join/>
-          </div>
+    <Page title="Home" meta="bla bla">
+      <Slider data={sliderDataList} />
+      <ScreenLayout stretch>
+        <TextBlock type="H1" centered>{Strings.main.title}</TextBlock>
+        <ScreenLayout>
+          <Grid
+            gridTemplateColumns={'repeat(3, 1fr)'}
+            gridTemplateRows={'repeat(2, 240px)'}
+            gridTemplateAreas={'"a b c" "a b d"'}
+          >
+            <GridItem gridArea="a">
+              <NavigationCard title={'Выставки'} image={showcat} url={'exhibitions'} />
+            </GridItem>
+            <GridItem gridArea="b">
+              <NavigationCard title={'Кошки'} image={kittens} url={'cats'} />
+            </GridItem>
+            <GridItem gridArea="c">
+              <NavigationCard title={'Питомники'} image={catteries} url={'nurseries'} />
+            </GridItem>
+            <GridItem gridArea="d">
+              <NavigationCard title={'Документы'} image={wch} url={'docs'} />
+            </GridItem>
+          </Grid>
+        </ScreenLayout>
+        <Intro />
+        <ScreenLayout>
+          <TextBlock type="H2" centered>{Strings.main.faq}</TextBlock>
+          <Grid gridTemplateColumns={'repeat(2, 1fr)'}>
+            <Faq />
+          </Grid>
+        </ScreenLayout>
+      </ScreenLayout>
     </Page>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

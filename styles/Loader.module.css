@@ -1,0 +1,61 @@
+button:hover .loaderMain .loader {
+    border-right: 1px solid var(--main-bg-color);
+}
+
+button:hover .loaderMain .loader1 {
+    border-Left: 1px solid var(--main-bg-color);
+}
+
+button:hover .loaderMain .loader2 {
+    border-bottom: 1px solid var(--main-bg-color);
+}
+
+.loader {
+    border: 1px solid #f3f3f3;
+    border-right: 1px solid #69796a;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    animation: spin 0.8s linear infinite;
+    display: inline-flex;
+    position: relative;
+}
+
+.loader1 {
+    border: 5px solid transparent;
+    border-Left: 1px solid #69796a;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    animation: spin 1.2s linear infinite;
+    display: inline-flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.loader2 {
+    border: 5px solid transparent;
+    border-bottom: 1px solid #69796a;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    animation: spin 1.0s linear infinite;
+    display: inline-flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

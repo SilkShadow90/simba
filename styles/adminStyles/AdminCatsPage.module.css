@@ -1,0 +1,60 @@
+.openCatsFiltered {
+    display: flex;
+    justify-content: space-between;
+    margin: 34px 36px 24px 36px;
+}
+
+.openCatsFiltered_left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.openCatsFiltered_left_select {
+    margin-left: 10px;
+}
+
+
+.openMainStart {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    margin: 0 36px ;
+    min-height: 100%;
+    left: 30px;
+    right: 30px;
+}
+
+.titleList {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    justify-items: center;
+    align-content: center;
+    min-height: 48px;
+    max-height: 64px;
+    flex: 1;
+    margin-bottom: 1px;
+    padding: 0 36px;
+    background-color: var(--admin-color-icon-white);
+    border:#E5E5E5 solid 1px;
+    border-radius: 4px;
+}
+
+.admin_Input_Tab {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    justify-items: center;
+    align-content: center;
+    min-height: 48px;
+    max-height: 64px;
+    flex: 1;
+    margin-bottom: 1px;
+    padding: 0 36px;
+    background-color: var(--admin-color-icon-white);
+    border:#E5E5E5 solid 1px;
+    border-radius: 4px;
+}
+
+.admin_input_tab_checked {
+    justify-content: left;
+}

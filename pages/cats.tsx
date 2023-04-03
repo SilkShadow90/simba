@@ -1,37 +1,40 @@
-import type { NextPage } from 'next'
-import styles from '../styles/Cats.module.css'
-import React, { useEffect } from 'react';
-import Image from 'next/image'
-import cat from '../public/cat.jpg';
-import catOne from '../public/catOne.jpeg';
-import cattwo from '../public/cattwo.jpg';
-import catthree from '../public/catthree.jpg';
+import type { NextPage } from 'next';
+import React from 'react';
+import styles from '../styles/Cats.module.css';
 import { Page } from '../components/Page';
-import {Card} from "../components/Card";
+import ExhibitionCard from '../components/ExhibitionCard';
+import { useFetchService } from '../utils/useFetchService';
+import { Breed, Cat } from '../api/types';
+import CatMethods from '../api/CatMethods';
+import DictionaryMethods from '../api/DictionaryMethods';
+import { Grid } from '../components/UIKit/Grid';
+import { ScreenLayout } from '../components/UIKit/ScreenLayout';
+import { GridItem } from '../components/UIKit/GridItem';
 
-const aas = 5 ;
 const Cats: NextPage = () => {
-  // useEffect(() => {
-  //   (async () => {
-  //     try {
-  //       const { data } = await AxiosService.get('/api/hello') || {}
-  //       console.log(data);
-  //     } catch (e) {
-  //       console.log(e);
-  //     }
-  //   })()
-  // }, [])
+  const { data: cats, loading: catLoading } = useFetchService<Cat[]>(CatMethods.getAll);
+  const { data: breeds, loading: breedsLoading } = useFetchService<Record<Breed['id'], Breed>>(DictionaryMethods.getBreedRecord);
 
   return (
-      <Page title="Cats" meta="bla bla" styles={styles.container} >
-          <div className={styles.cardsCats}>
-              <Card name={"Прометей"} image={cat} family={"Веслоухая британская"} years={"5 лет"}/>
-              <Card name={"Шпилька"} image={catOne} family={"дворовый бродяга"} years={"6 лет"}/>
-              <Card name={"Пушок"} image={cattwo} family={"кокер спаниель"} years={"7 лет"}/>
-              <Card name={"Платон"} image={catthree} family={"английская"} years={"8 лет"}/>
-          </div>
-      </Page>
-  )
-}
+    <Page title="Cats" meta="bla bla" styles={styles.container} isLoading={catLoading || breedsLoading}>
+      <ScreenLayout>
+        <Grid>
+          {!!cats && !!breeds && cats.map((cat) => (
+            <GridItem key={cat.id}>
+              <ExhibitionCard
+                hoverBlock={true}
+                opacityBlock={true}
+                title={cat.name}
+                text={breeds[cat.breedId]?.name}
+                image={cat.image}
+                link={`/cats/${cat.id}`}
+              />
+            </GridItem>
+          ))}
+        </Grid>
+      </ScreenLayout>
+    </Page>
+  );
+};
 
-export default Cats
+export default Cats;

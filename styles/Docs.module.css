@@ -84,7 +84,8 @@
 .docsCards {
     display: flex;
     flex-direction: row;
-    padding: 0 100px;
+    margin: var(--margin) auto;
+    width: var(--screen-width);
 }
 
 .docsCardsLeft {
@@ -95,6 +96,7 @@
 }
 
 .docsCardsRight {
+    margin-left: 40px;
     flex: 5;
 
 }
@@ -105,28 +107,31 @@
     /*background: var(--main-bg-color);*/
 }
 
-.docsRightTitul {
-    font-size: 1.5rem;
-    text-decoration: none;
-    color: #232323;
-    font-weight: 500;
-    line-height: 1.2;
-    margin-bottom: 15px;
-}
+
 .docsRightMain {
+    line-height: 32px;
     font-weight: 500;
-    line-height: 1.2;
-    font-size: 1.2rem;
+    font-size: 22px;
     margin-bottom: 10px;
+    padding-left: 10px;
 }
 
 .docsRightEndTitle {
+    line-height: 32px;
     font-weight: bold;
     margin-bottom: 5px;
 }
 
 .docsRightEnd {
+    line-height: 32px;
     margin-bottom: 10px;
+    padding-left: 10px;
+    font-size: 18px;
+}
+.docsRightUL {
+    margin-bottom: 20px;
+    padding-left: 30px;
+    font-size: 18px;
 }
 
 .docsVstuplenieColumn {
@@ -146,21 +151,23 @@
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-column-gap: 10px;
 }
-
-.docsPreSelect {
-    margin-bottom: 10px;
+.docsRightTitul {
+    line-height: 32px;
+    font-size: 30px;
+    text-decoration: none;
+    color: #232323;
+    font-weight: 500;
+    margin-bottom: 15px;
 }
 
 .docsSelect {
     color: #495057;
     background-color: #fff;
-    border-color: #80bdff;
     width: 100%;
     min-height: 30px;
     padding: 10px 20px;
     font-size: 14px;
     line-height: 1.5;
-    color: #495057;
     background-clip: padding-box;
     border: 1px solid #ced4da;
     border-radius: 8px;
@@ -182,6 +189,20 @@
 }
 
 .docsButton {
+    min-height: 40px;
+    background-color: #69796a;
+    border-radius: 8px;
+    font-size: 1rem;
+    line-height: 1.5;
+    font-weight: 700;
+    padding: 5px 15px;
+    color: white;
+    border: 1px solid transparent;
+    transition:  300ms ease-in-out;
+    margin-bottom: 20px;
+}
+
+.addDocsButton {
     min-height: 40px;
     background-color: #69796a;
     border-radius: 8px;

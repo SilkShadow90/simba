@@ -1,0 +1,6 @@
+.buttonCheckbox {
+    display: flex;
+    background-color: inherit;
+    border: none;
+    cursor: pointer;
+}

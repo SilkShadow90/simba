@@ -1,0 +1,19 @@
+.gridItem {
+    position: relative;
+    display: grid;
+}
+
+.centered {
+    justify-content: center;
+    align-items: center;
+}
+
+@media (min-width: 320px) and (max-width: 840px) {
+    .gridItem {
+        grid-area: auto !important;
+        min-height: var(--block-height);
+        grid-column-start: auto !important;
+        grid-column-end: auto !important;
+        padding: 0 var(--padding-horizontal);
+    }
+}

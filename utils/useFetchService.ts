@@ -1,23 +1,56 @@
-import { ApiResponse, fetcher, getBackEndUrl, isProd } from '../utils';
-import useSWR from 'swr';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { MethodFunc } from '../api/types';
 
-import breedsList from '../pages/api/breedsList.json';
-import titulsList from '../pages/api/titulsList.json';
-
-export const useFetchService = <T>(apiName: 'breeds' | 'tituls'): ApiResponse<T> | undefined => {
-  const url = `${getBackEndUrl()}/api/${apiName}`
-  const { data } = useSWR<ApiResponse<T>>(url, fetcher)
-
-  if (isProd()) {
-    switch (apiName) {
-      case 'breeds':
-        return { data: breedsList as never as T, url, name: 'breeds' }
-      case 'tituls':
-        return { data: titulsList as never as T, url, name: 'tituls' }
-      default:
-        return data
-    }
-  }
-
-  return data
+export type FetchService<T, U> = {
+  data?: T | null,
+  fetchData(data?: U): Promise<void>
+  loading: boolean
+  error: boolean
 }
+
+type FetchServicePropsObj<T, U = undefined> = {
+  methodFunc: MethodFunc<T, U>
+  successCallback?(): void,
+  errorCallback?(): void
+  reqData?: U
+  pending?: boolean
+}
+
+export type FetchServiceProps<T, U = undefined> = FetchServicePropsObj<T, U> | MethodFunc<T, U>
+
+export const useFetchService = <T, U = undefined>(props: FetchServiceProps<T, U>, req?: U, pendingProps?: boolean): FetchService<T, U> => {
+  const { methodFunc, reqData, successCallback, errorCallback, pending = false } = useMemo(() => {
+    if (typeof props === 'function') {
+      return { methodFunc: props, reqData: req, pending: pendingProps };
+    }
+
+    return props;
+  }, [pendingProps, props, req]);
+
+  const [data, setData] = useState<T | null>();
+  const [loading, setLoading] = useState<boolean>(!pending);
+  const [error, setError] = useState<boolean>(false);
+
+  const errorFunc = useCallback(() => {
+    setError(true);
+    errorCallback?.();
+  }, [errorCallback]);
+
+  const fetchData = useCallback(async (newReqData?: U) => {
+    setLoading(true);
+    const fetched: T | void | null = await methodFunc(newReqData || reqData, successCallback, errorFunc);
+    setLoading(false);
+    if (fetched !== undefined) {
+      setData(fetched);
+    }
+
+  }, [errorFunc, methodFunc, reqData, successCallback]);
+
+  useEffect(() => {
+    if (!pending) {
+      fetchData();
+    }
+  }, [fetchData, pending]);
+
+  return { data, fetchData, loading, error };
+};

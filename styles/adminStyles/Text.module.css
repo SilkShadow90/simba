@@ -1,0 +1,28 @@
+
+.text_size_high {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 27px;
+}
+
+.text_size_medium {
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 22px;
+}
+
+.text_size_small {
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 20px;
+}
+
+.text_color_black {
+    color: var(--admin-color-black);
+}
+.text_color_blue {
+    color: var(--admin-color-blue);
+}
+.text_color_gray {
+    color: var(--admin-color-gray);
+}

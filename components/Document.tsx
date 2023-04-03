@@ -1,6 +1,6 @@
-import styles from '../styles/Docs.module.css';
 import React, { PropsWithChildren, useState } from 'react';
 import classNames from 'classnames';
+import styles from '../styles/Docs.module.css';
 
 
 interface Props {

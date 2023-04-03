@@ -1,0 +1,26 @@
+.openCatsFiltered {
+    display: flex;
+    justify-content: space-between;
+    margin: 34px 36px 24px 36px;
+}
+
+.openCatsFiltered_left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.openCatsFiltered_left_select {
+    margin-left: 10px;
+}
+
+
+.openMainStart {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    margin: 0 36px ;
+    min-height: 100%;
+    left: 30px;
+    right: 30px;
+}

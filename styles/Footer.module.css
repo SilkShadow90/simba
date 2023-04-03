@@ -1,56 +1,79 @@
+.footerWrapper {
+    background-color: var(--main-bg-color);
+    display: flex;
+    width: 100vw;
+    box-shadow: var(--shadow);
+    z-index: 2;
+}
+
 .footer {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    min-height: 280px;
-    color: #f3f3f3;
+    grid-template-columns: 1fr 1px 1fr 1px 1fr;
+    color: var(--admin-color-icon-white);
     font-size: 24px;
     font-weight: 300;
-    background-color: var(--main-bg-color);
-    bottom: 1px;
-    box-shadow: var(--shadow);
-    margin: 0;
-    padding: 0 0 20px 0;
-    border-bottom: 1px solid transparent;
+    margin: 0 auto;
+    width: var(--screen-width);
+    gap: calc(var(--gap) / 2);
 }
 
 .footerColumn {
-    margin: 30px 0 0 30px;
+    margin: var(--margin) 0;
     display: flex;
     flex-direction: column;
-    justify-self: center;
+    width: 100%;
+    padding: 0 calc(var(--padding-horizontal) * 2) ;
+}
+
+.startColumn {
+    align-items: end;
+}
+
+.startColumn .inline {
+    justify-content: end;
+    flex-direction: row-reverse;
 }
 
 .footerTextContainer {
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
     vertical-align: top;
     font-size: 20px;
-    margin: 16px 8px;
-    border-bottom: 1px solid transparent;
-    transition: border-bottom 500ms ease-in-out;
-    list-style-type: none;
+    padding: var(--padding-vertical) 0;
 }
 
 .inline {
-    display: inline-flex;
-    flex-direction: column;
+    display: flex;
+    align-items: center;
 }
 
-.footerText {
-    padding: 4px;
+.footerTextContainer a {
+    padding: var(--padding-vertical) var(--padding-horizontal);
     cursor: pointer;
-}
-
-.footerText span {
     border-bottom: 1px solid transparent;
-    transition: all 500ms ease-in-out;
+    transition: border-bottom 500ms ease-in-out;
 }
 
-.footerText span:hover {
+.footerTextContainer a:hover {
     border-bottom: 1px solid #f3f3f3;
 }
 
-/*.footerText:hover {*/
-/*    text-decoration: underline;*/
-/*    !*border-bottom: 1px solid #f3f3f3;*!*/
-/*}*/
+.separator {
+    display: flex;
+    flex: 1 1 auto;
+    margin: var(--margin) 0;
+    background-color: var(--admin-color-icon-white);
+}
+
+@media (min-width: 320px) and (max-width: 840px) {
+    .footer {
+        grid-template-columns: 1fr;
+    }
+
+    .footerDocs,
+    .footerNav,
+    .separator {
+        display: none;
+    }
+}
 

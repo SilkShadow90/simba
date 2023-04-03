@@ -1,0 +1,99 @@
+.adminCardsLeft {
+    flex: 1 1 auto;
+    min-width: 256px;
+    position: relative;
+    box-shadow: var(--shadow-admin);
+    background: white;
+    animation: 300ms linear biggest;
+    animation-fill-mode: forwards;
+}
+
+.adminCardsLeftToggleOn {
+    flex: 1 1 auto;
+    min-width: 86px;
+    position: relative;
+    box-shadow: var(--shadow-admin);
+    background: white;
+    animation: 300ms linear smallest;
+    animation-fill-mode: forwards;
+}
+
+@keyframes smallest {
+    from {
+        min-width: 256px;
+    }
+
+    to {
+        min-width: 86px;
+    }
+}
+
+@keyframes biggest {
+    from {
+        min-width: 86px;
+    }
+
+    to {
+        min-width: 256px;
+    }
+}
+
+.adminCardsLeft_input {
+    display: flex;
+    position: fixed;
+    flex-direction: column;
+    align-items: flex-start;
+    left: var(--margin);
+    bottom: var(--margin);
+    top: var(--margin);
+    justify-content: flex-start;
+}
+
+.adminCardsLeft_input_position {
+    align-items: center;
+    display: flex;
+    border: none;
+    background-color: inherit;
+    position: relative;
+    justify-content: center;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+
+.adminCardsLeft_input_position_img {
+    max-width: 26px;
+    max-height: 26px;
+    position: absolute;
+}
+
+.adminCardsLeft_input_position_toggle_img {
+    max-width: 26px;
+    max-height: 26px;
+    position: absolute;
+}
+
+.adminCardsLeftToogleText {
+    position:fixed;
+    bottom:26px;
+    color: var(--admin-color-icon-gray);
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 16px;
+    background-color: inherit;
+    border: none;
+    cursor: pointer;
+}
+
+.adminCardsLeftToogleText_margin {
+    margin-left: 30px;
+    margin-bottom: 3px;
+}
+
+.adminToggle {
+    background: inherit;
+    border: none;
+    position: fixed;
+    bottom: 26px;
+    cursor: pointer;
+}

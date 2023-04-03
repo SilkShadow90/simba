@@ -1,0 +1,45 @@
+.toastContainer {
+    position: fixed;
+    top: 0;
+    right: 0;
+}
+
+.toast {
+    margin: 16px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    min-width: 140px;
+    background-color: var(--admin-color-icon-gray);
+    text-align: center;
+    box-shadow: var(--shadow);
+    color: var(--admin-color-black);
+    animation: 1s normal fadeout;
+    animation-fill-mode: forwards;
+    animation-delay: 3s;
+    pointer-events: none;
+}
+
+@keyframes fadeout {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+.success {
+    background-color: var(--admin-color-blue);
+    color: var(--admin-color-icon-white)
+}
+
+.warning {
+    background-color: var(--admin-color-yellow);
+}
+
+.error {
+    background-color: var(--admin-color-red);
+    color: var(--admin-color-icon-white)
+}
+

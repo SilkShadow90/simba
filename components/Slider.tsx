@@ -1,49 +1,56 @@
-// import Image from "next/image";
-import styles from "../styles/Slider.module.css";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import Image from "next/image";
-import catstar from "../public/catstar.jpg";
-import catzz from "../public/catzz.jpg";
-import fish from "../public/fish.jpg";
-import cosmo from "../public/cosmo.jpg";
-import forest from "../public/forest.jpg";
-import grass from "../public/list.jpg";
+import React, { useCallback, useMemo } from 'react';
+import SlickSlide, { Settings } from 'react-slick';
+import Image, { StaticImageData } from 'next/image';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import styles from '../styles/Slider.module.css';
+import { ScreenLayout } from './UIKit/ScreenLayout';
 
-
-export default function SimpleSlider() {
-    var settings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        autoplaySpeed:2000,
-        autoplay:true,
-    };
-    return (
-        <div className={styles.type}>
-            <Slider {...settings}>
-                <div>
-                    <Image src={catstar} objectFit={"cover"} height={'400px'} />
-                </div>
-                <div>
-                    <Image src={catzz} objectFit={"cover"} height={'400px'} />
-                </div>
-                <div>
-                    <Image src={fish} objectFit={"cover"} height={'400px'} />
-                </div>
-                <div>
-                    <Image src={cosmo} objectFit={"cover"} height={'400px'} />
-                </div>
-                <div>
-                    <Image src={forest} objectFit={"cover"} height={'400px'} />
-                </div>
-                <div>
-                    <Image src={grass} objectFit={"cover"} height={'400px'} />
-                </div>
-            </Slider>
-        </div>
-    );
+export type SliderItem = {
+  image: string | StaticImageData;
+  title?: string;
+  onClick?(): void;
 }
+
+type Props = {
+  data: SliderItem[]
+  settings?: Settings
+}
+
+const defaultSettings: Settings = {
+  dots: true,
+  dotsClass: 'slick-dots',
+  infinite: true,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  autoplaySpeed: 2000,
+  autoplay: false,
+};
+
+export const Slider = React.memo(({ data, settings }: Props) => {
+  const loader = useCallback((image: string | StaticImageData) => typeof image === 'string' ? () => image : undefined, []);
+
+  return (
+    <ScreenLayout stretch marginVertical={0}>
+      <SlickSlide {...defaultSettings} {...settings}>
+        {data.map(({ image, title, onClick }) => (
+          <div className={styles.slide} key={(image as StaticImageData)?.src || image as string}>
+            {/* eslint-disable-next-line jsx-a11y/alt-text */}
+            <Image src={image} objectFit="cover" layout="fill" loader={loader(image)}/>
+            {!!(title && onClick) && (
+              <button className={styles.buttonWrapper} onClick={onClick}>
+                <div className={styles.buttonWrapperBackground} />
+                <div className={styles.buttonContainer}>
+                  <span>{title}</span>
+                </div>
+              </button>
+            )}
+          </div>
+        ))}
+      </SlickSlide>
+    </ScreenLayout>
+  );
+});
+
+Slider.displayName = 'Slider';

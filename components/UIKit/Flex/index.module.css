@@ -1,0 +1,10 @@
+.flex {
+    position: relative;
+    display: flex;
+    padding: var(--padding-vertical) var(--padding-horizontal);
+}
+
+.centered {
+    justify-content: center;
+    align-items: center;
+}

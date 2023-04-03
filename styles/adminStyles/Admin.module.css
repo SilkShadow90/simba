@@ -1,0 +1,198 @@
+.adminPage {
+    min-height: 100vh;
+}
+
+.adminCards {
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+}
+
+.adminCardsLeft_input_position {
+    align-items: center;
+    display: flex;
+    background-color: inherit;
+    border: none;
+    position: relative;
+    justify-content: center;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.adminTab_edit {
+    align-items: center;
+    display: flex;
+    background-color: inherit;
+    border: none;
+    position: relative;
+    justify-content: center;
+    cursor: pointer;
+}
+
+
+.adminCardsLeft_input_position_img {
+    max-width: 26px;
+    max-height: 26px;
+    position: absolute;
+}
+
+
+.adminCardsRightt {
+    flex: 1;
+    padding: 20px;
+}
+
+.adminCardsLeftColumn {
+    color: #334D6E;
+}
+.adminCardsLeftColumnRed{
+    color: #109CF1;
+}
+
+.tabText {
+    animation: 300ms linear toShow;
+    animation-fill-mode: forwards;
+    cursor: pointer;
+    transition: 500ms ease-in-out;
+    margin-left: var(--padding-horizontal);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 20px;
+    letter-spacing: 0.01em;
+}
+
+.tabTextHide {
+    animation: 300ms linear toHidden;
+    animation-fill-mode: forwards;
+}
+
+@keyframes toHidden {
+    from {
+       opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes toShow {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.adminCardsLeftColumn:hover {
+    color: #34AFF9;
+}
+
+
+.openMain {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 50px 0;
+    margin: 0 36px ;
+    min-height: 100%;
+    left: 30px;
+    right: 30px;
+    background: white;
+    box-shadow: 6px 0 18px rgb(0 0 0 / 6%);
+}
+
+.openMainWindow {
+    display: flex;
+    margin-bottom: 100px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+
+.cats_List {
+    display: grid;
+    grid-template-rows: repeat(auto-fill, minmax(500px, 1fr));
+    padding: 50px;
+    grid-gap: 15px;
+    gap: 15px;
+}
+
+.admin_Input_Tab {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr) ;
+    justify-items: center;
+    align-content: center;
+    /*min-height: 48px;*/
+    min-height: 64px;
+    margin-bottom: 1px;
+    /*padding: 0 36px;*/
+    background-color: var(--admin-color-icon-white);
+    border:#E5E5E5 solid 1px;
+    border-radius: 4px;
+}
+
+.admin_Input_Tab_Block {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.admin_input_tab_checked {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding-left: 24px;
+    align-items: center;
+}
+
+.admin_input_tab_checked_box {
+    display: flex;
+    align-items: center;
+}
+
+.admin_input_tab_checked_boxStyle {
+    margin:0 10px;
+ }
+.admin_input_tab_checked_boxStyleButton {
+    display: flex;
+    background-color: inherit;
+    border: none;
+    cursor: pointer;
+}
+.admin_input_tab_checked_boxStyleButton:hover {
+    background-color: #9797f1;
+}
+
+.admin_input_tab_checked_boolean {
+    justify-content: left;
+}
+
+.deleteModal {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--admin-color-icon-white);
+    border-radius: 8px;
+    padding: 8px 12px;
+    box-shadow: var(--shadow);
+    min-width: 20vw;
+    min-height: 100px;
+}
+
+.deleteModal_buttons {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+
+
+
+
+

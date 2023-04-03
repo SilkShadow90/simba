@@ -18,10 +18,10 @@ export const fetchUser =
     dispatch(actionUserStartFetch(id));
 
     await delay(1000);
-    // const user = await UserApi.getUser(id);
+    // const id = await UserApi.getUser(id);
 
-    // if (user) {
-    //   dispatch(actionUserCompletedFetch(user));
+    // if (id) {
+    //   dispatch(actionUserCompletedFetch(id));
     //   dispatch(actionUserClearCompleted);
     // } else {
     //   dispatch(actionUserErrorFetch);

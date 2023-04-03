@@ -1,0 +1,19 @@
+.grid {
+    position: relative;
+    display: grid;
+    gap: var(--gap);
+    grid-template-columns: repeat(auto-fill, minmax(var(--block-height), 1fr));
+}
+
+.centered {
+    justify-content: center;
+    align-items: center;
+}
+
+@media (min-width: 320px) and (max-width: 840px) {
+    .grid {
+        grid-template-areas: initial !important;
+        grid-template-columns: 1fr !important;
+        grid-template-rows: auto !important;
+    }
+}

@@ -10,6 +10,10 @@
     margin-left: 50px;
     margin-bottom: 50px;
 }
+.comeinfo_text {
+    margin-bottom: 15px;
+    max-width: 80%;
+}
 .comeinfo_title {
     display: flex;
     justify-content: flex-start;
@@ -35,10 +39,4 @@
     grid-gap: 15px;
     gap: 15px;
     margin-bottom: 50px;
-}
-
-.come_src_winner_one {
-    margin: 10px 10px 20px 10px;
-    min-height: 400px;
-    background-size: cover;
 }

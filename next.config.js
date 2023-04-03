@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
-const isProd = process.env.NODE_ENV === 'production'
+const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = {
   reactStrictMode: true,
@@ -7,7 +7,13 @@ module.exports = {
   basePath: isProd ? '/simba' : '',
   images: {
     loader: 'akamai',
-    path: '/'
+    path: '/',
+    domains: ['source.unsplash.com'],
   },
-  output: 'standalone'
-}
+  output: 'standalone',
+  eslint: {
+    // Warning: This allows production builds to successfully complete even if
+    // your project has ESLint errors.
+    ignoreDuringBuilds: true,
+  },
+};

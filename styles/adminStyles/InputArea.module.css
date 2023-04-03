@@ -1,0 +1,43 @@
+.areaStyle {
+    font-size: 18px;
+    line-height: 20px;
+    border: none;
+    resize: none;
+    /*border-bottom: solid 1px #818E9B;*/
+    /*margin-bottom: 6px;*/
+}
+
+.areaStyle:focus {
+    outline: 0;
+}
+
+.areaMain {
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+}
+.areaMain_Title {
+    padding-left: 2px;
+    margin-bottom: 4px;
+}
+
+.areaMain_borderBottom {
+    margin-top: 6px;
+    height: 1px;
+    background-color: #818E9B;
+}
+
+
+.placeholder_color_black::placeholder {
+    color: var(--admin-color-black);
+}
+.placeholder_color_blue::placeholder {
+    color: var(--admin-color-blue);
+}
+.placeholder_color_gray::placeholder {
+    color: var(--admin-color-gray);
+}
+
+/*textarea::placeholder {*/
+/*    color: #0bf;*/
+/*}*/

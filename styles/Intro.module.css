@@ -1,31 +1,36 @@
-.razdelDown {
-    /*background-color: var(--fon-text);*/
+.wrapperDown {
     background: var(--main-bg-color);
     width: 100%;
-    min-height: 500px;
-    margin-bottom: 50px;
+    display: flex;
+    flex: 1 1 auto;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: var(--padding-vertical) 0;
+    margin: var(--margin) 0;
 }
 
-.razdelDownMain {
-    margin-top: 15px;
+.wrapperDownMain {
+    margin: var(--margin) 0;
     display: flex;
     justify-content: center;
     font-weight: 700;
     font-size: 25px;
     font-family: sans-serif;
-    margin-bottom: 20px;
-    color: #dbfef9
+    color: var(--admin-color-icon-white)
 }
 
 
-.razdelDownMainIntro {
+.wrapperDownMainIntro {
     display: grid;
-    grid-template-columns: 400px 400px;
+    width: var(--screen-width);
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--gap);
     justify-content: center;
     align-items: center;
 }
 
-.razdelDownBlock {
+.wrapperDownBlock {
     position: relative;
     justify-content: center;
     align-content: center;
@@ -34,7 +39,6 @@
     flex: 1 1 auto;
     margin-bottom: 20px;
     padding: 16px;
-    /*max-width: 400px;*/
 }
 
 .imageBlock {
@@ -47,17 +51,16 @@
     max-height: 120px;
 }
 
-.razdelDownBlockText {
+.wrapperDownBlockText {
     padding-left: 10px;
-    color: white;
+    color: var(--admin-color-icon-white);
     font-size: larger;
     display: flex;
     flex: 1 1 auto;
     flex-direction: column;
-    /*width: 200px;*/
 }
 
-.razdelDownBlockTextTitle {
+.wrapperDownBlockTextTitle {
     font-weight: 700;
     margin-bottom: 5px;
     font-size: 20px;
@@ -65,9 +68,9 @@
 
 @media (min-width: 320px) and (max-width: 840px) {
 
-    .razdelDownMainIntro {
+    .wrapperDownMainIntro {
         display: grid;
-        grid-template-columns: 400px;
+        grid-template-columns: 1fr;
         justify-content: center;
         align-items: center;
     }

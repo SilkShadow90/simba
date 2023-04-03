@@ -7,10 +7,15 @@ export interface IPagination {
 
 export class Pagination {
   currentPage: number;
+
   totalPages: number;
+
   totalItemsCount: number;
+
   perPageItemsCount: number;
+
   currentItemsCount: number;
+
   isListEnd: boolean;
 
   public constructor(model: IPagination) {

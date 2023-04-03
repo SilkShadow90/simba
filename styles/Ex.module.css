@@ -7,12 +7,17 @@
     box-shadow: var(--shadow);
     border-radius: var(--border);
 }
-.ex:hover{
-    box-shadow: 0 2px 9px 0 rgba(3, 7, 10, 0.8);
+.ex_noHover {
+    position: relative;
+    min-height: auto;
+    overflow: hidden;
+    transition: all 200ms linear;
+    border: none;
+    box-shadow: var(--shadow);
+    border-radius: var(--border);
 }
-
-.ex_block {
-    margin: 0;
+.ex:hover{
+    box-shadow: var(--active-shadow);
 }
 
 .ex_opacity {
@@ -21,56 +26,34 @@
     bottom: 0;
     left: 0;
     right: 0;
-    height: 6rem;
+    padding: var(--padding-vertical) 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.exhibition_Main {
-    display: grid;
-    margin: 0 auto;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 500px));
-    padding: 50px;
-    gap: 15px;
+.ex_opacity_DisplayNone{
+    display: none;
 }
 
-.exhibition_Main__card {
-    box-shadow: var(--shadow);
-    border: 1px solid rgba(0, 0, 0, 0.125);
-    width: 100%;
-    min-height: 600px;
-}
-
-.exhibition_Main__card:hover {
-    box-shadow: 0 2px 9px 0 rgba(3, 7, 10, 0.8);
-}
-
-div .cardMargin {
+div .ex_card {
     margin: 0;
+    min-height: var(--block-height);
 }
 
-.exhibition_Main__leftColumn {
-    margin: 10px 10px 20px 10px;
-    min-height: 400px;
-    background-size: cover;
-}
-
-.exhibition_Main__rightColumn {
-    margin: 10px 10px 20px 10px;
-    min-height: 400px;
-    background-size: cover;
-}
-
-.exhibition_Main__cardTitle {
+.ex_title {
     font-size: 30px;
     line-height: 1.2;
     font-family: inherit;
     word-wrap: break-word;
     color: black;
-    margin-left: 10px;
-    margin-bottom: 15px;
+    padding-left: var(--padding-horizontal);
+    margin-bottom: var(--padding-vertical);
 }
 
-.exhibition_Main__cardText {
+.ex_description {
     color: #424242;
-    margin-left: 10px;
+    font-size: 16px;
+    padding-left: var(--padding-horizontal);
 }
 

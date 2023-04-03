@@ -1,0 +1,58 @@
+.join {
+    display: flex;
+    flex-direction: column;
+    width: var(--screen-width);
+    margin: var(--margin) auto;
+}
+.joinUpper {
+    display: flex;
+    font-size: 30px;
+    font-weight: 700;
+    justify-content: center;
+    margin: calc(var(--margin) * 2) auto var(--margin);
+}
+.joinDown {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas: 'step1 step2'
+                         'step3 step4';
+    gap: var(--gap);
+}
+
+.joinDownBoxImg {
+    position: relative;
+    align-items: center;
+    display: flex;
+}
+
+.joinDownBoxImgNumber {
+    font-weight: 700;
+    color: var(--main-bg-color);
+    font-size: 40px;
+}
+
+.joinDownBoxImgSize {
+    height: 50px;
+    width: 50px;
+}
+
+.joinDownBoxCongratulation {
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.join span {
+    display: inline-flex;
+    font-size: 20px;
+    padding: var(--padding-vertical) 0;
+}
+
+@media (min-width: 320px) and (max-width: 840px) {
+    .joinDown {
+        grid-template-areas:
+        "step1"
+        "step2"
+        "step3"
+        "step4";
+    }
+}

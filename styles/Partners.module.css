@@ -1,0 +1,34 @@
+.partners_Main {
+    padding: 50px;
+}
+
+.partners_logo {
+    display: flex;
+    position: relative;
+    flex-direction: row;
+}
+
+.partners_logos {
+    position: relative;
+    width: 32%;
+}
+
+.partners_logotype {
+    height: 200px;
+    width: 200px;
+}
+
+.partners_padding {
+    padding: 10px;
+}
+
+.partners_info {
+    margin-bottom: 15px;
+}
+
+.partners_info_Main {
+    display: grid;
+    margin-left: 50px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 500px));
+    gap: var(--gap);
+}

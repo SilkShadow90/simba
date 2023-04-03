@@ -1,0 +1,12 @@
+.screen {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    width: var(--screen-width);
+    margin: var(--margin) auto;
+}
+
+.stretch {
+    width: 100%;
+}

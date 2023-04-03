@@ -1,49 +1,66 @@
-import styles from '../styles/Footer.module.css';
-import React from "react";
-import { Strings } from '../resources';
-import Image from 'next/image'
-import simba from '../public/simba.jpeg';
+import React from 'react';
 import Link from 'next/link';
+import classNames from 'classnames';
+import styles from '../styles/Footer.module.css';
+import { Strings } from '../resources';
+import { navigationList } from '../utils/navigation';
+import { useFetchService } from '../utils/useFetchService';
+import InfoMethods from '../api/InfoMethods';
 
 
-export const Footer= () => {
-    return (
+export const Footer = () => {
+  const { data: info } = useFetchService(InfoMethods.getData);
+
+  return (
+    <div className={styles.footerWrapper}>
       <div className={styles.footer}>
-          <div className={styles.footerColumn}>
-              {Strings.footer.leftColumn.title}
-              <div className={styles.footerTextContainer}>
-                  <div className={styles.inline}>
-                      <li className={styles.footerText}>&#8226; <Link href="/"><span>{Strings.footer.leftColumn.main}</span></Link></li>
-                      <li className={styles.footerText}>&#8226; <Link href="/docs"><span>{Strings.footer.leftColumn.docs}</span></Link></li>
-                      <li className={styles.footerText}>&#8226; <Link href="/cats"><span>{Strings.footer.leftColumn.cats}</span></Link></li>
-                      <li className={styles.footerText}>&#8226; <span>{Strings.footer.leftColumn.Exhibitions}</span></li>
-                      <li className={styles.footerText}>&#8226; <span>{Strings.footer.leftColumn.Nurseries}</span></li>
-                      <li className={styles.footerText}>&#8226; <Link href="/contacts"><span>{Strings.footer.leftColumn.Contacts}</span></Link></li>
-                  </div>
-              </div>
+        <div className={classNames(styles.footerColumn, styles.startColumn, styles.footerNav)}>
+          {Strings.footer.leftColumn.title}
+          <div className={styles.footerTextContainer}>
+            {navigationList.filter(nav => nav.link && nav.link !== 'docs' && nav.link !== 'contacts')
+              .map(nav => (
+                <div className={styles.inline} key={nav.link}>
+                  &#8226; <Link href={`/${nav.link}`}>
+                    {nav.text}
+                  </Link>
+                </div>
+              ))}
           </div>
-          <div className={styles.footerColumn}>
-              {Strings.footer.centerColumn.title}
-              <div className={styles.footerTextContainer}>
-                  <div className={styles.inline}>
-                      <li className={styles.footerText}>&#8226; <span>{Strings.footer.centerColumn.docsOne}</span></li>
-                      <li className={styles.footerText}>&#8226; <span>{Strings.footer.centerColumn.docsTwo}</span></li>
-                      <li className={styles.footerText}>&#8226; <span>{Strings.footer.centerColumn.docsTree}</span></li>
-                      <li className={styles.footerText}>&#8226; <span>{Strings.footer.centerColumn.docsFour}</span></li>
-                      <li className={styles.footerText}>&#8226; <span>{Strings.footer.centerColumn.docsFive}</span></li>
-                  </div>
-              </div>
+        </div>
+        <div className={styles.separator} />
+        <div className={classNames(styles.footerColumn, styles.footerDocs)}>
+          {Strings.footer.centerColumn.title}
+          <div className={styles.footerTextContainer}>
+              {Strings.footer.centerColumn.docs.map((doc) => (
+                <div className={styles.inline} key={doc}>
+                  &#8226; <Link href="/docs">{doc}</Link>
+                </div>
+              ))}
           </div>
-          <div className={styles.footerColumn}>
-              {Strings.footer.rightColumn.title}
-              <div className={styles.footerTextContainer}>
+        </div>
+        <div className={styles.separator} />
+        <div className={styles.footerColumn}>
+          {Strings.footer.rightColumn.title}
+          <div className={styles.footerTextContainer}>
+              {!!info && (
+                <>
+                  {info.contacts.tel.map((v) => (
+                    <div className={styles.inline} key={v}>
+                      &#8226; <a className={styles.footerText}>
+                        <span>тел: {v}</span>
+                      </a>
+                    </div>
+                  ))}
                   <div className={styles.inline}>
-                      <li className={styles.footerText}>&#8226; <span>{Strings.footer.rightColumn.phoneOne}</span></li>
-                      <li className={styles.footerText}>&#8226; <span>{Strings.footer.rightColumn.phoneTwo}</span></li>
-                      <li className={styles.footerText}>&#8226; <span>{Strings.footer.rightColumn.email}</span></li>
+                    &#8226; <a className={styles.footerText}>
+                      <span>{info.contacts.email}</span>
+                    </a>
                   </div>
-              </div>
+                </>
+              )}
           </div>
+        </div>
       </div>
-    )
+    </div>
+  );
 };

@@ -1,0 +1,6 @@
+.faq {
+    border-radius: var(--border);
+    box-shadow: var(--shadow);
+    padding: calc(var(--padding-vertical) * 2) calc(var(--padding-horizontal) * 2);
+    background: var(--admin-color-icon-white);
+}
