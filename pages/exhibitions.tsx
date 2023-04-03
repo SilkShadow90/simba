@@ -32,7 +32,7 @@ const Exhibitions: NextPage = () => {
               opacityBlock={true}
               title={'Прошедшие выставки'}
               text={'Результаты и и фоторепортаж с прошедших выставок КЛК Коргоруши'}
-              image={'nolastEX.jpg'}
+              image={'/nolastEX.jpg'}
             />
           </GridItem>
           <div/>

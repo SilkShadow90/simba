@@ -46,6 +46,8 @@ export const Page = ({
       <Head>
         <title>{title}</title>
         <meta name="description" content={meta}/>
+        <meta name="theme-color" content="#3ea192" media="(prefers-color-scheme: light)" />
+        <meta name="theme-color" content="#3ea192" media="(prefers-color-scheme: dark)" />
         <link rel="icon" href="/favicon.ico"/>
       </Head>
       <div className={styles}>
