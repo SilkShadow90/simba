@@ -3,7 +3,6 @@ import React from 'react';
 import styles from '../../styles/Lastexhibition.module.css';
 import { Page } from '../../components/Page';
 import ExhibitionCard from '../../components/ExhibitionCard';
-import { FirstBack } from '../../components/Back';
 import { useFetchService } from '../../utils/useFetchService';
 import { getDateString } from '../../utils';
 import { Club, Exhibition } from '../../api/types';
@@ -13,6 +12,7 @@ import ClubMethods from '../../api/ClubMethods';
 import { Grid } from '../../components/UIKit/Grid';
 import { GridItem } from '../../components/UIKit/GridItem';
 import { ScreenLayout } from '../../components/UIKit/ScreenLayout';
+import { TextBlock } from '../../components/UIKit/TextBlock';
 
 const NearExhibitionPage: NextPage = () => {
   const {
@@ -30,12 +30,10 @@ const NearExhibitionPage: NextPage = () => {
       styles={styles.container}
       isLoading={loading || loadingType || loadingClub}
     >
-      <div className={styles.lasthibition_header}>
-        <FirstBack link={'/exhibition'}/>
-        <div className={styles.lasthibition_title}>Ближайщие выставки</div>
-      </div>
       <ScreenLayout>
-
+        <TextBlock type={'H1'}>
+          {'Ближайшие выставки'}
+        </TextBlock>
         <Grid>
           {!!exhibitionData && exhibitionData.map((exhibition) => (
             <GridItem key={exhibition.id}>

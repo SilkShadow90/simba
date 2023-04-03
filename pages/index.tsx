@@ -1,5 +1,6 @@
 import type { NextPage } from 'next';
 import React, { useMemo } from 'react';
+import { useRouter } from 'next/router';
 import { Strings } from '../resources';
 import { Page } from '../components/Page';
 import { Intro } from '../components/Intro';
@@ -22,10 +23,11 @@ import { Grid } from '../components/UIKit/Grid';
 import { GridItem } from '../components/UIKit/GridItem';
 
 const Home: NextPage = () => {
+  const router = useRouter();
   const sliderDataList: SliderItem[] = useMemo(() => [
     {
       title: 'Вступить в клуб',
-      onClick: () => null,
+      onClick: () => router.push('/docs?doc=1'),
       image: catzz,
     },
     {
@@ -48,7 +50,7 @@ const Home: NextPage = () => {
       onClick: () => null,
       image: grass,
     },
-  ], []);
+  ], [router]);
 
   return (
     <Page title="Home" meta="bla bla">

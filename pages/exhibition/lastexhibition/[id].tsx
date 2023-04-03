@@ -45,7 +45,7 @@ const Out: NextPage = () => {
     return '';
   }, [exhibition?.typeId, exhibitionType]);
 
-  const images = useMemo(() => getImages(30, 300), []);
+  const images = useMemo(() => getImages(10, 300), []);
 
   return (
     <Page
@@ -62,25 +62,27 @@ const Out: NextPage = () => {
                 {`${getDateString(exhibition?.dateStart, exhibition?.dateEnd)} была проведена ${type} выставка кошек`}
               </TextBlock>
             </Flex>
-            <ScreenLayout>
-              <TextBlock type="H2" centered>
-                {'Победители'}
-              </TextBlock>
-              <Grid>
-                {cats && cats.map((cat) => (
-                  <GridItem key={cat.id}>
-                    <ExhibitionCard
-                      hoverBlock={true}
-                      opacityBlock={true}
-                      title={cat.name}
-                      text={breedRecord[cat.breedId].name}
-                      image={cat.image}
-                      link={`/cats/${cat.id}`}
-                    />
-                  </GridItem>
-                ))}
-              </Grid>
-            </ScreenLayout>
+            {!!cats?.length && (
+              <ScreenLayout>
+                <TextBlock type="H2" centered>
+                  {'Победители'}
+                </TextBlock>
+                <Grid>
+                  {cats.map((cat) => (
+                    <GridItem key={cat.id}>
+                      <ExhibitionCard
+                        hoverBlock={true}
+                        opacityBlock={true}
+                        title={cat.name}
+                        text={breedRecord[cat.breedId].name}
+                        image={cat.image}
+                        link={`/cats/${cat.id}`}
+                      />
+                    </GridItem>
+                  ))}
+                </Grid>
+              </ScreenLayout>
+            )}
             <ScreenLayout>
               <TextBlock type="H2" centered>
                 {'Судьи'}

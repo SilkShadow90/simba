@@ -8,6 +8,7 @@ import NurserMethods from '../api/NurserMethods';
 import { Grid } from '../components/UIKit/Grid';
 import { GridItem } from '../components/UIKit/GridItem';
 import { ScreenLayout } from '../components/UIKit/ScreenLayout';
+import { TextBlock } from '../components/UIKit/TextBlock';
 
 const NurseriesScreen: NextPage = () => {
   const { data: nurseries, loading } = useFetchService(NurserMethods.getAll) || {};
@@ -15,6 +16,9 @@ const NurseriesScreen: NextPage = () => {
   return (
     <Page title="Питомники" meta="bla bla" styles={styles.container} isLoading={loading}>
       <ScreenLayout>
+        <TextBlock type={'H1'}>
+          {'Питомники'}
+        </TextBlock>
         <Grid>
           {!!nurseries && nurseries.map((nurser) => (
             <GridItem key={nurser.id}>

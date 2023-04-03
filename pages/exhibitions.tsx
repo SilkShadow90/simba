@@ -2,16 +2,18 @@ import type { NextPage } from 'next';
 import React from 'react';
 import { Page } from '../components/Page';
 import ExhibitionCard from '../components/ExhibitionCard';
-import lastEx from '../public/lastEx.jpg';
-import nolastEX from '../public/nolastEX.jpg';
 import { Grid } from '../components/UIKit/Grid';
 import { ScreenLayout } from '../components/UIKit/ScreenLayout';
 import { GridItem } from '../components/UIKit/GridItem';
+import { TextBlock } from '../components/UIKit/TextBlock';
 
 const Exhibitions: NextPage = () => {
   return (
     <Page title="Выставки" meta="bla bla">
       <ScreenLayout>
+        <TextBlock type={'H1'}>
+          {'Выставки'}
+        </TextBlock>
         <Grid>
           <GridItem>
             <ExhibitionCard
@@ -20,8 +22,7 @@ const Exhibitions: NextPage = () => {
               opacityBlock={true}
               title={'Ближайшие выставки'}
               text={'Информация о ближайшей выставке кошек КЛК Коргоруши г. Москва.'}
-              // csssrc={styles.exhibition_Main__leftColumn}
-              image={lastEx.src}
+              image={'/lastEx.jpg'}
             />
           </GridItem>
           <GridItem>
@@ -31,8 +32,7 @@ const Exhibitions: NextPage = () => {
               opacityBlock={true}
               title={'Прошедшие выставки'}
               text={'Результаты и и фоторепортаж с прошедших выставок КЛК Коргоруши'}
-              // csssrc={styles.exhibition_Main__rightColumn}
-              image={nolastEX.src}
+              image={'nolastEX.jpg'}
             />
           </GridItem>
           <div/>

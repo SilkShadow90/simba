@@ -12,7 +12,7 @@ export const initialState = {
   },
   adminState: {},
   docsState: {
-    openedvstuplenie: false,
+    openedvstuplenie: true,
     openedtitul: false,
     openedregister: false,
     openedvyazka: false,

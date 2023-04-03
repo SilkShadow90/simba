@@ -10,6 +10,7 @@ import DictionaryMethods from '../api/DictionaryMethods';
 import { Grid } from '../components/UIKit/Grid';
 import { ScreenLayout } from '../components/UIKit/ScreenLayout';
 import { GridItem } from '../components/UIKit/GridItem';
+import { TextBlock } from '../components/UIKit/TextBlock';
 
 const Cats: NextPage = () => {
   const { data: cats, loading: catLoading } = useFetchService<Cat[]>(CatMethods.getAll);
@@ -18,6 +19,9 @@ const Cats: NextPage = () => {
   return (
     <Page title="Cats" meta="bla bla" styles={styles.container} isLoading={catLoading || breedsLoading}>
       <ScreenLayout>
+        <TextBlock type={'H1'}>
+          {'Кошки'}
+        </TextBlock>
         <Grid>
           {!!cats && !!breeds && cats.map((cat) => (
             <GridItem key={cat.id}>

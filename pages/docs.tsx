@@ -1,6 +1,5 @@
 import type { NextPage } from 'next';
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { Strings } from '../resources';
 import styles from '../styles/Docs.module.css';
 import { Page } from '../components/Page';
@@ -10,81 +9,64 @@ import {DocsComponentTitles} from "../components/DocsComponentTitles";
 import {DocsComponentRegister} from "../components/DocsComponentRegister";
 import {DocsComponentVyazka} from "../components/DocsComponentVyazka";
 import {DocsComponentPosition} from "../components/DocsComponentPosition";
-
-
+import { TextBlock } from '../components/UIKit/TextBlock';
+import { ScreenLayout } from '../components/UIKit/ScreenLayout';
+import { useQuery } from '../redux/hooks';
 
 const Docs: NextPage = () => {
-  enum TextType {
-    snake_case,
-    PascalCase,
-    camelCase,
-  }
-
-  const formatText = (typeText: TextType, ...str: [string, string?, string?, string?]) => {
-    const arrayStr = str.join('')
-      .replace(/[,.\s]+/g, '_')
-      .toLowerCase()
-      .split('_');
-
-    switch (typeText) {
-      case TextType.PascalCase:
-        return arrayStr
-          .map(v => v[0].toUpperCase() + v.slice(1))
-          .join('');
-      case TextType.camelCase:
-        return arrayStr
-          .map((v, i) => i === 0 ? v : v[0].toUpperCase() + v.slice(1))
-          .join('');
-      case TextType.snake_case:
-        return arrayStr.join('_');
-      default:
-        return str;
-    }
-  };
-
-  // console.log(formatText(TextType.camelCase,'text,text. VaLid  Date'));
-
-  const docsState = useSelector((state: any) => state.docsState);
-
+  const { doc } = useQuery();
   const renderSecondElement = () => {
-    switch (Object.entries(docsState).find(([_, value]) => value)?.[0]) {
-      case 'openedvstuplenie':
+    switch (doc) {
+      case '1':
         return (
             <DocsComponentOpened/>
         );
-      case 'openedtitul':
+      case '2':
         return (
             <DocsComponentTitles/>
         );
-      case 'openedregister':
+      case '3':
         return (
             <DocsComponentRegister/>
         );
-      case 'openedvyazka':
+      case '4':
         return (
             <DocsComponentVyazka/>
         );
-      case 'openedposition':
+      case '5':
         return (
             <DocsComponentPosition/>
         );
       default:
-        return null;
+        return (
+          <TextBlock type={'H3'}>
+            {'<- Выберите документ'}
+          </TextBlock>
+        );
     }
   };
 
   return (
-    <Page title="Docs" meta="bla bla" styles={styles.container}>
-      <div className={styles.docsCards}>
-        <div className={styles.docsCardsLeft}>
-          <DocsPanel text={Strings.DocsPanel.openedvstuplenie} type="openedvstuplenie"/>
-          <DocsPanel text={Strings.DocsPanel.openedtitul} type="openedtitul"/>
-          <DocsPanel text={Strings.DocsPanel.openedregister} type="openedregister"/>
-          <DocsPanel text={Strings.DocsPanel.openedvyazka} type="openedvyazka"/>
-          <DocsPanel text={Strings.DocsPanel.openedposition} type="openedposition"/>
-        </div>
-        <div className={styles.docsCardsRight}>
-          {renderSecondElement()}
+    <Page title="Docs" meta="bla bla">
+      <ScreenLayout>
+        <TextBlock type={'H1'}>
+          {'Документы'}
+        </TextBlock>
+        {renderSecondElement()}
+      </ScreenLayout>
+      <div className={styles.docPanel}>
+          <div className={styles.docsCardsLeft}>
+            <DocsPanel text={Strings.DocsPanel.openedvstuplenie} type="1"/>
+            <DocsPanel text={Strings.DocsPanel.openedtitul} type="2"/>
+            <DocsPanel text={Strings.DocsPanel.openedregister} type="3"/>
+            <DocsPanel text={Strings.DocsPanel.openedvyazka} type="4"/>
+            <DocsPanel text={Strings.DocsPanel.openedposition} type="5"/>
+          </div>
+
+        <div className={styles.docsText}>
+          <TextBlock type={'Link'}>
+            {'Выбор документа'}
+          </TextBlock>
         </div>
       </div>
     </Page>

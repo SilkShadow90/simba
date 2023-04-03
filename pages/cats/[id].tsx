@@ -47,11 +47,11 @@ const CatPage: NextPage = () => {
                 </TextBlock>
                 <TextBlock type="Body">
                   {'Кличка: '}
-                  <TextBlock type="Body">{breedRecord[cats.breedId].name}</TextBlock>
+                  <TextBlock type="Body">{breedRecord[cats.breedId]?.name}</TextBlock>
                 </TextBlock>
                 <TextBlock type="Body">
                   {'Клуб: '}
-                  <TextBlock type="Body">{clubRecord[cats.clubId].name}</TextBlock>
+                  <TextBlock type="Body">{clubRecord[cats.clubId]?.name}</TextBlock>
                 </TextBlock>
                 <TextBlock type="Body">контакты</TextBlock>
                 <TextBlock type="Body">http://goldenpride.ulsimba.ru/</TextBlock>

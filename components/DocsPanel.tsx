@@ -1,6 +1,7 @@
 import React, { PropsWithChildren, useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
 import styles from "../styles/Docs.module.css";
+import { useQuery } from '../redux/hooks';
 
 
 interface Props {
@@ -9,12 +10,13 @@ interface Props {
 }
 
 export const DocsPanel = ({text, type}: PropsWithChildren<Props>) => {
-    const dispatch = useDispatch();
-    const isOpened = useSelector((state: any) => state.docsState[type]);
+    const router = useRouter();
+    const { doc } = useQuery();
+    const isOpened = doc === type;
 
-    const onClick = useCallback(() => dispatch({
-        type: `docs/${type}`,
-    }), [dispatch, type]);
+    const onClick = useCallback(() => {
+        router.replace(`${router.pathname}?doc=${type}`);
+    }, [router, type]);
 
     return (
         <button
