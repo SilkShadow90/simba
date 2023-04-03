@@ -15,6 +15,7 @@ import subtract from '../../public/adminImg/menu/Subtract.svg';
 import { useFetchService } from '../../utils/useFetchService';
 import FieldsMethods from '../../api/FieldsMethods';
 import Loader from '../Loader';
+import { useQuery } from '../../redux/hooks';
 
 const icons = {
   users,
@@ -25,6 +26,7 @@ const icons = {
 
 export const AdminList = React.memo(() => {
   const router = useRouter();
+  const { page } = useQuery();
   const { data: crud, loading } = useFetchService(FieldsMethods.getData);
 
   const [toggle, setToggle] = useState<boolean>(false);
@@ -42,16 +44,16 @@ export const AdminList = React.memo(() => {
           srcActive={dashboardActive}
           srcNoActive={dashboard}
           text={'Главная'}
-          onClick={onClick('/admin')}
-          isActive={router.asPath === '/admin'}
+          onClick={onClick('/admin?page=main')}
+          isActive={page === 'main'}
         />
         <AdminTab
           short={toggle}
           srcActive={tasksActive}
           srcNoActive={tasks}
           text={'Документы'}
-          onClick={onClick('/admin/docs')}
-          isActive={router.asPath === '/admin/docs'}
+          onClick={onClick('/admin?page=docs')}
+          isActive={page === 'docs'}
         />
         {crud && Object.values(crud).map((field) => (
           <AdminTab
@@ -60,8 +62,8 @@ export const AdminList = React.memo(() => {
             srcActive={icons[`${field.icon}Active` as keyof typeof icons]}
             srcNoActive={icons[field.icon as keyof typeof icons]}
             text={field.title}
-            onClick={onClick(`/admin/${field.name}`)}
-            isActive={router.asPath === `/admin/${field.name}`}
+            onClick={onClick(`/admin?page=${field.name}`)}
+            isActive={page === field.name}
           />
         ))}
         <div className="flex centered">
