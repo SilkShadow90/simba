@@ -15,7 +15,8 @@ export type AdminTabProps<T> = {
   item: T
   checked?: boolean;
   onClick?(): any;
-  itemCallback?(type: 'create' | 'update' | 'delete' | 'multiDelete', data: any): Promise<void>
+  itemCallback?(type: 'create' | 'update' | 'delete' | 'multiDelete', data: any): Promise<void>;
+  updateLoader?: boolean;
 }
 
 export const AdminInputTab = <T extends IDObject>({ item, titles, checked, onClick, itemCallback }: AdminTabProps<T>) => {
@@ -96,7 +97,7 @@ export const AdminInputTab = <T extends IDObject>({ item, titles, checked, onCli
           }
           return <div key={key} />;
         })}
-      <AdminModal item={item} titles={titles} active={modalActive} closeModal={closeModal}/>
+      <AdminModal item={item} titles={titles} active={modalActive} closeModal={closeModal} onSubmit={updateHandler} loading={updateLoader}/>
       <button className={styles.adminTab_edit} onClick={toggleModal}>
         <Image className={styles.adminCardsLeft_input_position_img} objectFit={'cover'} src={edit}/>
       </button>

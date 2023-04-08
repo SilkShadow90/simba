@@ -37,6 +37,11 @@
     background-color: white;
 }
 
+.modal_main_ButtonCancel {
+    background-color: inherit;
+    border: none;
+}
+
 .admin_input_tab_checked_boolean {
     display: flex;
     /*margin-bottom: 10px;*/
@@ -47,5 +52,10 @@
     height: 50px;
     border: none;
     right: 1px;
+}
 
+.modal_main_img {
+    max-width: 26px;
+    max-height: 26px;
+    position: absolute;
 }

@@ -13,9 +13,10 @@ export type AdminListProps<T> = {
   titles: Titles<T>
   items: T[]
   itemCallback?(type: 'create' | 'update' | 'delete' | 'multiDelete', data: any): Promise<void>
+  updateLoader?: boolean
 }
 
-export const AdminInputList = <T extends IDObject>({ titles, items, itemCallback }: AdminListProps<T>) => {
+export const AdminInputList = <T extends IDObject>({ titles, items, itemCallback, updateLoader }: AdminListProps<T>) => {
   const [deleteModalActive, setDeleteModalActive] = useState(false);
   const [checkedList, setCheckedList] = useState<ID[]>([]);
 
@@ -103,6 +104,7 @@ export const AdminInputList = <T extends IDObject>({ titles, items, itemCallback
       {items.map((item) => (
         <AdminInputTab
           key={item.id}
+          updateLoader={updateLoader}
           item={item}
           checked={checkedList.includes(item.id)}
           onClick={toggle(item.id)}
