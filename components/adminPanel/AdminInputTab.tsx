@@ -19,7 +19,7 @@ export type AdminTabProps<T> = {
   updateLoader?: boolean;
 }
 
-export const AdminInputTab = <T extends IDObject>({ item, titles, checked, onClick, itemCallback }: AdminTabProps<T>) => {
+export const AdminInputTab = <T extends IDObject>({ item, titles, checked, onClick, itemCallback, updateLoader }: AdminTabProps<T>) => {
   const { dictionaries, isLoading } = useAppSelector(state => state.dictionariesState);
 
   const [modalActive, setModalActive] = useState(false);
@@ -36,6 +36,12 @@ export const AdminInputTab = <T extends IDObject>({ item, titles, checked, onCli
     }
     toggleDeleteModal();
   },[itemCallback, item.id, toggleDeleteModal]);
+
+  const updateHandler = useCallback(async (data?: T) => {
+    if (itemCallback) {
+      await itemCallback('update', data);
+    }
+  },[itemCallback]);
 
   const toggleModal = useCallback(() => {
     setModalActive((prevState) => !prevState);

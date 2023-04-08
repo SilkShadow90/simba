@@ -1,15 +1,14 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import Select from 'react-select';
+import Image from 'next/image';
 import styles from '../../styles/adminStyles/AdminModal.module.css';
 import { AdminCheckbox } from './AdminCheckbox';
 import { InputArea } from './InputArea';
 import { IDObject, Titles, WithoutID } from '../../api/types';
 import { Portal } from '../Portal';
 import { useAppSelector } from '../../redux/hooks';
-
 import { AdminButton } from './AdminButton';
-import Image from "next/image";
-import close from "../../public/adminImg/other/close.svg";
+import close from '../../public/adminImg/other/close.svg';
 
 
 type Item<T extends IDObject> = T | WithoutID<T>;
@@ -26,7 +25,7 @@ interface Props<T extends IDObject> {
 
   item: Item<T>;
   titles: Titles<T>;
-  loading?: boolean
+  loading?: boolean;
 
   onSubmit?(data?: Item<T>): void;
 }
@@ -43,14 +42,28 @@ export const AdminModal = <T extends IDObject>({ active, closeModal, item, title
     }));
   }, []);
 
+  const cancelHandler = useCallback(() => {
+    setItemState(item);
+    closeModal();
+  }, [closeModal, item]);
+
+  const successHandler = useCallback(() => {
+    onSubmit?.(itemState);
+    closeModal();
+  }, [closeModal, itemState, onSubmit]);
+
+  const isDisabled = useMemo(() => {
+    return Object.entries(item).every(([key, value]) => itemState[key as keyof Item<T>] === value);
+  }, [item, itemState]);
+
   const isDictionaryId = (key: string): boolean => key.includes('Id');
   const getRecordName = (key: string) => key.includes('Id') && key.replace(/(\w+)Id/, '$1Dictionary') || '';
 
   return (
-    <Portal isVisible={active} onClick={closeModal}>
+    <Portal isVisible={active} onClick={cancelHandler}>
       <div className={styles.modal_main}>
-        <div style={{ display: 'flex', justifyContent:"end"}}>
-          <button className={styles.modal_main_ButtonCancel} onClick={closeModal}>
+        <div style={{ display: 'flex', justifyContent: 'end' }}>
+          <button className={styles.modal_main_ButtonCancel} onClick={cancelHandler}>
             <Image
               className={styles.modal_main_img}
               objectFit={'cover'}
@@ -77,8 +90,14 @@ export const AdminModal = <T extends IDObject>({ active, closeModal, item, title
                     name="color"
                     isMulti
                     onChange={(data) => changeValue(key as keyof T)(data?.map(d => d.value))}
-                    value={{ label: dictionaries[recordName]?.[itemState[key as keyof Item<T>] as unknown as string]?.name, value: itemState[key as keyof Item<T>] as unknown as string }}
-                    options={Object.values<any>(dictionaries[recordName] as any).map(dict => ({ label: dict.name, value: dict.id })) as any}
+                    value={{
+                      label: dictionaries[recordName]?.[itemState[key as keyof Item<T>] as unknown as string]?.name,
+                      value: itemState[key as keyof Item<T>] as unknown as string,
+                    }}
+                    options={Object.values<any>(dictionaries[recordName] as any).map(dict => ({
+                      label: dict.name,
+                      value: dict.id,
+                    })) as any}
                   />
                 </div>
               );
@@ -99,8 +118,14 @@ export const AdminModal = <T extends IDObject>({ active, closeModal, item, title
                     classNamePrefix="select"
                     name="color"
                     onChange={(data) => changeValue(key as keyof T)(data?.value)}
-                    value={{ label: dictionaries[recordName]?.[itemState[key as keyof Item<T>] as unknown as string]?.name, value: itemState[key as keyof Item<T>] as unknown as string }}
-                    options={Object.values<any>(dictionaries[recordName] as any).map(dict => ({ label: dict.name, value: dict.id })) as any}
+                    value={{
+                      label: dictionaries[recordName]?.[itemState[key as keyof Item<T>] as unknown as string]?.name,
+                      value: itemState[key as keyof Item<T>] as unknown as string,
+                    }}
+                    options={Object.values<any>(dictionaries[recordName] as any).map(dict => ({
+                      label: dict.name,
+                      value: dict.id,
+                    })) as any}
                   />
                 </div>
               );
@@ -134,7 +159,11 @@ export const AdminModal = <T extends IDObject>({ active, closeModal, item, title
                   <div key={value} className={styles.admin_input_tab_checked_boolean}>
                     <div>{value}</div>
                     <div style={{ width: '10px' }}/>
-                    <AdminCheckbox key={key} type={itemState[key as keyof T] ? 'checked' : 'unchecked'} onClick={() => changeValue(key as keyof T)(!itemState[key as keyof T] as any)}/>
+                    <AdminCheckbox
+                      key={key}
+                      type={itemState[key as keyof Item<T>] ? 'checked' : 'unchecked'}
+                      onClick={() => changeValue(key as keyof T)(!itemState[key as keyof Item<T>] as any)}
+                    />
                   </div>
                 </div>
               );
@@ -142,10 +171,10 @@ export const AdminModal = <T extends IDObject>({ active, closeModal, item, title
 
             return <div key={key}/>;
           })}
-        <div style={{ display: 'flex', justifyContent:'flex-end' }}>
-          <AdminButton text={"Отмена"} type={"secondary"} onClick={()=>console.log("value",item)}/>
-          <div style={{width:"20px"}}/>
-          <AdminButton text={"Отправить"}  isLoading={loading} onClick={() => onSubmit?.(itemState)}/>
+        <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+          <AdminButton text={'Отмена'} type={'secondary'} onClick={cancelHandler}/>
+          <div style={{ width: '20px' }}/>
+          <AdminButton disabled={isDisabled} text={'Подтвердить'} isLoading={loading} onClick={successHandler}/>
         </div>
       </div>
     </Portal>

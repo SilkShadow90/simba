@@ -18,6 +18,7 @@ import { Portal } from '../../Portal';
 
 import 'react-dropdown/style.css';
 import { Flex } from '../../UIKit/Flex';
+import { AdminModal } from '../AdminModal';
 
 const crudToMethods: Record<string, ApiMethods<any>> = {
   cats: CatMethods,
@@ -34,9 +35,20 @@ export const TableCRUD = () => {
 
   const { page } = useQuery();
 
+  const [modalActive, setModalActive] = useState(false);
+
+  const toggleModal = useCallback(() => {
+    setModalActive((prevState) => !prevState);
+  }, []);
+
+  const closeModal = useCallback(() => {
+    setModalActive(false);
+  }, []);
+
   const tabTitles = useMemo(() => tables?.[page]?.tabTitles || {}, [tables, page]);
   const tabFilters = useMemo(() => tables?.[page]?.filters || {}, [tables, page]);
   const filterKeys = useMemo(() => tables?.[page]?.filterKeys || {}, [tables, page]);
+  const boilerplate = useMemo(() => tables?.[page]?.boilerplate || {}, [tables, page]);
 
   const methods = useMemo(() => crudToMethods?.[page] || {
     getAll: () => {}
@@ -45,6 +57,20 @@ export const TableCRUD = () => {
   const addButtonName = useMemo(() => tables?.[page]?.createName || '', [page, tables]);
 
   const { data: tableData, loading, fetchData } = useFetchService(methods?.getAll);
+
+  const [initLoader, setInitLoader] = useState(true);
+
+  useEffect(() => {
+    if (page) {
+      setInitLoader(true);
+    }
+  }, [page]);
+
+  useEffect(() => {
+    if (!loading) {
+      setInitLoader(false);
+    }
+  }, [loading]);
 
   const { loading: createLoading, fetchData: fetchCreate } = useFetchService({
     methodFunc: methods.create,
@@ -132,7 +158,7 @@ export const TableCRUD = () => {
     }) || [];
   }, [tableData, tabFiltersState]);
 
-  if (loading || crudLoading) {
+  if (initLoader || crudLoading) {
     return (
       <Loader isVisible={true}/>
     );
@@ -193,17 +219,23 @@ export const TableCRUD = () => {
           })}
         </Flex>
 
-        <AdminButton type={'primary'} onClick={() => {}} text={`Добавить ${addButtonName}`}/>
+        {boilerplate && (
+          <AdminButton type={'primary'} onClick={toggleModal} text={`Добавить ${addButtonName}`}/>
+        )}
       </div>
       <div className={styles.openMainStart}>
         {!!filteredItems && (
           <AdminInputList
+            updateLoader={updateLoading}
             itemCallback={itemCallback}
             titles={tabTitles}
             items={filteredItems}
           />
         )}
       </div>
+      {boilerplate && (
+        <AdminModal item={boilerplate} titles={tabTitles} active={modalActive} closeModal={closeModal} onSubmit={fetchCreate} loading={createLoading}/>
+      )}
       <Portal isVisible={createLoading || deleteLoading || multiDeleteLoading || updateLoading}>
         <Loader isVisible />
       </Portal>
