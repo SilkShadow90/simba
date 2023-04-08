@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, {useCallback, useState} from 'react';
 import styles from '../../../styles/adminStyles/AdminCatsPage.module.css';
 import { AdminButton } from '../AdminButton';
 import { Titles } from '../types';
@@ -7,6 +7,7 @@ import Loader from '../../Loader';
 import { AdminInputList } from '../AdminInputList';
 import { Cat } from '../../../api/types';
 import CatMethods from '../../../api/CatMethods';
+import {AdminModal} from "../AdminModal";
 
 const catTitles: Titles<Cat> = {
   name: 'Имя',
@@ -15,13 +16,36 @@ const catTitles: Titles<Cat> = {
   clubId: 'Клуб',
 };
 
+const catBoilerplate = {
+  "name": "",
+  "breedId": "",
+  "masterId": "",
+  "image": "",
+  "favorite": false,
+  "clubId": "",
+  "exhibitionIds": [],
+  "exhibitionWinnerIds": []
+}
+
 export const CatsPage = () => {
+  const [modalActive, setModalActive] = useState(false);
+  const toggleModal = useCallback(() => {
+    setModalActive((prevState) => !prevState);
+  }, []);
+
+  const closeModal = useCallback(() => {
+    setModalActive(false);
+  }, []);
+
   const { data: catsData, loading, fetchData: fetchCats } = useFetchService<Cat[]>(CatMethods.getAll);
 
   const { loading: createCatLoading, fetchData: fetchCreateCat } = useFetchService<void, Cat>({
     methodFunc: CatMethods.create,
     pending: true,
-    successCallback: fetchCats
+    successCallback: () => {
+      closeModal()
+      fetchCats()
+    },
   });
   const onCreate = useCallback(() => {
     // fetchCreateCat({
@@ -33,10 +57,12 @@ export const CatsPage = () => {
     //   club: "Golder Pride"
     // });
   }, [fetchCreateCat]);
+  const { loading: updateCatLoading,  fetchData: fetchUpdateCat } = useFetchService<void, Cat>({
+    methodFunc: CatMethods.update,
+    pending: true,
+    successCallback: fetchCats
+  });
 
-
-  // const { data: catsData, loading, fetchData: fetchCatsDelete } = useFetchService<Cat[]>(CatMethods.delete);
-  //
   const { loading: deleteCatLoading, fetchData: fetchDeleteCat } = useFetchService({
     methodFunc: CatMethods.delete,
     pending: true,
@@ -47,6 +73,10 @@ export const CatsPage = () => {
     pending: true,
     successCallback: fetchCats
   });
+
+  const onUpdate = useCallback((cat: Cat) => {
+    fetchUpdateCat(cat)
+  },[fetchUpdateCat]);
 
   const onDelete = useCallback((id:string) => {
     fetchDeleteCat(id);
@@ -73,11 +103,13 @@ export const CatsPage = () => {
             <option value="1">all</option>
           </select>
         </div>
-        <AdminButton type={'primary'} onClick={onCreate}  text={'Добавить животное'}/>
+        <AdminButton type={'primary'} onClick={toggleModal}  text={'Добавить животное'}/>
       </div>
       <div className={styles.openMainStart}>
         {!!catsData && (
           <AdminInputList
+            updateLoader={updateCatLoading}
+            updateHandler={onUpdate}
             multiDeleteHandler={onMultiDelete}
             deleteHandler={onDelete}
             titles={catTitles}
@@ -85,6 +117,7 @@ export const CatsPage = () => {
           />
         )}
       </div>
+      <AdminModal item={catBoilerplate} titles={catTitles} active={modalActive} closeModal={closeModal} onSubmit={fetchCreateCat} loading={createCatLoading}/>
     </>
   );
 };

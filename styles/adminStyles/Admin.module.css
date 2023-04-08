@@ -27,6 +27,19 @@
     position: relative;
     justify-content: center;
     cursor: pointer;
+    border-radius: 50%;
+    height: 27px;
+    width: 27px;
+    transition: all ease-in-out 300ms;
+}
+.adminTab_edit:hover {
+    background-color: var(--admin-color-blue);
+}
+.adminTab_edit img {
+    transition: all ease-in-out 300ms;
+}
+.adminTab_edit:hover img {
+    filter: brightness(100);
 }
 
 
@@ -158,14 +171,20 @@
 .admin_input_tab_checked_boxStyle {
     margin:0 10px;
  }
+
 .admin_input_tab_checked_boxStyleButton {
+    align-items: center;
     display: flex;
     background-color: inherit;
     border: none;
+    position: relative;
+    justify-content: center;
     cursor: pointer;
 }
 .admin_input_tab_checked_boxStyleButton:hover {
-    background-color: #9797f1;
+    border: solid 1px gray;
+    border-radius: 14px;
+    background-color: #098edf0a;
 }
 
 .admin_input_tab_checked_boolean {

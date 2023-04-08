@@ -23,6 +23,41 @@ import { Grid } from '../components/UIKit/Grid';
 import { GridItem } from '../components/UIKit/GridItem';
 
 const Home: NextPage = () => {
+
+
+  const stariyObj = {
+    "system_object_id": null,
+    "archived": {"QWE_QWE":"hello"},
+    "CODE": "before_sleep",
+    "signature_date": null,
+    "is_deleted": false,
+    "global_id": "1204005081",
+    "TITLE": "перед сном"
+  }
+
+  const megaObj = <T extends {}>(obj: T) => {
+    const mutatedObj = Object.entries<any>(obj);
+    const mutter: Array<[string, any]> = mutatedObj
+      .map(([key,value]) => {
+        const camelKey = key.toLowerCase().split("_")
+          .map((str, index) => (index ? str[0].toUpperCase() + str.slice(1) : str))
+          .join("")
+
+        if (typeof value === "object" && value !== null) {
+          return [camelKey, megaObj(value)]
+        }
+
+        return [camelKey, value]
+      })
+
+    return Object.fromEntries(mutter)
+  }
+
+  console.log(megaObj(stariyObj))
+
+
+
+
   const router = useRouter();
   const sliderDataList: SliderItem[] = useMemo(() => [
     {

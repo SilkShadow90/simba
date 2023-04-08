@@ -20,9 +20,11 @@ export type AdminTabProps<T> = {
   checked?: boolean;
   onClick?(): any;
   deleteHandler?(id: string): void
+  updateHandler?(date: T): void
+  updateLoader?: boolean
 }
 
-export const AdminInputTab = <T extends IDObject>({ item, titles, checked, onClick, deleteHandler }: AdminTabProps<T>) => {
+export const AdminInputTab = <T extends IDObject>({ item, titles, checked, onClick, deleteHandler, updateHandler, updateLoader }: AdminTabProps<T>) => {
   const { data: breedRecord, loading: breedLoading } = useFetchService(DictionaryMethods.getBreedRecord);
   const { data: typeRecord, loading: typeLoading } = useFetchService(DictionaryMethods.getTypeRecord);
   const { data: statusRecord, loading: statusLoading } = useFetchService(DictionaryMethods.getStatusesRecord);
@@ -113,7 +115,7 @@ export const AdminInputTab = <T extends IDObject>({ item, titles, checked, onCli
           }
           return <div key={key} />;
         })}
-      <AdminModal item={item} titles={titles} active={modalActive} closeModal={closeModal}/>
+      <AdminModal item={item} titles={titles} active={modalActive} closeModal={closeModal} onSubmit={updateHandler} loading={updateLoader}/>
       <button className={styles.adminTab_edit} onClick={toggleModal}>
         <Image className={styles.adminCardsLeft_input_position_img} objectFit={'cover'} src={edit}/>
       </button>

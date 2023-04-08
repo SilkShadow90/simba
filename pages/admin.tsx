@@ -5,6 +5,7 @@ import { AdminPage } from '../components/adminPanel/adminPage/AdminPage';
 import { useQuery } from '../redux/hooks';
 import styles from '../styles/adminStyles/Admin.module.css';
 import { TableCRUD } from '../components/adminPanel/adminPage/TableCRUD';
+import {CatsPage} from "../components/adminPanel/adminPage/CatsPage";
 
 const Admin: NextPage = () => {
   const { page } = useQuery();
@@ -13,6 +14,10 @@ const Admin: NextPage = () => {
       case 'main':
         return (
           <MainPage/>
+        );
+      case 'cats':
+        return (
+          <CatsPage/>
         );
       case 'docs':
         return (

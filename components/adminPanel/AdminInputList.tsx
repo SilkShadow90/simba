@@ -6,7 +6,7 @@ import styles from '../../styles/adminStyles/Admin.module.css';
 import deleteSrc from '../../public/adminImg/menu/delete.svg';
 import { AdminCheckbox } from './AdminCheckbox';
 import { Text } from './Text';
-import {ID, IDObject} from '../../api/types';
+import { ID, IDObject} from '../../api/types';
 import {DeleteWarningModal} from "./DeleteWarningModal";
 
 export type AdminListProps<T> = {
@@ -14,9 +14,11 @@ export type AdminListProps<T> = {
   items: T[]
   deleteHandler?(id: string): void
   multiDeleteHandler?(ids: string[]): void
+  updateHandler?(data: T): void
+  updateLoader?: boolean
 }
 
-export const AdminInputList = <T extends IDObject>({ titles, items, deleteHandler, multiDeleteHandler }: AdminListProps<T>) => {
+export const AdminInputList = <T extends IDObject>({ titles, items, deleteHandler, multiDeleteHandler, updateHandler, updateLoader }: AdminListProps<T>) => {
   const [deleteModalActive, setDeleteModalActive] = useState(false);
   const [checkedList, setCheckedList] = useState<ID[]>([]);
 
@@ -97,6 +99,8 @@ export const AdminInputList = <T extends IDObject>({ titles, items, deleteHandle
       {items.map((item) => (
         <AdminInputTab
           key={item.id}
+          updateLoader={updateLoader}
+          updateHandler={updateHandler}
           deleteHandler={deleteHandler}
           item={item}
           checked={checkedList.includes(item.id)}
