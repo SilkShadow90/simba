@@ -1,12 +1,11 @@
 import React, { useCallback, useState } from 'react';
 import Image from 'next/image';
 import { AdminInputTab } from './AdminInputTab';
-import { Titles } from './types';
 import styles from '../../styles/adminStyles/Admin.module.css';
 import deleteSrc from '../../public/adminImg/menu/delete.svg';
 import { AdminCheckbox } from './AdminCheckbox';
 import { Text } from './Text';
-import {ID, IDObject} from '../../api/types';
+import { ID, IDObject, Titles } from '../../api/types';
 import {DeleteWarningModal} from "./DeleteWarningModal";
 import { getPluralForm } from '../../utils';
 
@@ -60,6 +59,14 @@ export const AdminInputList = <T extends IDObject>({ titles, items, itemCallback
       return '1fr';
     }).join(' ');
 
+  if (!items.length) {
+    return (
+      <div className={styles.admin_Input_Tab}
+           style={{ display: 'grid', gridTemplateColumns: '1fr' }}>
+        <div>Нет данных</div>
+      </div>
+    );
+  }
 
   return (
     <div>

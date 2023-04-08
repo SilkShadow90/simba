@@ -1,10 +1,9 @@
 import React, { useCallback, useState } from 'react';
 import Select from 'react-select';
 import styles from '../../styles/adminStyles/AdminModal.module.css';
-import { Titles } from './types';
 import { AdminCheckbox } from './AdminCheckbox';
 import { InputArea } from './InputArea';
-import { IDObject } from '../../api/types';
+import { IDObject, Titles } from '../../api/types';
 import { Portal } from '../Portal';
 import { useAppSelector } from '../../redux/hooks';
 
@@ -28,14 +27,13 @@ export const AdminModal = <T extends IDObject>({ active, closeModal, item, title
   const [itemState, setItemState] = useState(item);
 
   const changeValue = useCallback((key: keyof typeof item) => (value: any) => {
-    console.warn(value);
     setItemState(prevState => ({
       ...prevState,
       [key]: value,
     }));
   }, []);
 
-  const isDictionaryId = (key: string) => key.includes('Id');
+  const isDictionaryId = (key: string): boolean => key.includes('Id');
   const getRecordName = (key: string) => key.includes('Id') && key.replace(/(\w+)Id/, '$1Dictionary') || '';
 
 

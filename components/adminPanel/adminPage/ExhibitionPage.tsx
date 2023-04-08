@@ -1,11 +1,10 @@
 import React, { useCallback } from 'react';
 import styles from '../../../styles/adminStyles/AdminExhibitionPage.module.css';
 import { AdminButton } from '../AdminButton';
-import { Titles } from '../types';
 import { useFetchService } from '../../../utils/useFetchService';
 import Loader from '../../Loader';
 import { AdminInputList } from '../AdminInputList';
-import { Exhibition } from '../../../api/types';
+import { Exhibition, Titles } from '../../../api/types';
 import ExhibitionMethods from '../../../api/ExhibitionMethods';
 import { devLog } from '../../../utils';
 import NurserMethods from "../../../api/NurserMethods";
@@ -69,8 +68,6 @@ export const ExhibitionPage = () => {
           <AdminInputList
             titles={exhibitionTitles}
             items={exhibitionData}
-            multiDeleteHandler={onMultiDelete}
-            deleteHandler={onDelete}
           />
         )}
       </div>

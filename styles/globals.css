@@ -105,8 +105,20 @@ main {
   flex: 1 1 auto;
 }
 
+.justify-centered {
+  justify-content: center;
+}
+
+.align-centered {
+  align-items: center;
+}
+
 .stretch {
   width: 100%;
+}
+
+.overflow-auto {
+  overflow: initial !important;
 }
 
 .slick-slider {
@@ -151,14 +163,37 @@ main {
   transform: scale(1.7);
 }
 
+.dropdown-control .Dropdown-control {
+  background-color: transparent;
+  border: none;
+  border-radius: initial;
+  padding: 8px 25px 8px 10px;
+}
+
+.dropdown-control .is-selected {
+  color: var(--admin-color-blue);
+}
+
+.dropdown-control .Dropdown-arrow {
+  top: 16px;
+}
+
+.dropdown-control .Dropdown-menu {
+  width: auto;
+}
+
+.dropdown-control:hover .Dropdown-control {
+  box-shadow: none;
+}
+
 @media (min-width: 320px) and (max-width: 840px) {
-  :root {
-    --block-height: 240px;
-    --screen-width: 100%;
-    --padding-vertical: 4px;
-    --padding-horizontal: 6px;
-    --margin: 12px;
-  }
+:root {
+--block-height: 240px;
+--screen-width: 100%;
+--padding-vertical: 4px;
+--padding-horizontal: 6px;
+--margin: 12px;
+}
 }
 
 

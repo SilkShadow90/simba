@@ -1,4 +1,4 @@
-import { Titles } from '../components/adminPanel/types';
+export type Titles<T> = Partial<Record<keyof T, string>>
 
 export type ID = string
 export type IDObject = { id: ID }
@@ -103,6 +103,8 @@ export type FieldCRUD<T> = {
   tabTitles: Titles<T>
   createName: string
   boilerplate: WithoutID<T>
+  filters?: Titles<T>
+  filterKeys?: Record<string, string>
 }
 
 export type RecordCRUD = Record<string, FieldCRUD<any>>

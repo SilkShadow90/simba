@@ -1,11 +1,11 @@
 import { RecordType } from '../api/DictionaryMethods';
-import { BaseDictionary, Club, RecordCRUD, User } from '../api/types';
+import { BaseDictionary, Cat, Club, Nurser, RecordCRUD, User } from '../api/types';
 
 export type AppState = {
   dictionariesState: {
     isLoading: boolean,
     isError: boolean,
-    dictionaries: Record<string, RecordType<BaseDictionary> | Record<string, Club | User>>,
+    dictionaries: Record<string, RecordType<BaseDictionary> | Record<string, Club | User | Cat | Nurser>>,
   },
   tablesState: {
     isLoading: boolean,

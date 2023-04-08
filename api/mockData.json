@@ -772,6 +772,10 @@
         "dateEnd": "",
         "catIds": [],
         "catWinnerIds": []
+      },
+      "filters": {
+        "typeId": "Тип",
+        "clubId":  "Клуб"
       }
     },
     "cats":  {
@@ -796,6 +800,17 @@
         "nurserId": null,
         "exhibitionIds": [],
         "exhibitionWinnerIds": []
+      },
+      "filters": {
+        "breedId": "Порода",
+        "masterId": "Хозяин",
+        "breederId": "Заводчик",
+        "clubId": "Клуб",
+        "nurserId": "Питомник"
+      },
+      "filterKeys": {
+        "masterId": "userId",
+        "breederId": "userId"
       }
     },
     "nurseries":  {
@@ -856,6 +871,9 @@
         "image": "",
         "isReferee": false,
         "exhibitionRefereeIds": []
+      },
+      "filters": {
+        "isReferee": "Эксперт"
       }
     },
     "faqs":  {

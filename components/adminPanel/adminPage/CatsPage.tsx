@@ -1,11 +1,10 @@
 import React, { useCallback } from 'react';
 import styles from '../../../styles/adminStyles/AdminCatsPage.module.css';
 import { AdminButton } from '../AdminButton';
-import { Titles } from '../types';
 import { useFetchService } from '../../../utils/useFetchService';
 import Loader from '../../Loader';
 import { AdminInputList } from '../AdminInputList';
-import { Cat } from '../../../api/types';
+import { Cat, Titles } from '../../../api/types';
 import CatMethods from '../../../api/CatMethods';
 
 const catTitles: Titles<Cat> = {
@@ -78,8 +77,8 @@ export const CatsPage = () => {
       <div className={styles.openMainStart}>
         {!!catsData && (
           <AdminInputList
-            multiDeleteHandler={onMultiDelete}
-            deleteHandler={onDelete}
+            // multiDeleteHandler={onMultiDelete}
+            // deleteHandler={onDelete}
             titles={catTitles}
             items={catsData}
           />

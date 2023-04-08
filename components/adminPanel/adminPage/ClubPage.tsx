@@ -4,8 +4,7 @@ import { AdminButton } from '../AdminButton';
 import { useFetchService } from '../../../utils/useFetchService';
 import Loader from '../../Loader';
 import { AdminInputList } from '../AdminInputList';
-import { Titles } from '../types';
-import { Nurser } from '../../../api/types';
+import { Nurser, Titles } from '../../../api/types';
 import NurserMethods from '../../../api/NurserMethods';
 import { devLog } from '../../../utils';
 import CatMethods from "../../../api/CatMethods";
@@ -63,8 +62,8 @@ export const ClubPage = () => {
       </div>
       {!!nurseriesData && (
         <AdminInputList
-          multiDeleteHandler={onMultiDelete}
-          deleteHandler={onDelete}
+          // multiDeleteHandler={onMultiDelete}
+          // deleteHandler={onDelete}
           items={nurseriesData}
           titles={nurserTitles}
         />

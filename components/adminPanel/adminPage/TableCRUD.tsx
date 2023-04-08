@@ -1,4 +1,6 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { Fragment, useCallback, useEffect, useLayoutEffect, useMemo, useState } from 'react';
+import Dropdown from 'react-dropdown';
+import Select from 'react-select';
 import styles from '../../../styles/adminStyles/AdminCatsPage.module.css';
 import { AdminButton } from '../AdminButton';
 import { useFetchService } from '../../../utils/useFetchService';
@@ -14,6 +16,9 @@ import UserMethods from '../../../api/UserMethods';
 import { ApiMethods } from '../../../api/ApiMethods';
 import { Portal } from '../../Portal';
 
+import 'react-dropdown/style.css';
+import { Flex } from '../../UIKit/Flex';
+
 const crudToMethods: Record<string, ApiMethods<any>> = {
   cats: CatMethods,
   exhibitions: ExhibitionMethods,
@@ -24,11 +29,14 @@ const crudToMethods: Record<string, ApiMethods<any>> = {
 };
 
 export const TableCRUD = () => {
+  const { dictionaries } = useAppSelector(state => state.dictionariesState);
   const { tables, isLoading: crudLoading } = useAppSelector(state => state.tablesState);
 
   const { page } = useQuery();
 
-  const tabTitles = useMemo(() => tables?.[page]?.tabTitles, [tables, page]);
+  const tabTitles = useMemo(() => tables?.[page]?.tabTitles || {}, [tables, page]);
+  const tabFilters = useMemo(() => tables?.[page]?.filters || {}, [tables, page]);
+  const filterKeys = useMemo(() => tables?.[page]?.filterKeys || {}, [tables, page]);
 
   const methods = useMemo(() => crudToMethods?.[page] || {
     getAll: () => {}
@@ -85,6 +93,45 @@ export const TableCRUD = () => {
     }
   }, [fetchCreate, fetchData, fetchDelete, fetchMultiDelete, fetchUpdate]);
 
+  const [tabFiltersState, setTabFiltersState] = useState(Object.fromEntries(Object.entries(tabFilters).map(([key]) => [key, 'all'])));
+
+  useEffect(() => {
+    if (page) {
+      setTabFiltersState(Object.fromEntries(Object.entries(tabFilters).map(([key]) => [key, 'all'])));
+    }
+  }, [page, tabFilters]);
+
+  const changeFilter = useCallback((key: string) => (value: string) => {
+    setTabFiltersState(prevState => ({
+      ...prevState,
+      [key]: value,
+    }));
+  }, []);
+
+  const isDictionaryId = (key: string): boolean => key.includes('Id');
+  const isBooleanField = (key: string): boolean => key.startsWith('is');
+  const getRecordName = (key: string = '') => key.includes('Id') && key.replace(/(\w+)Id/, '$1Dictionary') || '';
+
+  const filteredItems = useMemo(() => {
+    return tableData?.filter((tableRow) => {
+      return Object.entries(tabFiltersState).every(([key, value]) => {
+        if (value === 'all') {
+          return true;
+        }
+
+        if (isDictionaryId(key)) {
+          return tableRow[key] === value;
+        }
+
+        if (isBooleanField(key)) {
+          return (value === 'Да' && tableRow[key]) || (value === 'Нет' && !tableRow[key]);
+        }
+
+        return true;
+      });
+    }) || [];
+  }, [tableData, tabFiltersState]);
+
   if (loading || crudLoading) {
     return (
       <Loader isVisible={true}/>
@@ -98,15 +145,62 @@ export const TableCRUD = () => {
   return (
     <>
       <div className={styles.openCatsFiltered}>
-        <div className="flex" />
+        <Flex styleProps="overflow-auto align-centered">
+          {Object.entries(tabFilters).map(([key, value]) => {
+            const dictionary = dictionaries?.[getRecordName(key)] || dictionaries?.[getRecordName(filterKeys[key])];
+
+            if (isDictionaryId(key) && dictionary) {
+              const options = [{ label: 'Все', value: 'all' }, ...Object.values<any>(dictionary)
+                .filter((dict) => tableData?.map((item) => item[key]).includes(dict.id))
+                .map(dict => ({ label: dict.name, value: dict.id })) as any];
+
+              if (options.length <= 2) {
+                return null;
+              }
+
+              return (
+                <Fragment key={key}>
+                  <div>{value}: </div>
+                  <Dropdown
+                    className="dropdown-control"
+                    options={[{ label: 'Все', value: 'all' }, ...Object.values<any>(dictionary)
+                      .filter((dict) => tableData?.map((item) => item[key]).includes(dict.id))
+                      .map(dict => ({ label: dict.name, value: dict.id })) as any]}
+                    onChange={(data) => changeFilter(key)(data?.value || 'all')}
+                    value={{ label: dictionary?.[tabFiltersState[key]]?.name || 'Все', value: tabFiltersState[key] || 'all' }}
+                  />
+                  <div style={{ width: '10px' }} />
+                </Fragment>
+              );
+            }
+
+            if (isBooleanField(key)) {
+              return (
+                <Fragment key={key}>
+                  <div>{value}: </div>
+                  <Dropdown
+                    className="dropdown-control"
+                    options={[{ label: 'Все', value: 'all' }, 'Да', 'Нет']}
+                    onChange={(data) => changeFilter(key)(data?.value || 'all')}
+                    value={tabFiltersState[key] || { label: 'Все', value: 'all' }}
+                  />
+                  <div style={{ width: '10px' }} />
+                </Fragment>
+              );
+            }
+
+            return null;
+          })}
+        </Flex>
+
         <AdminButton type={'primary'} onClick={() => {}} text={`Добавить ${addButtonName}`}/>
       </div>
       <div className={styles.openMainStart}>
-        {!!tableData && (
+        {!!filteredItems && (
           <AdminInputList
             itemCallback={itemCallback}
             titles={tabTitles}
-            items={tableData}
+            items={filteredItems}
           />
         )}
       </div>
