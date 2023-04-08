@@ -152,11 +152,14 @@
 
 .admin_input_tab_checked_box {
     display: flex;
+    width: 130px;
     align-items: center;
+    justify-content: space-between;
 }
 
 .admin_input_tab_checked_boxStyle {
     margin:0 10px;
+    flex: 1 1 auto;
  }
 .admin_input_tab_checked_boxStyleButton {
     display: flex;

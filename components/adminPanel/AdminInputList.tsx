@@ -8,15 +8,15 @@ import { AdminCheckbox } from './AdminCheckbox';
 import { Text } from './Text';
 import {ID, IDObject} from '../../api/types';
 import {DeleteWarningModal} from "./DeleteWarningModal";
+import { getPluralForm } from '../../utils';
 
 export type AdminListProps<T> = {
   titles: Titles<T>
   items: T[]
-  deleteHandler?(id: string): void
-  multiDeleteHandler?(ids: string[]): void
+  itemCallback?(type: 'create' | 'update' | 'delete' | 'multiDelete', data: any): Promise<void>
 }
 
-export const AdminInputList = <T extends IDObject>({ titles, items, deleteHandler, multiDeleteHandler }: AdminListProps<T>) => {
+export const AdminInputList = <T extends IDObject>({ titles, items, itemCallback }: AdminListProps<T>) => {
   const [deleteModalActive, setDeleteModalActive] = useState(false);
   const [checkedList, setCheckedList] = useState<ID[]>([]);
 
@@ -24,12 +24,12 @@ export const AdminInputList = <T extends IDObject>({ titles, items, deleteHandle
     setDeleteModalActive((prevState) => !prevState);
   }, []);
 
-  const deleteModalPress = useCallback(() => {
-    if (multiDeleteHandler) {
-      multiDeleteHandler(checkedList);
+  const deleteModalPress = useCallback(async () => {
+    if (itemCallback) {
+      await itemCallback('multiDelete', checkedList);
     }
     toggleDeleteModal();
-  },[multiDeleteHandler, checkedList, toggleDeleteModal])
+  },[itemCallback, checkedList, toggleDeleteModal]);
 
   const toggle = (id: string) => () => setCheckedList((prevState) => {
     if (prevState.includes(id)) {
@@ -83,25 +83,24 @@ export const AdminInputList = <T extends IDObject>({ titles, items, deleteHandle
               <div className={styles.admin_input_tab_checked_box}>
                 <AdminCheckbox type={allChecked ? 'checked' : 'unchecked'} onClick={toggleAll}/>
                 <div className={styles.admin_input_tab_checked_boxStyle}>
-                  {checkedList.length} <Text size={'small'} color={'black'} text={'Selected'}/>
+                  <Text size={'small'} color={'black'} text={getPluralForm(checkedList.length, 'выбран', 'выбрано', 'выбрано')}/>
                 </div>
                 <button onClick={toggleDeleteModal} className={styles.admin_input_tab_checked_boxStyleButton}>
                   <Image className={styles.adminCardsLeft_input_position_img} objectFit={'cover'} src={deleteSrc}/>
                 </button>
               </div>
             </div>
-
           </>
         )}
       </div>
       {items.map((item) => (
         <AdminInputTab
           key={item.id}
-          deleteHandler={deleteHandler}
           item={item}
           checked={checkedList.includes(item.id)}
           onClick={toggle(item.id)}
           titles={titles}
+          itemCallback={itemCallback}
         />
       ))}
     </div>

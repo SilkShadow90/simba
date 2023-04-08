@@ -1,43 +1,26 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import Image from 'next/image';
 import styles from '../../styles/adminStyles/Admin.module.css';
 import { AdminCheckbox } from './AdminCheckbox';
 import { AdminModal } from './AdminModal';
 import edit from '../../public/adminImg/other/edit.svg';
 import deleteIcon from '../../public/adminImg/other/delete.svg';
-import { Club, IDObject, User } from '../../api/types';
+import { IDObject } from '../../api/types';
 import { Titles } from './types';
-import { useFetchService } from '../../utils/useFetchService';
-import DictionaryMethods from '../../api/DictionaryMethods';
-import ClubMethods from '../../api/ClubMethods';
 import Loader from '../Loader';
 import {DeleteWarningModal} from "./DeleteWarningModal";
-import UserMethods from '../../api/UserMethods';
+import { useAppSelector } from '../../redux/hooks';
 
 export type AdminTabProps<T> = {
   titles: Titles<T>
   item: T
   checked?: boolean;
   onClick?(): any;
-  deleteHandler?(id: string): void
+  itemCallback?(type: 'create' | 'update' | 'delete' | 'multiDelete', data: any): Promise<void>
 }
 
-export const AdminInputTab = <T extends IDObject>({ item, titles, checked, onClick, deleteHandler }: AdminTabProps<T>) => {
-  const { data: breedRecord, loading: breedLoading } = useFetchService(DictionaryMethods.getBreedRecord);
-  const { data: typeRecord, loading: typeLoading } = useFetchService(DictionaryMethods.getTypeRecord);
-  const { data: statusRecord, loading: statusLoading } = useFetchService(DictionaryMethods.getStatusesRecord);
-  const { data: clubRecord, loading: clubLoading } = useFetchService(ClubMethods.getRecord<Club>);
-  const { data: userRecord, loading: userLoading } = useFetchService(UserMethods.getRecord<User>);
-
-  const records = useMemo(() => ({
-    breedRecord,
-    typeRecord,
-    statusRecord,
-    clubRecord,
-    userRecord,
-  }), [breedRecord, clubRecord, statusRecord, typeRecord, userRecord]);
-
-  const isLoading = breedLoading || typeLoading || statusLoading || clubLoading || userLoading;
+export const AdminInputTab = <T extends IDObject>({ item, titles, checked, onClick, itemCallback }: AdminTabProps<T>) => {
+  const { dictionaries, isLoading } = useAppSelector(state => state.dictionariesState);
 
   const [modalActive, setModalActive] = useState(false);
 
@@ -47,12 +30,12 @@ export const AdminInputTab = <T extends IDObject>({ item, titles, checked, onCli
     setDeleteModalActive((prevState) => !prevState);
   }, []);
 
-  const deleteModalPress = useCallback(() => {
-    if (deleteHandler) {
-      deleteHandler(item.id);
+  const deleteModalPress = useCallback(async () => {
+    if (itemCallback) {
+      await itemCallback('delete', item.id);
     }
     toggleDeleteModal();
-  },[deleteHandler, item.id, toggleDeleteModal]);
+  },[itemCallback, item.id, toggleDeleteModal]);
 
   const toggleModal = useCallback(() => {
     setModalActive((prevState) => !prevState);
@@ -73,6 +56,8 @@ export const AdminInputTab = <T extends IDObject>({ item, titles, checked, onCli
       return '1fr';
     }).join(' ');
 
+  const isDictionaryId = (key: string) => key.includes('Id');
+  const getRecordName = (key: string) => key.includes('Id') && key.replace(/(\w+)Id/, '$1Dictionary') || '';
 
   // @ts-ignore
   return (
@@ -84,24 +69,23 @@ export const AdminInputTab = <T extends IDObject>({ item, titles, checked, onCli
       {Object.keys(titles)
         .map((key) => {
           const value = item[key as keyof T] as any;
-          const recordName = key.includes('Id') && key.replace(/(\w+)Id/, '$1Record') || '';
+          const recordName = getRecordName(key);
 
           // @ts-ignore
-          if (key.includes('Id') && records?.[recordName]) {
+          if (isDictionaryId(key) && dictionaries?.[recordName]) {
             return (
               // @ts-ignore
-              <div key={key}>{value && records[recordName]?.[value]?.name}</div>
+              <div key={key + value}>{value && dictionaries[recordName]?.[value]?.name}</div>
             );
           }
 
-          if (isLoading && key.includes('Id')) {
-            // eslint-disable-next-line react/jsx-key
-            return <Loader isVisible />;
+          if (isLoading && isDictionaryId(key)) {
+            return <Loader isVisible key={key + value} />;
           }
 
           if (typeof value === 'string') {
             return (
-              <div key={key}>{value}</div>
+              <div key={key + value}>{value}</div>
             );
           }
           if (typeof value === 'boolean') {
@@ -117,7 +101,7 @@ export const AdminInputTab = <T extends IDObject>({ item, titles, checked, onCli
       <button className={styles.adminTab_edit} onClick={toggleModal}>
         <Image className={styles.adminCardsLeft_input_position_img} objectFit={'cover'} src={edit}/>
       </button>
-      {!!deleteHandler && (
+      {!!itemCallback && (
         <>
           <DeleteWarningModal isVisible={deleteModalActive} onClose={toggleDeleteModal} onDelete={deleteModalPress}/>
           <button className={styles.adminTab_edit} onClick={toggleDeleteModal}>

@@ -761,6 +761,17 @@
         "clubId": "Клуб",
         "dateStart": "Дата начала",
         "dateEnd": "Дата конца"
+      },
+      "createName": "выставку",
+      "boilerplate": {
+        "location": "",
+        "typeId": null,
+        "clubId": null,
+        "image": "",
+        "dateStart": "",
+        "dateEnd": "",
+        "catIds": [],
+        "catWinnerIds": []
       }
     },
     "cats":  {
@@ -772,6 +783,19 @@
         "breedId": "Порода",
         "favorite": "Избранное",
         "clubId": "Клуб"
+      },
+      "createName": "животное",
+      "boilerplate": {
+        "name": "",
+        "breedId": null,
+        "masterId": null,
+        "breederId": null,
+        "image": "",
+        "favorite": false,
+        "clubId": null,
+        "nurserId": null,
+        "exhibitionIds": [],
+        "exhibitionWinnerIds": []
       }
     },
     "nurseries":  {
@@ -785,6 +809,17 @@
         "suite": "сайт",
         "phone": "Телефон",
         "email": "email"
+      },
+      "createName": "питомник",
+      "boilerplate": {
+        "name": "",
+        "worked": "",
+        "nameWork": "",
+        "suite": "",
+        "phone": "",
+        "email": "",
+        "master": "",
+        "image": ""
       }
     },
     "clubs":  {
@@ -794,6 +829,11 @@
       "tabTitles": {
         "name": "Название",
         "userId": "Председатель"
+      },
+      "createName": "клуб",
+      "boilerplate": {
+        "name": "",
+        "president": null
       }
     },
     "users":  {
@@ -805,6 +845,17 @@
         "phone": "Телефон",
         "email":  "email",
         "isReferee": "Судья"
+      },
+      "createName": "пользователя",
+      "boilerplate": {
+        "name": "",
+        "catsIds": [],
+        "breedIds": [],
+        "phone": "",
+        "email": "",
+        "image": "",
+        "isReferee": false,
+        "exhibitionRefereeIds": []
       }
     },
     "faqs":  {
@@ -815,6 +866,12 @@
         "title": "Заголовок",
         "description": "Описание",
         "points": "Список пунктов"
+      },
+      "createName": "вопрос",
+      "boilerplate": {
+        "title": "",
+        "description": "",
+        "points": []
       }
     }
   }

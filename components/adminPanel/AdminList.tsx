@@ -12,10 +12,8 @@ import usersActive from '../../public/adminImg/menu/contacts-active.svg';
 import users from '../../public/adminImg/menu/contacts.svg';
 import subtractActive from '../../public/adminImg/menu/Subtract-active.svg';
 import subtract from '../../public/adminImg/menu/Subtract.svg';
-import { useFetchService } from '../../utils/useFetchService';
-import FieldsMethods from '../../api/FieldsMethods';
 import Loader from '../Loader';
-import { useQuery } from '../../redux/hooks';
+import { useAppSelector, useQuery } from '../../redux/hooks';
 
 const icons = {
   users,
@@ -27,7 +25,8 @@ const icons = {
 export const AdminList = React.memo(() => {
   const router = useRouter();
   const { page } = useQuery();
-  const { data: crud, loading } = useFetchService(FieldsMethods.getData);
+
+  const { tables, isLoading } = useAppSelector(state => state.tablesState);
 
   const [toggle, setToggle] = useState<boolean>(false);
   const toggleHandler = useCallback(() => setToggle((prevState) => !prevState), []);
@@ -55,7 +54,7 @@ export const AdminList = React.memo(() => {
           onClick={onClick('/admin?page=docs')}
           isActive={page === 'docs'}
         />
-        {crud && Object.values(crud).map((field) => (
+        {tables && Object.values(tables).map((field) => (
           <AdminTab
             key={field.name}
             short={toggle}
@@ -66,10 +65,8 @@ export const AdminList = React.memo(() => {
             isActive={page === field.name}
           />
         ))}
-        <div className="flex centered">
-          {loading && (
-            <Loader isVisible />
-          )}
+        <div className="flex stretch" style={{ alignItems: 'center' }}>
+          <Loader isVisible={isLoading} />
         </div>
 
         <AdminTab

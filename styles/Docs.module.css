@@ -213,7 +213,8 @@
 /*}*/
 
 .docPanel {
-    background-color: var(--admin-color-icon-white);
+    background-color: var(--main-page-color);
+    /*background-color: var(--admin-color-icon-white);*/
     position: absolute;
     left: 0;
     top: 0;

@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { Header } from './Header';
 import { Footer } from './Footer';
-import Modal from './Modal';
+import ModalFeedback from './ModalFeedback';
 import pageStyles from '../styles/Page.module.css';
 import feedback from '../public/feedback.png';
 import Loader from './Loader';
@@ -46,8 +46,8 @@ export const Page = ({
       <Head>
         <title>{title}</title>
         <meta name="description" content={meta}/>
-        <meta name="theme-color" content="#3ea192" media="(prefers-color-scheme: light)" />
-        <meta name="theme-color" content="#3ea192" media="(prefers-color-scheme: dark)" />
+        <meta name="theme-color" content="#23160D" media="(prefers-color-scheme: light)" />
+        <meta name="theme-color" content="#23160D" media="(prefers-color-scheme: dark)" />
         <link rel="icon" href="/favicon.ico"/>
       </Head>
       <div className={styles}>
@@ -56,7 +56,7 @@ export const Page = ({
           <ScreenLayout stretch marginVertical={0}>
             {!isAdmin && !isContacts && (
               <>
-                <Modal active={modalActive} onClose={onClose}/>
+                <ModalFeedback active={modalActive} onClose={onClose}/>
                 <button className={pageStyles.feedback_modal} onClick={onOpen}>
                   {/* eslint-disable-next-line jsx-a11y/alt-text */}
                   <Image src={feedback}/>

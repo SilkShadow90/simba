@@ -1,8 +1,12 @@
 :root {
   /*--main-bg-color: #26865c;*/
-  --main-bg-color: #3ea192;
+  --main-bg-color: #23160D;
+  /*--main-page-color: #44372319;*/
+  --main-page-color: #EBEBEB;
+  --white-color: #FFFFFF;
   /*--main-bg-color: #77aba3;*/
-  --main-bg-color-alpha: #77aba399;
+  /*--main-bg-color-alpha: #77aba399;*/
+  --main-bg-color-alpha: #C8C8C8;
   --border: 12px;
   --padding-vertical: 8px;
   --padding-horizontal: 12px;
@@ -60,10 +64,11 @@ main {
   /*background: repeat  url("../public/paper.png");*/
   /*background: repeat  url("../public/fabric.png");*/
   /*background: repeat  url("../public/gridius.png");*/
-  background: repeat  url("../public/scratone.png");
+  /*background: repeat  url("../public/scratone.png");*/
   /*background: repeat  url("../public/flower.jpg");*/
   /*background: repeat  url("../public/green.png");*/
   /*background: repeat  url("../public/wood.png");*/
+  background-color: var(--main-page-color);
 }
 
 .flex {

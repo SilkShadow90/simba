@@ -4,16 +4,15 @@ import { AdminButton } from '../AdminButton';
 import { useFetchService } from '../../../utils/useFetchService';
 import Loader from '../../Loader';
 import { AdminInputList } from '../AdminInputList';
-import { Cat } from '../../../api/types';
 import CatMethods from '../../../api/CatMethods';
-import FieldsMethods from '../../../api/FieldsMethods';
-import { useQuery } from '../../../redux/hooks';
+import { useAppSelector, useQuery } from '../../../redux/hooks';
 import ExhibitionMethods from '../../../api/ExhibitionMethods';
 import FaqMethods from '../../../api/FaqMethods';
 import NurserMethods from '../../../api/NurserMethods';
 import ClubMethods from '../../../api/ClubMethods';
 import UserMethods from '../../../api/UserMethods';
 import { ApiMethods } from '../../../api/ApiMethods';
+import { Portal } from '../../Portal';
 
 const crudToMethods: Record<string, ApiMethods<any>> = {
   cats: CatMethods,
@@ -24,37 +23,32 @@ const crudToMethods: Record<string, ApiMethods<any>> = {
   users: UserMethods,
 };
 
-const crudToName: Record<string, string> = {
-  cats: 'животное',
-  exhibitions: 'выставку',
-  faqs: 'вопрос',
-  nurseries: 'питомник',
-  clubs: 'клуб',
-  users: 'пользователя',
-};
-
 export const TableCRUD = () => {
-  const { data: crud, loading: crudLoader } = useFetchService(FieldsMethods.getData);
+  const { tables, isLoading: crudLoading } = useAppSelector(state => state.tablesState);
+
   const { page } = useQuery();
 
-  const tabTitles = useMemo(() => crud?.[page]?.tabTitles, [crud, page]);
+  const tabTitles = useMemo(() => tables?.[page]?.tabTitles, [tables, page]);
 
   const methods = useMemo(() => crudToMethods?.[page] || {
     getAll: () => {}
   }, [page]);
-  const addButtonName = useMemo(() => crudToName?.[page] || '', [page]);
 
-  const { data, loading, fetchData } = useFetchService(methods?.getAll);
+  const addButtonName = useMemo(() => tables?.[page]?.createName || '', [page, tables]);
 
-  const { loading: createLoading, fetchData: fetchCreate } = useFetchService<void, Cat>({
+  const { data: tableData, loading, fetchData } = useFetchService(methods?.getAll);
+
+  const { loading: createLoading, fetchData: fetchCreate } = useFetchService({
     methodFunc: methods.create,
     pending: true,
     successCallback: fetchData
   });
 
-  const onCreate = useCallback(() => {
-    // todo add create
-  }, []);
+  const { loading: updateLoading, fetchData: fetchUpdate } = useFetchService({
+    methodFunc: methods.update,
+    pending: true,
+    successCallback: fetchData
+  });
 
   const { loading: deleteLoading, fetchData: fetchDelete } = useFetchService({
     methodFunc: methods.delete,
@@ -67,15 +61,31 @@ export const TableCRUD = () => {
     successCallback: fetchData
   });
 
-  const onDelete = useCallback(async (id:string) => {
-    await fetchDelete(id);
-  }, [fetchDelete]);
+  const itemCallback = useCallback(async (type: 'create' | 'update' | 'delete' | 'multiDelete', data: any) => {
+    try {
+      switch (type) {
+        case 'create':
+          await fetchCreate(data);
+          break;
+        case 'update':
+          await fetchUpdate(data);
+          break;
+        case 'delete':
+          await fetchDelete(data);
+          break;
+        case 'multiDelete':
+          await fetchMultiDelete(data);
+          break;
+        default: {
+          await fetchData();
+        }
+      }
+    } catch (e) {
+      console.error();
+    }
+  }, [fetchCreate, fetchData, fetchDelete, fetchMultiDelete, fetchUpdate]);
 
-  const onMultiDelete = useCallback(async (ids:string[]) => {
-    await fetchMultiDelete(ids);
-  }, [fetchMultiDelete]);
-
-  if (loading || createLoading || crudLoader || deleteLoading || multiDeleteLoading) {
+  if (loading || crudLoading) {
     return (
       <Loader isVisible={true}/>
     );
@@ -88,21 +98,21 @@ export const TableCRUD = () => {
   return (
     <>
       <div className={styles.openCatsFiltered}>
-        <div className={styles.openCatsFiltered_left}>
-
-        </div>
-        <AdminButton type={'primary'} onClick={onCreate} text={`Добавить ${addButtonName}`}/>
+        <div className="flex" />
+        <AdminButton type={'primary'} onClick={() => {}} text={`Добавить ${addButtonName}`}/>
       </div>
       <div className={styles.openMainStart}>
-        {!!data && (
+        {!!tableData && (
           <AdminInputList
-            multiDeleteHandler={onMultiDelete}
-            deleteHandler={onDelete}
+            itemCallback={itemCallback}
             titles={tabTitles}
-            items={data}
+            items={tableData}
           />
         )}
       </div>
+      <Portal isVisible={createLoading || deleteLoading || multiDeleteLoading || updateLoading}>
+        <Loader isVisible />
+      </Portal>
     </>
   );
 };

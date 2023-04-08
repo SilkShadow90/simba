@@ -101,6 +101,8 @@ export type FieldCRUD<T> = {
   icon: string
   title: string
   tabTitles: Titles<T>
+  createName: string
+  boilerplate: WithoutID<T>
 }
 
 export type RecordCRUD = Record<string, FieldCRUD<any>>
