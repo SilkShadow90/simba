@@ -29,10 +29,10 @@ const crudToMethods: Record<string, ApiMethods<any>> = {
   users: UserMethods,
 };
 
-export const TableCRUD = () => {
+export const TableCRUD = ({valueSearch}:any) => {
   const { dictionaries } = useAppSelector(state => state.dictionariesState);
   const { tables, isLoading: crudLoading } = useAppSelector(state => state.tablesState);
-
+  console.log("valueSearch",valueSearch)
   const { page } = useQuery();
 
   const [modalActive, setModalActive] = useState(false);
@@ -155,8 +155,10 @@ export const TableCRUD = () => {
 
         return true;
       });
+    }).filter((tableRow) => {
+      return Object.values(tableRow).some((value:any) => value?.toLowerCase?.()?.includes?.(valueSearch?.toLowerCase?.()))
     }) || [];
-  }, [tableData, tabFiltersState]);
+  }, [tableData, tabFiltersState, valueSearch]);
 
   if (initLoader || crudLoading) {
     return (

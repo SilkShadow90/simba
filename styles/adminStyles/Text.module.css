@@ -20,9 +20,15 @@
 .text_color_black {
     color: var(--admin-color-black);
 }
+.text_color_tableBlack {
+    color: var(--admin-color-table-black);
+}
 .text_color_blue {
     color: var(--admin-color-blue);
 }
 .text_color_gray {
     color: var(--admin-color-gray);
+}
+.text_color_darkGray {
+    color: var(--admin-color-table-gray);
 }

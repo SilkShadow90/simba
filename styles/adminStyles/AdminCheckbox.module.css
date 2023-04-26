@@ -1,6 +1,66 @@
 .buttonCheckbox {
     display: flex;
+    position: relative;
     background-color: inherit;
     border: none;
     cursor: pointer;
+}
+.buttonImage {
+    max-width: 14px;
+    max-height: 14px;
+    position: absolute;
+}
+
+.buttonNumberCheckbox {
+    position: absolute;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    font-size: 9px;
+    justify-content: center;
+    bottom: 0;
+    top: 0;
+    color: var(--admin-color-icon-white);
+}
+
+.buttonCustomCheckbox {
+    min-height: 16px;
+    min-width: 16px;
+    border-radius: 4px;
+    border: none;
+    background-image: url("../../public/adminImg/checkbox/fill.svg");
+}
+
+.checkboxTemplate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    min-width: 16px;
+    max-width: 16px;
+    min-height: 16px;
+    max-height: 16px;
+    padding: 2px;
+    border-radius: 4px;
+}
+
+.borderDefault {
+    border: 2px solid #D5D5D5;
+}
+
+.fillBlue {
+    background: #109CF1;
+    border: none;
+}
+
+.borderDisabled {
+    border: 1px solid #C2CFE0;
+}
+.borderGreen {
+    border: 1px solid #2ED47A;
+}
+.borderRed {
+    border: 1px solid #FF3C5F;
+    border-radius: 4px;
 }

@@ -77,7 +77,10 @@ export const AdminInputList = <T extends IDObject>({ titles, items, itemCallback
         {!allChecked ? (
           <>
             <div className={styles.admin_input_tab_checked}>
-              <AdminCheckbox type={!allChecked ? 'unchecked' : 'checked'} onClick={toggleAll}/>
+              <AdminCheckbox
+                type={!allChecked ? 'default' : 'fillBlue'}
+                onClick={toggleAll}
+              />
               {/* <input type="checkbox" onClick={toggleAll} checked={allChecked} /> */}
             </div>
 
@@ -89,7 +92,9 @@ export const AdminInputList = <T extends IDObject>({ titles, items, itemCallback
           <>
             <div className={styles.admin_input_tab_checked}>
               <div className={styles.admin_input_tab_checked_box}>
-                <AdminCheckbox type={allChecked ? 'checked' : 'unchecked'} onClick={toggleAll}/>
+                <AdminCheckbox type={allChecked ? 'fillBlue' : 'default'}
+                               count={checkedList.length} onClick={toggleAll}
+                />
                 <div className={styles.admin_input_tab_checked_boxStyle}>
                   <Text size={'small'} color={'black'} text={getPluralForm(checkedList.length, 'выбран', 'выбрано', 'выбрано')}/>
                 </div>

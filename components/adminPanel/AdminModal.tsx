@@ -161,7 +161,7 @@ export const AdminModal = <T extends IDObject>({ active, closeModal, item, title
                     <div style={{ width: '10px' }}/>
                     <AdminCheckbox
                       key={key}
-                      type={itemState[key as keyof Item<T>] ? 'checked' : 'unchecked'}
+                      type={itemState[key as keyof Item<T>] ? 'fillBlue' : 'default'}
                       onClick={() => changeValue(key as keyof T)(!itemState[key as keyof Item<T>] as any)}
                     />
                   </div>

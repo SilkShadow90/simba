@@ -67,10 +67,10 @@ export const AdminInputTab = <T extends IDObject>({ item, titles, checked, onCli
 
   // @ts-ignore
   return (
-    <div className={styles.admin_Input_Tab}
+    <div className={checked  ? styles.admin_Input_Tab_Checked : styles.admin_Input_Tab}
          style={{ display: 'grid', gridTemplateColumns: `100px ${getGridSize()} 60px 60px` }}>
-      <div className={styles.admin_input_tab_checked}>
-        <AdminCheckbox type={checked ? 'checked' : 'unchecked'} onClick={onClick}/>
+      <div className={ styles.admin_input_tab_checked }>
+        <AdminCheckbox type={checked ? 'fillBlue' : 'default'} onClick={onClick}/>
       </div>
       {Object.keys(titles)
         .map((key) => {
@@ -97,7 +97,7 @@ export const AdminInputTab = <T extends IDObject>({ item, titles, checked, onCli
           if (typeof value === 'boolean') {
             return (
               <div key={key} className={styles.admin_input_tab_checked_boolean}>
-                <AdminCheckbox type={value ? 'checked' : 'unchecked'}/>
+                <AdminCheckbox type={value ? 'fillBlue' : 'default'}/>
               </div>
             );
           }

@@ -6,7 +6,7 @@ import styles from "../../styles/adminStyles/Text.module.css";
 interface Props {
     text:string;
     size:"high" | "medium" | "small";
-    color?:"black" | "blue" | "gray";
+    color?:"black" | "blue" | "gray" | "darkGray"| "darkBlack";
 }
 
 export const Text = ({text, size, color = "black"}:Props) => {
@@ -33,6 +33,10 @@ export const Text = ({text, size, color = "black"}:Props) => {
                     return styles.text_color_blue;
                 case "gray" :
                     return styles.text_color_gray;
+                case "darkBlack" :
+                    return styles.text_color_tableBlack;
+                case "darkGray" :
+                    return styles.text_color_darkGray;
                 case "black" :
                 default:
                     return styles.text_color_black;

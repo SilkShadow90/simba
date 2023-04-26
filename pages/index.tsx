@@ -21,6 +21,7 @@ import { TextBlock } from '../components/UIKit/TextBlock';
 import { ScreenLayout } from '../components/UIKit/ScreenLayout';
 import { Grid } from '../components/UIKit/Grid';
 import { GridItem } from '../components/UIKit/GridItem';
+import {AdminTask} from "../components/adminPanel/AdminTask";
 
 const Home: NextPage = () => {
 
