@@ -1,7 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import dayjs from "dayjs";
 import { reduxForm, Field, Form } from "redux-form";
-import Select from "react-select";
 import { useWizard, Wizard } from "react-use-wizard";
 import styles from '../styles/Docs.module.css';
 import { Strings } from '../resources';
@@ -11,8 +10,7 @@ import { onChangeInput } from "../utils";
 import { ExhibitionForm, ExhibitionFormRef } from './docs/ExhibitionForm';
 import DictionaryMethods from '../api/DictionaryMethods';
 import { Breed, Title } from '../api/types';
-import { AdminMyCustomSelect, AdminMyCustomSelectHOC } from "./adminPanel/AdminMyCustomSelect";
-import { AdminButton } from "./adminPanel/AdminButton";
+import {  AdminMyCustomSelectHOC } from "./adminPanel/AdminMyCustomSelect";
 import { ButtonWizard } from "./ButtonWizard";
 
 export const DocsComponentTitles:any = reduxForm({
@@ -31,12 +29,6 @@ export const DocsComponentTitles:any = reduxForm({
   const [gender, setGender] = useState<string>('');
   const [castration, setCastration] = useState<boolean>();
   const [titles, setTitles] = useState<Title[]>([]);
-  const [name, setName] = useState<string>('');
-  const [color, setColor] = useState<string>('');
-  const [numberDocs, setNumberDocs] = useState<string>('');
-  const [owner, setOwner] = useState<string>('');
-  const [phone, setPhone] = useState<any>('');
-  const [email, setEmail] = useState<string>('');
 
   const [exhibitionCount, setExhibitionCount] = useState(0);
 
@@ -47,34 +39,10 @@ export const DocsComponentTitles:any = reduxForm({
   }, [exhibitionCount]);
 
   const onSubmit = async (form) => {
-    // const form = {
-    //   name,
-    //   breed,
-    //   gender,
-    //   birthday,
-    //   currentTitle,
-    //   newCurrentTitle,
-    //   color,
-    //   userInfo: {
-    //     owner,
-    //     phone,
-    //     email
-    //   },
-    //   exhibitionForm: exhibitionFormRef.current?.map(value => value.getForm())
-    // };
-    // todo remove console log
-    // eslint-disable-next-line no-console
     console.log(form);
   };
 
-  const addExhibition = (e:any) => {
-    e.preventDefault();
-    setExhibitionCount(prevState => prevState + 1);
-  };
-  const deleteExhibition = (e:any) => {
-    e.preventDefault();
-    setExhibitionCount(prevState => prevState - 1);
-  };
+
 
   useEffect(() => {
     if (titlesData) {
@@ -236,7 +204,7 @@ export const DocsComponentTitles:any = reduxForm({
     [secondFilteredTitles]);
 
   const Step1 = () => {
-    const { handleStep, previousStep, nextStep } = useWizard();
+    const {  previousStep, nextStep } = useWizard();
 
     return (
       <>
@@ -256,7 +224,7 @@ export const DocsComponentTitles:any = reduxForm({
     );
   };
   const Step2 = () => {
-    const { handleStep, previousStep, nextStep } = useWizard();
+    const { previousStep, nextStep } = useWizard();
 
     return (
       <>
@@ -298,126 +266,53 @@ export const DocsComponentTitles:any = reduxForm({
   };
 
     const Step3 = () => {
-      const { handleStep, previousStep, nextStep } = useWizard();
+      const { previousStep, nextStep } = useWizard();
       return (
         <>
-          {/* <div className={styles.docsRightTitle}> */}
-          {/*  <span style={{ paddingRight: '16px' }}>{Strings.titulStart.titulEnd.title}</span> */}
-          {/*  {!!exhibitionCount && ( */}
-          {/*    <button className={styles.docsButton} type={"button"} onClick={deleteExhibition}>{Strings.titulStart.titulEnd.postTitle}</button> */}
-          {/*  )} */}
-          {/* </div> */}
           <div className={styles.docsRightInputs}>
             <ExhibitionForm title={"Выставка 1"} prefix={'ex1-'} />
-
-            {/* {!!exhibitionCount && new Array(exhibitionCount).fill('Выставка').map((title, index) => ( */}
-            {/*  <ExhibitionForm */}
-            {/*    key={`${title} ${index + 1}`} */}
-            {/*    title={`${title} ${index + 1}`} */}
-            {/*    ref={ref => { */}
-            {/*      if (exhibitionFormRef.current && ref) { */}
-            {/*        exhibitionFormRef.current[index] = ref; */}
-            {/*      } */}
-            {/*    }} */}
-            {/*  /> */}
-            {/* ))} */}
-            {/* {exhibitionCount <= 2 && ( */}
-            {/*  <button className={styles.docsButton} type={"button"} onClick={addExhibition}>{Strings.titulStart.titulEnd.text}</button> */}
-            {/* )} */}
           </div>
-          <button className={styles.docsButton} type={"button"} onClick={addExhibition}>Добавить выставку</button>
-          <div style={{ display: 'flex', marginBottom: '20px' }}>
-            <input style={{ marginRight:"10px" }} type="checkbox"/>
+          <div style={{ display: 'flex', marginBottom: '20px' ,padding:"0 10px 0 10px" }}>
+            <input style={{ marginRight:"10px"}} type="checkbox"/>
             <div className={styles.docsRightEnd}>{Strings.titulStart.titulEnd.postText}
             </div>
           </div>
 
-          <ButtonWizard onSubmit={onSubmit} prevText={"Назад"} nextText={"Дальше"} onClickPrev={previousStep} onClickNext={nextStep} />
-          <button className={styles.docsButton} onClick={onSubmit}>{Strings.titulStart.titulEnd.button}</button>
-
+          <ButtonWizard onSubmit={onSubmit} prevText={"Назад"} nextText={"Добавить выставку"} onClickPrev={previousStep} onClickNext={nextStep} />
         </>
       );
     };
 
   const Step4 = () => {
-    const { handleStep, previousStep, nextStep } = useWizard();
+    const { previousStep, nextStep } = useWizard();
     return (
       <>
-        {/* <div className={styles.docsRightTitle}> */}
-        {/*  <span style={{ paddingRight: '16px' }}>{Strings.titulStart.titulEnd.title}</span> */}
-        {/*  {!!exhibitionCount && ( */}
-        {/*    <button className={styles.docsButton} type={"button"} onClick={deleteExhibition}>{Strings.titulStart.titulEnd.postTitle}</button> */}
-        {/*  )} */}
-        {/* </div> */}
         <div className={styles.docsRightInputs}>
           <ExhibitionForm title={"Выставка 2"} prefix={'ex2-'} />
-
-          {/* {!!exhibitionCount && new Array(exhibitionCount).fill('Выставка').map((title, index) => ( */}
-          {/*  <ExhibitionForm */}
-          {/*    key={`${title} ${index + 1}`} */}
-          {/*    title={`${title} ${index + 1}`} */}
-          {/*    ref={ref => { */}
-          {/*      if (exhibitionFormRef.current && ref) { */}
-          {/*        exhibitionFormRef.current[index] = ref; */}
-          {/*      } */}
-          {/*    }} */}
-          {/*  /> */}
-          {/* ))} */}
-          {/* {exhibitionCount <= 2 && ( */}
-          {/*  <button className={styles.docsButton} type={"button"} onClick={addExhibition}>{Strings.titulStart.titulEnd.text}</button> */}
-          {/* )} */}
         </div>
-        <button className={styles.docsButton} type={"button"} onClick={addExhibition}>Добавить выставку</button>
-        <div style={{ display: 'flex', marginBottom: '20px' }}>
+        <div style={{ display: 'flex', marginBottom: '20px' ,padding:"0 10px 0 10px" }}>
           <input style={{ marginRight:"10px" }} type="checkbox"/>
           <div className={styles.docsRightEnd}>{Strings.titulStart.titulEnd.postText}
           </div>
         </div>
-
-        <ButtonWizard onSubmit={onSubmit} prevText={"Назад"} nextText={"Дальше"} onClickPrev={previousStep} onClickNext={nextStep}/>
-        <button className={styles.docsButton} onClick={onSubmit}>{Strings.titulStart.titulEnd.button}</button>
-
+        <ButtonWizard onSubmit={onSubmit} prevText={"Назад"} nextText={"Добавить выставку"} onClickPrev={previousStep} onClickNext={nextStep}/>
       </>
     );
   };
 
   const Step5 = () => {
-    const { handleStep, previousStep, nextStep } = useWizard();
+    const { previousStep } = useWizard();
     return (
       <>
-        {/* <div className={styles.docsRightTitle}> */}
-        {/*  <span style={{ paddingRight: '16px' }}>{Strings.titulStart.titulEnd.title}</span> */}
-        {/*  {!!exhibitionCount && ( */}
-        {/*    <button className={styles.docsButton} type={"button"} onClick={deleteExhibition}>{Strings.titulStart.titulEnd.postTitle}</button> */}
-        {/*  )} */}
-        {/* </div> */}
         <div className={styles.docsRightInputs}>
           <ExhibitionForm title={"Выставка 3"} prefix={'ex3-'} />
-
-          {/* {!!exhibitionCount && new Array(exhibitionCount).fill('Выставка').map((title, index) => ( */}
-          {/*  <ExhibitionForm */}
-          {/*    key={`${title} ${index + 1}`} */}
-          {/*    title={`${title} ${index + 1}`} */}
-          {/*    ref={ref => { */}
-          {/*      if (exhibitionFormRef.current && ref) { */}
-          {/*        exhibitionFormRef.current[index] = ref; */}
-          {/*      } */}
-          {/*    }} */}
-          {/*  /> */}
-          {/* ))} */}
-          {/* {exhibitionCount <= 2 && ( */}
-          {/*  <button className={styles.docsButton} type={"button"} onClick={addExhibition}>{Strings.titulStart.titulEnd.text}</button> */}
-          {/* )} */}
         </div>
-        <button className={styles.docsButton} type={"button"} onClick={addExhibition}>Добавить выставку</button>
-        <div style={{ display: 'flex', marginBottom: '20px' }}>
-          <input style={{ marginRight:"10px" }} type="checkbox"/>
+        <div style={{ display: 'flex', marginBottom: '20px' ,padding:"0 10px 0 10px" }}>
+          <input style={{ marginRight:"10px"}} type="checkbox"/>
           <div className={styles.docsRightEnd}>{Strings.titulStart.titulEnd.postText}
           </div>
         </div>
-
         <ButtonWizard prevText={"Назад"} nextText={"Завершить"} onClickPrev={previousStep} onClickNext={onSubmit}/>
-        <button className={styles.docsButton} onClick={onSubmit}>{Strings.titulStart.titulEnd.button}</button>
       </>
     );
   };
