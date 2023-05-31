@@ -6,6 +6,7 @@ import { onChangeInput } from "../../utils";
 
 type Props = {
   title: string
+  prefix?: string
 }
 
 export type ExhibitionFormRef = {
@@ -20,7 +21,7 @@ export type ExhibitionFormRef = {
   }
 }
 
-const RenderExhibitionForm = ({ title }: Props, ref: Ref<ExhibitionFormRef>): React.ReactElement<Props> => {
+const RenderExhibitionForm = ({ title, prefix = '' }: Props, ref: Ref<ExhibitionFormRef>): React.ReactElement<Props> => {
   const [ExhibitionDate, setExhibitionDate] = useState<string>('');
   const [address, setAddress] = useState<string>('');
   const [licenseNumber, setLicenseNumber] = useState<string>('');
@@ -49,37 +50,37 @@ const RenderExhibitionForm = ({ title }: Props, ref: Ref<ExhibitionFormRef>): Re
       <div className={styles.form}>{title}</div>
       <DocsComponentInput
         text={Strings.RenderExhibitionForm.ExhibitionDate}
-        name={"ExhibitionDate"}
+        name={`${prefix}ExhibitionDate`}
         type="date"
       />
       <DocsComponentInput
         text={Strings.RenderExhibitionForm.Venue}
-        name={"Venue"}
+        name={`${prefix}Venue`}
         type="text"
       />
       <DocsComponentInput
         text={Strings.RenderExhibitionForm.LicenseNumber}
-        name={"LicenseNumber"}
+        name={`${prefix}LicenseNumber`}
         type="text"
       />
       <DocsComponentInput
         text={Strings.RenderExhibitionForm.Club}
-        name={"Club"}
+        name={`${prefix}Club`}
         type="text"
       />
       <DocsComponentInput
         text={Strings.RenderExhibitionForm.Expert}
-        name={"Expert"}
+        name={`${prefix}Expert`}
         type="text"
       />
       <DocsComponentInput
         text={Strings.RenderExhibitionForm.Evaluation}
-        name={"Evaluation"}
+        name={`${prefix}Evaluation`}
         type="text"
       />
       <DocsComponentInput
         text={Strings.RenderExhibitionForm.EvaluationSheet}
-        name={"EvaluationSheet"}
+        name={`${prefix}EvaluationSheet`}
         type="file"
       />
     </div>

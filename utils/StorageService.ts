@@ -19,7 +19,7 @@ export default class StorageService {
     // const mountainsRef = ref(this.storage!, `${name}.jpg`);
     // const mountainImagesRef = ref(this.storage, `images/${name}.jpg`);
 
-    return ref(StorageService.storage, `images/${name}.jpg`);
+    return ref(StorageService.storage, `images/${name}`);
   }
 
   async uploadFile(name: string, file: Blob): Promise<string | null> {

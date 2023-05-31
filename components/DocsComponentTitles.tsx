@@ -1,24 +1,24 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import dayjs from "dayjs";
+import { reduxForm, Field, Form } from "redux-form";
+import Select from "react-select";
+import { useWizard, Wizard } from "react-use-wizard";
 import styles from '../styles/Docs.module.css';
 import { Strings } from '../resources';
-import {useFetchService} from "../utils/useFetchService";
-import {DocsComponentInput} from "./DocsComponentInput";
+import { useFetchService } from "../utils/useFetchService";
+import { DocsComponentInput } from "./DocsComponentInput";
 import { onChangeInput } from "../utils";
 import { ExhibitionForm, ExhibitionFormRef } from './docs/ExhibitionForm';
 import DictionaryMethods from '../api/DictionaryMethods';
 import { Breed, Title } from '../api/types';
-import {reduxForm, Field, Form} from "redux-form";
-import Select from "react-select";
-import {AdminMyCustomSelect, AdminMyCustomSelectHOC} from "./adminPanel/AdminMyCustomSelect";
-import {useWizard, Wizard} from "react-use-wizard";
-import {AdminButton} from "./adminPanel/AdminButton";
-import {ButtonWizard} from "./ButtonWizard";
+import { AdminMyCustomSelect, AdminMyCustomSelectHOC } from "./adminPanel/AdminMyCustomSelect";
+import { AdminButton } from "./adminPanel/AdminButton";
+import { ButtonWizard } from "./ButtonWizard";
 
 export const DocsComponentTitles:any = reduxForm({
   form: 'title',
   destroyOnUnmount: false,
-})(({handleSubmit}) => {
+})(({ handleSubmit }) => {
   const { data: breeds } = useFetchService(DictionaryMethods.getBreeds);
   const { data: titlesData } = useFetchService(DictionaryMethods.getTitles);
 
@@ -46,33 +46,35 @@ export const DocsComponentTitles:any = reduxForm({
     exhibitionFormRef.current.length = exhibitionCount;
   }, [exhibitionCount]);
 
-  const onSubmit = async () => {
-    const form = {
-      name,
-      breed,
-      gender,
-      birthday,
-      currentTitle,
-      newCurrentTitle,
-      color,
-      userInfo: {
-        owner,
-        phone,
-        email
-      },
-      exhibitionForm: exhibitionFormRef.current?.map(value => value.getForm())
-    };
+  const onSubmit = async (form) => {
+    // const form = {
+    //   name,
+    //   breed,
+    //   gender,
+    //   birthday,
+    //   currentTitle,
+    //   newCurrentTitle,
+    //   color,
+    //   userInfo: {
+    //     owner,
+    //     phone,
+    //     email
+    //   },
+    //   exhibitionForm: exhibitionFormRef.current?.map(value => value.getForm())
+    // };
     // todo remove console log
     // eslint-disable-next-line no-console
     console.log(form);
   };
 
   const addExhibition = (e:any) => {
-    e.preventDefault()
-    setExhibitionCount(prevState => prevState + 1)};
+    e.preventDefault();
+    setExhibitionCount(prevState => prevState + 1);
+  };
   const deleteExhibition = (e:any) => {
-    e.preventDefault()
-    setExhibitionCount(prevState => prevState - 1)};
+    e.preventDefault();
+    setExhibitionCount(prevState => prevState - 1);
+  };
 
   useEffect(() => {
     if (titlesData) {
@@ -99,7 +101,7 @@ export const DocsComponentTitles:any = reduxForm({
   }, [gender]);
 
 
-  useEffect(()=> {
+  useEffect(() => {
     switch (breed) {
       case "HHP":
         setHomeCat(true);
@@ -107,7 +109,7 @@ export const DocsComponentTitles:any = reduxForm({
       default:
         setHomeCat(false);
     }
-  },[breed]);
+  }, [breed]);
 
   useEffect(() => {
     if (birthday) {
@@ -173,7 +175,7 @@ export const DocsComponentTitles:any = reduxForm({
     }
 
     if (currentTitle) {
-      const currentIndex: number = filteredTitles?.findIndex((title)=>{
+      const currentIndex: number = filteredTitles?.findIndex((title) => {
         return currentTitle === title.code;
       });
 
@@ -183,7 +185,7 @@ export const DocsComponentTitles:any = reduxForm({
     }
 
     return [];
-  },[currentTitle, filteredTitles]);
+  }, [currentTitle, filteredTitles]);
 
   useEffect(() => {
     if (filteredTitles) {
@@ -195,30 +197,30 @@ export const DocsComponentTitles:any = reduxForm({
   const breedSelectHOC = useMemo(() => AdminMyCustomSelectHOC({
     name:"breed",
     options:[
-      {value:Strings.CatInformationForm.other.selectBreed, label:Strings.CatInformationForm.other.selectBreed},
+      { value:Strings.CatInformationForm.other.selectBreed, label:Strings.CatInformationForm.other.selectBreed },
     ].concat(breeds?.map((breed: Breed) => (
-      {value:breed.code,label:`${breed.name} (${breed.code})`})) || [])}),
+      { value:breed.code, label:`${breed.name} (${breed.code})` })) || []) }),
     [breeds]);
 
   const genderSelectHOC = useMemo(() => AdminMyCustomSelectHOC({
       name:"gender",
       options:[
-        {value:Strings.CatInformationForm.other.selectGender, label:Strings.CatInformationForm.other.selectGender},
-        {value:Strings.titulStart.titulMain.other.catMan ,label: Strings.titulStart.titulMain.other.catMan},
-        {value:Strings.titulStart.titulMain.other.catGirl ,label: Strings.titulStart.titulMain.other.catGirl},
-        {value:Strings.titulStart.titulMain.other.catManHalf ,label: Strings.titulStart.titulMain.other.catManHalf},
-        {value:Strings.titulStart.titulMain.other.catGirlHalf ,label: Strings.titulStart.titulMain.other.catGirlHalf},
-      ]}),
+        { value:Strings.CatInformationForm.other.selectGender, label:Strings.CatInformationForm.other.selectGender },
+        { value:Strings.titulStart.titulMain.other.catMan, label: Strings.titulStart.titulMain.other.catMan },
+        { value:Strings.titulStart.titulMain.other.catGirl, label: Strings.titulStart.titulMain.other.catGirl },
+        { value:Strings.titulStart.titulMain.other.catManHalf, label: Strings.titulStart.titulMain.other.catManHalf },
+        { value:Strings.titulStart.titulMain.other.catGirlHalf, label: Strings.titulStart.titulMain.other.catGirlHalf },
+      ] }),
     []);
 
 
   const titleSelectHOC = useMemo(() => AdminMyCustomSelectHOC({
       name:"CurrentTitle",
       options:[
-        {value:Strings.CatInformationForm.other.selectGender, label:Strings.CatInformationForm.other.selectGender},
-        {value:"none" ,label: Strings.CatInformationForm.other.noneTitle},]
+        { value:Strings.CatInformationForm.other.selectGender, label:Strings.CatInformationForm.other.selectGender },
+        { value:"none", label: Strings.CatInformationForm.other.noneTitle }]
         .concat(filteredTitles?.map((titul: Title) => (
-          {value:titul.code,label:`${titul.name} (${titul.code})`})) || []
+          { value:titul.code, label:`${titul.name} (${titul.code})` })) || []
         )
   }),
     [filteredTitles]);
@@ -226,9 +228,9 @@ export const DocsComponentTitles:any = reduxForm({
   const newTitleSelectHOC = useMemo(() => AdminMyCustomSelectHOC({
       name:"NewCurrentTitle",
       options:[
-        {value:Strings.CatInformationForm.other.selectGender, label:Strings.CatInformationForm.other.selectGender},]
+        { value:Strings.CatInformationForm.other.selectGender, label:Strings.CatInformationForm.other.selectGender }]
         .concat(secondFilteredTitles?.map((titul: Title) => (
-          {value:titul.code,label:`${titul.name} (${titul.code})`})) || []
+          { value:titul.code, label:`${titul.name} (${titul.code})` })) || []
         )
     }),
     [secondFilteredTitles]);
@@ -290,7 +292,7 @@ export const DocsComponentTitles:any = reduxForm({
         <DocsComponentInput text={Strings.CatInformationForm.other.colorStock} name={"colorStock"} type={"text"}/>
 
         <DocsComponentInput text={Strings.CatInformationForm.other.numberParents} name={"numberParents"} type={"text"}/>
-        <ButtonWizard prevText={"Назад"} nextText={"Дальше"} onClickPrev={() => previousStep()} onClickNext={() => nextStep()}/>
+        <ButtonWizard prevText={"Назад"} nextText={"Дальше"} onClickPrev={previousStep} onClickNext={nextStep}/>
       </>
     );
   };
@@ -299,43 +301,126 @@ export const DocsComponentTitles:any = reduxForm({
       const { handleStep, previousStep, nextStep } = useWizard();
       return (
         <>
-          {/*<div className={styles.docsRightTitle}>*/}
-          {/*  <span style={{ paddingRight: '16px' }}>{Strings.titulStart.titulEnd.title}</span>*/}
-          {/*  {!!exhibitionCount && (*/}
-          {/*    <button className={styles.docsButton} type={"button"} onClick={deleteExhibition}>{Strings.titulStart.titulEnd.postTitle}</button>*/}
-          {/*  )}*/}
-          {/*</div>*/}
+          {/* <div className={styles.docsRightTitle}> */}
+          {/*  <span style={{ paddingRight: '16px' }}>{Strings.titulStart.titulEnd.title}</span> */}
+          {/*  {!!exhibitionCount && ( */}
+          {/*    <button className={styles.docsButton} type={"button"} onClick={deleteExhibition}>{Strings.titulStart.titulEnd.postTitle}</button> */}
+          {/*  )} */}
+          {/* </div> */}
           <div className={styles.docsRightInputs}>
-            <ExhibitionForm title={"Выставка 1"}/>
+            <ExhibitionForm title={"Выставка 1"} prefix={'ex1-'} />
 
-            {/*{!!exhibitionCount && new Array(exhibitionCount).fill('Выставка').map((title, index) => (*/}
-            {/*  <ExhibitionForm*/}
-            {/*    key={`${title} ${index + 1}`}*/}
-            {/*    title={`${title} ${index + 1}`}*/}
-            {/*    ref={ref => {*/}
-            {/*      if (exhibitionFormRef.current && ref) {*/}
-            {/*        exhibitionFormRef.current[index] = ref;*/}
-            {/*      }*/}
-            {/*    }}*/}
-            {/*  />*/}
-            {/*))}*/}
-            {/*{exhibitionCount <= 2 && (*/}
-            {/*  <button className={styles.docsButton} type={"button"} onClick={addExhibition}>{Strings.titulStart.titulEnd.text}</button>*/}
-            {/*)}*/}
+            {/* {!!exhibitionCount && new Array(exhibitionCount).fill('Выставка').map((title, index) => ( */}
+            {/*  <ExhibitionForm */}
+            {/*    key={`${title} ${index + 1}`} */}
+            {/*    title={`${title} ${index + 1}`} */}
+            {/*    ref={ref => { */}
+            {/*      if (exhibitionFormRef.current && ref) { */}
+            {/*        exhibitionFormRef.current[index] = ref; */}
+            {/*      } */}
+            {/*    }} */}
+            {/*  /> */}
+            {/* ))} */}
+            {/* {exhibitionCount <= 2 && ( */}
+            {/*  <button className={styles.docsButton} type={"button"} onClick={addExhibition}>{Strings.titulStart.titulEnd.text}</button> */}
+            {/* )} */}
           </div>
           <button className={styles.docsButton} type={"button"} onClick={addExhibition}>Добавить выставку</button>
           <div style={{ display: 'flex', marginBottom: '20px' }}>
-            <input style={{marginRight:"10px"}} type="checkbox"/>
+            <input style={{ marginRight:"10px" }} type="checkbox"/>
             <div className={styles.docsRightEnd}>{Strings.titulStart.titulEnd.postText}
             </div>
           </div>
 
+          <ButtonWizard onSubmit={onSubmit} prevText={"Назад"} nextText={"Дальше"} onClickPrev={previousStep} onClickNext={nextStep} />
           <button className={styles.docsButton} onClick={onSubmit}>{Strings.titulStart.titulEnd.button}</button>
-          <ButtonWizard prevText={"Назад"} nextText={"Завершить"} onClickPrev={() => previousStep()} onClickNext={() => nextStep()}/>
 
         </>
       );
     };
+
+  const Step4 = () => {
+    const { handleStep, previousStep, nextStep } = useWizard();
+    return (
+      <>
+        {/* <div className={styles.docsRightTitle}> */}
+        {/*  <span style={{ paddingRight: '16px' }}>{Strings.titulStart.titulEnd.title}</span> */}
+        {/*  {!!exhibitionCount && ( */}
+        {/*    <button className={styles.docsButton} type={"button"} onClick={deleteExhibition}>{Strings.titulStart.titulEnd.postTitle}</button> */}
+        {/*  )} */}
+        {/* </div> */}
+        <div className={styles.docsRightInputs}>
+          <ExhibitionForm title={"Выставка 2"} prefix={'ex2-'} />
+
+          {/* {!!exhibitionCount && new Array(exhibitionCount).fill('Выставка').map((title, index) => ( */}
+          {/*  <ExhibitionForm */}
+          {/*    key={`${title} ${index + 1}`} */}
+          {/*    title={`${title} ${index + 1}`} */}
+          {/*    ref={ref => { */}
+          {/*      if (exhibitionFormRef.current && ref) { */}
+          {/*        exhibitionFormRef.current[index] = ref; */}
+          {/*      } */}
+          {/*    }} */}
+          {/*  /> */}
+          {/* ))} */}
+          {/* {exhibitionCount <= 2 && ( */}
+          {/*  <button className={styles.docsButton} type={"button"} onClick={addExhibition}>{Strings.titulStart.titulEnd.text}</button> */}
+          {/* )} */}
+        </div>
+        <button className={styles.docsButton} type={"button"} onClick={addExhibition}>Добавить выставку</button>
+        <div style={{ display: 'flex', marginBottom: '20px' }}>
+          <input style={{ marginRight:"10px" }} type="checkbox"/>
+          <div className={styles.docsRightEnd}>{Strings.titulStart.titulEnd.postText}
+          </div>
+        </div>
+
+        <ButtonWizard onSubmit={onSubmit} prevText={"Назад"} nextText={"Дальше"} onClickPrev={previousStep} onClickNext={nextStep}/>
+        <button className={styles.docsButton} onClick={onSubmit}>{Strings.titulStart.titulEnd.button}</button>
+
+      </>
+    );
+  };
+
+  const Step5 = () => {
+    const { handleStep, previousStep, nextStep } = useWizard();
+    return (
+      <>
+        {/* <div className={styles.docsRightTitle}> */}
+        {/*  <span style={{ paddingRight: '16px' }}>{Strings.titulStart.titulEnd.title}</span> */}
+        {/*  {!!exhibitionCount && ( */}
+        {/*    <button className={styles.docsButton} type={"button"} onClick={deleteExhibition}>{Strings.titulStart.titulEnd.postTitle}</button> */}
+        {/*  )} */}
+        {/* </div> */}
+        <div className={styles.docsRightInputs}>
+          <ExhibitionForm title={"Выставка 3"} prefix={'ex3-'} />
+
+          {/* {!!exhibitionCount && new Array(exhibitionCount).fill('Выставка').map((title, index) => ( */}
+          {/*  <ExhibitionForm */}
+          {/*    key={`${title} ${index + 1}`} */}
+          {/*    title={`${title} ${index + 1}`} */}
+          {/*    ref={ref => { */}
+          {/*      if (exhibitionFormRef.current && ref) { */}
+          {/*        exhibitionFormRef.current[index] = ref; */}
+          {/*      } */}
+          {/*    }} */}
+          {/*  /> */}
+          {/* ))} */}
+          {/* {exhibitionCount <= 2 && ( */}
+          {/*  <button className={styles.docsButton} type={"button"} onClick={addExhibition}>{Strings.titulStart.titulEnd.text}</button> */}
+          {/* )} */}
+        </div>
+        <button className={styles.docsButton} type={"button"} onClick={addExhibition}>Добавить выставку</button>
+        <div style={{ display: 'flex', marginBottom: '20px' }}>
+          <input style={{ marginRight:"10px" }} type="checkbox"/>
+          <div className={styles.docsRightEnd}>{Strings.titulStart.titulEnd.postText}
+          </div>
+        </div>
+
+        <ButtonWizard prevText={"Назад"} nextText={"Завершить"} onClickPrev={previousStep} onClickNext={onSubmit}/>
+        <button className={styles.docsButton} onClick={onSubmit}>{Strings.titulStart.titulEnd.button}</button>
+      </>
+    );
+  };
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -344,6 +429,8 @@ export const DocsComponentTitles:any = reduxForm({
           <Step1 />
           <Step2 />
           <Step3 />
+          <Step4 />
+          <Step5 />
         </Wizard>
       </div>
     </Form>

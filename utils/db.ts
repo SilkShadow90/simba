@@ -13,7 +13,7 @@ import StorageService from './StorageService';
 
 // Initialize Firebase
 const app = initializeApp(serverConfig);
-StorageService.init(app);
+// StorageService.init(app);
 
 export class DB {
   private static readonly delay = 300;
