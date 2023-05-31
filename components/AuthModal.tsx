@@ -4,8 +4,12 @@ import { DocsComponentInput } from './DocsComponentInput';
 import { useAuth } from '../utils/useAuth';
 import { AdminButton } from './adminPanel/AdminButton';
 import Loader from './Loader';
+import {reduxForm} from "redux-form";
 
-export const AuthModal = () => {
+export const AuthModal = reduxForm({
+  form: 'auth',
+  destroyOnUnmount: false,
+})(({handleSubmit}) => {
   const { isAuth, auth, isLoading, firstLoading } = useAuth();
 
   const [email, setEmail] = useState('');
@@ -20,17 +24,18 @@ export const AuthModal = () => {
   }, [auth, email, pass]);
 
   return (
+
     <Portal isVisible={!isAuth}>
       {firstLoading ? (
         <Loader isVisible />
         ) : (
         <div className={'auth'}>
-          <DocsComponentInput text={'email'} value={email} onChange={setValue(setEmail)} />
-          <DocsComponentInput text={'пароль'} value={pass} onChange={setValue(setPass)} type={'password'} />
+          <DocsComponentInput text={'email'} name={"email"}  />
+          <DocsComponentInput text={'пароль'} name={"pass"}  type={'password'} />
 
           <AdminButton onClick={submit} text={'Войти'} stretch isLoading={isLoading} />
         </div>
       )}
     </Portal>
   );
-};
+});

@@ -65,6 +65,10 @@
     background-color: var(--admin-color-icon-white);
 }
 
+.groupStyles {
+    margin-bottom: 10px;
+}
+
 @media (min-width: 320px) and (max-width: 840px) {
     .footer {
         grid-template-columns: 1fr;

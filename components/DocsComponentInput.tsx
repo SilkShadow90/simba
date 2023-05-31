@@ -1,33 +1,32 @@
 import React, { ChangeEvent, useMemo } from 'react';
 import styles from '../styles/Input.module.css';
+import { Field } from "redux-form";
 
 interface Props {
+  name:string;
   text: string;
   type?: string;
-  value?: string;
   useContainer?: boolean;
-  onChange?(event: ChangeEvent<HTMLInputElement>): void;
 }
 
 
 const RenderDocsComponentInput: React.FC<Props> = ({
+  name,
   text,
   type = 'text',
-  value,
   useContainer,
-  onChange = () => {},
 }: Props): React.ReactElement<Props> => {
   const content = useMemo(() => (
-    <>
-      <div className={styles.inputPreSelect}>{text}</div>
-      <input
-        className={styles.inputSelect}
-        onChange={onChange}
-        value={value}
-        type={type}
-      />
-    </>
-  ), [onChange, text, type, value]);
+    <div>
+        <div className={styles.inputPreSelect}>{text}</div>
+        <Field
+          name={name}
+          component={"input"}
+          className={styles.inputSelect}
+          type={type}
+        />
+    </div>
+  ), [text, type,]);
 
   if (useContainer) {
     return (
