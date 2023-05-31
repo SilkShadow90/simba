@@ -1,12 +1,14 @@
-import React, { Ref, useImperativeHandle, useState } from 'react';
+import React, {Ref, useImperativeHandle, useMemo, useState} from 'react';
 import styles from '../../styles/docs/CatInformation.module.css';
 import { DocsComponentInput } from '../DocsComponentInput';
 import { Strings } from '../../resources';
 import { onChangeInput } from "../../utils";
 import { Breed } from '../../api/types';
+import {AdminMyCustomSelectHOC} from "../adminPanel/AdminMyCustomSelect";
+import {Field} from "redux-form";
 
 type Props = {
-  gender: number;
+  gender?: number;
   breeds?: Breed[];
 }
 
@@ -52,29 +54,110 @@ const RenderCatInformationForm = ({ gender, breeds }: Props, ref: Ref<CatInforma
   }));
 
 
+  const breedSelectHOC = useMemo(() => AdminMyCustomSelectHOC({
+      name:"breed",
+      options:[
+        {value:Strings.CatInformationForm.other.selectBreed, label:Strings.CatInformationForm.other.selectBreed},
+      ].concat(breeds?.map((breed: Breed) => (
+        {value:breed.code,label:`${breed.name} (${breed.code})`})) || [])}),
+    [breeds]);
+
   return (
     <div>
       <div className={styles.Titul}>{gender ? Strings.CatInformationForm.manCat.infoParents : Strings.CatInformationForm.girlCat.infoParents}</div>
-      <DocsComponentInput text={gender ? Strings.CatInformationForm.manCat.owner : Strings.CatInformationForm.girlCat.owner} onChange={onChangeInput(setOwner)} value={owner} type={"text"}/>
-      <DocsComponentInput text={Strings.CatInformationForm.other.exhibition} onChange={onChangeInput(setNursery)} value={nursery} type={"text"}/>
-      <DocsComponentInput text={Strings.CatInformationForm.other.phone} onChange={onChangeInput(setPhone)} value={phone} type={"text"}/>
-      <DocsComponentInput text={Strings.CatInformationForm.other.email} onChange={onChangeInput(setEmail)} value={email} type={"text"}/>
-
+      <DocsComponentInput text={gender ? Strings.CatInformationForm.manCat.owner : Strings.CatInformationForm.girlCat.owner} name={"owner"} type={"text"}/>
+      <DocsComponentInput text={Strings.CatInformationForm.other.exhibition} name={"exhibition"} type={"text"}/>
+      <DocsComponentInput text={Strings.CatInformationForm.other.phone} name={"phone"} type={"text"}/>
+      <DocsComponentInput text={Strings.CatInformationForm.other.email} name={"email"} type={"text"}/>
       <div>
         <div className={styles.Titul}>{gender ? Strings.CatInformationForm.manCat.indoCat : Strings.CatInformationForm.girlCat.indoCat}</div>
-        <DocsComponentInput text={gender ? Strings.CatInformationForm.manCat.titules : Strings.CatInformationForm.girlCat.titules} onChange={onChangeInput(setTitulesMan)} value={titulesMan} type={"text"}/>
-        <DocsComponentInput text={gender ? Strings.CatInformationForm.manCat.login : Strings.CatInformationForm.girlCat.login} onChange={onChangeInput(setLogin)} value={login} type={"text"}/>
+        <DocsComponentInput text={gender ? Strings.CatInformationForm.manCat.titules : Strings.CatInformationForm.girlCat.titules} name={"titules"}  type={"text"}/>
+        <DocsComponentInput text={gender ? Strings.CatInformationForm.manCat.login : Strings.CatInformationForm.girlCat.login} name={"login"}  type={"text"}/>
         <div className={styles.docsPreSelect}>{Strings.CatInformationForm.other.breed}</div>
-        <select className={styles.Select} onChange={onChangeInput(setCurrentBreed)} value={currentBreed} name={Strings.CatInformationForm.other.selectTitle} id="">
-          {breeds?.map((breed: Breed) => (
-            <option key={breed.id} className={styles.docsOption} value={breed.code}>{breed.name}</option>
-          ))}
-        </select>
-        <DocsComponentInput text={Strings.CatInformationForm.other.color} onChange={onChangeInput(setColor)} value={color} type="text" />
-        <DocsComponentInput text={gender ? Strings.CatInformationForm.manCat.pedigree : Strings.CatInformationForm.girlCat.pedigree} onChange={onChangeInput(setParentsMan)} value={parentsMan} type="file" />
+        <Field
+          name={"breed"}
+          component={breedSelectHOC}
+        />
+        <DocsComponentInput text={Strings.CatInformationForm.other.color} name={"color"}  type="text" />
       </div>
     </div>
   );
 };
 
 export const CatInformationForm = React.memo(React.forwardRef(RenderCatInformationForm));
+
+
+export const Catman = () => {
+  return (
+  <div>
+    <div className={styles.Titul}>{Strings.CatInformationForm.manCat.infoParents}</div>
+    <DocsComponentInput text={Strings.CatInformationForm.manCat.owner} name={"owner"} type={"text"}/>
+    <DocsComponentInput text={Strings.CatInformationForm.other.exhibition} name={"exhibition"} type={"text"}/>
+    <DocsComponentInput text={Strings.CatInformationForm.other.phone} name={"phone"} type={"text"}/>
+    <DocsComponentInput text={Strings.CatInformationForm.other.email} name={"email"} type={"text"}/>
+  </div>
+  )
+}
+
+export const Infocatman = ({breeds}:Props, ref: Ref<CatInformationFormRef>) => {
+  const breedSelectHOC = useMemo(() => AdminMyCustomSelectHOC({
+      name:"breed",
+      options:[
+        {value:Strings.CatInformationForm.other.selectBreed, label:Strings.CatInformationForm.other.selectBreed},
+      ].concat(breeds?.map((breed: Breed) => (
+        {value:breed.code,label:`${breed.name} (${breed.code})`})) || [])}),
+    [breeds]);
+  return (
+  <div>
+    <div className={styles.Titul}>{Strings.CatInformationForm.manCat.indoCat}</div>
+    <DocsComponentInput text={Strings.CatInformationForm.manCat.titules} name={"titules"}  type={"text"}/>
+    <DocsComponentInput text={Strings.CatInformationForm.manCat.login} name={"login"}  type={"text"}/>
+    <div className={styles.docsPreSelect}>{Strings.CatInformationForm.other.breed}</div>
+    <Field
+      name={"breed"}
+      component={breedSelectHOC}
+    />
+    <DocsComponentInput text={Strings.CatInformationForm.other.color} name={"color"}  type="text" />
+  </div>
+
+  )
+}
+export const Catgirl = () => {
+  return (
+  <div>
+    <div className={styles.Titul}>{Strings.CatInformationForm.girlCat.infoParents}</div>
+    <div className={styles.checked}>
+      <input type="checkbox"/>
+      <div className={styles.checked_text}>Совпадает с владельцем кота</div>
+    </div>
+
+    <DocsComponentInput text={Strings.CatInformationForm.girlCat.owner} name={"owner"} type={"text"}/>
+    <DocsComponentInput text={Strings.CatInformationForm.other.exhibition} name={"exhibition"} type={"text"}/>
+    <DocsComponentInput text={Strings.CatInformationForm.other.phone} name={"phone"} type={"text"}/>
+    <DocsComponentInput text={Strings.CatInformationForm.other.email} name={"email"} type={"text"}/>
+  </div>
+  )
+}
+
+export const Infocatgirl = ({breeds}:Props, ref: Ref<CatInformationFormRef>) => {
+  const breedSelectHOC = useMemo(() => AdminMyCustomSelectHOC({
+      name:"breed",
+      options:[
+        {value:Strings.CatInformationForm.other.selectBreed, label:Strings.CatInformationForm.other.selectBreed},
+      ].concat(breeds?.map((breed: Breed) => (
+        {value:breed.code,label:`${breed.name} (${breed.code})`})) || [])}),
+    [breeds]);
+  return(
+  <div>
+  <div className={styles.Titul}>{Strings.CatInformationForm.girlCat.indoCat}</div>
+  <DocsComponentInput text={Strings.CatInformationForm.girlCat.titules} name={"titules"}  type={"text"}/>
+  <DocsComponentInput text={Strings.CatInformationForm.girlCat.login} name={"login"}  type={"text"}/>
+  <div className={styles.docsPreSelect}>{Strings.CatInformationForm.other.breed}</div>
+  <Field
+    name={"breed"}
+    component={breedSelectHOC}
+  />
+  <DocsComponentInput text={Strings.CatInformationForm.other.color} name={"color"}  type="text" />
+</div>
+  )
+}

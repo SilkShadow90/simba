@@ -14,6 +14,11 @@ import { ScreenLayout } from '../components/UIKit/ScreenLayout';
 import { useQuery } from '../redux/hooks';
 
 const Docs: NextPage = () => {
+
+const submit = (values:any) => {
+  console.log(values)
+};
+
   const { doc } = useQuery();
   const renderSecondElement = () => {
     switch (doc) {
@@ -23,7 +28,7 @@ const Docs: NextPage = () => {
         );
       case '2':
         return (
-            <DocsComponentTitles/>
+            <DocsComponentTitles onSubmit={submit}/>
         );
       case '3':
         return (
@@ -31,7 +36,7 @@ const Docs: NextPage = () => {
         );
       case '4':
         return (
-            <DocsComponentVyazka/>
+            <DocsComponentVyazka onSubmit={submit}/>
         );
       case '5':
         return (

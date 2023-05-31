@@ -7,14 +7,19 @@
     background-color: #fff;
     /*border-color: #80bdff;*/
     width: 100%;
-    min-height: 30px;
+    min-height: 38px;
+    max-height: 38px;
     padding: 10px 20px;
     font-size: 14px;
     line-height: 1.5;
     color: #495057;
     background-clip: padding-box;
     border: 1px solid #ced4da;
-    border-radius: 8px;
+    border-radius: 4px;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     margin-bottom: 15px;
+}
+
+.inputSelect:focus-visible {
+    border: 1px solid var(--main-bg-color)
 }

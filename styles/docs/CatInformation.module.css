@@ -10,3 +10,15 @@
 .Select {
     margin-bottom: 10px;
 }
+
+.docsPreSelect {
+    margin-bottom: 10px;
+}
+
+.checked {
+    display: flex;
+    margin-bottom: 10px;
+}
+.checked_text {
+    margin-left: 10px;
+}

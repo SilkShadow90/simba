@@ -1,0 +1,23 @@
+.ButtonWizardLink {
+    display: flex;
+    justify-content: center;
+}
+
+.Button {
+    min-height: 40px;
+    min-width: 120px;
+    background-color: var(--main-bg-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    line-height: 1.5;
+    font-weight: 700;
+    padding: 5px 15px;
+    color: white;
+    border: 1px solid transparent;
+    transition: all 300ms ease-in-out;
+    margin-bottom: 20px;
+}
+
+.Button:hover {
+    background-color: #69796a;
+}

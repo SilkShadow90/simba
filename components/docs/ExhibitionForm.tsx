@@ -49,44 +49,37 @@ const RenderExhibitionForm = ({ title }: Props, ref: Ref<ExhibitionFormRef>): Re
       <div className={styles.form}>{title}</div>
       <DocsComponentInput
         text={Strings.RenderExhibitionForm.ExhibitionDate}
-        onChange={onChangeInput(setExhibitionDate)}
-        value={ExhibitionDate}
+        name={"ExhibitionDate"}
         type="date"
       />
       <DocsComponentInput
         text={Strings.RenderExhibitionForm.Venue}
-        onChange={onChangeInput(setAddress)}
-        value={address}
+        name={"Venue"}
         type="text"
       />
       <DocsComponentInput
         text={Strings.RenderExhibitionForm.LicenseNumber}
-        onChange={onChangeInput(setLicenseNumber)}
-        value={licenseNumber}
+        name={"LicenseNumber"}
         type="text"
       />
       <DocsComponentInput
         text={Strings.RenderExhibitionForm.Club}
-        onChange={onChangeInput(setClub)}
-        value={club}
+        name={"Club"}
         type="text"
       />
       <DocsComponentInput
         text={Strings.RenderExhibitionForm.Expert}
-        onChange={onChangeInput(setExpert)}
-        value={expert}
+        name={"Expert"}
         type="text"
       />
       <DocsComponentInput
         text={Strings.RenderExhibitionForm.Evaluation}
-        onChange={onChangeInput(setEvaluation)}
-        value={evaluation}
+        name={"Evaluation"}
         type="text"
       />
       <DocsComponentInput
         text={Strings.RenderExhibitionForm.EvaluationSheet}
-        onChange={onChangeInput(setEvaluationSheet)}
-        value={evaluationSheet}
+        name={"EvaluationSheet"}
         type="file"
       />
     </div>

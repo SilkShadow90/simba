@@ -4,11 +4,15 @@ import Image from 'next/image';
 import styles from '../../styles/adminStyles/AdminModal.module.css';
 import { AdminCheckbox } from './AdminCheckbox';
 import { InputArea } from './InputArea';
-import { IDObject, Titles, WithoutID } from '../../api/types';
+import {Breed, IDObject, Titles, WithoutID} from '../../api/types';
 import { Portal } from '../Portal';
 import { useAppSelector } from '../../redux/hooks';
 import { AdminButton } from './AdminButton';
 import close from '../../public/adminImg/other/close.svg';
+import {Field, reduxForm} from "redux-form";
+import {AdminMyCustomSelectHOC} from "./AdminMyCustomSelect";
+import {Strings} from "../../resources";
+import {AdminMyCustomInputHOC} from "./AdminMyCustomInput";
 
 
 type Item<T extends IDObject> = T | WithoutID<T>;
@@ -30,7 +34,28 @@ interface Props<T extends IDObject> {
   onSubmit?(data?: Item<T>): void;
 }
 
-export const AdminModal = <T extends IDObject>({ active, closeModal, item, titles, onSubmit, loading }: Props<T>) => {
+
+export const AdminModal =  reduxForm<any, Props<any>>({
+  form: 'auth',
+  destroyOnUnmount: false,
+}) (<T extends IDObject>({ active, closeModal, item, titles, onSubmit, loading }: Props<T>) => {
+
+  const keySelectHOC = useCallback((name:string, options:any[]) => AdminMyCustomSelectHOC({
+      name,
+      options,}),
+    []);
+
+  const keyInputHOC = useCallback((text:string) => AdminMyCustomInputHOC({
+      text,
+      }),
+    []);
+
+
+  // options={Object.values<any>(dictionaries[recordName] as any).map(dict => ({
+  //     label: dict.name,
+  //     value: dict.id,
+  //   })) as any}
+
   const { dictionaries } = useAppSelector(state => state.dictionariesState);
 
   const [itemState, setItemState] = useState(item);
@@ -84,20 +109,12 @@ export const AdminModal = <T extends IDObject>({ active, closeModal, item, title
                 }}>
                   <div>{value}</div>
                   <div style={{ height: '10px' }}/>
-                  <Select
-                    className="basic-single"
-                    classNamePrefix="select"
-                    name="color"
-                    isMulti
-                    onChange={(data) => changeValue(key as keyof T)(data?.map(d => d.value))}
-                    value={{
-                      label: dictionaries[recordName]?.[itemState[key as keyof Item<T>] as unknown as string]?.name,
-                      value: itemState[key as keyof Item<T>] as unknown as string,
-                    }}
-                    options={Object.values<any>(dictionaries[recordName] as any).map(dict => ({
+                  <Field
+                    component={keySelectHOC(key, Object.values<any>(dictionaries[recordName] as any).map(dict => ({
                       label: dict.name,
                       value: dict.id,
-                    })) as any}
+                    })) as any )}
+                    name={key}
                   />
                 </div>
               );
@@ -113,20 +130,27 @@ export const AdminModal = <T extends IDObject>({ active, closeModal, item, title
                 }}>
                   <div>{value}</div>
                   <div style={{ height: '10px' }}/>
-                  <Select
-                    className="basic-single"
-                    classNamePrefix="select"
-                    name="color"
-                    onChange={(data) => changeValue(key as keyof T)(data?.value)}
-                    value={{
-                      label: dictionaries[recordName]?.[itemState[key as keyof Item<T>] as unknown as string]?.name,
-                      value: itemState[key as keyof Item<T>] as unknown as string,
-                    }}
-                    options={Object.values<any>(dictionaries[recordName] as any).map(dict => ({
+                  <Field
+                    component={keySelectHOC(key, Object.values<any>(dictionaries[recordName] as any).map(dict => ({
                       label: dict.name,
                       value: dict.id,
-                    })) as any}
+                    })) as any)}
+                    name={key}
                   />
+                  {/*<Select*/}
+                  {/*  className="basic-single"*/}
+                  {/*  classNamePrefix="select"*/}
+                  {/*  name="color"*/}
+                  {/*  onChange={(data) => changeValue(key as keyof T)(data?.value)}*/}
+                  {/*  value={{*/}
+                  {/*    label: dictionaries[recordName]?.[itemState[key as keyof Item<T>] as unknown as string]?.name,*/}
+                  {/*    value: itemState[key as keyof Item<T>] as unknown as string,*/}
+                  {/*  }}*/}
+                  {/*  options={Object.values<any>(dictionaries[recordName] as any).map(dict => ({*/}
+                  {/*    label: dict.name,*/}
+                  {/*    value: dict.id,*/}
+                  {/*  })) as any}*/}
+                  {/*/>*/}
                 </div>
               );
             }
@@ -141,8 +165,13 @@ export const AdminModal = <T extends IDObject>({ active, closeModal, item, title
                   marginBottom: '10px',
                 }}>
                   <div key={value}>
-                    <InputArea placeholder={value} onChange={changeValue(key as keyof Item<T>)}
-                               text={itemState[key as keyof Item<T>] as any}/>
+
+                    <Field
+                      component={keyInputHOC(itemState[key as keyof Item<T>] as any)}
+                      name={key}
+                    />
+                    {/*<InputArea placeholder={value} onChange={changeValue(key as keyof Item<T>)}*/}
+                    {/*           text={itemState[key as keyof Item<T>] as any}/>*/}
                   </div>
                 </div>
               );
@@ -179,5 +208,5 @@ export const AdminModal = <T extends IDObject>({ active, closeModal, item, title
       </div>
     </Portal>
   );
-};
+});
 

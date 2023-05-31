@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from "react";
+import React, {ChangeEvent} from "react";
 import classNames from 'classnames';
 import styles from "../../styles/adminStyles/AdminSearch.module.css";
 import Image from "next/image";

@@ -12,6 +12,7 @@ export type AppState = {
     isError: boolean,
     tables: RecordCRUD,
   },
+  form:any
 }
 
 export const initialState = {
@@ -25,4 +26,5 @@ export const initialState = {
     isError: false,
     tables: {},
   },
+  form:{}
 };

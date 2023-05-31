@@ -1,3 +1,4 @@
+
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import styles from '../../../styles/adminStyles/AdminMainPage.module.css';
 import { InputArea } from '../InputArea';
