@@ -1,22 +1,30 @@
+import { RecordType } from '../api/DictionaryMethods';
+import { BaseDictionary, Cat, Club, Nurser, RecordCRUD, User } from '../api/types';
+
+export type AppState = {
+  dictionariesState: {
+    isLoading: boolean,
+    isError: boolean,
+    dictionaries: Record<string, RecordType<BaseDictionary> | Record<string, Club | User | Cat | Nurser>>,
+  },
+  tablesState: {
+    isLoading: boolean,
+    isError: boolean,
+    tables: RecordCRUD,
+  },
+  form:any
+}
+
 export const initialState = {
-  usersState: {
+  dictionariesState: {
     isLoading: false,
     isError: false,
-    users: [],
+    dictionaries: {},
   },
-  userState: {
+  tablesState: {
     isLoading: false,
     isError: false,
-    user: null,
-    id: undefined,
+    tables: {},
   },
-  adminState: {},
-  docsState: {
-    openedvstuplenie: true,
-    openedtitul: false,
-    openedregister: false,
-    openedvyazka: false,
-    // openedClubs: false,
-    // openedContacts: false,
-  }
+  form:{}
 };

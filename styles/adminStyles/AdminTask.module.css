@@ -1,0 +1,77 @@
+.mainTask {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-height: 22px;
+    min-height: 22px;
+    min-width: 84px;
+    max-width: 84px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    border: none;
+}
+.maxSize {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-height: 28px;
+    min-height: 28px;
+    min-width: 120px;
+    max-width: 120px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    border: none;
+}
+
+.mainTask_Select {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-height: 22px;
+    max-width: 84px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 500;
+    background-color: red;
+    border: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+.test {
+    max-height: 22px;
+    max-width: 84px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent !important;
+    border: none !important;
+}
+.arrowImage {
+    width: 26px;
+  height: 26px;
+    /*position: absolute;*/
+}
+
+.mainColor_purple {
+    background-color: var(--admin-color-purple);
+    color: var(--admin-color-icon-white);
+}
+.mainColor_green {
+    background-color: var(--admin-color-green);
+    color: var(--admin-color-icon-white);
+}
+.mainColor_red {
+    background-color: var(--admin-color-red);
+    color: var(--admin-color-icon-white);
+}
+.mainColor_yellow {
+    background-color: var(--admin-color-yellow);
+    color: var(--admin-color-icon-white);
+}

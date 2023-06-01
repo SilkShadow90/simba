@@ -1,7 +1,7 @@
 import { ApiMethods } from './ApiMethods';
 import { BaseDictionary, Breed, ExhibitionType, IDObject, Status, Title } from './types';
 
-type RecordType<T extends BaseDictionary> = Record<T[keyof IDObject], T> | null
+export type RecordType<T extends BaseDictionary> = Record<T[keyof IDObject], T> | null
 
 class DictionaryMethods extends ApiMethods<BaseDictionary> {
   readonly field = 'titles' || 'breeds' || 'statuses';

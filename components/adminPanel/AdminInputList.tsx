@@ -1,22 +1,22 @@
 import React, { useCallback, useState } from 'react';
 import Image from 'next/image';
 import { AdminInputTab } from './AdminInputTab';
-import { Titles } from './types';
 import styles from '../../styles/adminStyles/Admin.module.css';
 import deleteSrc from '../../public/adminImg/menu/delete.svg';
 import { AdminCheckbox } from './AdminCheckbox';
 import { Text } from './Text';
-import {ID, IDObject} from '../../api/types';
+import { ID, IDObject, Titles } from '../../api/types';
 import {DeleteWarningModal} from "./DeleteWarningModal";
+import { getPluralForm } from '../../utils';
 
 export type AdminListProps<T> = {
   titles: Titles<T>
   items: T[]
-  deleteHandler?(id: string): void
-  multiDeleteHandler?(ids: string[]): void
+  itemCallback?(type: 'create' | 'update' | 'delete' | 'multiDelete', data: any): Promise<void>
+  updateLoader?: boolean
 }
 
-export const AdminInputList = <T extends IDObject>({ titles, items, deleteHandler, multiDeleteHandler }: AdminListProps<T>) => {
+export const AdminInputList = <T extends IDObject>({ titles, items, itemCallback, updateLoader }: AdminListProps<T>) => {
   const [deleteModalActive, setDeleteModalActive] = useState(false);
   const [checkedList, setCheckedList] = useState<ID[]>([]);
 
@@ -24,12 +24,12 @@ export const AdminInputList = <T extends IDObject>({ titles, items, deleteHandle
     setDeleteModalActive((prevState) => !prevState);
   }, []);
 
-  const deleteModalPress = useCallback(() => {
-    if (multiDeleteHandler) {
-      multiDeleteHandler(checkedList);
+  const deleteModalPress = useCallback(async () => {
+    if (itemCallback) {
+      await itemCallback('multiDelete', checkedList);
     }
     toggleDeleteModal();
-  },[multiDeleteHandler, checkedList, toggleDeleteModal])
+  },[itemCallback, checkedList, toggleDeleteModal]);
 
   const toggle = (id: string) => () => setCheckedList((prevState) => {
     if (prevState.includes(id)) {
@@ -60,6 +60,14 @@ export const AdminInputList = <T extends IDObject>({ titles, items, deleteHandle
       return '1fr';
     }).join(' ');
 
+  if (!items.length) {
+    return (
+      <div className={styles.admin_Input_Tab}
+           style={{ display: 'grid', gridTemplateColumns: '1fr' }}>
+        <div>Нет данных</div>
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -69,7 +77,10 @@ export const AdminInputList = <T extends IDObject>({ titles, items, deleteHandle
         {!allChecked ? (
           <>
             <div className={styles.admin_input_tab_checked}>
-              <AdminCheckbox type={!allChecked ? 'unchecked' : 'checked'} onClick={toggleAll}/>
+              <AdminCheckbox
+                type={!allChecked ? 'default' : 'fillBlue'}
+                onClick={toggleAll}
+              />
               {/* <input type="checkbox" onClick={toggleAll} checked={allChecked} /> */}
             </div>
 
@@ -81,27 +92,29 @@ export const AdminInputList = <T extends IDObject>({ titles, items, deleteHandle
           <>
             <div className={styles.admin_input_tab_checked}>
               <div className={styles.admin_input_tab_checked_box}>
-                <AdminCheckbox type={allChecked ? 'checked' : 'unchecked'} onClick={toggleAll}/>
+                <AdminCheckbox type={allChecked ? 'fillBlue' : 'default'}
+                               count={checkedList.length} onClick={toggleAll}
+                />
                 <div className={styles.admin_input_tab_checked_boxStyle}>
-                  {checkedList.length} <Text size={'small'} color={'black'} text={'Selected'}/>
+                  <Text size={'small'} color={'black'} text={getPluralForm(checkedList.length, 'выбран', 'выбрано', 'выбрано')}/>
                 </div>
                 <button onClick={toggleDeleteModal} className={styles.admin_input_tab_checked_boxStyleButton}>
                   <Image className={styles.adminCardsLeft_input_position_img} objectFit={'cover'} src={deleteSrc}/>
                 </button>
               </div>
             </div>
-
           </>
         )}
       </div>
       {items.map((item) => (
         <AdminInputTab
           key={item.id}
-          deleteHandler={deleteHandler}
+          updateLoader={updateLoader}
           item={item}
           checked={checkedList.includes(item.id)}
           onClick={toggle(item.id)}
           titles={titles}
+          itemCallback={itemCallback}
         />
       ))}
     </div>

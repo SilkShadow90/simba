@@ -9,10 +9,10 @@ export const AdminPage = React.memo(({ children }: PropsWithChildren) => {
   return (
     <Page title="Панель Администратора" withoutHeaderAndFooter>
       <Flex flexDirection="row" styleProps={styles.adminPage} padding="0">
-        <Flex flex="0 0 auto" flexDirection="column" padding="0">
+        <Flex flex="0 0 auto" flexDirection="column" padding="0" styleProps={styles.adminPage_sidebar}>
           <AdminList />
         </Flex>
-        <Flex flexDirection="column">
+        <Flex flexDirection="column" padding={"0"}>
           {children}
         </Flex>
       </Flex>

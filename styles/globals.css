@@ -1,8 +1,12 @@
 :root {
   /*--main-bg-color: #26865c;*/
-  --main-bg-color: #3ea192;
+  --main-bg-color: #23160D;
+  /*--main-page-color: #44372319;*/
+  --main-page-color: #EBEBEB;
+  --white-color: #FFFFFF;
   /*--main-bg-color: #77aba3;*/
-  --main-bg-color-alpha: #77aba399;
+  /*--main-bg-color-alpha: #77aba399;*/
+  --main-bg-color-alpha: #C8C8C8;
   --border: 12px;
   --padding-vertical: 8px;
   --padding-horizontal: 12px;
@@ -60,10 +64,11 @@ main {
   /*background: repeat  url("../public/paper.png");*/
   /*background: repeat  url("../public/fabric.png");*/
   /*background: repeat  url("../public/gridius.png");*/
-  background: repeat  url("../public/scratone.png");
+  /*background: repeat  url("../public/scratone.png");*/
   /*background: repeat  url("../public/flower.jpg");*/
   /*background: repeat  url("../public/green.png");*/
   /*background: repeat  url("../public/wood.png");*/
+  background-color: var(--main-page-color);
 }
 
 .flex {
@@ -100,8 +105,20 @@ main {
   flex: 1 1 auto;
 }
 
+.justify-centered {
+  justify-content: center;
+}
+
+.align-centered {
+  align-items: center;
+}
+
 .stretch {
   width: 100%;
+}
+
+.overflow-auto {
+  overflow: initial !important;
 }
 
 .slick-slider {
@@ -146,14 +163,55 @@ main {
   transform: scale(1.7);
 }
 
-@media (min-width: 320px) and (max-width: 840px) {
-  :root {
-    --block-height: 240px;
-    --screen-width: 100%;
-    --padding-vertical: 4px;
-    --padding-horizontal: 6px;
-    --margin: 12px;
-  }
+.dropdown-control .Dropdown-control {
+  background-color: transparent;
+  border: none;
+  border-radius: initial;
+  padding: 8px 25px 8px 10px;
 }
 
+.dropdown-control .is-selected {
+  color: var(--admin-color-blue);
+}
 
+.dropdown-control .Dropdown-arrow {
+  top: 16px;
+}
+
+.dropdown-control .Dropdown-menu {
+  width: auto;
+}
+
+.dropdown-control:hover .Dropdown-control {
+  box-shadow: none;
+}
+
+@media (min-width: 320px) and (max-width: 840px) {
+:root {
+--block-height: 240px;
+--screen-width: 100%;
+--padding-vertical: 4px;
+--padding-horizontal: 6px;
+--margin: 12px;
+}
+}
+.Dropdown-arrow-wrapper {
+  right: 0;
+  position: absolute;
+  display: flex;
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  /*margin-left: 10px;*/
+  background: center / contain no-repeat url("../public/adminImg/other/close.svg");
+          /*linear-gradient(45deg, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 43%,#000 45%,#000 55%,rgba(0,0,0,0) 57%,rgba(0,0,0,0) 100%),*/
+          /*linear-gradient(135deg, transparent 0%,transparent 43%,#000 45%,#000 55%,transparent 57%,transparent 100%);*/
+}
+
+/*.Dropdown-arrow-wrapper > span::before {*/
+/*  content: 	"\2304";*/
+/*}*/

@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 
 type Props = {
   isVisible?: boolean
+  onClick?(): void
 }
 
 /**
@@ -15,7 +16,7 @@ type Props = {
  * </Portal>
  */
 
-export const Portal = ({ isVisible = true, children }: PropsWithChildren<Props>) => {
+export const Portal = ({ isVisible = true, children, onClick }: PropsWithChildren<Props>) => {
   const ref = useRef<Element | null>(null);
   const [mounted, setMounted] = useState(false);
 
@@ -26,6 +27,10 @@ export const Portal = ({ isVisible = true, children }: PropsWithChildren<Props>)
   }, [isVisible]);
 
   return (mounted && ref.current)
-    ? createPortal(<div className={'overlay'}>{children}</div>, ref.current)
+    ? createPortal(<div onClick={onClick} className={'overlay'}>
+      <div onClick={(e)=>{e.stopPropagation();}}>
+        {children}
+      </div>
+    </div>, ref.current)
     : null;
 };

@@ -96,6 +96,13 @@
 }
 
 
+.docsButtonLink {
+    display: flex;
+    justify-content: center;
+}
+
+
+
 .docsRightMain {
     line-height: 32px;
     font-weight: 500;
@@ -163,13 +170,17 @@
     margin-bottom: 15px;
 }
 
+.docsPreSelect {
+    margin-bottom: 10px;
+}
+
 .docsOption {
     min-height: 30px;
 }
 
 .docsRightInputs {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
     margin-bottom: 20px;
 }
 .docsRightInputsColumns {
@@ -178,6 +189,7 @@
 
 .docsButton {
     min-height: 40px;
+    min-width: 120px;
     background-color: var(--main-bg-color);
     border-radius: 8px;
     font-size: 1rem;
@@ -213,7 +225,8 @@
 /*}*/
 
 .docPanel {
-    background-color: var(--admin-color-icon-white);
+    background-color: var(--main-page-color);
+    /*background-color: var(--admin-color-icon-white);*/
     position: absolute;
     left: 0;
     top: 0;

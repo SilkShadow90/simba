@@ -6,6 +6,7 @@ import { onChangeInput } from "../../utils";
 
 type Props = {
   title: string
+  prefix?: string
 }
 
 export type ExhibitionFormRef = {
@@ -20,7 +21,7 @@ export type ExhibitionFormRef = {
   }
 }
 
-const RenderExhibitionForm = ({ title }: Props, ref: Ref<ExhibitionFormRef>): React.ReactElement<Props> => {
+const RenderExhibitionForm = ({ title, prefix = '' }: Props, ref: Ref<ExhibitionFormRef>): React.ReactElement<Props> => {
   const [ExhibitionDate, setExhibitionDate] = useState<string>('');
   const [address, setAddress] = useState<string>('');
   const [licenseNumber, setLicenseNumber] = useState<string>('');
@@ -49,44 +50,37 @@ const RenderExhibitionForm = ({ title }: Props, ref: Ref<ExhibitionFormRef>): Re
       <div className={styles.form}>{title}</div>
       <DocsComponentInput
         text={Strings.RenderExhibitionForm.ExhibitionDate}
-        onChange={onChangeInput(setExhibitionDate)}
-        value={ExhibitionDate}
+        name={`${prefix}ExhibitionDate`}
         type="date"
       />
       <DocsComponentInput
         text={Strings.RenderExhibitionForm.Venue}
-        onChange={onChangeInput(setAddress)}
-        value={address}
+        name={`${prefix}Venue`}
         type="text"
       />
       <DocsComponentInput
         text={Strings.RenderExhibitionForm.LicenseNumber}
-        onChange={onChangeInput(setLicenseNumber)}
-        value={licenseNumber}
+        name={`${prefix}LicenseNumber`}
         type="text"
       />
       <DocsComponentInput
         text={Strings.RenderExhibitionForm.Club}
-        onChange={onChangeInput(setClub)}
-        value={club}
+        name={`${prefix}Club`}
         type="text"
       />
       <DocsComponentInput
         text={Strings.RenderExhibitionForm.Expert}
-        onChange={onChangeInput(setExpert)}
-        value={expert}
+        name={`${prefix}Expert`}
         type="text"
       />
       <DocsComponentInput
         text={Strings.RenderExhibitionForm.Evaluation}
-        onChange={onChangeInput(setEvaluation)}
-        value={evaluation}
+        name={`${prefix}Evaluation`}
         type="text"
       />
       <DocsComponentInput
         text={Strings.RenderExhibitionForm.EvaluationSheet}
-        onChange={onChangeInput(setEvaluationSheet)}
-        value={evaluationSheet}
+        name={`${prefix}EvaluationSheet`}
         type="file"
       />
     </div>

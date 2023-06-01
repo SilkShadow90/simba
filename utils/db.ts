@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { Auth, getAuth, signInAnonymously, signInWithEmailAndPassword } from 'firebase/auth';
+import { getStorage } from 'firebase/storage';
 
 import {
   child, Database, DatabaseReference, get, getDatabase, orderByChild, push, Query, query, ref, remove, update,
@@ -8,9 +9,11 @@ import {
 import { delay, devLog } from './common';
 import { IDObject } from '../api/types';
 import serverConfig from '../serverConfig.json';
+import StorageService from './StorageService';
 
 // Initialize Firebase
 const app = initializeApp(serverConfig);
+// StorageService.init(app);
 
 export class DB {
   private static readonly delay = 300;
@@ -25,7 +28,7 @@ export class DB {
     const defaultQuery = child(DB.dbRef, url);
 
     return key ? query(defaultQuery, orderByChild(key)) : defaultQuery;
-  } ;
+  };
 
   static getApi = async <T extends {}, U = T>(
     url: string,

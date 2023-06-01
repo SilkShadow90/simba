@@ -11,9 +11,10 @@ interface Props {
   type?: 'primary' | 'secondary' | 'other';
   stretch?: boolean;
   isLoading?: boolean;
+  disabled?: boolean;
 }
 
-export const AdminButton = ({ text, onClick, type, stretch, isLoading = false }: Props) => {
+export const AdminButton = ({ text, onClick, type, stretch, isLoading = false, disabled }: Props) => {
 
 
   const [buttonStyle, textStyle] = useMemo(
@@ -33,7 +34,7 @@ export const AdminButton = ({ text, onClick, type, stretch, isLoading = false }:
   );
 
   return (
-    <button className={classNames(buttonStyle, stretch && 'stretch')} color={''} onClick={isLoading ? undefined : onClick}>
+    <button disabled={disabled} className={classNames(buttonStyle, stretch && 'stretch')} color={''} onClick={isLoading ? undefined : onClick}>
       {isLoading ? (
         <div className="centered" style={{ height: '40px' }}>
           <Loader isVisible />

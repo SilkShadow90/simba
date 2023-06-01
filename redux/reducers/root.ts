@@ -1,12 +1,10 @@
 import { combineReducers } from 'redux';
-import { userReducer } from './user';
-import { usersReducer } from './users';
-import { adminReducer } from './admin';
-import { docsReducer } from './docs';
+import { reducer as formReducer } from 'redux-form';
+import { dictionariesReducer } from './dictionaries';
+import { tablesReducer } from './tables';
 
 export const rootReducer = combineReducers({
-  usersState: usersReducer,
-  userState: userReducer,
-  adminState: adminReducer,
-  docsState: docsReducer,
+  dictionariesState: dictionariesReducer,
+  tablesState: tablesReducer,
+  form: formReducer,
 });

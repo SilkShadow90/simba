@@ -30,7 +30,7 @@ export const Toast = forwardRef<ToastRefAttributes>((_, ref) => {
 
   useImperativeHandle(ref, () => ({
     showToast: (text: string, type: ToastType = 'info') => {
-      setToasts(prevState => [{ text, type, timestamp: Number(new Date()) }, ...prevState]);
+      setToasts(prevState => [...prevState, { text, type, timestamp: Number(new Date()) }]);
     },
     setDelay: (newDelay) => {
       setDelay(newDelay);

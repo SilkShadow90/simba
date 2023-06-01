@@ -1,6 +1,11 @@
 .adminPage {
     min-height: 100vh;
 }
+.adminPage_sidebar {
+    z-index: 2;
+    flex: 0 0 auto;
+    box-shadow: var(--shadow-admin);
+}
 
 .adminCards {
     display: flex;
@@ -27,6 +32,19 @@
     position: relative;
     justify-content: center;
     cursor: pointer;
+    border-radius: 50%;
+    height: 27px;
+    width: 27px;
+    transition: all ease-in-out 300ms;
+}
+.adminTab_edit:hover {
+    background-color: var(--admin-color-blue);
+}
+.adminTab_edit img {
+    transition: all ease-in-out 300ms;
+}
+.adminTab_edit:hover img {
+    filter: brightness(100);
 }
 
 
@@ -128,11 +146,24 @@
     grid-template-columns: repeat(7, 1fr) ;
     justify-items: center;
     align-content: center;
-    /*min-height: 48px;*/
     min-height: 64px;
     margin-bottom: 1px;
-    /*padding: 0 36px;*/
     background-color: var(--admin-color-icon-white);
+    border:#E5E5E5 solid 1px;
+    border-radius: 4px;
+}
+.admin_Input_Tab:hover {
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+}
+.admin_Input_Tab:hover,
+.admin_Input_Tab_Checked {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr) ;
+    justify-items: center;
+    align-content: center;
+    min-height: 64px;
+    margin-bottom: 1px;
+    background: #F2F9FF;
     border:#E5E5E5 solid 1px;
     border-radius: 4px;
 }
@@ -141,7 +172,13 @@
     display: grid;
     grid-template-columns: 1fr;
 }
+.admin_Input_Tab_Checked div ,
+.admin_Input_Tab div {
+    align-self: center;
+}
+.admin_Input_Tab:hover {
 
+}
 .admin_input_tab_checked {
     display: flex;
     width: 100%;
@@ -152,20 +189,29 @@
 
 .admin_input_tab_checked_box {
     display: flex;
+    width: 130px;
     align-items: center;
+    justify-content: space-between;
 }
 
 .admin_input_tab_checked_boxStyle {
     margin:0 10px;
+    flex: 1 1 auto;
  }
+
 .admin_input_tab_checked_boxStyleButton {
+    align-items: center;
     display: flex;
     background-color: inherit;
     border: none;
+    position: relative;
+    justify-content: center;
     cursor: pointer;
 }
 .admin_input_tab_checked_boxStyleButton:hover {
-    background-color: #9797f1;
+    border: solid 1px gray;
+    border-radius: 14px;
+    background-color: #098edf0a;
 }
 
 .admin_input_tab_checked_boolean {
